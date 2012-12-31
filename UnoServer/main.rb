@@ -4,7 +4,6 @@ us = UnoGame.new
 puts us.to_s + "\n"
 while us.next_turn == :keep_playing
   puts us.to_s + "\n"*2
-  s = gets.chomp
 end
 
 p "GAME OVER!"
