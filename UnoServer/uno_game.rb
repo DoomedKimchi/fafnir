@@ -15,8 +15,8 @@ class UnoGame
       @player2.add_card deck.pop_card
     end
 
-    @pile = [deck.pop_card]
-    @draw = deck.deck-@pile
+    @pile = deck.pop_card
+    @draw = deck.deck
 
     @turn = :player_one_turn
   end
@@ -40,14 +40,16 @@ class UnoGame
     end
     #end
     
-    player.update_game_state :top_card => @pile.last.clone
+    player.update_game_state :top_card => @pile.clone
     card = player.play_card
     #start give card
     if card.nil?
       draw = @draw.pop
       player.add_card draw
     else
-      @pile.push card
+      @draw.push @pile
+      @draw.shuffle!
+      @pile = card
       if player.win?
         return :game_over
       end
@@ -58,6 +60,6 @@ class UnoGame
   end
 
   def to_s
-    "draw:(#{@draw.size}) #{@draw}\npile:(#{@pile.size}) #{@pile}\nplayer1:\n#{@player1}player2:\n#{@player2}"
+    "draw:(#{@draw.size}) #{@draw}\npile:(1) #{@pile}\nplayer1:\n#{@player1}player2:\n#{@player2}"
   end
 end
