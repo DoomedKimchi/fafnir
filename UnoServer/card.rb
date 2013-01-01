@@ -1,4 +1,7 @@
 class Card
+  WILD_RANK = 7
+  GIVE_2_RANK = 6
+  
   attr_accessor :rank, :suit
   def initialize rank, suit
     @rank = rank
@@ -8,6 +11,14 @@ class Card
     end
   end
 
+  def wild?
+    @rank == WILD_RANK
+  end
+  
+  def give_two?
+    @rank == GIVE_2_RANK
+  end
+  
   def ==(c)
     c.rank == @rank && c.suit == @suit
   end

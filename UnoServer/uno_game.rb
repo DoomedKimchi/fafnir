@@ -43,6 +43,10 @@ class UnoGame
     return game_status #win on :player_one_turn or :player_two_turn
   end
   
+  def check played_card, top_card
+    played_card.rank==top_card.rank || played_card.suit == top_card.suit || played_card.wild?
+  end
+  
   def next_turn
     #start turn switching code
     if @turn == :player_one_turn
