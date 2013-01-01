@@ -1,5 +1,5 @@
 require_relative 'deck'
-require_relative 'player_a'
+require_relative 'player'
 require_relative 'base_player'
 class UnoGame
   @@rand = Random.new()
