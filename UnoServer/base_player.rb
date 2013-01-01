@@ -33,6 +33,21 @@ class BasePlayer
     @hand.empty?
   end
   
+  def find (kind)   
+    case kind
+    when :rank
+      return @hand.find {|card| card.rank==@game_state[:top_card].rank}
+    when :suit
+      return @hand.find {|card| card.suit==@game_state[:top_card].suit}
+    when :wild
+      return @hand.find {|card| card.wild?}
+    when :give_two
+      return @hand.find {|card| card.give_two?}
+    else
+      raise "invalid kind of search"
+    end
+  end
+  
   def to_s
     "(#{@hand.size}) #{@hand.join(", ")}\n"
   end

@@ -38,13 +38,13 @@ class UnoGame
     game_status = :keep_playing
     while game_status == :keep_playing
       game_status = next_turn
-      puts us.to_s + "\n"*2 if debug      
+      puts to_s + "\n"*2 if debug      
     end
     return game_status #win on :player_one_turn or :player_two_turn
   end
   
   def check played_card, top_card
-    played_card.rank==top_card.rank || played_card.suit == top_card.suit || played_card.wild?
+    played_card.rank==top_card.rank || played_card.suit == top_card.suit || played_card.wild? || played_card.give_two?
   end
   
   def next_turn
@@ -58,15 +58,16 @@ class UnoGame
     end
     #end
     
-    player.update_game_state :top_card => @pile.clone
+    player.update_game_state :top_card => @pile
     
     card = player.play_card
-    
     #start give card
     if card.nil?
       draw = @draw.pop
       player.add_card draw
     else
+      raise "you can't play that!" unless check card, @pile
+      
       @draw.push @pile
       @draw.shuffle!
       @pile = card
