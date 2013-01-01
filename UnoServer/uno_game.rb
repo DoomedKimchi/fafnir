@@ -2,13 +2,14 @@ require_relative 'deck'
 require_relative 'player_a'
 require_relative 'base_player'
 class UnoGame
-  def initialize
+  @@rand = Random.new()
+  def initialize(player_one=PlayerA, player_two=PlayerA, start_turn=:random)
     deck = Deck.new
     deck.shuffle!
     
     #start game
-    @player1 = PlayerA.new
-    @player2 = PlayerA.new
+    @player1 = player_one.new
+    @player2 = player_two.new
 
     7.times do
       @player1.add_card deck.pop_card
@@ -17,8 +18,11 @@ class UnoGame
 
     @pile = deck.pop_card
     @draw = deck.deck
-
-    @turn = :player_two_turn
+    if start_turn == :random
+      @turn = [:player_one_turn,:player_two_turn][@@rand.rand(0..1)]
+    else
+      @turn = :player_one_turn
+    end
   end
 
   def other_turn turn
@@ -29,6 +33,15 @@ class UnoGame
     end
   end
 
+  def run(debug = false)
+    game_status = :keep_playing
+    while game_status == :keep_playing
+      game_status = next_turn
+      puts us.to_s + "\n"*2 if debug      
+    end
+    return game_status #win on :player_one_turn or :player_two_turn
+  end
+  
   def next_turn
     #start turn switching code
     if @turn == :player_one_turn
