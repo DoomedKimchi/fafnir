@@ -18,7 +18,7 @@ class UnoGame
     @pile = deck.pop_card
     @draw = deck.deck
 
-    @turn = :player_one_turn
+    @turn = :player_two_turn
   end
 
   def other_turn turn
@@ -51,7 +51,7 @@ class UnoGame
       @draw.shuffle!
       @pile = card
       if player.win?
-        return :game_over
+        return @turn
       end
     end
     #end
