@@ -1,6 +1,7 @@
 require_relative 'deck'
 require_relative 'player'
 require_relative 'base_player'
+
 class UnoGame
   @@rand = Random.new()
   def initialize(player_one=PlayerA, player_two=PlayerA, start_turn=:random)
@@ -45,16 +46,18 @@ class UnoGame
   def next_turn
     #start turn switching code
     if @turn == :player_one_turn
-    player = @player1
+      player = @player1
     elsif @turn == :player_two_turn
-    player = @player2
+      player = @player2
     else
-      player = nil
+      raise "weird turn"
     end
     #end
     
     player.update_game_state :top_card => @pile.clone
+    
     card = player.play_card
+    
     #start give card
     if card.nil?
       draw = @draw.pop
