@@ -1,0 +1,14 @@
+Fafnir
+  |-> DriveTrain driveTrain
+  |
+  |
+  |
+  |
+  |
+  |
+  |
+
+DriveTrain
+  |-> Solenoid rshift, lshift
+  |-> setShifterMode()
+  |-> updatePeriodic()
