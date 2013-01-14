@@ -1,0 +1,8 @@
+
+class Shooter {
+private:
+
+
+public:
+
+};

@@ -1,0 +1,8 @@
+
+class Accumulator {
+private:
+
+
+public:
+
+};
