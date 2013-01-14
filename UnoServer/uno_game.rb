@@ -81,6 +81,7 @@ class UnoGame
   end
 
   def to_s
-    "draw:(#{@draw.size}) #{@draw}\npile:(1) #{@pile}\nplayer1:\n#{@player1}player2:\n#{@player2}"
+    #"draw:(#{@draw.size}) #{@draw}\npile:(1) #{@pile}\nplayer1:\n#{@player1}player2:\n#{@player2}"
+    "#{@pile}"
   end
 end

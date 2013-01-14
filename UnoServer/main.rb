@@ -3,7 +3,7 @@ require_relative 'uno_game'
 require 'benchmark'
 
 turn_total = 0
-iterations = 1000
+iterations = 1
 wins = {:player_one_turn => 0, :player_two_turn=>0}
 iterations.times do
   us = UnoGame.new(PlayerA,PlayerB,:random)
