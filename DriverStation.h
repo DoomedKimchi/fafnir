@@ -6,13 +6,13 @@
 class DriverStation {
 private:
 	Joystick leftStick;
-	Joystick rightStick;
+	Joystick rightStick; // how many joysticks do we have
 	// buttons and things
 public:
   void update();
   int getAutoType(); // we can set different autonomous starting places or procedures
-  int getStickX(Joystick stick); // pass in which joystick to get
-  int getStickY(Joystick stick); // pass in which joystick to get
+  int getStickX(); // can we pass the joystick inside?
+  int getStickY();
 };
 
 #endif /* DRIVER_STATION_H */
