@@ -1,3 +1,5 @@
+#ifndef ACCUMULATOR_H
+#define ACCUMULATOR_H
 
 class Accumulator {
 private:
@@ -6,3 +8,5 @@ private:
 public:
 
 };
+
+#endif /* ACCUMULATOR_H */

@@ -1,3 +1,6 @@
+#ifndef DRIVE_TRAIN_H
+#define DRIVE_TRAIN_H
+
 /*
  * Drivetrain class
  * It's the drive train, what do you think it does?
@@ -11,3 +14,5 @@ private:
 public:
 
 };
+
+#endif /* DRIVE_TRAIN_H *?

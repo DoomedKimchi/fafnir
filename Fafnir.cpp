@@ -1,4 +1,7 @@
 #include "WPILib.h"
+#include "Robot.h"
+#include "AutonomousController.h"
+#include "DriverController.h"
 
 class Fafnir : public IterativeRobot {
 private:
