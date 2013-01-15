@@ -5,7 +5,7 @@ class DriverStation {
 private:
 
 public:
-
+  void update();
 };
 
 #endif /* DRIVER_STATION_H */
