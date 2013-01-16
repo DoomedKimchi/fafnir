@@ -25,7 +25,20 @@ Methods
 Ivars
 -----
   * Accumulator accumulator
-  * Shooter shooter
-  * DriveTrain driveTrain
   * Camera cam
+  * DriveTrain driveTrain
+  * Shooter shooter
 
+Accumulator
+===========
+Methods
+-------
+  * collect()
+  * update()
+###Private
+  * start()
+  * kill()
+
+Ivars
+-----
+  * Victor[] motors
