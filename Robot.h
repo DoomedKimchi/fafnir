@@ -12,12 +12,11 @@ private:
    Shooter shooter;
    AutonomousController autonomousController;
    Accumulator accumulator;
-
 public:
    void drive(int speed); //drive forward at speed
    void drive(int speed, int speed); // left, right motor set speeds
    void drive(int speed, int curvature); // drive at speed and curvature
-   void accumulate();
+   void accumulate(); // take care of sensing?
    void shoot(); // just shoot, no aiming
    void aim(int x, int y); // angle to aim
    void aim(RGBImage image); // image to aim at
