@@ -35,7 +35,6 @@ Methods
 -------
   * collect()
   * update()
-###Private
   * start()
   * kill()
 
