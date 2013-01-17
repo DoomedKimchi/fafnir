@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-#ifndef ROBOT_H
-#define ROBOT_H
-
-#include "Constants.h"
-#include "Accumulator.h"
-#include "AutonomousController.h"
-#include "DriverStation.h"
-#include "Shooter.h"
-
-class Robot {
-private:
-
-
-public:
-
-};
-#endif /* ROBOT_H */
-=======
 #ifndef ROBOT_H
 #define ROBOT_H
 
@@ -39,6 +20,8 @@ public:
    void shoot(); // just shoot, no aiming
    void aim(int x, int y); // angle to aim
    void aim(RGBImage image); // image to aim at
+
+   Robot();
 };
 #endif /* ROBOT_H */
->>>>>>> 45cdae43cc5e9a5af71d5fae03def9f38b1b08df
+
