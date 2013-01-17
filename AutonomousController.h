@@ -6,9 +6,9 @@
 class AutonomousController {
  private:
   Robot *fafnir;
+  bool fire();
  public:
   AutonomousController(Robot *fafnir);
-  boolean fire();
   virtual ~AutonomousController();
 };
 
