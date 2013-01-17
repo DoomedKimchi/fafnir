@@ -19,7 +19,7 @@ public:
    void drive(int speed, int curvature); // drive at speed and curvature
    void accumulate(); // take care of sensing?
    void shoot(); // just shoot, no aiming
-   void aim(int x, int y); // angle to aim
+   void aim(int yaw, int elevation); // angle to aim
    void aim(RGBImage image); // image to aim at
 };
 #endif /* ROBOT_H */
