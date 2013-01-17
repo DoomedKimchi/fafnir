@@ -3,12 +3,13 @@
 
 class Accumulator {
 private:
-  Victor[] motors;
+  Victor motor;
   bool start();
   bool kill();
 public:
   bool collect();
   bool update();
+  Accumulator();
 };
 
 #endif /* ACCUMULATOR_H */
