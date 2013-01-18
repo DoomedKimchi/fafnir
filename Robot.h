@@ -1,6 +1,7 @@
 #ifndef ROBOT_H
 #define ROBOT_H
 
+#include "WPILib.h"
 #include "Constants.h"
 #include "Accumulator.h"
 #include "AutonomousController.h"
@@ -13,6 +14,7 @@ private:
    Shooter shooter;
    AutonomousController autonomousController;
    Accumulator accumulator;
+   AxisCamera &camera;
 public:
    Robot();
    void drive(int speed); //drive forward at speed
@@ -22,5 +24,6 @@ public:
    void shoot(); // just shoot, no aiming
    void aim(int yaw, int elevation); // angle to aim
    void aim(RGBImage image); // image to aim at
+
 };
 #endif /* ROBOT_H */
