@@ -1,4 +1,3 @@
-//max bernstein, you are a lampshade
 /*************************************************
 *       Perl-Compatible Regular Expressions      *
 *************************************************/
