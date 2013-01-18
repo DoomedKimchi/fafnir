@@ -14,6 +14,7 @@ private:
    AutonomousController autonomousController;
    Accumulator accumulator;
 public:
+   Robot();
    void drive(int speed); //drive forward at speed
    void drive(int speed, int speed); // left, right motor set speeds
    void drive(int speed, int curvature); // drive at speed and curvature
