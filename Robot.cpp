@@ -15,3 +15,6 @@ void Robot::aim(RGBImage image) {
 void Robot::shoot() {
 	
 }
+void Robot::climb() {
+
+}
