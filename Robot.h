@@ -17,13 +17,13 @@ private:
    AxisCamera &camera;
 public:
    Robot();
-   void drive(int speed); //drive forward at speed
-   void drive(int speed, int speed); // left, right motor set speeds
-   void drive(int speed, int curvature); // drive at speed and curvature
+   void drive(float speed); //drive forward at speed
+   void drive(float speed, float speed); // left, right motor set speeds
+   void drive(float speed, float curvature); // drive at speed and curvature
    void accumulate(); // take care of sensing?
    void shoot(); // just shoot, no aiming
-   void aim(int yaw, int elevation); // angle to aim
-   void aim(RGBImage image); // image to aim at
-
+   void aim(float yaw, float elevation); // angle to aim
+   void aim(); // aim using the camera
+   void climb();
 };
 #endif /* ROBOT_H */
