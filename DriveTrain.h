@@ -1,5 +1,4 @@
-#ifndef DRIVE_TRAIN_H
-#define DRIVE_TRAIN_H
+ DRIVE_TRAIN_H
 
 #include "Constants.h"
 #include "WPILabs.h"
@@ -11,6 +10,10 @@ private:
   Encoder leftBackEnc;
   Encoder rightFrontEnc;
   Encoder rightBackEnc;
+  Victor leftFrontVic;
+  Victor leftBackVic;
+  Victor rightFrontVic;
+  Victor rightBackVic;
   bool periodicAuto();
   int speed;
   int rotateSpeed; 
