@@ -1,4 +1,5 @@
- DRIVE_TRAIN_H
+#ifndef DRIVE_TRAIN_H
+#define DRIVE_TRAIN_H
 
 #include "Constants.h"
 #include "WPILabs.h"
@@ -20,12 +21,12 @@ private:
   Victor rightFrontVic;
   Victor rightBackVic;
 
-  bool periodicAuto();
   int speed;
   int rotateSpeed;
 
-  bool engageHigh();
-  bool engageLow();
+  void engageHigh();
+  void engageLow();
+  void engageAuto();
 
 public:
   bool driveSpd(double);
@@ -35,10 +36,10 @@ public:
   bool rotateSpd(double);
   bool rotateDist(double);
 
-  ShifterMode getGear();
-  bool setGear(ShifterMode mode);
-
-  bool update();
+  ShifterMode getMode();
+  void setMode(ShifterMode mode);
+  
+  void update();
 };
 
 #endif /* DRIVE_TRAIN_H */

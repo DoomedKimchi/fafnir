@@ -4,32 +4,35 @@
  * Are you seriously still reading this?
  */
 
-DriveTrain::DriveTrain {
-  
+DriveTrain::DriveTrain() {
+  leftSol(PORT_SOL_LEFT);
+  rightSol(PORT_SOL_RIGHT);
+
+  leftFrontEnc(PORT_ENC_1);
+  leftBackEnc(PORT_ENC_2);
+  rightFrontEnc(PORT_ENC_3);
+  rightBackEnc(PORT_ENC_4);
+
+  leftFrontVic(PORT_VIC_1);
+  leftBackVic(PORT_VIC_2);
+  rightFrontVic(PORT_VIC_3);
+  rightBackVic(PORT_VIC_4);
+
+  setMode(LOW_GEAR);
 }
 
 bool DriveTrain::engageHigh() {
-  if(gear == HIGH_GEAR) {
-    return false;
-  }
-  gear = HIGH_GEAR;
-  return true;
+  leftSol.set(HIGH_GEAR);
+  rightSol.set(HIGH_GEAR);
 }
 
 bool DriveTrain::engageLow() {
-  if(gear == LOW_GEAR) {
-    return false;
-  }
-  if(
-  return true;
-}
-
-bool DriveTrain::periodicAuto() {
-
+  leftSol.set(LOW_GEAR);
+  rightSol.set(LOW_GEAR);
 }
 
 bool DriveTrain::driveSpd(double d) {
-
+  
 }
 
 bool DriveTrain::driveDist(double d) {
@@ -48,14 +51,27 @@ bool DriveTrain::rotateDist(double d) {
 
 }
 
-ShifterMode DriveTrain::getGear() {
-
+ShifterMode DriveTrain::getMode() {
+  return mode;
 }
 
-bool DriveTrain::setGear(ShifterMode s) {
-
+bool DriveTrain::setMode(ShifterMode s) {
+  if(s == HIGH_GEAR) {
+    engageHigh();
+    mode = HIGH_GEAR;
+  }
+  else if (s == LOW_GEAR) {
+    engageLow();
+    mode = LOW_GEAR;
+  }
+  else if (s == AUTO) {
+    mode = AUTO;
+  }
 }
 
-DriveTrain::update() {
-
+void DriveTrain::update() {
+  if(mode == AUTO) {
+    //automatic shifting code
+    //and stuff
+  }
 }
