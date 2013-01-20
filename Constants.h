@@ -22,10 +22,12 @@
 #define PORT_JOYSTICK_TURN 12
 #define PORT_JOYSTICK_OPERATOR 13
 
+/* Solenoid definitions */
 #define SOL_HIGH false
 #define SOL_LOW true
 
-enum ShifterModes { LOW_GEAR, HIGH_GEAR, AUTO };
+enum ShifterMode { LOW_GEAR, HIGH_GEAR, AUTO };
+enum AutonomousMode { DEFAULT, ALTERNATE_1, ALTERNATE_2 };
 
 #endif /* CONSTANTS_H */
 
