@@ -23,8 +23,8 @@
 #define PORT_JOYSTICK_OPERATOR 0
 
 /* Solenoid definitions */
-#define SOL_HIGH false
-#define SOL_LOW true
+#define SOL_DRIVE_HIGH false
+#define SOL_DRIVE_LOW true
 
 enum ShifterMode { LOW_GEAR, HIGH_GEAR, AUTO };
 enum AutonomousMode { DEFAULT, ALTERNATE_1, ALTERNATE_2 };

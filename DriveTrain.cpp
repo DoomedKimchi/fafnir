@@ -22,13 +22,13 @@ DriveTrain::DriveTrain() {
 }
 
 bool DriveTrain::engageHigh() {
-  leftSol.set(HIGH_GEAR);
-  rightSol.set(HIGH_GEAR);
+  leftSol.set(SOL_DRIVE_HIGH);
+  rightSol.set(SOL_DRIVE_HIGH);
 }
 
 bool DriveTrain::engageLow() {
-  leftSol.set(LOW_GEAR);
-  rightSol.set(LOW_GEAR);
+  leftSol.set(SOL_DRIVE_LOW);
+  rightSol.set(SOL_DRIVE_LOW);
 }
 
 bool DriveTrain::setMode(ShifterMode s) {
@@ -74,4 +74,7 @@ void DriveTrain::update() {
     //automatic shifting code
     //and stuff
   }
+  //check encoders
+  //and do stuff with them
+  //and stuff
 }
