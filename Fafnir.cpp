@@ -33,6 +33,7 @@ void Fafnir::AutonomousInit() {
 
 void Fafnir::AutonomousPeriodic() {
     autoController.update();
+    robot.update();
 }
 
 void Fafnir::AutonomousDisabled() {
@@ -45,6 +46,7 @@ void Fafnir::TeleopInit() {
 
 void Fafnir::TeleopPeriodic() {
     driveStation.update();
+    robot.update();
 }
 
 void Fafnir::TeleopDisabled() {
