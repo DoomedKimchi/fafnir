@@ -34,6 +34,9 @@
 #define BUTT_JOYSTICK_SPEED_9 8
 #define BUTT_JOYSTICK_SPEED_10 9
 #define BUTT_JOYSTICK_SPEED_11 10
+#define AXIS_JOYSTICK_SPEED_X 0
+#define AXIS_JOYSTICK_SPEED_Y 1
+#define AXIS_JOYSTICK_SPEED_Z 2
 
 /* Turn joystick button and axis numbering */
 #define BUTT_JOYSTICK_TURN_TRIGGER 0
@@ -47,6 +50,9 @@
 #define BUTT_JOYSTICK_TURN_9 8
 #define BUTT_JOYSTICK_TURN_10 9
 #define BUTT_JOYSTICK_TURN_11 10
+#define AXIS_JOYSTICK_TURN_X 0
+#define AXIS_JOYSTICK_TURN_Y 1
+#define AXIS_JOYSTICK_TURN_Z 2 
 
 /* Operator joystick button and axis numbering */
 #define BUTT_JOYSTICK_OPERATOR_TRIGGER 0
@@ -60,6 +66,9 @@
 #define BUTT_JOYSTICK_OPERATOR_9 8
 #define BUTT_JOYSTICK_OPERATOR_10 9
 #define BUTT_JOYSTICK_OPERATOR_11 10
+#define AXIS_JOYSTICK_OPERATOR_X 0
+#define AXIS_JOYSTICK_OPERATOR_Y 1
+#define AXIS_JOYSTICK_OPERATOR_Z 2
 
 /* Solenoid definitions */
 #define SOL_DRIVE_HIGH false
