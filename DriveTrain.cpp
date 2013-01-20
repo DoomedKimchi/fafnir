@@ -65,11 +65,7 @@ bool DriveTrain::driveTo(double d1, double d2) {
 
 }
 
-bool DriveTrain::rotateSpd(double d) {
-
-}
-
-bool DriveTrain::rotateDist(double d) {
+bool DriveTrain::rotate(double d) {
 
 }
 

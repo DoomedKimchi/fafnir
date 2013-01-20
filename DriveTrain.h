@@ -33,8 +33,7 @@ public:
   bool driveDist(double);
   bool driveTo(double, double);
 
-  bool rotateSpd(double);
-  bool rotateDist(double);
+  bool rotate(double); //distance
 
   ShifterMode getMode();
   void setMode(ShifterMode mode);
