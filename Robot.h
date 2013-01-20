@@ -15,6 +15,7 @@ private:
   Shooter shooter;
   AxisCamera &camera;
 
+  bool isAimed = true;
   
 public:
   Robot();
