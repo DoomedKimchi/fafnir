@@ -10,19 +10,18 @@
 
 class Robot {
 private:
-   DriverStation driverStation;
-   Shooter shooter;
-   AutonomousController autonomousController;
-   Accumulator accumulator;
-   AxisCamera &camera;
+  DriveTrain driveTrain;
+  Accumulator accumulator;
+  Shooter shooter;
+  AxisCamera &camera;
 
-
+  
 public:
-   Robot();
-   void accumulate(); // take care of sensing?
-   void shoot(); // just shoot, no aiming
-   void aim(float yaw, float elevation); // angle to aim
-   void aim(); // aim using the camera
-   void climb();
+  Robot();
+  void accumulate(); // take care of sensing?
+  void shoot(); // just shoot, no aiming
+  void aim(float yaw, float elevation); // angle to aim
+  void aim(); // aim using the camera
+  void climb();
 };
 #endif /* ROBOT_H */
