@@ -54,19 +54,19 @@ ShifterMode DriveTrain::getMode() {
 }
 
 bool DriveTrain::driveSpd(double d) {
-  
+    //set target speed
 }
 
 bool DriveTrain::driveDist(double d) {
-
+    //set target distance
 }
 
 bool DriveTrain::driveTo(double d1, double d2) {
-
+    //calculate polar coordinates (r, theta) then set values
 }
 
 bool DriveTrain::rotate(double d) {
-
+    //set target angle
 }
 
 void DriveTrain::update() {
@@ -77,4 +77,18 @@ void DriveTrain::update() {
   //check encoders
   //and do stuff with them
   //and stuff
+
+  //Drive Speed
+      //check dist since last tick
+      //calc current speed
+      //PID loop it up
+  //Drive Dist
+      //check target vs actual distance
+      //PID loop
+  //Turn
+      //check current angle with gyro vs target angle
+      //PID
+
+  //ISSUES
+      //angle and speed can be absolute, distance cannot (reliably)
 }
