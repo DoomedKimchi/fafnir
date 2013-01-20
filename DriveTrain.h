@@ -40,6 +40,7 @@ public:
   bool driveTo(double, double);
 
   bool rotate(double); //distance
+  //we should have rotate speed as well
 
   ShifterMode getMode();
   void setMode(ShifterMode mode);

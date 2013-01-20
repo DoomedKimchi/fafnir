@@ -4,6 +4,9 @@
 class Accumulator {
 private:
   Victor motor;
+  //pneumatic arm for flipping
+  //beam sensor for frisbee?
+
   bool start();
   bool kill();
 public:

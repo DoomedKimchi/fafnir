@@ -56,7 +56,7 @@ ShifterMode DriveTrain::getMode() {
 bool DriveTrain::driveSpd(double d) {
     //set target speed
 }
-
+//driveDist and driveTo mostly for auto
 bool DriveTrain::driveDist(double d) {
     //set target distance
 }
@@ -78,9 +78,10 @@ void DriveTrain::update() {
   //and do stuff with them
   //and stuff
 
-  //Drive Speed
+  //Drive Speed/Ang Speed
       //check dist since last tick
       //calc current speed
+      //scale on a per wheel basis based on turn speed
       //PID loop it up
   //Drive Dist
       //check target vs actual distance

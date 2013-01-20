@@ -12,6 +12,7 @@ private:
    AutonomousMode mode;
 public:
   int getAutonomousMode();
+  //Joystick already has methods for these
   int getStickX(); // can we pass the joystick inside?
   int getStickY();
 
