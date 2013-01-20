@@ -5,7 +5,7 @@ DriverStation::DriverStation() {
   operatorStick(PORT_JOYSTICK_OPERATOR);
 }
 
-int DriverStation::getAutoType() {
+AutonomousMode DriverStation::getAutonomousMode() {
 
 }
 

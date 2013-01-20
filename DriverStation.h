@@ -11,7 +11,7 @@ private:
 
    AutonomousMode mode;
 public:
-  int getAutoType(); // we can set different autonomous starting places or procedures
+  int getAutonomousMode();
   int getStickX(); // can we pass the joystick inside?
   int getStickY();
 
