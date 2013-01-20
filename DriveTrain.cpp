@@ -31,6 +31,28 @@ bool DriveTrain::engageLow() {
   rightSol.set(LOW_GEAR);
 }
 
+bool DriveTrain::setMode(ShifterMode s) {
+  switch (s) {
+  case HIGH_GEAR: 
+    engageHigh();
+    mode = HIGH_GEAR;
+    break;
+  case LOW_GEAR:
+    engageLow();
+    mode = LOW_GEAR;
+    break;
+  case AUTO:
+    mode = AUTO;
+    break;
+  default:
+    break;
+  }
+}
+
+ShifterMode DriveTrain::getMode() {
+  return mode;
+}
+
 bool DriveTrain::driveSpd(double d) {
   
 }
@@ -49,24 +71,6 @@ bool DriveTrain::rotateSpd(double d) {
 
 bool DriveTrain::rotateDist(double d) {
 
-}
-
-ShifterMode DriveTrain::getMode() {
-  return mode;
-}
-
-bool DriveTrain::setMode(ShifterMode s) {
-  if(s == HIGH_GEAR) {
-    engageHigh();
-    mode = HIGH_GEAR;
-  }
-  else if (s == LOW_GEAR) {
-    engageLow();
-    mode = LOW_GEAR;
-  }
-  else if (s == AUTO) {
-    mode = AUTO;
-  }
 }
 
 void DriveTrain::update() {
