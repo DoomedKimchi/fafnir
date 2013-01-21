@@ -54,19 +54,24 @@ ShifterMode DriveTrain::getMode() {
 }
 
 bool DriveTrain::driveSpd(double d) {
-    //set target speed
+  //set target speed
 }
+
 //driveDist and driveTo mostly for auto
 bool DriveTrain::driveDist(double d) {
-    //set target distance
+  //set target distance
 }
 
-bool DriveTrain::driveTo(double d1, double d2) {
-    //calculate polar coordinates (r, theta) then set values
+bool DriveTrain::driveTo(double r, double theta) {
+  //calculate polar coordinates (r, theta) then set values
 }
 
-bool DriveTrain::rotate(double d) {
-    //set target angle
+bool DriveTrain::rotateD(double d) {
+  //set target angle
+}
+
+bool DriveTrain::rotateS(double s) {
+  //set target speed
 }
 
 void DriveTrain::update() {
@@ -77,7 +82,7 @@ void DriveTrain::update() {
   //check encoders
   //and do stuff with them
   //and stuff
-
+  
   //Drive Speed/Ang Speed
       //check dist since last tick
       //calc current speed
