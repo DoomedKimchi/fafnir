@@ -54,7 +54,7 @@ ShifterMode DriveTrain::getMode() {
 }
 
 //driveDist and driveTo mostly for auto
-bool DriveTrain::driveDist(double d) {
+bool DriveTrain::driveD(double d) {
   //set target distance
 }
 
