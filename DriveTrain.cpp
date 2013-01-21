@@ -53,13 +53,13 @@ ShifterMode DriveTrain::getMode() {
   return mode;
 }
 
-bool DriveTrain::driveSpd(double d) {
-  //set target speed
-}
-
 //driveDist and driveTo mostly for auto
 bool DriveTrain::driveDist(double d) {
   //set target distance
+}
+
+bool DriveTrain::driveS(double s) {
+  //set target speed
 }
 
 bool DriveTrain::driveTo(double r, double theta) {

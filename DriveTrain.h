@@ -35,8 +35,8 @@ private:
   float targetAngle;
   
 public:
-  bool driveSpd(double);
-  bool driveDist(double);
+  bool driveD(double); //distance
+  bool driveS(double); //speed
   bool driveTo(double, double);
   
   bool rotateD(double); //distance
