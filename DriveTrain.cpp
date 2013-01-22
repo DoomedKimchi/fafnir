@@ -60,6 +60,14 @@ bool DriveTrain::driveD(double d) {
 
 bool DriveTrain::driveS(double s) {
   //set target speed
+  if (s > gearCutoff) {
+    engageHigh();
+    
+    return true;
+  }
+  engageLow();
+  
+  return true;
 }
 
 bool DriveTrain::driveTo(double r, double theta) {
