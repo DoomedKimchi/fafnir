@@ -13,7 +13,9 @@ private:
   DriveTrain driveTrain;
   Accumulator accumulator;
   Shooter shooter;
+
   AxisCamera &camera;
+  Compressor compressor;
 
   bool isAimed = true;
   

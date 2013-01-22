@@ -6,15 +6,13 @@
 
 class DriveTrain {
 private:
-  ShifterMode gear; //ShifterMode is enumerated in Constants.h
+  ShifterMode mode; //ShifterMode is enumerated in Constants.h
   
   Solenoid leftSol;
   Solenoid rightSol;
   
-  Encoder leftFrontEnc;
-  Encoder leftBackEnc;
-  Encoder rightFrontEnc;
-  Encoder rightBackEnc;
+  Encoder leftEnc;
+  Encoder rightEnc;
   
   Victor leftFrontVic;
   Victor leftBackVic;
@@ -33,15 +31,15 @@ private:
   float targetSpeed;
   float targetDist;
   float targetAngle;
-
+  
 public:
-  bool driveSpd(double);
-  bool driveDist(double);
+  bool driveD(double); //distance
+  bool driveS(double); //speed
   bool driveTo(double, double);
-
-  bool rotate(double); //distance
-  //we should have rotate speed as well
-
+  
+  bool rotateD(double); //distance
+  bool rotateS(double); //speed
+  
   ShifterMode getMode();
   void setMode(ShifterMode mode);
   
