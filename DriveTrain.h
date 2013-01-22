@@ -11,10 +11,8 @@ private:
   Solenoid leftSol;
   Solenoid rightSol;
   
-  Encoder leftFrontEnc;
-  Encoder leftBackEnc;
-  Encoder rightFrontEnc;
-  Encoder rightBackEnc;
+  Encoder leftEnc;
+  Encoder rightEnc;
   
   Victor leftFrontVic;
   Victor leftBackVic;
