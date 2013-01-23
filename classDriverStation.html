@@ -87,26 +87,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">DriverStation Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Takes human control during the operator period.  
+ <a href="classDriverStation.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="DriverStation_8h_source.html">DriverStation.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad3eb11d3636313c863b4bc04c3dbb923"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad3eb11d3636313c863b4bc04c3dbb923"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getAutonomousMode</b> ()</td></tr>
-<tr class="memitem:a2ae52551f56256945df042fec4ddaf1a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ae52551f56256945df042fec4ddaf1a"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getStickX</b> ()</td></tr>
-<tr class="memitem:a56fd0af5f3e6a9824ec46d4553996381"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a56fd0af5f3e6a9824ec46d4553996381"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getStickY</b> ()</td></tr>
 <tr class="memitem:a8e5d44c4d09872c091ff8c05351ce21e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e5d44c4d09872c091ff8c05351ce21e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> ()</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDriverStation.html#a8e5d44c4d09872c091ff8c05351ce21e">update</a> ()</td></tr>
+<tr class="memdesc:a8e5d44c4d09872c091ff8c05351ce21e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method constantly called by <a class="el" href="classRobot.html">Robot</a>. <br/></td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Takes human control during the operator period. </p>
+<p>Operates the robot while the field is in teleop mode, as well as determining which sequence of autonomous commands the autonomous mode should execute.</p>
+<p>The robot uses Halo drive; one joystick controls the speed of the robot, another its turning, and a final joystick performs functions such as aiming and firing. </p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="DriverStation_8h_source.html">DriverStation.h</a></li>
 <li>DriverStation.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 22 2013 17:31:38 for Fafnir by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jan 22 2013 17:46:28 for Fafnir by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
