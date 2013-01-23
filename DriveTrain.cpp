@@ -1,9 +1,3 @@
-/*
- * Drivetrain class
- * It's the drive train, what do you think it does?
- * Are you seriously still reading this?
- */
-
 DriveTrain::DriveTrain() {
   leftSol(PORT_DRIVE_SOL_1);
   rightSol(PORT_DRIVE_SOL_2);
