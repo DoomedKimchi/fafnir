@@ -62,6 +62,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
+      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -69,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -87,29 +88,82 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Controls frisbee accumulation This is the part of the robot responsible for picking up Frisbees and getting them into the robot. In its most basic form, it consists of one motor that will run a series of rollers and belts that will intake the discs.  
+<p>Controls frisbee accumulation.  
  <a href="classAccumulator.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Accumulator_8h_source.html">Accumulator.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa4641f17bced4487a1e5cd8fea8aedd9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa4641f17bced4487a1e5cd8fea8aedd9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>collect</b> ()</td></tr>
-<tr class="memitem:a1373dca2fe91b2d295573d616b618295"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1373dca2fe91b2d295573d616b618295"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> ()</td></tr>
+<tr class="memitem:a89d4cff8afe6b2535e7b21f0e4074ac5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccumulator.html#a89d4cff8afe6b2535e7b21f0e4074ac5">autoAccumulate</a> ()</td></tr>
+<tr class="memdesc:a89d4cff8afe6b2535e7b21f0e4074ac5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Automatically checks for and picks up frisbees.  <a href="#a89d4cff8afe6b2535e7b21f0e4074ac5"></a><br/></td></tr>
+<tr class="memitem:ae7eea43936de792bdf739e03f1c6d53a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccumulator.html#ae7eea43936de792bdf739e03f1c6d53a">update</a> (bool accumulate)</td></tr>
+<tr class="memdesc:ae7eea43936de792bdf739e03f1c6d53a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The method that is continually called by <a class="el" href="classRobot.html">Robot</a>.  <a href="#ae7eea43936de792bdf739e03f1c6d53a"></a><br/></td></tr>
+<tr class="memitem:a19845ea4f3d7bee830437adcdf197e3e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a19845ea4f3d7bee830437adcdf197e3e"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccumulator.html#a19845ea4f3d7bee830437adcdf197e3e">Accumulator</a> ()</td></tr>
+<tr class="memdesc:a19845ea4f3d7bee830437adcdf197e3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. <br/></td></tr>
+<tr class="memitem:a76c4569797b885f7bfb08c2de3842202"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76c4569797b885f7bfb08c2de3842202"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAccumulator.html#a76c4569797b885f7bfb08c2de3842202">~Accumulator</a> ()</td></tr>
+<tr class="memdesc:a76c4569797b885f7bfb08c2de3842202"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>Controls frisbee accumulation This is the part of the robot responsible for picking up Frisbees and getting them into the robot. In its most basic form, it consists of one motor that will run a series of rollers and belts that will intake the discs. </p>
-<p>Depending on feasibility, this will also feature an arm to flip upside down Frisbees before they go into the robot. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+<div class="textblock"><p>Controls frisbee accumulation. </p>
+<p>This is the part of the robot responsible for picking up Frisbees and getting them into the robot. In its most basic form, it consists of one motor that will run a series of rollers and belts that will intake the discs. Depending on feasibility, this will also feature an arm to flip upside down Frisbees before they go into the robot. </p>
+</div><h2>Member Function Documentation</h2>
+<a class="anchor" id="a89d4cff8afe6b2535e7b21f0e4074ac5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Accumulator::autoAccumulate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Automatically checks for and picks up frisbees. </p>
+<dl class="section return"><dt>Returns</dt><dd>whether a frisbee was picked up </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae7eea43936de792bdf739e03f1c6d53a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Accumulator::update </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>accumulate</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The method that is continually called by <a class="el" href="classRobot.html">Robot</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">accumulate</td><td>Whether <a class="el" href="classAccumulator.html#a89d4cff8afe6b2535e7b21f0e4074ac5" title="Automatically checks for and picks up frisbees.">autoAccumulate()</a> should be called </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether update succeeded </dd></dl>
+<div class="fragment"><div class="line">                          {</div>
+<div class="line"></div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="Accumulator_8h_source.html">Accumulator.h</a></li>
 <li>Accumulator.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 22 2013 16:20:01 for Fafnir by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jan 22 2013 16:58:11 for Fafnir by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

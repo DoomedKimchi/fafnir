@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['accumulator',['Accumulator',['../classAccumulator.html',1,'']]],
+  ['accumulator',['Accumulator',['../classAccumulator.html',1,'Accumulator'],['../classAccumulator.html#a19845ea4f3d7bee830437adcdf197e3e',1,'Accumulator::Accumulator()']]],
+  ['autoaccumulate',['autoAccumulate',['../classAccumulator.html#a89d4cff8afe6b2535e7b21f0e4074ac5',1,'Accumulator']]],
   ['autonomouscontroller',['AutonomousController',['../classAutonomousController.html',1,'']]]
 ];
