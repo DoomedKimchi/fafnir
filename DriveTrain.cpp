@@ -102,6 +102,10 @@ bool DriveTrain::driveTo(double r, double theta) {
     applyForce(steer);
   }
   /*
+  
+  // HOWEVER, this method most likely won't work because we can't accuratrly keep track of our current position
+  // we may just have to turn to the angle and drive forward
+  // the craigs reynold thing is for a moving seek target (so its like a feedback controller)
 }
 
 bool DriveTrain::rotateD(double d) {
