@@ -5,7 +5,7 @@
 
 /*! \brief Controller for the autonomous period
  *
- * AutonomousController controls the robot during the autonomous period of the competition
+ * Controls the robot during the autonomous period of the competition
  * Currently, it only fires frisbees at targets */
 
 class AutonomousController {
