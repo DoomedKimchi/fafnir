@@ -6,12 +6,15 @@
 
 class DriveTrain {
 private:
-  ShifterMode gear; //ShifterMode is defined in Constants.h
+  ShifterMode gear; //ShifterMode is enumerated in Constants.h
   Encoder leftFrontEnc;
   Encoder leftBackEnc;
   Encoder rightFrontEnc;
   Encoder rightBackEnc;
   bool periodicAuto();
+  int speed;
+  int rotateSpeed; 
+  
 
 public:
   bool driveSpd(double);
