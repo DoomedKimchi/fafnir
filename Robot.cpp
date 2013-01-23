@@ -2,7 +2,7 @@
 
 Robot::Robot() {
   camera = AxisCamera::GetInstance();
-  compressor(COMPRESSOR_SPIKE_PORT, PRESSURE_CUTOFF_PORT);
+  compressor(PORT_COMPRESSOR_SPIKE, PORT_PRESSURE_CUTOFF);
   compressor.Start(); 
 }
 

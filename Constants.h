@@ -80,6 +80,9 @@
 #define SHIFT_CUTOFF_UP 5.5
 #define SHIFT_CUTOFF_DOWN 4.5
 
+/*Compressor ports */
+#define PORT_COMPRESSOR_SPIKE 0
+#define PORT_PRESSURE_CUTOFF 0
 enum ShifterMode { LOW_GEAR, HIGH_GEAR, AUTO };
 enum AutonomousMode { DEFAULT, ALTERNATE_1, ALTERNATE_2 };
 
