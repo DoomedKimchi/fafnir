@@ -62,10 +62,30 @@ bool DriveTrain::driveS(double s) {
   engageLow();
   
   return true;
+  // Don't delete this unless you want to be a douche (but move it around as much as you want to)
+  // Ok people, this is how we use a PID controller to set the speed! (by Nathan)
+  // PID control may not actually be optimal for speed, we'll need to do real testing
+  // Here goes
+  // PID: Input : currentSpeed - setSpeed, Output : acceleration
+  // acceleration NEEDS to be the output (90% sure)
+  // we can't output motor power because as currentSpeed reaches setSpeed, then motor power will go to zero
+  // acceleration needs to be added to motorpower every time unit (tick)
+  // We shouldn't use I unless there is slipping (not sure about this)
+  
+  // for gears:
+  // we need to find the ratios and multiply the ratio by motor power
+  // thats all
+  
+  // I don't like /* and */
 }
 
 bool DriveTrain::driveTo(double r, double theta) {
   //calculate polar coordinates (r, theta) then set values
+  
+  // Nathan's notes:
+  // Steering_value = component_perpendicular_to_forward ( vector_to_target ).normalize.multiply(steering speed)
+  // steering speed is important, should probably PID that
+  // if you don't normalize and mult the value, then its basically a P controller
 }
 
 bool DriveTrain::rotateD(double d) {
