@@ -87,12 +87,51 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">AutonomousController Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Controller for the autonomous period.  
+ <a href="classAutonomousController.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="AutonomousController_8h_source.html">AutonomousController.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4cde33d2ffd352a19026cd28c4e3c0b2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4cde33d2ffd352a19026cd28c4e3c0b2"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>AutonomousController</b> (<a class="el" href="classRobot.html">Robot</a> *fafnir)</td></tr>
+<tr class="memitem:a4cde33d2ffd352a19026cd28c4e3c0b2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAutonomousController.html#a4cde33d2ffd352a19026cd28c4e3c0b2">AutonomousController</a> (<a class="el" href="classRobot.html">Robot</a> *fafnir)</td></tr>
+<tr class="memdesc:a4cde33d2ffd352a19026cd28c4e3c0b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an autonomous controller with a pointer to fafnir.  <a href="#a4cde33d2ffd352a19026cd28c4e3c0b2"></a><br/></td></tr>
+<tr class="memitem:acb89ec4bb138b6cbea03ef647ced8051"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb89ec4bb138b6cbea03ef647ced8051"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAutonomousController.html#acb89ec4bb138b6cbea03ef647ced8051">~AutonomousController</a> ()</td></tr>
+<tr class="memdesc:acb89ec4bb138b6cbea03ef647ced8051"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br/></td></tr>
 </table>
+<a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Controller for the autonomous period. </p>
+<p><a class="el" href="classAutonomousController.html" title="Controller for the autonomous period.">AutonomousController</a> controls the robot during the autonomous period of the competition Currently, it only fires frisbees at targets </p>
+</div><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a4cde33d2ffd352a19026cd28c4e3c0b2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AutonomousController::AutonomousController </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classRobot.html">Robot</a> *&#160;</td>
+          <td class="paramname"><em>fafnir</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs an autonomous controller with a pointer to fafnir. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">*fafnir</td><td>A pointer to the <a class="el" href="classRobot.html">Robot</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line">                                                        {</div>
+<div class="line">  this.fafnir = fafnir;</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="AutonomousController_8h_source.html">AutonomousController.h</a></li>
 <li>AutonomousController.cpp</li>
@@ -100,7 +139,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 22 2013 16:58:11 for Fafnir by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jan 22 2013 17:09:18 for Fafnir by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
