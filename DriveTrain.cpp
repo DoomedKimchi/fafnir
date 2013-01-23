@@ -49,7 +49,7 @@ ShifterMode DriveTrain::getMode() {
 
 //driveDist and driveTo mostly for auto
 bool DriveTrain::driveD(double d) {
-  //set target distance
+  //set target distance  
 }
 
 bool DriveTrain::driveS(double s) {
@@ -70,7 +70,7 @@ bool DriveTrain::driveS(double s) {
   // acceleration NEEDS to be the output (90% sure)
   // we can't output motor power because as currentSpeed reaches setSpeed, then motor power will go to zero
   // acceleration needs to be added to motorpower every time unit (tick)
-  // We shouldn't use I unless there is slipping (not sure about this)
+  // We shouldn't use I (Konstant) unless there is slipping (not sure about this)
   
   // for gears:
   // we need to find the ratios and multiply the ratio by motor power
@@ -86,6 +86,22 @@ bool DriveTrain::driveTo(double r, double theta) {
   // Steering_value = component_perpendicular_to_forward ( vector_to_target ).normalize.multiply(steering speed)
   // steering speed is important, should probably PID that
   // if you don't normalize and mult the value, then its basically a P controller
+  
+  //Craig W. Reynolds steering algorithm (expanded to seek behavior) take a look at a simple boids program to further understand
+  //boids written by me! http://openprocessing.org/sketch/67395
+  
+  /* void seek(PVector target) {
+    PVector desired = PVector.sub(target,location);
+    desired.normalize();
+    desired.mult(maxspeed);
+    PVector steer = PVector.sub(desired,velocity);
+
+    // Limit the magnitude of the steering force.
+    steer.limit(maxforce);
+
+    applyForce(steer);
+  }
+  /*
 }
 
 bool DriveTrain::rotateD(double d) {
