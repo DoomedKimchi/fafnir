@@ -87,26 +87,273 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">DriveTrain Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Controls the robot's movement.  
+ <a href="classDriveTrain.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="DriveTrain_8h_source.html">DriveTrain.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3047020f4e94d9e3f6f42bfd98f72fa3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3047020f4e94d9e3f6f42bfd98f72fa3"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>driveD</b> (double)</td></tr>
-<tr class="memitem:a738423102e0e5e41f2ce5fd7d3732eea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a738423102e0e5e41f2ce5fd7d3732eea"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>driveS</b> (double)</td></tr>
-<tr class="memitem:aa97ebfa5c51008ecf644136583836ff8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa97ebfa5c51008ecf644136583836ff8"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>driveTo</b> (double, double)</td></tr>
-<tr class="memitem:aefb0ff415af9254580c15dadb1f3e4b2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aefb0ff415af9254580c15dadb1f3e4b2"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>rotateD</b> (double)</td></tr>
-<tr class="memitem:a85343ca784d50eafebaf5a42c048d46d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a85343ca784d50eafebaf5a42c048d46d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>rotateS</b> (double)</td></tr>
-<tr class="memitem:ad85684c460c61021275c0713a664d06d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad85684c460c61021275c0713a664d06d"></a>
-ShifterMode&#160;</td><td class="memItemRight" valign="bottom"><b>getMode</b> ()</td></tr>
-<tr class="memitem:a2f633207590a06ef4df640791945ae58"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f633207590a06ef4df640791945ae58"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setMode</b> (ShifterMode mode)</td></tr>
-<tr class="memitem:a61e1b7b58ca803ca1fa3553b5805cb7a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a61e1b7b58ca803ca1fa3553b5805cb7a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> ()</td></tr>
+<tr class="memitem:add907b482a85d7c1be6bb4853582283c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDriveTrain.html#add907b482a85d7c1be6bb4853582283c">driveD</a> (double dist)</td></tr>
+<tr class="memitem:aee1a46f797f47864ce65c5c2315af5af"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDriveTrain.html#aee1a46f797f47864ce65c5c2315af5af">driveS</a> (double spd)</td></tr>
+<tr class="memitem:a6a4f995cc3f11205973264df336014cc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDriveTrain.html#a6a4f995cc3f11205973264df336014cc">driveTo</a> (complex target)</td></tr>
+<tr class="memitem:a88bb68b1e72a742aedddce29e97e481b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDriveTrain.html#a88bb68b1e72a742aedddce29e97e481b">rotateA</a> (double angle)</td></tr>
+<tr class="memitem:ad92760b4ae82f65c2000426052f29a26"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDriveTrain.html#ad92760b4ae82f65c2000426052f29a26">rotateS</a> (double rotSpd)</td></tr>
+<tr class="memitem:ad85684c460c61021275c0713a664d06d"><td class="memItemLeft" align="right" valign="top">ShifterMode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDriveTrain.html#ad85684c460c61021275c0713a664d06d">getMode</a> ()</td></tr>
+<tr class="memitem:a2f633207590a06ef4df640791945ae58"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDriveTrain.html#a2f633207590a06ef4df640791945ae58">setMode</a> (ShifterMode mode)</td></tr>
+<tr class="memitem:a61e1b7b58ca803ca1fa3553b5805cb7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDriveTrain.html#a61e1b7b58ca803ca1fa3553b5805cb7a">update</a> ()</td></tr>
 </table>
+<a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Controls the robot's movement. </p>
+<p>All driving commands on the robot, for both moving from one location to another, should take place through the <a class="el" href="classDriveTrain.html" title="Controls the robot&#39;s movement.">DriveTrain</a>. It will handle all movement events for the robot, apart from internal systems. The gearing system will also be part of the drive train, so there will be four motors to drive the robot (two for each side) and two pneumatic arms to switch gears. </p>
+</div><h2>Member Function Documentation</h2>
+<a class="anchor" id="add907b482a85d7c1be6bb4853582283c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DriveTrain::driveD </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>dist</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Drive a distance </p>
+<dl class="section remark"><dt>Remarks</dt><dd>This will override the target speed and target point; if target speed or point is set, this will unset it </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dist</td><td>The distance to drive </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether setting target was successful </dd></dl>
+<div class="fragment"><div class="line">                                {</div>
+<div class="line">  <span class="comment">//set target distance</span></div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="aee1a46f797f47864ce65c5c2315af5af"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DriveTrain::driveS </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>spd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Drive at a speed </p>
+<dl class="section remark"><dt>Remarks</dt><dd>This will override the target distance and target point; if target distance or point is set, this will unset it </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">spd</td><td>The speed at which to drive </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether setting target was successful </dd></dl>
+<div class="fragment"><div class="line">                                {</div>
+<div class="line">  <span class="comment">//set target speed</span></div>
+<div class="line">  <span class="keywordflow">if</span> (s &gt; gearCutoff) {</div>
+<div class="line">    engageHigh();</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line">  }</div>
+<div class="line">  engageLow();</div>
+<div class="line">  </div>
+<div class="line">  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a6a4f995cc3f11205973264df336014cc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DriveTrain::driveTo </td>
+          <td>(</td>
+          <td class="paramtype">complex&#160;</td>
+          <td class="paramname"><em>target</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Drive to a point relative to the robot </p>
+<dl class="section remark"><dt>Remarks</dt><dd>This will override the target distance and target speed; if target distance or speed is set, this will unset it </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>The target to drive to, relative to the robot's current location </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether setting target was successful </dd></dl>
+<div class="fragment"><div class="line">                                               {</div>
+<div class="line">  <span class="comment">//calculate polar coordinates (r, theta) then set values</span></div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ad85684c460c61021275c0713a664d06d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ShifterMode DriveTrain::getMode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Get the current shifter mode </p>
+<dl class="section return"><dt>Returns</dt><dd>the current mode of the shifter </dd></dl>
+<div class="fragment"><div class="line">                                {</div>
+<div class="line">  <span class="keywordflow">return</span> mode;</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a88bb68b1e72a742aedddce29e97e481b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DriveTrain::rotateA </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>angle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Rotate an angle </p>
+<dl class="section remark"><dt>Remarks</dt><dd>This will override the target rotational speed; if target rotational speed is set, this will unset it </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle</td><td>The angle to turn </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether setting target was successful </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad92760b4ae82f65c2000426052f29a26"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DriveTrain::rotateS </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>rotSpd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Rotate at a speed </p>
+<dl class="section remark"><dt>Remarks</dt><dd>This will override the target angle; if target angle is set, this will unset it </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rotSpd</td><td>The speed at which to rotate </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether setting target was successful </dd></dl>
+<div class="fragment"><div class="line">                                 {</div>
+<div class="line">  <span class="comment">//set target speed</span></div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a2f633207590a06ef4df640791945ae58"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DriveTrain::setMode </td>
+          <td>(</td>
+          <td class="paramtype">ShifterMode&#160;</td>
+          <td class="paramname"><em>mode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set the shifter mode </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>The new mode for the shifter </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether setting the mode was successful </dd></dl>
+<div class="fragment"><div class="line">                                      {</div>
+<div class="line">  <span class="keywordflow">switch</span> (s) {</div>
+<div class="line">  <span class="keywordflow">case</span> HIGH_GEAR: </div>
+<div class="line">    engageHigh();</div>
+<div class="line">    mode = HIGH_GEAR;</div>
+<div class="line">    <span class="keywordflow">break</span>;</div>
+<div class="line">  <span class="keywordflow">case</span> LOW_GEAR:</div>
+<div class="line">    engageLow();</div>
+<div class="line">    mode = LOW_GEAR;</div>
+<div class="line">    <span class="keywordflow">break</span>;</div>
+<div class="line">  <span class="keywordflow">case</span> AUTO:</div>
+<div class="line">    mode = AUTO;</div>
+<div class="line">    <span class="keywordflow">break</span>;</div>
+<div class="line">  <span class="keywordflow">default</span>:</div>
+<div class="line">    <span class="keywordflow">break</span>;</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a61e1b7b58ca803ca1fa3553b5805cb7a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DriveTrain::update </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Method that is constantly called by <a class="el" href="classRobot.html">Robot</a> </p>
+<div class="fragment"><div class="line">                        {</div>
+<div class="line">  <span class="keywordflow">if</span>(mode == AUTO) {</div>
+<div class="line">    <span class="comment">//automatic shifting code</span></div>
+<div class="line">    <span class="comment">//and stuff</span></div>
+<div class="line">  }</div>
+<div class="line">  <span class="comment">//check encoders</span></div>
+<div class="line">  <span class="comment">//and do stuff with them</span></div>
+<div class="line">  <span class="comment">//and stuff</span></div>
+<div class="line">  </div>
+<div class="line">  <span class="comment">//Drive Speed/Ang Speed</span></div>
+<div class="line">      <span class="comment">//check dist since last tick</span></div>
+<div class="line">      <span class="comment">//calc current speed</span></div>
+<div class="line">      <span class="comment">//scale on a per wheel basis based on turn speed</span></div>
+<div class="line">      <span class="comment">//PID loop it up</span></div>
+<div class="line">  <span class="comment">//Drive Dist</span></div>
+<div class="line">      <span class="comment">//check target vs actual distance</span></div>
+<div class="line">      <span class="comment">//PID loop</span></div>
+<div class="line">  <span class="comment">//Turn</span></div>
+<div class="line">      <span class="comment">//check current angle with gyro vs target angle</span></div>
+<div class="line">      <span class="comment">//PID</span></div>
+<div class="line"></div>
+<div class="line">  <span class="comment">//ISSUES</span></div>
+<div class="line">      <span class="comment">//angle and speed can be absolute, distance cannot (reliably)</span></div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="DriveTrain_8h_source.html">DriveTrain.h</a></li>
 <li>DriveTrain.cpp</li>
@@ -114,7 +361,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> ()</td></t
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 22 2013 17:46:28 for Fafnir by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jan 22 2013 18:07:33 for Fafnir by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
