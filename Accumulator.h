@@ -3,12 +3,16 @@
 
 class Accumulator {
 private:
-  Victor[] motors;
+  Victor motor;
+  //pneumatic arm for flipping
+  //beam sensor for frisbee?
+
   bool start();
   bool kill();
 public:
   bool collect();
   bool update();
+  Accumulator();
 };
 
 #endif /* ACCUMULATOR_H */

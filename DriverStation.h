@@ -5,15 +5,18 @@
 
 class DriverStation {
 private:
-   Joystick leftStick;
-   Joystick rightStick; // how many joysticks do we have
-	// buttons and things
+   Joystick speedStick;
+   Joystick turnStick; 
+   Joystick operatorStick;
+
+   AutonomousMode mode;
 public:
-  void init(); // set up joysticks and the like
-  void update();
-  int getAutoType(); // we can set different autonomous starting places or procedures
+  int getAutonomousMode();
+  //Joystick already has methods for these
   int getStickX(); // can we pass the joystick inside?
   int getStickY();
+
+  void update();
 };
 
 #endif /* DRIVER_STATION_H */
