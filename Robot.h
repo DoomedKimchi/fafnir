@@ -9,7 +9,7 @@
 #include "Shooter.h"
 
 class Robot {
-private:
+ private:
   DriveTrain driveTrain;
   Accumulator accumulator;
   Shooter shooter;
@@ -19,7 +19,7 @@ private:
 
   bool isAimed = true;
   
-public:
+ public:
   Robot();
   void accumulate(); // take care of sensing?
   void shoot(); // just shoot, no aiming
