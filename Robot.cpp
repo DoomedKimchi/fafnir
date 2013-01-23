@@ -2,6 +2,8 @@
 
 Robot::Robot() {
   camera = AxisCamera::GetInstance();
+  compressor(COMPRESSOR_SPIKE_PORT, PRESSURE_CUTOFF_PORT);
+  compressor.Start(); 
 }
 
 void Robot::aim(int yaw, int elevation) {
