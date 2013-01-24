@@ -50,6 +50,16 @@ ShifterMode DriveTrain::getMode() {
 //driveDist and driveTo mostly for auto
 bool DriveTrain::driveD(double d) {
   //set target distance  
+  /* pseudo code
+  *error = d - currentPosition
+  PC_Dist.calculate()
+  self.driveS(*output)
+  
+  // for drivetrain.h
+  PIDController PC_Dist;
+  
+  // for constructor
+  PC_Dist(1,0,.05,*error,*output,.05) // not sure if can give floats to the PIDController, constants need tuning (lots!)
 }
 
 bool DriveTrain::driveS(double s) {
@@ -77,6 +87,24 @@ bool DriveTrain::driveS(double s) {
   // thats all
   
   // I don't like /* and */
+  
+  /* pseudo code!
+  // we may need to create a subclass of PIDSource just to hold a number (called outputNumberClass)
+  // I'm not sure how to create a PID controller without a PIDSource class
+  
+  // for drivetrain.h
+  PIDController PC_speed;
+  
+  // for constructor
+  PC_speed(1,0,.05,encoderLeft, victorLeft, outputNumberClass, .05) // constructor is in the form (Kp,Ki,Kd,source,output,period)
+  // getting the right constants and ratios could take a lot of time and not be worth it
+  
+  // this needs to be called every tick
+  power = power + outPutNumberClass.value()
+  Victor.setPower(power)
+  
+  */
+  
 }
 
 bool DriveTrain::driveTo(double r, double theta) {
@@ -101,7 +129,7 @@ bool DriveTrain::driveTo(double r, double theta) {
 
     applyForce(steer);
   }
-  /*
+  */
   
   // HOWEVER, this method most likely won't work because we can't accuratrly keep track of our current position
   // we may just have to turn to the angle and drive forward
