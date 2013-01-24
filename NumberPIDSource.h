@@ -5,7 +5,10 @@
 
 class NumberPIDSource : public PIDSource {
 private:
-	float value;
+	double value;
 public:
-	void PIDWrite(float output);
+	NumberPIDSource();
+	double PIDGet();
+	void PIDWrite(double input);
 }
+#endif /*NUMBERPIDSOURCE_H_*/
