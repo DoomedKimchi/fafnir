@@ -60,6 +60,7 @@ bool DriveTrain::driveD(double d) {
   
   // for constructor
   PC_Dist(1,0,.05,*error,*output,.05) // not sure if can give floats to the PIDController, constants need tuning (lots!)
+  */
 }
 
 bool DriveTrain::driveS(double s) {
