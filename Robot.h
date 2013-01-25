@@ -8,7 +8,7 @@
 #include "DriverStation.h"
 #include "Shooter.h"
 
-/*! /brief controls all the robot's functions
+/*! \brief controls all the robot's functions
  *
  * This class provides a top-level interface for controlling the robot's functions
  * It also does the aiming for the robot */
