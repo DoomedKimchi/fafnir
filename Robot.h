@@ -4,11 +4,12 @@
 #include "WPILib.h"
 #include "Constants.h"
 #include "Accumulator.h"
-#include "AutonomousController.h"
 #include "DriverStation.h"
 #include "Shooter.h"
 
 /*! \brief controls all the robot's functions
+ *
+ * \internal We can't include things that include Robot.h because it would cause really bad behavior
  *
  * This class provides a top-level interface for controlling the robot's functions
  * It also does the aiming for the robot */
