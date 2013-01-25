@@ -87,16 +87,81 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">LinearVictor Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A class that allows for easy use of Victors.  
+ <a href="classLinearVictor.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="LinearVictor_8h_source.html">LinearVictor.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6f75ab8229f99f04ff52159bbf08547e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f75ab8229f99f04ff52159bbf08547e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>LinearVictor</b> (int portNum)</td></tr>
-<tr class="memitem:a83599abe8e1d518cedaab2b7a799963f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a83599abe8e1d518cedaab2b7a799963f"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>CalculateLinearValue</b> (double desiredSpeed)</td></tr>
-<tr class="memitem:ad53a70fe5eea377ef07b21d51cc8e965"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad53a70fe5eea377ef07b21d51cc8e965"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Set</b> (double speed)</td></tr>
+<tr class="memitem:a6f75ab8229f99f04ff52159bbf08547e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLinearVictor.html#a6f75ab8229f99f04ff52159bbf08547e">LinearVictor</a> (int portNum)</td></tr>
+<tr class="memdesc:a6f75ab8229f99f04ff52159bbf08547e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="classLinearVictor.html" title="A class that allows for easy use of Victors.">LinearVictor</a> on the desired port.  <a href="#a6f75ab8229f99f04ff52159bbf08547e"></a><br/></td></tr>
+<tr class="memitem:a3c45aaaf0a04a1ac56ef37f89ecce87d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c45aaaf0a04a1ac56ef37f89ecce87d"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLinearVictor.html#a3c45aaaf0a04a1ac56ef37f89ecce87d">~LinearVictor</a> ()</td></tr>
+<tr class="memdesc:a3c45aaaf0a04a1ac56ef37f89ecce87d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br/></td></tr>
+<tr class="memitem:a01b6b664706e430aa20322c41b2ab105"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLinearVictor.html#a01b6b664706e430aa20322c41b2ab105">set</a> (double speed)</td></tr>
+<tr class="memdesc:a01b6b664706e430aa20322c41b2ab105"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the speed of the victor  <a href="#a01b6b664706e430aa20322c41b2ab105"></a><br/></td></tr>
 </table>
+<a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>A class that allows for easy use of Victors. </p>
+<p>This class takes a linear speed value and converts it into a value that the Victor class in WPILib can use </p>
+</div><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a6f75ab8229f99f04ff52159bbf08547e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">LinearVictor::LinearVictor </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>portNum</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a new <a class="el" href="classLinearVictor.html" title="A class that allows for easy use of Victors.">LinearVictor</a> on the desired port. </p>
+<p>Initialises the Victor variable with the given port </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">portNum</td><td>The port number for this victor </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line">                                     {</div>
+<div class="line">        victor = <span class="keyword">new</span> Victor(portNum);</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2>Member Function Documentation</h2>
+<a class="anchor" id="a01b6b664706e430aa20322c41b2ab105"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double LinearVictor::set </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>speed</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>sets the speed of the victor </p>
+<p>Sets the speed of the victor motor by after calculating the correct speed from the linear speed given </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">speed</td><td>The speed to set the victor, scaled to a value from -1 to 1. This value will scale linearly with output. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The speed at which the victor is set </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="LinearVictor_8h_source.html">LinearVictor.h</a></li>
 <li>LinearVictor.cpp</li>
@@ -104,7 +169,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Set</b> (double speed
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 22 2013 18:07:33 for Fafnir by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 24 2013 19:37:29 for Fafnir by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
