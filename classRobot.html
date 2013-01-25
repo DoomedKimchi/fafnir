@@ -87,20 +87,68 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Robot Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="Robot_8h_source.html">Robot.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a4fc7c70ae20623f05e06f2ecb388b6c4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4fc7c70ae20623f05e06f2ecb388b6c4"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRobot.html#a4fc7c70ae20623f05e06f2ecb388b6c4">Robot</a> ()</td></tr>
+<tr class="memdesc:a4fc7c70ae20623f05e06f2ecb388b6c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br/></td></tr>
 <tr class="memitem:a1e29d1a54dfe198947aa970a1c64cdf9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1e29d1a54dfe198947aa970a1c64cdf9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>accumulate</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRobot.html#a1e29d1a54dfe198947aa970a1c64cdf9">accumulate</a> ()</td></tr>
+<tr class="memdesc:a1e29d1a54dfe198947aa970a1c64cdf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accumulates frisbees. <br/></td></tr>
 <tr class="memitem:a745704ed0cd16c59932c5ed3e7f9212e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a745704ed0cd16c59932c5ed3e7f9212e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>shoot</b> ()</td></tr>
-<tr class="memitem:ad49ef724573035627dc4e59c4ad04471"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad49ef724573035627dc4e59c4ad04471"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>aim</b> (float yaw, float elevation)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRobot.html#a745704ed0cd16c59932c5ed3e7f9212e">shoot</a> ()</td></tr>
+<tr class="memdesc:a745704ed0cd16c59932c5ed3e7f9212e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fires a frisbee in the current direction of the robot. <br/></td></tr>
+<tr class="memitem:add3c18d7700adb9f19cf23dd872b27c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRobot.html#add3c18d7700adb9f19cf23dd872b27c9">aim</a> (float yaw, float pitch)</td></tr>
+<tr class="memdesc:add3c18d7700adb9f19cf23dd872b27c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aims at a certain point.  <a href="#add3c18d7700adb9f19cf23dd872b27c9"></a><br/></td></tr>
 <tr class="memitem:a897683a4da8378606405c35223ce8651"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a897683a4da8378606405c35223ce8651"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>aim</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRobot.html#a897683a4da8378606405c35223ce8651">aim</a> ()</td></tr>
+<tr class="memdesc:a897683a4da8378606405c35223ce8651"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aims at a target using the camera. <br/></td></tr>
 <tr class="memitem:a2006259208220051b543116262b0de1c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2006259208220051b543116262b0de1c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>climb</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRobot.html#a2006259208220051b543116262b0de1c">climb</a> ()</td></tr>
+<tr class="memdesc:a2006259208220051b543116262b0de1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Climbs the pyramid. <br/></td></tr>
 </table>
+<a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>/brief controls all the robot's functions</p>
+<p>This class provides a top-level interface for controlling the robot's functions It also does the aiming for the robot </p>
+</div><h2>Member Function Documentation</h2>
+<a class="anchor" id="add3c18d7700adb9f19cf23dd872b27c9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Robot::aim </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>yaw</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>pitch</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Aims at a certain point. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">yaw</td><td>The yaw to aim at </td></tr>
+    <tr><td class="paramname">pitch</td><td>The pitch to aim at </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="Robot_8h_source.html">Robot.h</a></li>
 <li>Robot.cpp</li>
@@ -108,7 +156,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>climb</b> ()</td></tr
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 24 2013 19:37:29 for Fafnir by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 24 2013 20:32:00 for Fafnir by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

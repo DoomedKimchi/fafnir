@@ -131,7 +131,18 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether setting target was successful </dd></dl>
 <div class="fragment"><div class="line">                                {</div>
-<div class="line">  <span class="comment">//set target distance</span></div>
+<div class="line">  <span class="comment">//set target distance  </span></div>
+<div class="line">  <span class="comment">/* pseudo code</span></div>
+<div class="line"><span class="comment">  *error = d - currentPosition</span></div>
+<div class="line"><span class="comment">  PC_Dist.calculate()</span></div>
+<div class="line"><span class="comment">  self.driveS(*output)</span></div>
+<div class="line"><span class="comment">  </span></div>
+<div class="line"><span class="comment">  // for drivetrain.h</span></div>
+<div class="line"><span class="comment">  PIDController PC_Dist;</span></div>
+<div class="line"><span class="comment">  </span></div>
+<div class="line"><span class="comment">  // for constructor</span></div>
+<div class="line"><span class="comment">  PC_Dist(1,0,.05,*error,*output,.05) // not sure if can give floats to the PIDController, constants need tuning (lots!)</span></div>
+<div class="line"><span class="comment">  */</span></div>
 <div class="line">}</div>
 </div><!-- fragment -->
 </div>
@@ -168,6 +179,39 @@ Public Member Functions</h2></td></tr>
 <div class="line">  engageLow();</div>
 <div class="line">  </div>
 <div class="line">  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line">  <span class="comment">// Don&#39;t delete this unless you want to be a douche (but move it around as much as you want to)</span></div>
+<div class="line">  <span class="comment">// Ok people, this is how we use a PID controller to set the speed! (by Nathan)</span></div>
+<div class="line">  <span class="comment">// PID control may not actually be optimal for speed, we&#39;ll need to do real testing</span></div>
+<div class="line">  <span class="comment">// Here goes</span></div>
+<div class="line">  <span class="comment">// PID: Input : currentSpeed - setSpeed, Output : acceleration</span></div>
+<div class="line">  <span class="comment">// acceleration NEEDS to be the output (90% sure)</span></div>
+<div class="line">  <span class="comment">// we can&#39;t output motor power because as currentSpeed reaches setSpeed, then motor power will go to zero</span></div>
+<div class="line">  <span class="comment">// acceleration needs to be added to motorpower every time unit (tick)</span></div>
+<div class="line">  <span class="comment">// We shouldn&#39;t use I (Konstant) unless there is slipping (not sure about this)</span></div>
+<div class="line">  </div>
+<div class="line">  <span class="comment">// for gears:</span></div>
+<div class="line">  <span class="comment">// we need to find the ratios and multiply the ratio by motor power</span></div>
+<div class="line">  <span class="comment">// thats all</span></div>
+<div class="line">  </div>
+<div class="line">  <span class="comment">// I don&#39;t like /* and */</span></div>
+<div class="line">  </div>
+<div class="line">  <span class="comment">/* pseudo code!</span></div>
+<div class="line"><span class="comment">  // we may need to create a subclass of PIDSource just to hold a number (called outputNumberClass)</span></div>
+<div class="line"><span class="comment">  // I&#39;m not sure how to create a PID controller without a PIDSource class</span></div>
+<div class="line"><span class="comment">  </span></div>
+<div class="line"><span class="comment">  // for drivetrain.h</span></div>
+<div class="line"><span class="comment">  PIDController PC_speed;</span></div>
+<div class="line"><span class="comment">  </span></div>
+<div class="line"><span class="comment">  // for constructor</span></div>
+<div class="line"><span class="comment">  PC_speed(1,0,.05,encoderLeft, victorLeft, outputNumberClass, .05) // constructor is in the form (Kp,Ki,Kd,source,output,period)</span></div>
+<div class="line"><span class="comment">  // getting the right constants and ratios could take a lot of time and not be worth it</span></div>
+<div class="line"><span class="comment">  </span></div>
+<div class="line"><span class="comment">  // this needs to be called every tick</span></div>
+<div class="line"><span class="comment">  power = power + outPutNumberClass.value()</span></div>
+<div class="line"><span class="comment">  Victor.setPower(power)</span></div>
+<div class="line"><span class="comment">  </span></div>
+<div class="line"><span class="comment">  */</span></div>
+<div class="line">  </div>
 <div class="line">}</div>
 </div><!-- fragment -->
 </div>
@@ -196,6 +240,31 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Whether setting target was successful </dd></dl>
 <div class="fragment"><div class="line">                                               {</div>
 <div class="line">  <span class="comment">//calculate polar coordinates (r, theta) then set values</span></div>
+<div class="line">  </div>
+<div class="line">  <span class="comment">// Nathan&#39;s notes:</span></div>
+<div class="line">  <span class="comment">// Steering_value = component_perpendicular_to_forward ( vector_to_target ).normalize.multiply(steering speed)</span></div>
+<div class="line">  <span class="comment">// steering speed is important, should probably PID that</span></div>
+<div class="line">  <span class="comment">// if you don&#39;t normalize and mult the value, then its basically a P controller</span></div>
+<div class="line">  </div>
+<div class="line">  <span class="comment">//Craig W. Reynolds steering algorithm (expanded to seek behavior) take a look at a simple boids program to further understand</span></div>
+<div class="line">  <span class="comment">//boids written by me! http://openprocessing.org/sketch/67395</span></div>
+<div class="line">  </div>
+<div class="line">  <span class="comment">/* void seek(PVector target) {</span></div>
+<div class="line"><span class="comment">    PVector desired = PVector.sub(target,location);</span></div>
+<div class="line"><span class="comment">    desired.normalize();</span></div>
+<div class="line"><span class="comment">    desired.mult(maxspeed);</span></div>
+<div class="line"><span class="comment">    PVector steer = PVector.sub(desired,velocity);</span></div>
+<div class="line"><span class="comment"></span></div>
+<div class="line"><span class="comment">    // Limit the magnitude of the steering force.</span></div>
+<div class="line"><span class="comment">    steer.limit(maxforce);</span></div>
+<div class="line"><span class="comment"></span></div>
+<div class="line"><span class="comment">    applyForce(steer);</span></div>
+<div class="line"><span class="comment">  }</span></div>
+<div class="line"><span class="comment">  */</span></div>
+<div class="line">  </div>
+<div class="line">  <span class="comment">// HOWEVER, this method most likely won&#39;t work because we can&#39;t accuratrly keep track of our current position</span></div>
+<div class="line">  <span class="comment">// we may just have to turn to the angle and drive forward</span></div>
+<div class="line">  <span class="comment">// the craigs reynold thing is for a moving seek target (so its like a feedback controller)</span></div>
 <div class="line">}</div>
 </div><!-- fragment -->
 </div>
@@ -361,7 +430,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 24 2013 19:37:29 for Fafnir by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 24 2013 20:32:00 for Fafnir by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
