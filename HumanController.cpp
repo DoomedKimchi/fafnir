@@ -1,24 +1,25 @@
+#inlude "HumanController.h"
 
-DriveController::DriveController()
+HumanController::HumanController()
     :    speedStick(PORT_JOYSTICK_SPEED)
     ,    turnStick(PORT_JOYSTICK_TURN)
     ,    operatorStick(PORT_JOYSTICK_OPERATOR) {
 
 }
 
-AutonomousMode DriveController::getAutonomousMode() {
+AutonomousMode HumanController::getAutonomousMode() {
 
 }
 
-int DriveController::getStickX() {
+int HumanController::getStickX() {
 
 }
 
-int DriveController::getStickY() {
+int HumanController::getStickY() {
 
 }
 
-void DriveController::update() {
+void HumanController::update() {
     //check current state of joysticks
     //calculate what to do based on joysticks and robot state (e.g. drive speed for certain gear)
     //gear ranges should look something like:

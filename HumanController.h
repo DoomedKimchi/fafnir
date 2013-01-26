@@ -1,5 +1,5 @@
-#ifndef DRIVE_CONTROLLER_H
-#define DRIVE_CONTROLLER_H
+#ifndef HUMAN_CONTROLLER_H
+#define HUMAN_CONTROLLER_H
 
 #include "WPILib.h"
 #include "Constants.h"
@@ -11,7 +11,7 @@
  * The robot uses Halo drive; one joystick controls the speed of the robot, another its turning, and a final joystick performs functions such as aiming and firing.
  */
 
-class DriveController {
+class HumanController {
  private:
   /*! Speed joystick */
   Joystick speedStick;
@@ -27,4 +27,4 @@ class DriveController {
   bool update();
 };
 
-#endif /* DRIVE_CONTROLLER_H */
+#endif /* HUMAN_CONTROLLER_H */
