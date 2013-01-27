@@ -1,16 +1,16 @@
-DriveTrain::DriveTrain() {
-  leftSol(PORT_DRIVE_SOL_1);
-  rightSol(PORT_DRIVE_SOL_2);
+DriveTrain::DriveTrain() 
+  :  leftSol(PORT_DRIVE_SOL_1)
+  ,  rightSol(PORT_DRIVE_SOL_2)
 
-  leftFrontEnc(PORT_DRIVE_ENC_1);
-  leftBackEnc(PORT_DRIVE_ENC_2);
-  rightFrontEnc(PORT_DRIVE_ENC_3);
-  rightBackEnc(PORT_DRIVE_ENC_4);
+  ,  leftFrontEnc(PORT_DRIVE_ENC_1)
+  ,  leftBackEnc(PORT_DRIVE_ENC_2)
+  ,  rightFrontEnc(PORT_DRIVE_ENC_3)
+  ,  rightBackEnc(PORT_DRIVE_ENC_4)
 
-  leftFrontVic(PORT_DRIVE_VIC_1);
-  leftBackVic(PORT_DRIVE_VIC_2);
-  rightFrontVic(PORT_DRIVE_VIC_3);
-  rightBackVic(PORT_DRIVE_VIC_4);
+  ,  leftFrontVic(PORT_DRIVE_VIC_1)
+  ,  leftBackVic(PORT_DRIVE_VIC_2)
+  ,  rightFrontVic(PORT_DRIVE_VIC_3)
+  ,  rightBackVic(PORT_DRIVE_VIC_4) {
 
   setMode(LOW_GEAR);
 }
