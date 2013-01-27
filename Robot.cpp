@@ -1,9 +1,9 @@
 #include "Robot.h"
 
-Robot::Robot() {
+Robot::Robot() 
+  :  compressor(PORT_COMPRESSOR_SPIKE, PORT_PRESSURE_CUTOFF) {
   camera = AxisCamera::GetInstance();
-  compressor(PORT_COMPRESSOR_SPIKE, PORT_PRESSURE_CUTOFF);
-  compressor.Start(); 
+  compressor.Start();
 }
 
 void Robot::aim(int yaw, int elevation) {
