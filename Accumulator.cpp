@@ -6,11 +6,15 @@ Accumulator::Accumulator()
 }
 
 bool Accumulator:: start() {
-    return false;
+    if(motor.Get() == 1) return false;
+    motor.Set(1);
+    return true;
 }
 
 bool Accumulator:: kill() {
-    return false;
+    if(motor.Get() == 0) return false;
+    motor.Set(0);
+    return true;
 }
 
 bool Accumulator:: update(bool accumulate) {
