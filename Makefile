@@ -35,7 +35,7 @@ $(PROG):
 	if [ ! -d "$(PROG_DEST)" ] ; then mkdir -p $(PROG_DEST); fi	
 	$(NM) $(PROG_PARTIAL_DEST)/$(PROG_PARTIAL) $(WPI_LIB) | tclsh $(HOME)/.ucpp/gccdist/WindRiver/vxworks-6.3/host/resource/hutils/tcl/munch.tcl -c ppc > $(PROG_DEST)/ctdt.c ; \
 	$(CPP) -g3 $(ARCH) -fdollars-in-identifiers -Wall $(DEFINES) -o $(PROG_DEST)/ctdt.o -c $(PROG_DEST)/ctdt.c ; \
-	$(CPP) -r -nostdlib -Wl,-X -T $(HOME)/.ucpp/gccdist/WindRiver/vxworks-6.3/target/h/tool/gnu/ldscripts/link.OUT -o $(PROG_DEST)/"$@" $(PROG_DEST)/ctdt.o $(PROG_PARTIAL_DEST)/$(PROG_PARTIAL) $(WPI_LIB)
+	$(CPP) -r -nostdlib -Wl,-X -T $(HOME)/.ucpp/gccdist/WindRiver/vxworks-6.3/target/h/tool/gnu/ldscripts/link.OUT -o $(PROG_DEST)/"$@" $(PROG_DEST)/ctdt.o $(PROG_PARTIAL_DEST)/$(PROG_PARTIAL) $(WPI_LIB) -fno-feature-proxy
 
 deploy: $(SRCS) $(PROG_PARTIAL) $(PROG)
 	wput -u $(PROG_DEST)/$(PROG) ftp://anonymous@$(ROBOT_ADDR)/ni-rt/system/FRC_UserProgram.out

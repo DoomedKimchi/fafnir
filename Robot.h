@@ -45,8 +45,9 @@ class Robot {
    * \param pitch The pitch to aim at */
   void aim(float yaw, float pitch);
   /*! \brief Aims at a target using the camera */
-  void aim(RGBImage image);
+  //void aim(RGBImage image);
   /*! \brief Climbs the pyramid */
   void climb();
+  void update();
 };
 #endif /* ROBOT_H */

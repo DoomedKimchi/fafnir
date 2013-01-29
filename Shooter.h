@@ -1,6 +1,9 @@
 #ifndef SHOOTER_H
 #define SHOOTER_H
 
+#include "WPILib.h"
+#include "Constants.h"
+
 class Shooter {
 private:
    Encoder elevationEncoder;
@@ -11,7 +14,8 @@ private:
 public:
    Shooter();
    void setElevation(float angle); // set elevation 
-   int elevationY;
+   float elevationA;
+   void update();
 };
 
 #endif /* SHOOTER_H */
