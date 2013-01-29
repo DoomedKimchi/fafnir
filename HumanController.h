@@ -23,8 +23,10 @@ class HumanController {
   Joystick operatorStick;
 
  public:
+  AutonomousMode getAutonomousMode();
+  HumanController();
   /*! \brief Method constantly called by Robot */
-  bool update();
+  void update();
 };
 
 #endif /* HUMAN_CONTROLLER_H */

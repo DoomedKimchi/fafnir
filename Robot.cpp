@@ -6,7 +6,7 @@ Robot::Robot()
   compressor.Start();
 }
 
-void Robot::aim(int yaw, int elevation) {
+void Robot::aim(float yaw, float elevation) {
 
 }
 

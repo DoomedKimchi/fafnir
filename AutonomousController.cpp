@@ -1,8 +1,8 @@
 #include "AutonomousController.h"
 #include "Robot.h"
 
-AutonomousController::AutonomousController(Robot *fafnir) {
-  this.fafnir = fafnir;
+AutonomousController::AutonomousController(Robot *robot) {
+  fafnir = robot;
 }
 
 AutonomousController::~AutonomousController() {
@@ -10,6 +10,6 @@ AutonomousController::~AutonomousController() {
 }
 
 bool AutonomousController::fire() {
-  *fafnir.aim();
-  *fafnir.shoot();
+  fafnir->aim();
+  fafnir->shoot();
 }

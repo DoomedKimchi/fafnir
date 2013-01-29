@@ -3,15 +3,27 @@
 
 /*! \brief Contains all constants */
 
+/*! Speed cutoffs for shifting gears */
+#define GEAR_UPSHIFT_CUTOFF 6.0
+#define GEAR_DOWNSHIFT_CUTOFF 4.0
+
 /*! First solenoid drive port */
 #define PORT_DRIVE_SOL_1 0
 /*! Second solenoid drive port */
 #define PORT_DRIVE_SOL_2 0
 
+/*! Accumulator Victor port */
+#define PORT_ACC_VIC_1 0
+
 /*! First encoder drive port */
-#define PORT_DRIVE_ENC_1 0
+#define PORT_DRIVE_ENC_1_A 0
+#define PORT_DRIVE_ENC_1_B 0
 /*! Second encoder drive port */
-#define PORT_DRIVE_ENC_2 0
+#define PORT_DRIVE_ENC_2_A 0
+#define PORT_DRIVE_ENC_2_B 0
+
+/*! Gyro port for drive train */
+#define PORT_DRIVE_GYRO 0
 
 /*! First drive train Victor port */
 #define PORT_DRIVE_VIC_1 0

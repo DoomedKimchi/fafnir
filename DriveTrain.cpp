@@ -1,46 +1,54 @@
+#include "DriveTrain.h"
+
 DriveTrain::DriveTrain() 
   :  leftSol(PORT_DRIVE_SOL_1)
   ,  rightSol(PORT_DRIVE_SOL_2)
 
-  ,  leftFrontEnc(PORT_DRIVE_ENC_1)
-  ,  leftBackEnc(PORT_DRIVE_ENC_2)
-  ,  rightFrontEnc(PORT_DRIVE_ENC_3)
-  ,  rightBackEnc(PORT_DRIVE_ENC_4)
+  ,  leftEnc((UINT32)PORT_DRIVE_ENC_1_A, (UINT32)PORT_DRIVE_ENC_1_B)
+  ,  rightEnc((UINT32)PORT_DRIVE_ENC_2_A, (UINT32)PORT_DRIVE_ENC_2_B)
 
   ,  leftFrontVic(PORT_DRIVE_VIC_1)
   ,  leftBackVic(PORT_DRIVE_VIC_2)
   ,  rightFrontVic(PORT_DRIVE_VIC_3)
-  ,  rightBackVic(PORT_DRIVE_VIC_4) {
+  ,  rightBackVic(PORT_DRIVE_VIC_4) 
+
+  ,  gyro((UINT32)PORT_DRIVE_GYRO) {
 
   setMode(LOW_GEAR);
 }
 
 bool DriveTrain::engageHigh() {
-  leftSol.set(SOL_DRIVE_HIGH);
-  rightSol.set(SOL_DRIVE_HIGH);
+  leftSol.Set(SOL_DRIVE_HIGH);
+  rightSol.Set(SOL_DRIVE_HIGH);
+  return true;
 }
 
 bool DriveTrain::engageLow() {
-  leftSol.set(SOL_DRIVE_LOW);
-  rightSol.set(SOL_DRIVE_LOW);
+  leftSol.Set(SOL_DRIVE_LOW);
+  rightSol.Set(SOL_DRIVE_LOW);
+  return true;
 }
 
 bool DriveTrain::setMode(ShifterMode s) {
   switch (s) {
   case HIGH_GEAR: 
-    engageHigh();
-    mode = HIGH_GEAR;
-    break;
+      if (engageHigh()) {
+	  mode = HIGH_GEAR;
+      }
+      break;
   case LOW_GEAR:
-    engageLow();
-    mode = LOW_GEAR;
-    break;
+      if (engageLow()) {
+	  mode = LOW_GEAR;
+      }
+      break;
   case AUTO:
-    mode = AUTO;
-    break;
+      mode = AUTO;
+      break;
   default:
-    break;
+      return false;
+      break;
   }
+  return true;
 }
 
 ShifterMode DriveTrain::getMode() {
@@ -61,17 +69,19 @@ bool DriveTrain::driveD(double d) {
   // for constructor
   PC_Dist(1,0,.05,*error,*output,.05) // not sure if can give floats to the PIDController, constants need tuning (lots!)
   */
+    return true;
 }
 
 bool DriveTrain::driveS(double s) {
   //set target speed
-  if (s > gearCutoff) {
+  if (s > GEAR_UPSHIFT_CUTOFF) {
     engageHigh();
     
     return true;
   }
-  engageLow();
-  
+  else if (s < GEAR_DOWNSHIFT_CUTOFF) {
+      engageLow();
+  }
   return true;
   // Don't delete this unless you want to be a douche (but move it around as much as you want to)
   // Ok people, this is how we use a PID controller to set the speed! (by Nathan)
@@ -108,7 +118,7 @@ bool DriveTrain::driveS(double s) {
   
 }
 
-bool DriveTrain::driveTo(double r, double theta) {
+bool DriveTrain::driveTo(Complex target) {
   //calculate polar coordinates (r, theta) then set values
   
   // Nathan's notes:
@@ -135,13 +145,16 @@ bool DriveTrain::driveTo(double r, double theta) {
   // HOWEVER, this method most likely won't work because we can't accuratrly keep track of our current position
   // we may just have to turn to the angle and drive forward
   // the craigs reynold thing is for a moving seek target (so its like a feedback controller)
+    return true;
 }
 
-bool DriveTrain::rotateD(double d) {
+bool DriveTrain::rotateA(double a) {
+    return true;
   //set target angle
 }
 
 bool DriveTrain::rotateS(double s) {
+    return true;
   //set target speed
 }
 

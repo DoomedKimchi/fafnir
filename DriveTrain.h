@@ -47,12 +47,17 @@ private:
   /*! The target distance */
   float targetDist;
   /*! The target point */
-  complex targetPoint;
+  Complex targetPoint;
   /*! The target angle */
   float targetAngle;
   /*! The target rotational speed */
   float targetRotSpeed;
+
+  bool engageHigh();
+  bool engageLow();
+
 public:
+  DriveTrain();
   /*! Drive a distance
    * \remark This will override the target speed and target point; if target speed or point is set, this will unset it
    * \param dist The distance to drive
@@ -67,7 +72,7 @@ public:
    * \remark This will override the target distance and target speed; if target distance or speed is set, this will unset it
    * \param target The target to drive to, relative to the robot's current location
    * \return Whether setting target was successful */
-  bool driveTo(complex target);
+  bool driveTo(Complex target);
   
   /*! Rotate an angle
    * \remark This will override the target rotational speed; if target rotational speed is set, this will unset it

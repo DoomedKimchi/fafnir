@@ -1,4 +1,4 @@
-#inlude "HumanController.h"
+#include "HumanController.h"
 
 HumanController::HumanController()
     :    speedStick(PORT_JOYSTICK_SPEED)
@@ -8,16 +8,9 @@ HumanController::HumanController()
 }
 
 AutonomousMode HumanController::getAutonomousMode() {
-
+    return DEFAULT;
 }
 
-int HumanController::getStickX() {
-
-}
-
-int HumanController::getStickY() {
-
-}
 
 void HumanController::update() {
     //check current state of joysticks

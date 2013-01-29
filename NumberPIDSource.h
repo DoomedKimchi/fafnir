@@ -10,5 +10,5 @@ public:
 	NumberPIDSource();
 	double PIDGet();
 	void PIDWrite(double input);
-}
+};
 #endif /*NUMBERPIDSOURCE_H_*/

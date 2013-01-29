@@ -1,6 +1,9 @@
 #ifndef ACCUMULATOR_H
 #define ACCUMULATOR_H
 
+#include "WPILib.h"
+#include "Constants.h"
+
 /*! \brief Controls frisbee accumulation
  *
  * This is the part of the robot responsible for picking up Frisbees and getting them into the robot. In its most basic form, it consists of one motor that will run a series of rollers and belts that will intake the discs.

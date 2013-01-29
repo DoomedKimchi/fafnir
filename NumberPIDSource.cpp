@@ -3,9 +3,9 @@
 NumberPIDSource::NumberPIDSource() {
 	value = 0;
 }
-void PIDWrite(double input) {
+void NumberPIDSource::PIDWrite(double input) {
 	value = input;
 }
-void PIDGet() {
+double NumberPIDSource::PIDGet() {
 	return value;
 }

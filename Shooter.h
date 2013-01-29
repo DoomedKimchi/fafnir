@@ -9,6 +9,7 @@ private:
    Victor motorElevation; //this is the third motor that will elevate the shooting mechanism of the robot. 
    
 public:
+   Shooter();
    void setElevation(float angle); // set elevation 
    int elevationY;
 };
