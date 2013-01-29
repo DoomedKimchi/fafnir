@@ -9,11 +9,11 @@ Robot::Robot()
 void Robot::aim(float yaw, float elevation) {
 
 }
-/*
-void Robot::aim(RGBImage image) {
+
+void Robot::aim() {
 
 }
-*/
+
 void Robot::shoot() {
 	
 }
