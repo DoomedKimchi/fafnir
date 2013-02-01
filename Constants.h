@@ -154,6 +154,7 @@
 
 #define PORT_SHOOTER_VIC_1 0
 #define PORT_SHOOTER_VIC_2 0
+#define PORT_SHOOTER_VIC_3 0
 #define PORT_SHOOTER_VIC_ELEVATION 0
 
 /*! Different gear modes for the drive train */
