@@ -40,98 +40,98 @@
 #define PORT_PWM_2 0
 
 /*! First joystick port */
-#define PORT_JOYSTICK_SPEED 0
+#define PORT_JS_SPEED 0
 /*! Second joystick port */
-#define PORT_JOYSTICK_TURN 0
+#define PORT_JS_TURN 0
 /*! Third joystick port */
-#define PORT_JOYSTICK_OPERATOR 0
+#define PORT_JS_OPERATOR 0
 
 /*! Speed joystick trigger id */
-#define BUTT_JOYSTICK_SPEED_TRIGGER 0
+#define JS_SPEED_TRIGGER 0
 /*! Speed joystick button 2 id */
-#define BUTT_JOYSTICK_SPEED_2 1
+#define JS_SPEED_2 1
 /*! Speed joystick button 3 id */
-#define BUTT_JOYSTICK_SPEED_3 2
+#define JS_SPEED_3 2
 /*! Speed joystick button 4 id */
-#define BUTT_JOYSTICK_SPEED_4 3
+#define JS_SPEED_4 3
 /*! Speed joystick button 5 id */
-#define BUTT_JOYSTICK_SPEED_5 4
+#define JS_SPEED_5 4
 /*! Speed joystick button 6 id */
-#define BUTT_JOYSTICK_SPEED_6 5
+#define JS_SPEED_6 5
 /*! Speed joystick button 7 id */
-#define BUTT_JOYSTICK_SPEED_7 6
+#define JS_SPEED_7 6
 /*! Speed joystick button 2 id */
-#define BUTT_JOYSTICK_SPEED_8 7
+#define JS_SPEED_8 7
 /*! Speed joystick button 2 id */
-#define BUTT_JOYSTICK_SPEED_9 8
+#define JS_SPEED_9 8
 /*! Speed joystick button 2 id */
-#define BUTT_JOYSTICK_SPEED_10 9
+#define JS_SPEED_10 9
 /*! Speed joystick button 2 id */
-#define BUTT_JOYSTICK_SPEED_11 10
+#define JS_SPEED_11 10
 /*! Speed joystick x-axis id */
-#define AXIS_JOYSTICK_SPEED_X 0
+#define JS_SPEED_X 0
 /*! Speed joystick y-axis id */
-#define AXIS_JOYSTICK_SPEED_Y 1
+#define JS_SPEED_Y 1
 /*! Speed joystick z-axis id */
-#define AXIS_JOYSTICK_SPEED_Z 2
+#define JS_SPEED_Z 2
 
 /*! Turn joystick trigger id */
-#define BUTT_JOYSTICK_TURN_TRIGGER 0
+#define JS_TURN_TRIGGER 0
 /*! Turn joystick button 2 id */
-#define BUTT_JOYSTICK_TURN_2 1
+#define JS_TURN_MANMODE_TOGGLE 1
 /*! Turn joystick button 3 id */
-#define BUTT_JOYSTICK_TURN_3 2
+#define JS_TURN_MANMODE_LOW 2
 /*! Turn joystick button 4 id */
-#define BUTT_JOYSTICK_TURN_4 3
+#define JS_TURN_4 3
 /*! Turn joystick button 5 id */
-#define BUTT_JOYSTICK_TURN_5 4
+#define JS_TURN_MANMODE_HIGH 4
 /*! Turn joystick button 6 id */
-#define BUTT_JOYSTICK_TURN_6 5
+#define JS_TURN_6 5
 /*! Turn joystick button 7 id */
-#define BUTT_JOYSTICK_TURN_7 6
+#define JS_TURN_7 6
 /*! Turn joystick button 2 id */
-#define BUTT_JOYSTICK_TURN_8 7
+#define JS_TURN_8 7
 /*! Turn joystick button 2 id */
-#define BUTT_JOYSTICK_TURN_9 8
+#define JS_TURN_9 8
 /*! Turn joystick button 2 id */
-#define BUTT_JOYSTICK_TURN_10 9
+#define JS_TURN_10 9
 /*! Turn joystick button 2 id */
-#define BUTT_JOYSTICK_TURN_11 10
+#define JS_TURN_11 10
 /*! Turn joystick x-axis id */
-#define AXIS_JOYSTICK_TURN_X 0
+#define JS_TURN_X 0
 /*! Turn joystick y-axis id */
-#define AXIS_JOYSTICK_TURN_Y 1
+#define JS_TURN_Y 1
 /*! Turn joystick z-axis id */
-#define AXIS_JOYSTICK_TURN_Z 2
+#define JS_TURN_Z 2
 
 /*! Operator joystick trigger id */
-#define BUTT_JOYSTICK_OPERATOR_TRIGGER 0
+#define JS_OPERATOR_TRIGGER 0
 /*! Operator joystick button 2 id */
-#define BUTT_JOYSTICK_OPERATOR_2 1
+#define JS_OPERATOR_2 1
 /*! Operator joystick button 3 id */
-#define BUTT_JOYSTICK_OPERATOR_3 2
+#define JS_OPERATOR_3 2
 /*! Operator joystick button 4 id */
-#define BUTT_JOYSTICK_OPERATOR_4 3
+#define JS_OPERATOR_4 3
 /*! Operator joystick button 5 id */
-#define BUTT_JOYSTICK_OPERATOR_5 4
+#define JS_OPERATOR_5 4
 /*! Operator joystick button 6 id */
-#define BUTT_JOYSTICK_OPERATOR_6 5
+#define JS_OPERATOR_6 5
 /*! Operator joystick button 7 id */
-#define BUTT_JOYSTICK_OPERATOR_7 6
+#define JS_OPERATOR_7 6
 /*! Operator joystick button 2 id */
-#define BUTT_JOYSTICK_OPERATOR_8 7
+#define JS_OPERATOR_8 7
 /*! Operator joystick button 2 id */
-#define BUTT_JOYSTICK_OPERATOR_9 8
+#define JS_OPERATOR_9 8
 /*! Operator joystick button 2 id */
-#define BUTT_JOYSTICK_OPERATOR_10 9
+#define JS_OPERATOR_10 9
 /*! Operator joystick button 2 id */
-#define BUTT_JOYSTICK_OPERATOR_11 10
+#define JS_OPERATOR_11 10
 /*! Operator joystick x-axis id */
-#define AXIS_JOYSTICK_OPERATOR_X 0
+#define JS_OPERATOR_X 0
 /*! Operator joystick y-axis id */
-#define AXIS_JOYSTICK_OPERATOR_Y 1
+#define JS_OPERATOR_Y 1
 /*! Operator joystick z-axis id */
-#define AXIS_JOYSTICK_OPERATOR_Z 2
+#define JS_OPERATOR_Z 2
 
 /*! Solenoid high drive */
 #define SOL_DRIVE_HIGH false
