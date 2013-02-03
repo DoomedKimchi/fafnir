@@ -1,6 +1,6 @@
 #include "HumanController.h"
 
-HumanController::HumanController()
+HumanController::HumanController(Robot *robot)
     :    speedStick(PORT_JOYSTICK_SPEED)
     ,    turnStick(PORT_JOYSTICK_TURN)
     ,    operatorStick(PORT_JOYSTICK_OPERATOR) {

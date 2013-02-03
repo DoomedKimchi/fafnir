@@ -1,11 +1,11 @@
 #include "WPILib.h"
 #include "Robot.h"
 #include "AutonomousController.h"
-#include "DriverController.h"
+#include "HumanController.h"
 
 class Fafnir : public IterativeRobot {
 private:
-    DriverStation driveStation;
+    HumanController humanController;
     AutonomousController autoController;
     Robot robot;
 public:
@@ -23,12 +23,15 @@ public:
     void TestDisabled();
 };
 
-Fafnir::Fafnir() {
-    robot()
+Fafnir::Fafnir() 
+    :    humanController(&robot) 
+    ,    autoController(&robot) 
+    ,    robot() {
+
 }
 
 void Fafnir::AutonomousInit() {
-    autoController(&robot);
+    printf("AutoInit\n");
 }
 
 void Fafnir::AutonomousPeriodic() {
@@ -37,20 +40,20 @@ void Fafnir::AutonomousPeriodic() {
 }
 
 void Fafnir::AutonomousDisabled() {
-    delete autonomousController;
+    //delete autonomousController;
 }
 
 void Fafnir::TeleopInit() {
-    driveStation(&robot);
+    //driveStation(&robot);
 }
 
 void Fafnir::TeleopPeriodic() {
-    driveStation.update();
+    humanController.update();
     robot.update();
 }
 
 void Fafnir::TeleopDisabled() {
-    delete driveStation();
+    //delete driveStation();
 }
 
 void Fafnir::TestInit() {

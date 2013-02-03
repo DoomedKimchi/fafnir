@@ -13,3 +13,7 @@ bool AutonomousController::fire() {
   fafnir->aim();
   fafnir->shoot();
 }
+
+void AutonomousController::update() {
+
+}

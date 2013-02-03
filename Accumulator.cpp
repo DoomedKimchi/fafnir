@@ -5,6 +5,10 @@ Accumulator::Accumulator()
 
 }
 
+Accumulator::~Accumulator() {
+    
+}
+
 bool Accumulator:: start() {
     if(motor.Get() == 1) return false;
     motor.Set(1);
