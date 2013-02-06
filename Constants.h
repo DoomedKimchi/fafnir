@@ -1,6 +1,9 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+/* Encoder feet per pulse */
+#define DRIVE_ENC_FEET_PER_PULSE 0.0
+
 /* Speed cutoffs for shifting gears */
 #define GEAR_UPSHIFT_CUTOFF 6.0
 #define GEAR_DOWNSHIFT_CUTOFF 4.0
@@ -93,10 +96,10 @@
 #define SHIFT_CUTOFF_DOWN 4.5
 
 /* Compressor spike port */
-#define PORT_COMPRESSOR_SPIKE 0
+#define PORT_COMPRESSOR_SPIKE 1
 
 /* Pressure cutoff port */
-#define PORT_PRESSURE_CUTOFF 0
+#define PORT_PRESSURE_CUTOFF 2
 
 /* Shooter encoder ports */
 #define PORT_SHOOTER_ENC_1_A 0

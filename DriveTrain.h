@@ -95,6 +95,9 @@ public:
   
   /*! Method that is constantly called by Robot */
   void update();
+
+  float getSpeed();
+
 };
 
 #endif /* DRIVE_TRAIN_H */

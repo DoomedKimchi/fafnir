@@ -25,7 +25,7 @@ class Robot {
   Shooter shooter;
 
   /*! The robot's camera */
-  AxisCamera &camera;
+  //AxisCamera &camera;
   /*! The robot's compressor */
   Compressor compressor;
 

@@ -1,9 +1,10 @@
 #include "HumanController.h"
 
-HumanController::HumanController()
+HumanController::HumanController(Robot *robot)
     :    speedStick(PORT_JS_SPEED)
     ,    turnStick(PORT_JS_TURN)
     ,    operatorStick(PORT_JS_OPERATOR) {
+    this->robot = robot;
 
 }
 

@@ -8,7 +8,7 @@ ARCH = -mcpu=603 -mstrict-align -mno-implicit-fp -mlongcall
 WPI_LIB = $(HOME)/.ucpp/gccdist/WindRiver/vxworks-6.3/target/lib/WPILib.a
 TOOL_PATH = wine $(HOME)/.ucpp/gccdist/WindRiver/gnu/3.4.4-vxworks-6.3/x86-win32/bin/
 DEFINES = -DCPU=PPC603 -D_WRS_KERNEL -DTOOL_FAMILY=gnu -DTOOL=gnu
-SRCS = Accumulator.cpp AutonomousController.cpp DriveTrain.cpp Fafnir.cpp HumanController.cpp LinearVictor.cpp NumberPIDOutput.cpp NumberPIDSource.cpp Robot.cpp Shooter.cpp
+SRCS = Accumulator.cpp AutonomousController.cpp DriveTrain.cpp Fafnir.cpp HumanController.cpp LinearVictor.cpp Robot.cpp Shooter.cpp
 OBJS = $(SRCS:.cpp=.o)
 PROG = FRC_Program.out
 PROG_DEST = Program
