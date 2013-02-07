@@ -14,6 +14,7 @@ Shooter::Shooter()
     setElevation(30.0); // constructor that will set the elevation as 30 (default)
     motorPower = 0;
     elevationError.writePID(0.0);
+
 }
 
 //Shooter:: Shooter(elevationY) {
@@ -26,4 +27,8 @@ void Shooter::setElevation(float f) {
 
 void Shooter::update() {
     elevationError.writePID(elevationEncoder.getAngle() - f);
+}
+
+void Shooter::shoot(){
+
 }

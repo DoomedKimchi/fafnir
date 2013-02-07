@@ -12,6 +12,7 @@ private:
    Victor motor3; //this is the third motor that spins the wheel to propel the frisbee  
    Victor motorElevation; //this is the third motor that will elevate the shooting mechanism of the robot. 
    PIDController elevationContoller;
+   Solenoid solenoid;
 public:
    Shooter();
    void setElevation(float angle); // set elevation 
