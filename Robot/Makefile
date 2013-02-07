@@ -1,3 +1,18 @@
+#UCPP makefile
+
+# Default target
+all: force
+	cd PPC603gnu && exec $(MAKE) -f Makefile_linux
+
+# Don't do anything for the "Makefile" target
+Makefile: ;
+
+# Recursively run all other targets
+%: force
+	cd PPC603gnu && exec $(MAKE) -f Makefile_linux "$*"
+
+force: ;
+
 CPP = $(TOOL_PATH)ccppc.exe
 NM = $(TOOL_PATH)nmppc.exe
 C_FLAGS = -g3 -O2 -fstrength-reduce -fno-builtin -ansi -Wall -MD -MP -fno-feature-proxy
@@ -45,3 +60,4 @@ clean:
 	rm *.d ; \
 	cd $(PROG_DEST) && rm $(PROG) ctdt.* ; \
 	cd $(PROG_PARTIAL_DEST) && rm $(PROG_PARTIAL)
+
