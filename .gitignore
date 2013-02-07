@@ -1,0 +1,7 @@
+# ignoring emacs files
+\#*
+*~
+
+# ignoring build outputs
+*.out
+*.o
