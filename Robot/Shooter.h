@@ -13,16 +13,15 @@ private:
   Victor motorElevation; //this is the third motor that will elevate the shooting mechanism of the robot. 
   PIDController elevationContoller;
 public:
-  Shooter();
-  void setElevation(float angle); // set elevation 
-  void setSpinSpeed(float sp);
-  float elevationA; // what is this variable?
-  umberPID elevationError; // elevation error, ie if target = 60 and elevation = 45, error = 15
-  NumberPID outputFiller; // pointless object that PIDController needs, hence 'filler'
-  float targetElevation; // goal elevation, ie 60 degrees
-  float motorPower; // how much to set the victor (PWM)
-
-  void update();
+   Shooter();
+   void setElevation(float angle); // set elevation 
+   float elevationA; // what is this variable?
+   NumberPID elevationError; // elevation error, ie if target = 60 and elevation = 45, error = 15
+   NumberPID outputFiller; // pointless object that PIDController needs, hence 'filler'
+   float elevationTarget; // goal elevation, ie 60 degrees
+   float motorPower; // how much to set the victor (PWM)
+   void shoot();
+   void update();
 };
 
 #endif /* SHOOTER_H */
