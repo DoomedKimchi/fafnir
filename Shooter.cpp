@@ -1,9 +1,5 @@
 #include "Shooter.h"
 
-//int main() {
-//  Shooter target1(28.3928); // just a test
-//}
-
 Shooter::Shooter() 
     :    elevationEncoder((UINT32)PORT_SHOOTER_ENC_1_A, (UINT32)PORT_SHOOTER_ENC_1_B) 
     ,    motor1(PORT_SHOOTER_VIC_1)
