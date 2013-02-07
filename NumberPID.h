@@ -1,14 +1,14 @@
-#ifndef NUMBERPIDSOURCE_H_
-#define NUMBERPIDSOURCE_H_
+#ifndef NUMBERPID_H_
+#define NUMBERPID_H_
 
 #include "WPILib.h"
 
-class NumberPIDSource : public PIDSource {
+class NumberPID : public PIDSource, public PIDOutput {
 private:
 	double value;
 public:
-	NumberPIDSource();
+	NumberPID();
 	double PIDGet();
 	void PIDWrite(double input);
 };
-#endif /*NUMBERPIDSOURCE_H_*/
+#endif /*NUMBERPID_H_*/
