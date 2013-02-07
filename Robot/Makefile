@@ -1,3 +1,18 @@
+#UCPP makefile
+
+# Default target
+all: force
+	cd PPC603gnu && exec $(MAKE) -f Makefile_linux
+
+# Don't do anything for the "Makefile" target
+Makefile: ;
+
+# Recursively run all other targets
+%: force
+	cd PPC603gnu && exec $(MAKE) -f Makefile_linux "$*"
+
+force: ;
+
 CPP = $(TOOL_PATH)ccppc.exe
 NM = $(TOOL_PATH)nmppc.exe
 C_FLAGS = -g3 -O2 -fstrength-reduce -fno-builtin -ansi -Wall -MD -MP -fno-feature-proxy
@@ -8,7 +23,7 @@ ARCH = -mcpu=603 -mstrict-align -mno-implicit-fp -mlongcall
 WPI_LIB = $(HOME)/.ucpp/gccdist/WindRiver/vxworks-6.3/target/lib/WPILib.a
 TOOL_PATH = wine $(HOME)/.ucpp/gccdist/WindRiver/gnu/3.4.4-vxworks-6.3/x86-win32/bin/
 DEFINES = -DCPU=PPC603 -D_WRS_KERNEL -DTOOL_FAMILY=gnu -DTOOL=gnu
-SRCS = Accumulator.cpp AutonomousController.cpp DriveTrain.cpp HumanController.cpp LinearVictor.cpp NumberPIDOutput.cpp NumberPIDSource.cpp Robot.cpp Shooter.cpp
+SRCS = Accumulator.cpp AutonomousController.cpp DriveTrain.cpp Fafnir.cpp HumanController.cpp LinearVictor.cpp Robot.cpp Shooter.cpp
 OBJS = $(SRCS:.cpp=.o)
 PROG = FRC_Program.out
 PROG_DEST = Program
@@ -45,3 +60,4 @@ clean:
 	rm *.d ; \
 	cd $(PROG_DEST) && rm $(PROG) ctdt.* ; \
 	cd $(PROG_PARTIAL_DEST) && rm $(PROG_PARTIAL)
+

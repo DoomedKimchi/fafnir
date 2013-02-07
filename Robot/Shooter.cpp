@@ -8,6 +8,7 @@ Shooter::Shooter()
     :    elevationEncoder((UINT32)PORT_SHOOTER_ENC_1_A, (UINT32)PORT_SHOOTER_ENC_1_B) 
     ,    motor1(PORT_SHOOTER_VIC_1)
     ,    motor2(PORT_SHOOTER_VIC_2)
+    ,    motor3(PORT_SHOOTER_VIC_3)
     ,    motorElevation(PORT_SHOOTER_VIC_ELEVATION) {
     setElevation(30.0); // constructor that will set the elevation as 30 (default)
 }

@@ -1,8 +1,8 @@
 #include "Robot.h"
 
 Robot::Robot() 
-  :  camera (AxisCamera::GetInstance()) 
-  ,  compressor(PORT_COMPRESSOR_SPIKE, PORT_PRESSURE_CUTOFF) {
+    :  /*camera (AxisCamera::GetInstance()) 
+	 ,  */compressor(PORT_PRESSURE_CUTOFF, PORT_COMPRESSOR_SPIKE) {
   compressor.Start();
 }
 

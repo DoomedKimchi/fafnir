@@ -1,6 +1,5 @@
-fafnir
-======
-
+FRC 2013
+=======
 [Team 8](http://palyrobotics.com)
 
 [Docs](http://team8.github.com/fafnir/)

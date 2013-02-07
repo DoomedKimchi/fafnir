@@ -3,6 +3,7 @@
 
 #include "WPILib.h"
 #include "Constants.h"
+#include "Robot.h"
 
 /*! \brief Takes human control during the operator period
  *
@@ -22,9 +23,11 @@ class HumanController {
   /*! Operator joystick */
   Joystick operatorStick;
 
+  Robot *robot;
+
  public:
   AutonomousMode getAutonomousMode();
-  HumanController();
+  HumanController(Robot *robot);
   /*! \brief Method constantly called by Robot */
   void update();
 };

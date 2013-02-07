@@ -15,6 +15,8 @@ DriveTrain::DriveTrain()
   ,  gyro((UINT32)PORT_DRIVE_GYRO) {
 
   setMode(LOW_GEAR);
+  leftEnc.SetDistancePerPulse(DRIVE_ENC_FEET_PER_PULSE);
+  rigthEnc.SetDistancePerPulse(DRIVE_ENC_FEET_PER_PULSE);
 }
 
 bool DriveTrain::engageHigh() {
@@ -82,6 +84,7 @@ bool DriveTrain::driveS(double s) {
   else if (s < GEAR_DOWNSHIFT_CUTOFF) {
       engageLow();
   }
+  targetSpeed = s;
   return true;
   // Don't delete this unless you want to be a douche (but move it around as much as you want to)
   // Ok people, this is how we use a PID controller to set the speed! (by Nathan)
@@ -149,19 +152,26 @@ bool DriveTrain::driveTo(Complex target) {
 }
 
 bool DriveTrain::rotateA(double a) {
+    targetAngle = a;
     return true;
   //set target angle
 }
 
 bool DriveTrain::rotateS(double s) {
+    targetRotSpeed = s;
     return true;
+    //this method may never get used in this form
   //set target speed
 }
 
 void DriveTrain::update() {
   if(mode == AUTO) {
-    //automatic shifting code
-    //and stuff
+      if (getSpeed() > GEAR_UPSHIFT_CUTOFF) {
+	  engageHigh();
+      }
+      else if (getSpeed() < GEAR_DOWNSHIFT_CUTOFF) {
+	  engageLow();
+      }
   }
   //check encoders
   //and do stuff with them
@@ -181,4 +191,8 @@ void DriveTrain::update() {
 
   //ISSUES
       //angle and speed can be absolute, distance cannot (reliably)
+}
+
+double DriveTrain::getSpeed() {
+    return (leftEnc.GetRate() + rightEnc.GetRate())/2.0;
 }

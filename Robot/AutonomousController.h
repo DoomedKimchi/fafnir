@@ -18,6 +18,8 @@ class AutonomousController {
   bool fire();
 
  public:
+  
+  void update();
   /*! \brief Constructs an autonomous controller with a pointer to fafnir
    * \param *fafnir A pointer to the Robot */
   AutonomousController(Robot *fafnir);
