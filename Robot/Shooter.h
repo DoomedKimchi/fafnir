@@ -20,7 +20,7 @@ public:
    NumberPID outputFiller; // pointless object that PIDController needs, hence 'filler'
    float elevationTarget; // goal elevation, ie 60 degrees
    float motorPower; // how much to set the victor (PWM)
-
+   void shoot();
    void update();
 };
 
