@@ -16,6 +16,7 @@
 /* Solenoid shooter ports */
 #define PORT_SHOOTER_SOL_1 0
 #define PORT_SHOOTER_SOL_2 0
+
 /* Accumulator Victor port */
 #define PORT_ACC_VIC_1 0
 
