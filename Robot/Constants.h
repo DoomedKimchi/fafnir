@@ -3,7 +3,8 @@
 
 /* Encoder feet per pulse */
 #define DRIVE_ENC_FEET_PER_PULSE 0.0
-
+#define SHOOTER_ENC_FEET_PER_PULSE 0.0
+#define SHOOTER_EVEV_ENC_FEET_PER_PULSE 0.0
 /* Speed cutoffs for shifting gears */
 #define GEAR_UPSHIFT_CUTOFF 6.0
 #define GEAR_DOWNSHIFT_CUTOFF 4.0
