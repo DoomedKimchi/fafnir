@@ -31,6 +31,11 @@ void Shooter::setSpinSpeed(float sp) {
   motor3.setPower(sp);
 }
 
+void Shooter::shoot() {
+  setSpinSpeed(100.0); // is 100 a reasonable value?
+  // push frisbee into shooter
+}
+
 void Shooter::update() {
   elevationError.writePID(elevationEncoder.getAngle() - f);
   /* note that just because we updated the error doesn't mean the output
