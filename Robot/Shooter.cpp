@@ -37,6 +37,9 @@ void Shooter::setSpinSpeed(float sp) {
 void Shooter::shoot() {
   setSpinSpeed(100.0); // is 100 a reasonable value?
   // push frisbee into shooter
+
+  sol1.Set(true);
+  sol1.Set(true);
 }
 
 void Shooter::update() {
@@ -47,6 +50,3 @@ void Shooter::update() {
   motorElevation.setPower(motorPower); //not sure what the write set pwoer method is
 }
 
-void Shooter::shoot(){
-
-}
