@@ -15,7 +15,9 @@ void Robot::aim() {
 }
 
 void Robot::shoot() {
-	
+  shoot.shoot();
+  accumulator.shootVacated();
+
 }
 
 void Robot::climb() {
