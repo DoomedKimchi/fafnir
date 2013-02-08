@@ -10,6 +10,8 @@ Shooter::Shooter()
     ,    motor2(PORT_SHOOTER_VIC_2)
     ,    motor3(PORT_SHOOTER_VIC_3)
     ,    motorElevation(PORT_SHOOTER_VIC_ELEVATION)
+    ,    sol1(PORT_SHOOTER_SOL_1)
+    ,    sol2(PORT_SHOOTER_SOL_2)
     ,    elevationController(3,0,-1,elevationError,outputFiller) { // 3,0,-1 are pid constants
     setElevation(30.0); // constructor that will set the elevation as 30 (default)
 
