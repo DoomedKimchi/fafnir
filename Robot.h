@@ -20,7 +20,7 @@ private:
 public:
    Robot();
    void accumulate(); // take care of sensing?
-   void shoot(); // just shoot, no aiming
+   void shoot();// just shoot, no aiming
    void aim(float yaw, float elevation); // angle to aim
    void aim(); // aim using the camera
    void climb();
