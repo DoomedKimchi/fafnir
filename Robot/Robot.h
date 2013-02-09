@@ -48,6 +48,10 @@ class Robot {
   void aim();
   /*! \brief Climbs the pyramid */
   void climb();
+  
+  ShifterMode getShifterMode();
+  bool setShifterMode(ShifterMode mode);
+
   void update();
 };
 #endif /* ROBOT_H */

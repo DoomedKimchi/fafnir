@@ -117,7 +117,8 @@
 #define PORT_SHOOTER_VIC_ELEVATION 0
 
 /* Types of gear modes for the drive train */
-enum ShifterMode { LOW_GEAR, HIGH_GEAR, AUTO };
+enum ShifterMode { MANUAL, AUTO };
+enum ShifterPosition { LOW_GEAR, HIGH_GEAR };
 
 /* Types of autonomous modes */
 enum AutonomousMode { DEFAULT, ALTERNATE_1, ALTERNATE_2 };
