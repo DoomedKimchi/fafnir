@@ -31,30 +31,26 @@ bool DriveTrain::engageLow() {
   return true;
 }
 
-bool DriveTrain::setMode(ShifterMode s) {
-  switch (s) {
-  case HIGH_GEAR: 
-      if (engageHigh()) {
-	  mode = HIGH_GEAR;
-      }
-      break;
-  case LOW_GEAR:
-      if (engageLow()) {
-	  mode = LOW_GEAR;
-      }
-      break;
-  case AUTO:
-      mode = AUTO;
-      break;
-  default:
-      return false;
-      break;
-  }
-  return true;
+void DriveTrain::setShifterMode(ShifterMode m) {
+  mode = m;
 }
 
-ShifterMode DriveTrain::getMode() {
+ShifterMode DriveTrain::getShifterMode() {
   return mode;
+}
+
+void DriveTrain::setShifterPosition(ShifterPosition p) {
+  if(p == HIGH_GEAR) {
+    engageHigh();
+  }
+  engageLow();
+}
+
+ShifterPosition DriveTrain::getShifterPosition() {
+  if(!leftSol.Get()) {
+    return HIGH_GEAR;
+  }
+  return LOW_GEAR;
 }
 
 //driveDist and driveTo mostly for auto
