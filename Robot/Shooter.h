@@ -19,8 +19,16 @@ private:
    
    Solenoid sol1;
    Solenoid sol2;
+   
+   Solenoid solShoot;
 
    void setSpinSpeed(float sp);
+
+   ShooterState state;
+
+   bool shootRequested;
+
+   Timer shootTimer;
 
 public:
    Shooter();

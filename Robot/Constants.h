@@ -5,6 +5,7 @@
 #define DRIVE_ENC_FEET_PER_PULSE 0.0
 #define SHOOTER_ENC_FEET_PER_PULSE 0.0
 #define SHOOTER_DEG_PER_PULSE 0.0
+
 /* Speed cutoffs for shifting gears */
 #define GEAR_UPSHIFT_CUTOFF 6.0
 #define GEAR_DOWNSHIFT_CUTOFF 4.0
@@ -119,12 +120,21 @@
 #define PORT_SHOOTER_VIC_3 0
 #define PORT_SHOOTER_VIC_ELEVATION 0
 
+/* Shooter timing constants */
+#define SHOOT_PRIMING_WAIT 0.0
+#define SHOOT_SHOOTING_WAIT 0.0
+#define SHOOT_RECOVERING_WAIT 0.0
+
+/* Shooter minimum speed to shoot */
+#define SHOOT_SPEED 0.0
+
 /* Types of gear modes for the drive train */
 enum ShifterMode { MANUAL, AUTO };
 
 /* Types of autonomous modes */
 enum AutonomousMode { DEFAULT, ALTERNATE_1, ALTERNATE_2 };
 
+enum ShooterState { LOADED, PRIMED, SHOOTING, RECOVERING, EMPTY, AIMING };
 
 #endif /* CONSTANTS_H */
 

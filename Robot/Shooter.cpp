@@ -35,18 +35,58 @@ void Shooter::setSpinSpeed(float sp) {
 }
 
 void Shooter::shoot() {
-  setSpinSpeed(1.0); // is 100 a reasonable value?
-  // push frisbee into shooter
-
-  sol1.Set(true);
-  sol1.Set(true);
+    shootRequested = true;
 }
 
 void Shooter::update() {
-  elevationError.PIDWrite(elevationEncoder.GetDistance() - elevationTarget);
-  /* note that just because we updated the error doesn't mean the output
-  changed b/c the PID loop updates in its own loop */
-  motorPower = elevationController.Get();
-  motorElevation.Set(motorPower); //not sure what the write set pwoer method is
+    switch(state) {
+    case LOADED:
+	if (shootRequested) {
+	    setSpinSpeed(1.0); // is 100 a reasonable value?                                                                                                                           
+	    // push frisbee into shooter                                                                                                                                               
+
+	    sol1.Set(true);
+	    sol1.Set(true);
+	    shootTimer.Start();
+	    shootRequested = false;
+	}
+	if (shootTimer.HasPeriodPassed(SHOOT_PRIMING_WAIT)) {
+	    state = PRIMED;
+	}
+	break;
+    case AIMING:
+	elevationError.PIDWrite(elevationEncoder.GetDistance() - elevationTarget);
+	/* note that just because we updated the error doesn't mean the output
+	   changed b/c the PID loop updates in its own loop */
+	motorPower = elevationController.Get();
+	motorElevation.Set(motorPower); //not sure what the write set pwoer method is
+	break;
+    case PRIMED:
+	if (speedEncoder.GetRate() < SHOOT_SPEED) {
+	    solShoot.Set(true);
+	    shootTimer.Reset();
+	}
+	state = SHOOTING;
+	break;
+    case SHOOTING:
+	if (shootTimer.HasPeriodPassed(SHOOT_SHOOTING_WAIT)) {
+	    sol1.Set(false);
+	    sol2.Set(false);
+	    solShoot.SET(true);
+	    shootTimer.Reset();
+	    state = RECOVERING;
+	}
+	break;
+    case RECOVERING:
+	if (shootTimer.HasPeriodPassed(SHOOT_RECOVERING_WAIT)) {
+	    state = EMPTY;
+	    shootTimer.Stop();
+	}
+	break;
+    case EMPTY:
+	break;
+    default:
+	break;	
+    }
 }
 
