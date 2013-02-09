@@ -9,6 +9,6 @@ private:
 public:
 	NumberPID();
 	double PIDGet();
-	void PIDWrite(double input);
+	void PIDWrite(float input);
 };
 #endif /*NUMBERPID_H_*/
