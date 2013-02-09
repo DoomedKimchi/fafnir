@@ -15,7 +15,7 @@ class Accumulator {
   Victor motor;
   //pneumatic arm for flipping
   //beam sensor for frisbee?
-
+  bool frisbeePresent;
   /*! \brief Start the motor
    * \pre The motor is not running
    * \return Whether the motor has been started */
@@ -39,6 +39,9 @@ class Accumulator {
    * \param accumulate Whether autoAccumulate() should be called
    * \return Whether update succeeded */
   bool update(bool accumulate);
+  void shootVacated();
+
+
 
   /*! \brief Constructor */
   Accumulator();

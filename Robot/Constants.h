@@ -3,7 +3,8 @@
 
 /* Encoder feet per pulse */
 #define DRIVE_ENC_FEET_PER_PULSE 0.0
-
+#define SHOOTER_ENC_FEET_PER_PULSE 0.0
+#define SHOOTER_EVEV_ENC_FEET_PER_PULSE 0.0
 /* Speed cutoffs for shifting gears */
 #define GEAR_UPSHIFT_CUTOFF 6.0
 #define GEAR_DOWNSHIFT_CUTOFF 4.0
@@ -11,6 +12,10 @@
 /* Solenoid drive ports */
 #define PORT_DRIVE_SOL_1 0
 #define PORT_DRIVE_SOL_2 0
+
+/* Solenoid shooter ports */
+#define PORT_SHOOTER_SOL_1 0
+#define PORT_SHOOTER_SOL_2 0
 
 /* Accumulator Victor port */
 #define PORT_ACC_VIC_1 0

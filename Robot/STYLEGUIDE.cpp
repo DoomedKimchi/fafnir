@@ -16,7 +16,7 @@ public:
   void modifier(int value);
 
   // and the line here between public methods and variables
-  string this_is_public = "Private vars are not necessary for our code; try not to use them.";
+  string this_is_public = "Use private vars but note that they can only be accessed by class methods.";
 };
 
 // note the space before the bracket and before the comment after "//"

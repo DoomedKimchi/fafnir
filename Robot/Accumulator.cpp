@@ -14,6 +14,9 @@ bool Accumulator:: start() {
     motor.Set(1);
     return true;
 }
+void Accumulator:: shootVacated() {
+  frisbeePresent = false;
+}
 
 bool Accumulator:: kill() {
     if(motor.Get() == 0) return false;

@@ -1,11 +1,11 @@
-#include "NumberPIDSource.h"
+#include "NumberPID.h"
 
-NumberPIDSource::NumberPIDSource() {
+NumberPID::NumberPID() {
 	value = 0;
 }
-void NumberPIDSource::PIDWrite(double input) {
+void NumberPID::PIDWrite(double input) {
 	value = input;
 }
-double NumberPIDSource::PIDGet() {
+double NumberPID::PIDGet() {
 	return value;
 }
