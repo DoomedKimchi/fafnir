@@ -16,7 +16,7 @@ DriveTrain::DriveTrain()
 
   setMode(LOW_GEAR);
   leftEnc.SetDistancePerPulse(DRIVE_ENC_FEET_PER_PULSE);
-  rigthEnc.SetDistancePerPulse(DRIVE_ENC_FEET_PER_PULSE);
+  rightEnc.SetDistancePerPulse(DRIVE_ENC_FEET_PER_PULSE);
 }
 
 bool DriveTrain::engageHigh() {
@@ -189,6 +189,6 @@ void DriveTrain::update() {
       //angle and speed can be absolute, distance cannot (reliably)
 }
 
-double DriveTrain::getSpeed() {
+float DriveTrain::getSpeed() {
     return (leftEnc.GetRate() + rightEnc.GetRate())/2.0;
 }

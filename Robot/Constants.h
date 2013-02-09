@@ -4,7 +4,7 @@
 /* Encoder feet per pulse */
 #define DRIVE_ENC_FEET_PER_PULSE 0.0
 #define SHOOTER_ENC_FEET_PER_PULSE 0.0
-#define SHOOTER_EVEV_ENC_FEET_PER_PULSE 0.0
+#define SHOOTER_DEG_PER_PULSE 0.0
 /* Speed cutoffs for shifting gears */
 #define GEAR_UPSHIFT_CUTOFF 6.0
 #define GEAR_DOWNSHIFT_CUTOFF 4.0
@@ -110,6 +110,9 @@
 #define PORT_SHOOTER_ENC_1_A 0
 #define PORT_SHOOTER_ENC_1_B 0
 
+#define PORT_SHOOTER_ENC_2_A 0
+#define PORT_SHOOTER_ENC_2_B 0
+
 /* Shooter victor ports */
 #define PORT_SHOOTER_VIC_1 0
 #define PORT_SHOOTER_VIC_2 0
@@ -118,10 +121,14 @@
 
 /* Types of gear modes for the drive train */
 enum ShifterMode { MANUAL, AUTO };
+<<<<<<< HEAD
 enum ShifterPosition { LOW_GEAR, HIGH_GEAR };
+=======
+>>>>>>> b8a5292a6035df5f1398860c8967279b68cadf5a
 
 /* Types of autonomous modes */
 enum AutonomousMode { DEFAULT, ALTERNATE_1, ALTERNATE_2 };
+
 
 #endif /* CONSTANTS_H */
 

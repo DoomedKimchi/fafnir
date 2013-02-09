@@ -60,4 +60,3 @@ clean:
 	rm *.d ; \
 	cd $(PROG_DEST) && rm $(PROG) ctdt.* ; \
 	cd $(PROG_PARTIAL_DEST) && rm $(PROG_PARTIAL)
-
