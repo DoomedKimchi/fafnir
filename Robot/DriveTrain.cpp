@@ -75,14 +75,7 @@ bool DriveTrain::driveD(double d) {
 
 bool DriveTrain::driveS(double s) {
   //set target speed
-  if (s > GEAR_UPSHIFT_CUTOFF) {
-    engageHigh();
-    
-    return true;
-  }
-  else if (s < GEAR_DOWNSHIFT_CUTOFF) {
-      engageLow();
-  }
+
   targetSpeed = s;
   return true;
   // Don't delete this unless you want to be a douche (but move it around as much as you want to)
@@ -175,7 +168,10 @@ void DriveTrain::update() {
   //check encoders
   //and do stuff with them
   //and stuff
-  
+  leftFrontVic.Set(targetSpeed+targetRotSpeed);
+  leftBackVic.Set(targetSpeed+targetRotSpeed);
+  rightFrontVic.Set(targetSpeed-targetRotSpeed);
+  rightBackVic.Set(targetSpeed-targetRotSpeed);
   //Drive Speed/Ang Speed
       //check dist since last tick
       //calc current speed
