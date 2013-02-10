@@ -20,20 +20,23 @@ void HumanController::update() {
   //low gear: 0 ft/sec – 5.5 ft/sec
   //high gear: 5 ft/sec – max speed (probably 16 ft/sec)
 
-  /* forced gear shifting modes */
-  if(turnStick.GetRawButton(JS_TURN_MANMODE_TOGGLE)) {
-    if(robot->getShifterMode() == AUTO) {
-      // engage manual
+  /* begin Gearshifter changing */
+  if(turnStick.GetRawButton(JS_TURN_MODE_TOGGLE)) {
+    if(!buttShifterMode) {
+      if(robot->getShifterMode() == AUTO) {
+	robot->setShifterMode(MANUAL);
+      }
+      else {
+	robot->setShifterMode(AUTO);
+      }
     }
-    // if high gear
-    // engage low gear
-    // if low gear
-    // engage high gear
   }
-  else if(turnStick.GetRawButton(JS_TURN_MANMODE_LOW)) {
-      robot->setShifterPosition(LOW_GEAR);
+  else if(turnStick.GetRawButton(JS_TURN_POSITION_LOW)) {
+    robot->setShifterPosition(LOW_GEAR);
   }
-  else if(turnStick.GetRawButton(JS_TURN_MANMODE_HIGH)) {
-      robot->setShifterPosition(HIGH_GEAR);
+  else if(turnStick.GetRawButton(JS_TURN_POSITION_HIGH)) {
+    robot->setShifterPosition(HIGH_GEAR);
   }
+  buttShifterMode = turnStick.GetRawButton(JS_TURN_MODE_TOGGLE);
+  /* end Gearshifter changing */
 }

@@ -64,10 +64,10 @@
 
 /* Turn joystick button and axis IDs */
 #define JS_TURN_TRIGGER 0
-#define JS_TURN_MANMODE_TOGGLE 1
-#define JS_TURN_MANMODE_LOW 2
+#define JS_TURN_MODE_TOGGLE 1
+#define JS_TURN_POSITION_LOW 2
 #define JS_TURN_4 3
-#define JS_TURN_MANMODE_HIGH 4
+#define JS_TURN_POSITION_HIGH 4
 #define JS_TURN_6 5
 #define JS_TURN_7 6
 #define JS_TURN_8 7
