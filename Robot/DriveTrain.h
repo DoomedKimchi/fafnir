@@ -12,45 +12,33 @@
 
 class DriveTrain {
 private:
-  /*! The current gear */
+  /* Current gear mode */
   ShifterMode mode;
   
-  /*! The left solenoid */
+  /* Solenoids */
   Solenoid leftSol;
-  /*! The right solenoid */
   Solenoid rightSol;
 
-  /*! The left encoder */  
+  /* Encoders */  
   Encoder leftEnc;
-  /*! The right encoder */
   Encoder rightEnc;
   
-  /*! The left front motor */
+  /* Speed controllers */
   Victor leftFrontVic;
-  /*! The left back motor */
   Victor leftBackVic;
-  /*! The right front motor */
   Victor rightFrontVic;
-  /*! The right back motor */
   Victor rightBackVic;
 
   /*! The robot's gyrometer */
   Gyro gyro;
 
-  /*! The current speed */
   int speed;
-  /*! The current rotation speed */
-  int rotateSpeed;
+  int rotSpeed;
 
-  /*! The target speed */
   float targetSpeed;
-  /*! The target distance */
   float targetDist;
-  /*! The target point */
   Complex targetPoint;
-  /*! The target angle */
   float targetAngle;
-  /*! The target rotational speed */
   float targetRotSpeed;
 
   bool engageHigh();
@@ -87,12 +75,14 @@ public:
   
   /*! Get the current shifter mode
    * \return the current mode of the shifter */
-  ShifterMode getMode();
+  ShifterMode getShifterMode();
   /*! Set the shifter mode
    * \param mode The new mode for the shifter
    * \return Whether setting the mode was successful */
-  bool setMode(ShifterMode mode);
-  
+  void setShifterMode(ShifterMode m);
+  ShifterPosition getShifterPosition();
+  void setShifterPosition(ShifterPosition p);
+
   /*! Method that is constantly called by Robot */
   void update();
 

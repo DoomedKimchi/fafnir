@@ -15,13 +15,21 @@ void Robot::aim() {
 }
 
 void Robot::shoot() {
-  shoot.shoot();
+  shooter.shoot();
   accumulator.shootVacated();
 
 }
 
 void Robot::climb() {
 
+}
+
+ShifterMode Robot::getShifterMode() {
+  return driveTrain.getShifterMode();
+}
+
+bool Robot::setShifterMode(ShifterMode mode) {
+  return driveTrain.setShifterMode(mode);
 }
 
 void Robot::update() {
