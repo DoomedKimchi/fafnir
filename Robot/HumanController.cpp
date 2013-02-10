@@ -22,7 +22,7 @@ void HumanController::update() {
 
   /* forced gear shifting modes */
   if(turnStick.GetRawButton(JS_TURN_MANMODE_TOGGLE)) {
-    if(*robot->getShifterMode() == AUTO) {
+    if(robot->getShifterMode() == AUTO) {
       // engage manual
     }
     // if high gear
@@ -31,9 +31,9 @@ void HumanController::update() {
     // engage high gear
   }
   else if(turnStick.GetRawButton(JS_TURN_MANMODE_LOW)) {
-    *robot->setShifterMode(LOW_GEAR);
+      robot->setShifterPosition(LOW_GEAR);
   }
   else if(turnStick.GetRawButton(JS_TURN_MANMODE_HIGH)) {
-    *robot->setShifterMode(HIGH_GEAR);
+      robot->setShifterPosition(HIGH_GEAR);
   }
 }

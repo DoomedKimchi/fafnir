@@ -17,6 +17,7 @@
 /* Solenoid shooter ports */
 #define PORT_SHOOTER_SOL_1 0
 #define PORT_SHOOTER_SOL_2 0
+#define PORT_SHOOTER_SOL_SHOOT 0
 
 /* Accumulator Victor port */
 #define PORT_ACC_VIC_1 0
@@ -130,10 +131,8 @@
 
 /* Types of gear modes for the drive train */
 enum ShifterMode { MANUAL, AUTO };
-<<<<<<< HEAD
+
 enum ShifterPosition { LOW_GEAR, HIGH_GEAR };
-=======
->>>>>>> b8a5292a6035df5f1398860c8967279b68cadf5a
 
 /* Types of autonomous modes */
 enum AutonomousMode { DEFAULT, ALTERNATE_1, ALTERNATE_2 };

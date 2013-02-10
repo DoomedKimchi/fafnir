@@ -14,7 +14,8 @@ DriveTrain::DriveTrain()
 
   ,  gyro((UINT32)PORT_DRIVE_GYRO) {
 
-  setMode(LOW_GEAR);
+    setShifterMode(AUTO);
+  setShifterPosition(LOW_GEAR);
   leftEnc.SetDistancePerPulse(DRIVE_ENC_FEET_PER_PULSE);
   rightEnc.SetDistancePerPulse(DRIVE_ENC_FEET_PER_PULSE);
 }
@@ -31,19 +32,21 @@ bool DriveTrain::engageLow() {
   return true;
 }
 
-void DriveTrain::setShifterMode(ShifterMode m) {
+bool DriveTrain::setShifterMode(ShifterMode m) {
   mode = m;
+  return true;
 }
 
 ShifterMode DriveTrain::getShifterMode() {
   return mode;
 }
 
-void DriveTrain::setShifterPosition(ShifterPosition p) {
+bool DriveTrain::setShifterPosition(ShifterPosition p) {
   if(p == HIGH_GEAR) {
     engageHigh();
   }
   engageLow();
+  return true;
 }
 
 ShifterPosition DriveTrain::getShifterPosition() {

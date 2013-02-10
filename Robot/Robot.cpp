@@ -32,6 +32,14 @@ bool Robot::setShifterMode(ShifterMode mode) {
   return driveTrain.setShifterMode(mode);
 }
 
+ShifterPosition Robot::getShifterPosition() {
+    return driveTrain.getShifterPosition();
+}
+
+bool Robot::setShifterPosition(ShifterPosition pos) {
+    return driveTrain.setShifterPosition(pos);
+}
+
 void Robot::update() {
     driveTrain.update();
     accumulator.update(true);
