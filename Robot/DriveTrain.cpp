@@ -65,12 +65,7 @@ ShifterPosition DriveTrain::getShifterPosition() {
 bool DriveTrain::driveD(double d) { // tolerence is currently .01
   //set target distance  
   targetDist = d;
-  distanceInput.writePID(targetDistance - progress);
-  if (distanceInput.getPID() <= .01) {
-    targetSpeed = 0;
-    return true; // within tolerence
-  }
-  targetSpeed = distanceController.get();
+
 
   return false;
 }
@@ -139,6 +134,14 @@ void DriveTrain::update() {
 	  engageLow();
       }
   }
+  float progress = 0; // how do we get the distance from encoders?
+  distanceInput.writePID(targetDistance - progress); // progree
+  if (distanceInput.getPID() <= .01) {
+    targetSpeed = 0;
+    return true; // within tolerence
+  }
+  targetSpeed = distanceController.get();
+
   //check encoders
   //and do stuff with them
   //and stuff
@@ -146,6 +149,7 @@ void DriveTrain::update() {
   leftBackVic.Set(targetSpeed+targetRotSpeed);
   rightFrontVic.Set(targetSpeed-targetRotSpeed);
   rightBackVic.Set(targetSpeed-targetRotSpeed);
+
   //Drive Speed/Ang Speed
       //check dist since last tick
       //calc current speed
