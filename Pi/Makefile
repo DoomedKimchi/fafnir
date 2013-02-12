@@ -7,8 +7,11 @@ EXECUTABLE=main
 
 all: $(SOURCES) $(EXECUTABLE)
 
+clean:
+	$(shell rm -rf bin)
+
 $(EXECUTABLE): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $@ $(LIBS)
+	$(CC) bin/$(OBJECTS) -o bin/$@ $(LIBS)
 
 .cpp.o:
-	$(CC) $(FLAGS) $< -o $@
+	$(CC) $(FLAGS) $< -o bin/$@
