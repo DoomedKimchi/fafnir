@@ -139,5 +139,7 @@ enum AutonomousMode { DEFAULT, ALTERNATE_1, ALTERNATE_2 };
 
 enum ShooterState { LOADED, PRIMED, SHOOTING, RECOVERING, EMPTY, AIMING };
 
+enum AccumulatorState { EMPTY, LOADED, LOADING };
+
 #endif /* CONSTANTS_H */
 
