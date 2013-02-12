@@ -11,12 +11,14 @@
 
 class Accumulator {
  private:
+  /*! The state of the Accumulator */
+  AccumulatorState state;
   /*! The motor that controls the accumulator */
   Victor motor;
   //pneumatic arm for flipping
   //beam sensor for frisbee?
   bool frisbeePresent;
-  /*! \brief Start the motor
+  /*!\brief Start the motor
    * \pre The motor is not running
    * \return Whether the motor has been started */
   bool start();
@@ -40,8 +42,6 @@ class Accumulator {
    * \return Whether update succeeded */
   bool update(bool accumulate);
   void shootVacated();
-
-
 
   /*! \brief Constructor */
   Accumulator();
