@@ -65,7 +65,10 @@ ShifterPosition DriveTrain::getShifterPosition() {
 bool DriveTrain::driveD(double d) { // tolerence is currently .01
   //set target distance  
   targetDist = d;
-
+  leftEnc.Reset();
+  leftEnc.Start();
+  rightEnc.Reset();
+  rightEnc.Start();
 
   return false;
 }
@@ -73,7 +76,6 @@ bool DriveTrain::driveD(double d) { // tolerence is currently .01
 bool DriveTrain::driveS(double s) {
   //set target speed
   targetSpeed = s;
-
   return true;
   // PID control may not actually be optimal for speed, we'll need to do real testing
   // acceleration NEEDS to be the output (90% sure)
@@ -134,13 +136,17 @@ void DriveTrain::update() {
 	  engageLow();
       }
   }
-  float progress = 0; // how do we get the distance from encoders?
+
+  /* dist PID */
+  float progress = leftEnc.GetDistance(); // what about turning?
+
   distanceInput.writePID(targetDistance - progress); // progree
   if (distanceInput.getPID() <= .01) {
     targetSpeed = 0;
     return true; // within tolerence
   }
   targetSpeed = distanceController.get();
+
 
   //check encoders
   //and do stuff with them
