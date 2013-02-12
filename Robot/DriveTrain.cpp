@@ -23,6 +23,8 @@ DriveTrain::DriveTrain()
   setShifterPosition(LOW_GEAR);
   leftEnc.SetDistancePerPulse(DRIVE_ENC_FEET_PER_PULSE);
   rightEnc.SetDistancePerPulse(DRIVE_ENC_FEET_PER_PULSE);
+  leftEnc.Start();
+  rightEnc.Start();
 }
 
 bool DriveTrain::engageHigh() {
@@ -66,9 +68,7 @@ bool DriveTrain::driveD(double d) { // tolerence is currently .01
   //set target distance  
   targetDist = d;
   leftEnc.Reset();
-  leftEnc.Start();
   rightEnc.Reset();
-  rightEnc.Start();
 
   return false;
 }
