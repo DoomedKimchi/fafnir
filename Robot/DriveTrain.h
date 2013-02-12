@@ -32,6 +32,14 @@ private:
   /*! The robot's gyrometer */
   Gyro gyro;
 
+  NumberPID distanceInput;
+  NumberPID outputContainer;
+  PIDController distanceController;
+
+  NumberPID speedInput;
+  // use outputcontainer as container
+  PIDController speedController;
+
   int speed;
   int rotSpeed;
 
