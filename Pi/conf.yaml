@@ -1,0 +1,11 @@
+dilateElementSize: 5
+HSVThresholdMin: 200
+HSVThresholdMax: 255
+CannyThreshold1: 50
+CannyThreshold2: 200
+CannyAperatureSize: 3
+MinRectangleArea: 1000
+MaxRectangleCosine: 0.3
+PolyEpsilonFactor: 0.02
+RectangleColor: [0, 0, 255]
+RectangleThickness: 3

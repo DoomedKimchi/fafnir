@@ -1,26 +1,19 @@
 #include <math.h>
 
 #include <iostream>
+#include <fstream>
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 
+#include <yaml-cpp/yaml.h>
+
 using namespace cv;
 using namespace std;
 
-
-const int dilateElementSize = 5;
-const int HSVThresholdMin = 200;
-const int HSVThresholdMax = 255;
-const int CannyThreshold1 = 50;
-const int CannyThreshold2 = 200;
-const int CannyAperatureSize = 3;
-const int MinRectangleArea = 100;
-const double MaxRectangleCosine = 0.3;
-const double PolyEpsilonFactor = 0.02;
-const Scalar RectangleColor = Scalar(0,0,255);
-const int RectangleThickness = 3;
+YAML::Node config;
+const string config_file = "conf.yaml";
 
 /* This function finds the angle between three points */
 double angle(Point pt1, Point pt2, Point pt0) {
@@ -33,6 +26,22 @@ double angle(Point pt1, Point pt2, Point pt0) {
 	 (dx2*dx2 + dy2*dy2) + 1e-10);
 }
 
+/* This function loads the yaml conf file */
+void load_conf(string filename) {
+  ifstream file(filename.c_str());
+  if (file.is_open()) {
+    YAML::Parser parser(file);
+    if (!parser.GetNextDocument(config)) {
+      cerr << "Could not load config" << endl;
+      exit(-1);
+    }
+    file.close();
+  } else {
+    cerr << "Could not open config file" << endl;
+    exit(-1);
+  }
+}
+
 /* This function processes the input image to ready it
    for edge finding */
 void process_image(Mat &image_in, Mat &image_out) {
@@ -41,6 +50,12 @@ void process_image(Mat &image_in, Mat &image_out) {
   // processing
   Mat image_1, image_2, element;
   vector<Mat> image_split;
+  const int dilateElementSize = config["dilateElementSize"].to<int>();
+  const int HSVThresholdMin = config["HSVThresholdMin"].to<int>();
+  const int HSVThresholdMax = config["HSVThresholdMax"].to<int>();
+  const int CannyThreshold1 = config["CannyThreshold1"].to<int>();
+  const int CannyThreshold2 = config["CannyThreshold2"].to<int>();
+  const int CannyAperatureSize = config["CannyAperatureSize"].to<int>();
   element = getStructuringElement(MORPH_RECT,
 				  Size(dilateElementSize*2 + 1,
 				       dilateElementSize*2 + 1),
@@ -69,6 +84,10 @@ void find_rectangles (vector<vector<Point> > &contours,
   vector<Point> approx;
   double maxCosine, cosine;
 
+  const int MinRectangleArea = config["MinRectangleArea"].to<int>();
+  const double PolyEpsilonFactor = config["PolyEpsilonFactor"].to<double>();
+  const double MaxRectangleCosine = config["MaxRectangleCosine"].to<double>();
+
   for (size_t i=0; i < contours.size(); i++) {
     approxPolyDP(Mat(contours[i]), approx,
 		 arcLength(Mat(contours[i]),
@@ -92,6 +111,11 @@ void draw_rectangles(vector<vector<Point> > &rectangles,
 		     Mat &image) {
   const Point *points;
   int num_points;
+  const Scalar RectangleColor =
+    Scalar(config["RectangleColor"][0].to<int>(),
+	   config["RectangleColor"][1].to<int>(),
+	   config["RectangleColor"][2].to<int>());
+  const int RectangleThickness = config["RectangleThickness"].to<int>();
 
   for (size_t i=0; i < rectangles.size(); i++) {
     points = &rectangles[i][0];
@@ -119,6 +143,9 @@ int main (int argc, char **argv) {
 
   Mat image_processed;
   vector<vector<Point> > contours, rectangles;
+
+  // load config file
+  load_conf(config_file);
 
   // process image for edge finding
   process_image(image, image_processed);
