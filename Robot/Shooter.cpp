@@ -9,6 +9,7 @@ Shooter::Shooter()
     ,    motorElevation(PORT_SHOOTER_VIC_ELEVATION)
     ,    sol1(PORT_SHOOTER_SOL_1)
     ,    sol2(PORT_SHOOTER_SOL_2)
+    ,    solShoot(PORT_SHOOTER_SOL_SHOOT)
     ,    elevationController(3.0f, 0.0f, -1.0f, &elevationError, &outputFiller) { // 3,0,-1 are pid constants
     setElevation(30.0); // constructor that will set the elevation as 30 (default)
 
@@ -23,22 +24,22 @@ Shooter::Shooter()
 //Shooter:: Shooter(elevationY) {
 //  setElevation(elevationY); // a constructor that will take an argument that will set the elevation of the shooter
 //}
-void Shooter::setElevation(float f) {
+public void Shooter::setElevation(float f) {
   // sets target elevation
   elevationTarget = f;
 } 
 
-void Shooter::setSpinSpeed(float sp) {
+private void Shooter::setSpinSpeed(float sp) {
   motor1.Set(sp);
   motor2.Set(sp);
   motor3.Set(sp);
 }
 
-void Shooter::shoot() {
+public void Shooter::shoot() {
     shootRequested = true;
 }
 
-void Shooter::update() {
+public void Shooter::update() {
     switch(state) {
     case LOADED:
 	if (shootRequested) {
@@ -72,7 +73,7 @@ void Shooter::update() {
 	if (shootTimer.HasPeriodPassed(SHOOT_SHOOTING_WAIT)) {
 	    sol1.Set(false);
 	    sol2.Set(false);
-	    solShoot.SET(true);
+	    solShoot.Set(true);
 	    shootTimer.Reset();
 	    state = RECOVERING;
 	}
@@ -90,3 +91,6 @@ void Shooter::update() {
     }
 }
 
+public ShooterState getState() {
+  return state;
+}

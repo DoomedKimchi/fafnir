@@ -12,9 +12,15 @@ DriveTrain::DriveTrain()
   ,  rightFrontVic(PORT_DRIVE_VIC_3)
   ,  rightBackVic(PORT_DRIVE_VIC_4) 
 
-  ,  gyro((UINT32)PORT_DRIVE_GYRO) {
+  ,  gyro((UINT32)PORT_DRIVE_GYRO)
+  ,  distanceController(3,0,-1,distanceInput,outputContainer)
+  ,  distanceInput()
+  ,  outputContainer()
+  ,  speedController(3,0,-1,speedInput,outputContainer)
+  ,  speedInput() {
 
-  setMode(LOW_GEAR);
+    setShifterMode(AUTO);
+  setShifterPosition(LOW_GEAR);
   leftEnc.SetDistancePerPulse(DRIVE_ENC_FEET_PER_PULSE);
   rightEnc.SetDistancePerPulse(DRIVE_ENC_FEET_PER_PULSE);
 }
@@ -31,19 +37,21 @@ bool DriveTrain::engageLow() {
   return true;
 }
 
-void DriveTrain::setShifterMode(ShifterMode m) {
+bool DriveTrain::setShifterMode(ShifterMode m) {
   mode = m;
+  return true;
 }
 
 ShifterMode DriveTrain::getShifterMode() {
   return mode;
 }
 
-void DriveTrain::setShifterPosition(ShifterPosition p) {
+bool DriveTrain::setShifterPosition(ShifterPosition p) {
   if(p == HIGH_GEAR) {
     engageHigh();
   }
   engageLow();
+  return true;
 }
 
 ShifterPosition DriveTrain::getShifterPosition() {
@@ -54,67 +62,26 @@ ShifterPosition DriveTrain::getShifterPosition() {
 }
 
 //driveDist and driveTo mostly for auto
-bool DriveTrain::driveD(double d) {
+bool DriveTrain::driveD(double d) { // tolerence is currently .01
   //set target distance  
-  /* pseudo code
-  *error = d - currentPosition
-  PC_Dist.calculate()
-  self.driveS(*output)
-  
-  // for drivetrain.h
-  PIDController PC_Dist;
-  
-  // for constructor
-  PC_Dist(1,0,.05,*error,*output,.05) // not sure if can give floats to the PIDController, constants need tuning (lots!)
-  */
-    return true;
+  targetDist = d;
+  leftEnc.Reset();
+  leftEnc.Start();
+  rightEnc.Reset();
+  rightEnc.Start();
+
+  return false;
 }
 
 bool DriveTrain::driveS(double s) {
   //set target speed
-  if (s > GEAR_UPSHIFT_CUTOFF) {
-    engageHigh();
-    
-    return true;
-  }
-  else if (s < GEAR_DOWNSHIFT_CUTOFF) {
-      engageLow();
-  }
   targetSpeed = s;
   return true;
-  // Don't delete this unless you want to be a douche (but move it around as much as you want to)
-  // Ok people, this is how we use a PID controller to set the speed! (by Nathan)
   // PID control may not actually be optimal for speed, we'll need to do real testing
-  // Here goes
-  // PID: Input : currentSpeed - setSpeed, Output : acceleration
   // acceleration NEEDS to be the output (90% sure)
   // we can't output motor power because as currentSpeed reaches setSpeed, then motor power will go to zero
   // acceleration needs to be added to motorpower every time unit (tick)
   // We shouldn't use I (Konstant) unless there is slipping (not sure about this)
-  
-  // for gears:
-  // we need to find the ratios and multiply the ratio by motor power
-  // thats all
-  
-  // I don't like /* and */
-  
-  /* pseudo code!
-  // we may need to create a subclass of PIDSource just to hold a number (called outputNumberClass)
-  // I'm not sure how to create a PID controller without a PIDSource class
-  
-  // for drivetrain.h
-  PIDController PC_speed;
-  
-  // for constructor
-  PC_speed(1,0,.05,encoderLeft, victorLeft, outputNumberClass, .05) // constructor is in the form (Kp,Ki,Kd,source,output,period)
-  // getting the right constants and ratios could take a lot of time and not be worth it
-  
-  // this needs to be called every tick
-  power = power + outPutNumberClass.value()
-  Victor.setPower(power)
-  
-  */
-  
 }
 
 bool DriveTrain::driveTo(Complex target) {
@@ -169,10 +136,26 @@ void DriveTrain::update() {
 	  engageLow();
       }
   }
+
+  /* dist PID */
+  float progress = leftEnc.GetDistance(); // what about turning?
+
+  distanceInput.PIDWrite(targetDistance - progress); // progree
+  if (distanceInput.PIDGet() <= .01) {
+    targetSpeed = 0;
+    return true; // within tolerence
+  }
+  targetSpeed = distanceController.Get();
+
+
   //check encoders
   //and do stuff with them
   //and stuff
-  
+  leftFrontVic.Set(targetSpeed+targetRotSpeed);
+  leftBackVic.Set(targetSpeed+targetRotSpeed);
+  rightFrontVic.Set(targetSpeed-targetRotSpeed);
+  rightBackVic.Set(targetSpeed-targetRotSpeed);
+
   //Drive Speed/Ang Speed
       //check dist since last tick
       //calc current speed

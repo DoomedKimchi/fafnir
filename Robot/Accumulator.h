@@ -11,12 +11,14 @@
 
 class Accumulator {
  private:
+  /*! The state of the Accumulator */
+  AccumulatorState state;
   /*! The motor that controls the accumulator */
   Victor motor;
   //pneumatic arm for flipping
   //beam sensor for frisbee?
   bool frisbeePresent;
-  /*! \brief Start the motor
+  /*!\brief Start the motor
    * \pre The motor is not running
    * \return Whether the motor has been started */
   bool start();
@@ -38,10 +40,8 @@ class Accumulator {
   /*! \brief The method that is continually called by Robot
    * \param accumulate Whether autoAccumulate() should be called
    * \return Whether update succeeded */
-  bool update(bool accumulate);
+  bool update();
   void shootVacated();
-
-
 
   /*! \brief Constructor */
   Accumulator();

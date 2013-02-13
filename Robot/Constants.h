@@ -17,6 +17,7 @@
 /* Solenoid shooter ports */
 #define PORT_SHOOTER_SOL_1 0
 #define PORT_SHOOTER_SOL_2 0
+#define PORT_SHOOTER_SOL_SHOOT 0
 
 /* Accumulator Victor port */
 #define PORT_ACC_VIC_1 0
@@ -63,10 +64,10 @@
 
 /* Turn joystick button and axis IDs */
 #define JS_TURN_TRIGGER 0
-#define JS_TURN_MANMODE_TOGGLE 1
-#define JS_TURN_MANMODE_LOW 2
+#define JS_TURN_MODE_TOGGLE 1
+#define JS_TURN_POSITION_LOW 2
 #define JS_TURN_4 3
-#define JS_TURN_MANMODE_HIGH 4
+#define JS_TURN_POSITION_HIGH 4
 #define JS_TURN_6 5
 #define JS_TURN_7 6
 #define JS_TURN_8 7
@@ -130,15 +131,15 @@
 
 /* Types of gear modes for the drive train */
 enum ShifterMode { MANUAL, AUTO };
-<<<<<<< HEAD
+
 enum ShifterPosition { LOW_GEAR, HIGH_GEAR };
-=======
->>>>>>> b8a5292a6035df5f1398860c8967279b68cadf5a
 
 /* Types of autonomous modes */
 enum AutonomousMode { DEFAULT, ALTERNATE_1, ALTERNATE_2 };
 
 enum ShooterState { LOADED, PRIMED, SHOOTING, RECOVERING, EMPTY, AIMING };
+
+enum AccumulatorState { EMPTY, LOADED, LOADING };
 
 #endif /* CONSTANTS_H */
 

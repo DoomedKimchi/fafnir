@@ -25,6 +25,8 @@ class HumanController {
 
   Robot *robot;
 
+  bool buttShifterMode;
+
  public:
   AutonomousMode getAutonomousMode();
   HumanController(Robot *robot);

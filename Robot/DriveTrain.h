@@ -32,6 +32,14 @@ private:
   /*! The robot's gyrometer */
   Gyro gyro;
 
+  NumberPID distanceInput;
+  NumberPID outputContainer;
+  PIDController distanceController;
+
+  NumberPID speedInput;
+  // use outputcontainer as container
+  PIDController speedController;
+
   int speed;
   int rotSpeed;
 
@@ -79,9 +87,9 @@ public:
   /*! Set the shifter mode
    * \param mode The new mode for the shifter
    * \return Whether setting the mode was successful */
-  void setShifterMode(ShifterMode m);
+  bool setShifterMode(ShifterMode m);
   ShifterPosition getShifterPosition();
-  void setShifterPosition(ShifterPosition p);
+  bool setShifterPosition(ShifterPosition p);
 
   /*! Method that is constantly called by Robot */
   void update();

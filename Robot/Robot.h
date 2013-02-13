@@ -52,6 +52,9 @@ class Robot {
   ShifterMode getShifterMode();
   bool setShifterMode(ShifterMode mode);
 
+  ShifterPosition getShifterPosition();
+  bool setShifterPosition(ShifterPosition pos);
+
   void update();
 };
 #endif /* ROBOT_H */

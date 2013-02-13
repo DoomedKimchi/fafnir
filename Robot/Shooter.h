@@ -39,6 +39,7 @@ public:
    float motorPower; // how much to set the victor (PWM)
    void shoot();
    void update();
+   ShooterState getState();
 };
 
 #endif /* SHOOTER_H */
