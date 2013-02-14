@@ -1,6 +1,7 @@
 CC=g++
-FLAGS=-c -Wall -O2 $(shell pkg-config opencv yaml-cpp --cflags)
-LIBS=$(shell pkg-config yaml-cpp opencv --libs)
+LIBS=opencv yaml-cpp
+FLAGS=-c -Wall -O2 --std=c++11 $(shell pkg-config $(LIBS) --cflags)
+LDFLAGS=$(shell pkg-config $(LIBS) --libs)
 SOURCES=main.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=main
@@ -11,7 +12,7 @@ clean:
 	$(shell rm -rf bin)
 
 $(EXECUTABLE): $(OBJECTS)
-	$(CC) bin/$(OBJECTS) -o bin/$@ $(LIBS)
+	$(CC) bin/$(OBJECTS) -o $@ $(LDFLAGS)
 
 .cpp.o:
-	$(CC) $(FLAGS) $< -o bin/$@
+	$(CC) $(FLAGS) $< -o $@
