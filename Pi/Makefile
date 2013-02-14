@@ -12,7 +12,7 @@ clean:
 	$(shell rm -rf bin)
 
 $(EXECUTABLE): $(OBJECTS)
-	$(CC) bin/$(OBJECTS) -o $@ $(LDFLAGS)
+	$(CC) $(OBJECTS) -o $@ $(LDFLAGS)
 
 .cpp.o:
 	$(CC) $(FLAGS) $< -o $@
