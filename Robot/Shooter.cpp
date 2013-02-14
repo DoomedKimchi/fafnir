@@ -47,7 +47,7 @@ public void Shooter::update() {
 	    // push frisbee into shooter                                                                                                                                               
 
 	    sol1.Set(true);
-	    sol1.Set(true);
+	    sol2.Set(true);
 	    shootTimer.Start();
 	    shootRequested = false;
 	}
