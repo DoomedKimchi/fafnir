@@ -26,6 +26,9 @@
 #define SERVO_ANGLE_UP 90
 #define SERVO_ANGLE_DOWN 0
 
+/* Accumulator Servo Port */
+#define PORT_ACC_SERVO 0
+
 /* Encoder drive pots */
 #define PORT_DRIVE_ENC_1_A 0
 #define PORT_DRIVE_ENC_1_B 0
