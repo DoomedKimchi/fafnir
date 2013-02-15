@@ -15,3 +15,10 @@ TargetWidth: 137.16
 # this value needs to be calibrated for each
 # camera
 PixelToCM: 414.6868
+
+# How this is calculated:
+# let d be the distance between the camera and the target
+# let t be the width of the target in pixels from the camera
+# let w be the width of the image from the camera
+# r = 1 - t/w
+# PixelToCM = d/r
