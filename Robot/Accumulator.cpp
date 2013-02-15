@@ -26,8 +26,14 @@ private bool Accumulator:: kill() {
 private bool Accumulator:: update(bool accumulate) {
   switch(state) {
   case EMPTY:
+    if (frisbeeSwitch.IsPressed()){
+      state=LOADING;
+    }
     break; 
   case LOADING:
+    if (!frisbeeSwitch.IsPressed()){
+      state=LOADED;
+    }
     break; 
   case LOADED:
     break; 
