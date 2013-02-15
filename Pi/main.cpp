@@ -37,6 +37,8 @@ int main (int argc, char **argv) {
   Mat image_processed;
   vector<vector<Point> > contours, rectangles, targets;
   YAML::Node config;
+  Point center;
+  double hangle, vangle;
 
   // load config file
   load_conf("conf.yaml", config);
@@ -55,6 +57,16 @@ int main (int argc, char **argv) {
   cout << "Found " << contours.size() << " contours" << endl;
   cout << "Found " << rectangles.size() << " rectangles" << endl;
   cout << "Found " << targets.size() << " targets" << endl;
+
+  for (size_t i = 0; i < targets.size(); i++) {
+    // process targets
+    process_target(&config, image.size(), targets[i],
+		   center, hangle, vangle);
+    cout << "Target " << i << ":" << endl;
+    cout << "Center: (" << center.x << ", " << center.y << ")" << endl;
+    cout << "Horizontal angle: " << hangle << " degrees" << endl;
+    cout << "Vertical angle: " << vangle << " degrees" << endl;
+  }
 
   // show the result
   imshow("Detected Lines", image);
