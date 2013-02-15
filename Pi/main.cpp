@@ -38,7 +38,7 @@ int main (int argc, char **argv) {
   vector<vector<Point> > contours, rectangles, targets;
   YAML::Node config;
   Point center;
-  double hangle, vangle;
+  double hangle, vangle, distance;
 
   // load config file
   load_conf("conf.yaml", config);
@@ -61,9 +61,10 @@ int main (int argc, char **argv) {
   for (size_t i = 0; i < targets.size(); i++) {
     // process targets
     process_target(&config, image.size(), targets[i],
-		   center, hangle, vangle);
+		   center, hangle, vangle, distance);
     cout << "Target " << i << ":" << endl;
     cout << "Center: (" << center.x << ", " << center.y << ")" << endl;
+    cout << "Distance: " << distance << " cm" << endl;
     cout << "Horizontal angle: " << hangle << " degrees" << endl;
     cout << "Vertical angle: " << vangle << " degrees" << endl;
   }

@@ -110,14 +110,15 @@ void find_targets(YAML::Node *config,
 void process_target(YAML::Node *config, Size image_size,
 		    vector<Point> &target,
 		    Point &center, double &hangle,
-		    double &vangle) {
+		    double &vangle, double &distance_cm) {
   // NOTE: assuming that target vertices are
   // ordered by ordered_vertices
-  const double CMDepthPerPixel = config->FindValue("CMDepthPerPixel")->to<double>();
+  const double PixelToCM = config->FindValue("PixelToCM")->to<double>();
   const double TargetWidth = config->FindValue("TargetWidth")->to<double>();
   int width = target[1].x - target[0].x;
+  cout << width << endl;
   double cm_per_pixel = TargetWidth / ((double)width);
-  double distance = CMDepthPerPixel * width;
+  double distance = PixelToCM * (1-((double)width / (double)image_size.width));
   double m1 = ((double)(target[0].y-target[2].y))/
     ((double)(target[0].x-target[2].x));
   double m2 = ((double)(target[3].y-target[1].y))/
@@ -137,6 +138,7 @@ void process_target(YAML::Node *config, Size image_size,
   double dy = y - ((double)image_size.height/2.0);
   hangle = atan2((dx*cm_per_pixel),distance)*180 / PI;
   vangle = atan2((dy*cm_per_pixel),distance)*180 / PI;
+  distance_cm = distance;
 }
 
 void draw_targets(YAML::Node *config,

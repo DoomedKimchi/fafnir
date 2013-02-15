@@ -10,5 +10,8 @@ PolyEpsilonFactor: 0.02
 RectangleColor: [0, 0, 255]
 TargetColor: [0, 255, 255]
 RectangleThickness: 3
-CMDepthPerPixel: 0.75
 TargetWidth: 137.16
+
+# this value needs to be calibrated for each
+# camera
+PixelToCM: 414.6868

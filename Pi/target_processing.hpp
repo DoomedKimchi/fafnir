@@ -21,6 +21,6 @@ void draw_targets(YAML::Node *config,
 void process_target(YAML::Node *config, Size image_size,
 		    vector<Point> &target,
 		    Point &center, double &hangle,
-		    double &vangle);
+		    double &vangle, double &distance_cm);
 
 #endif
