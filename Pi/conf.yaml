@@ -12,13 +12,17 @@ TargetColor: [0, 255, 255]
 RectangleThickness: 3
 TargetWidth: 137.16
 
-# this value needs to be calibrated for each
-# camera
+# these values need to be calibrated for each camera
 PixelToCM: 414.6868
+DistanceAtFull: 10
 
-# How this is calculated:
-# let d be the distance between the camera and the target
+# How PixelToCM is calculated:
+# let d be the distance between the camera and the target (in centimeters)
 # let t be the width of the target in pixels from the camera
 # let w be the width of the image from the camera
 # r = 1 - t/w
 # PixelToCM = d/r
+
+# DistanceAtFull is the distance (in centimeters) that the camera
+# is from the target when the target takes up the whole frame
+# (width wise, not height wise)
