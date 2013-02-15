@@ -1,6 +1,6 @@
 #include "Accumulator.h" 
 
-Accumulator::Accumulator() : motor((UINT32)PORT_ACC_VIC_1) {
+Accumulator::Accumulator() : motor((UINT32)PORT_ACC_VIC_1), servo(PORT_ACC_SERVO), frisbeeSwitch(PORT_ACC_SWITCH){
   this.state = AccumulatorState.EMPTY;
 }
 
@@ -24,6 +24,16 @@ private bool Accumulator:: kill() {
 }
 
 private bool Accumulator:: update(bool accumulate) {
+  switch(state) {
+  case EMPTY:
+    break; 
+  case LOADING:
+    break; 
+  case LOADED:
+    break; 
+  default:
+    break;
+  }
     return false;
 }
 
