@@ -4,6 +4,7 @@
 using namespace std;
 
 class TestClass {
+private:
   // this is private
   int value;
 

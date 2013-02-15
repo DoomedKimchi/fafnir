@@ -17,6 +17,8 @@ class Accumulator {
   Victor motor;
   //pneumatic arm for flipping
   //beam sensor for frisbee?
+  LimitSwitch frisbeeSwitch;
+  Servo servo;
   bool frisbeePresent;
   /*!\brief Start the motor
    * \pre The motor is not running
