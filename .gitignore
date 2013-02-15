@@ -5,3 +5,4 @@
 # ignoring build outputs
 *.out
 *.o
+*.gch

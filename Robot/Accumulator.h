@@ -17,6 +17,8 @@ class Accumulator {
   Victor motor;
   //pneumatic arm for flipping
   //beam sensor for frisbee?
+  LimitSwitch frisbeeSwitch;
+  Servo servo;
   bool frisbeePresent;
   /*!\brief Start the motor
    * \pre The motor is not running
@@ -40,7 +42,7 @@ class Accumulator {
   /*! \brief The method that is continually called by Robot
    * \param accumulate Whether autoAccumulate() should be called
    * \return Whether update succeeded */
-  bool update(bool accumulate);
+  bool update();
   void shootVacated();
 
   /*! \brief Constructor */
