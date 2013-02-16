@@ -42,6 +42,6 @@ bool Robot::setShifterPosition(ShifterPosition pos) {
 
 void Robot::update() {
     driveTrain.update();
-    accumulator.update(true);
+    accumulator.update();
     shooter.update();
 }

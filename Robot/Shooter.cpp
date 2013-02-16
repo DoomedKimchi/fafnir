@@ -24,7 +24,7 @@ Shooter::Shooter()
 //Shooter:: Shooter(elevationY) {
 //  setElevation(elevationY); // a constructor that will take an argument that will set the elevation of the shooter
 //}
-public void Shooter::setElevation(float f) {
+void Shooter::setElevation(float f) {
   // sets target elevation
   elevationTarget = f;
 } 
