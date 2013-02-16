@@ -72,6 +72,7 @@ bool DriveTrain::driveD(double d) { // tolerence is currently .01
   rightEnc.Reset();
   rightEnc.Start();
 
+  state = DRIVE_DISTANCE;
   return false;
 }
 
@@ -84,6 +85,7 @@ bool DriveTrain::driveS(double s) {
   // we can't output motor power because as currentSpeed reaches setSpeed, then motor power will go to zero
   // acceleration needs to be added to motorpower every time unit (tick)
   // We shouldn't use I (Konstant) unless there is slipping (not sure about this)
+  state = DRIVE_SPEED;
 }
 
 bool DriveTrain::driveTo(Complex target) {
@@ -113,17 +115,20 @@ bool DriveTrain::driveTo(Complex target) {
   // HOWEVER, this method most likely won't work because we can't accuratrly keep track of our current position
   // we may just have to turn to the angle and drive forward
   // the craigs reynold thing is for a moving seek target (so its like a feedback controller)
+	state = DRIVE_DISTANCE;
     return true;
 }
 
 bool DriveTrain::rotateA(double a) {
     targetAngle = a;
+    state = DRIVE_DISTANCE;
     return true;
   //set target angle
 }
 
 bool DriveTrain::rotateS(double s) {
     targetRotSpeed = s;
+    state = DRIVE_SPEED;
     return true;
     //this method may never get used in this form
   //set target speed
@@ -135,6 +140,7 @@ float DriveTrain::getSpeed() {
 
 void DriveTrain::setSpeed(float s) {
   // make motors turn, -2^15 < s < 2^15
+	state = DRIVE_SPEED;
 }
 
 void DriveTrain::update() {
@@ -148,13 +154,13 @@ void DriveTrain::update() {
   }
 
   switch(state) {
-  case DRIVE_DISTANCE:
+  	case DRIVE_DISTANCE:
 	  //put code related to driving a certain distance here
 	  break;
-  case DRIVE_SPEED:
+    case DRIVE_SPEED:
 	  //put code related to driving a certain speed here
 	  break;
-  default:
+    default:
 	  break;
   }
 
