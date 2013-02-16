@@ -26,7 +26,7 @@ private:
 
    ShooterState state;
 
-   bool shootRequested;
+   int shootRequested;
 
    Timer shootTimer;
 

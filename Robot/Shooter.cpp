@@ -36,7 +36,7 @@ void Shooter::setSpinSpeed(float sp) {
 }
 
 void Shooter::shoot() {
-    shootRequested = true;
+    shootRequested++;
 }
 
 void Shooter::update() {
@@ -49,7 +49,7 @@ void Shooter::update() {
 	    sol1.Set(true);
 	    sol2.Set(true);
 	    shootTimer.Start();
-	    shootRequested = false;
+	    shootRequested--;
 	}
 	if (shootTimer.HasPeriodPassed(SHOOT_PRIMING_WAIT)) {
 	    state = PRIMED;
