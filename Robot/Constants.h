@@ -150,5 +150,7 @@ enum ShooterState { LOADED, PRIMED, SHOOTING, RECOVERING, EMPTY, AIMING };
 
 enum AccumulatorState { SHOOTER_EMPTY, SHOOTER_LOADED, LOADING };
 
+enum DriveState { DRIVE_DISTANCE, DRIVE_SPEED };
+
 #endif /* CONSTANTS_H */
 

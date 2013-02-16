@@ -147,6 +147,17 @@ void DriveTrain::update() {
       }
   }
 
+  switch(state) {
+  case DRIVE_DISTANCE:
+	  //put code related to driving a certain distance here
+	  break;
+  case DRIVE_SPEED:
+	  //put code related to driving a certain speed here
+	  break;
+  default:
+	  break;
+  }
+
   /* dist PID */
   float progress = leftEnc.GetDistance(); // what about turning?
 

@@ -13,6 +13,8 @@
 
 class DriveTrain {
 private:
+	DriveState state;
+
   /* Current gear mode */
   ShifterMode mode;
   
