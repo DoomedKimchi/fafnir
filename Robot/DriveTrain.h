@@ -4,6 +4,7 @@
 #include <complex>
 #include "Constants.h"
 #include "WPILib.h"
+#include "NumberPID.h"
 
 /*! \brief Controls the robot's movement
  *

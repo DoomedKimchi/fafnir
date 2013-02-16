@@ -3,6 +3,7 @@
 
 #include "WPILib.h"
 #include "Constants.h"
+#include "LimitSwitch.h"
 
 /*! \brief Controls frisbee accumulation
  *
@@ -19,7 +20,7 @@ class Accumulator {
   //beam sensor for frisbee?
   LimitSwitch frisbeeSwitch;
   Servo servo;
-  bool frisbeePresent;
+  
   /*!\brief Start the motor
    * \pre The motor is not running
    * \return Whether the motor has been started */
@@ -45,6 +46,7 @@ class Accumulator {
   bool update();
   void shootVacated();
 
+  void setState(AccumulatorState nstate);
   /*! \brief Constructor */
   Accumulator();
 

@@ -13,16 +13,18 @@ DriveTrain::DriveTrain()
   ,  rightBackVic(PORT_DRIVE_VIC_4) 
 
   ,  gyro((UINT32)PORT_DRIVE_GYRO)
-  ,  distanceController(3,0,-1,distanceInput,outputContainer)
+  ,  distanceController(3.0f,0.0f,-1.0f,&distanceInput,&outputContainer)
   ,  distanceInput()
   ,  outputContainer()
-  ,  speedController(3,0,-1,speedInput,outputContainer)
+  ,  speedController(3.0f,0.0f,-1.0f,&speedInput,&outputContainer)
   ,  speedInput() {
 
     setShifterMode(AUTO);
   setShifterPosition(LOW_GEAR);
   leftEnc.SetDistancePerPulse(DRIVE_ENC_FEET_PER_PULSE);
   rightEnc.SetDistancePerPulse(DRIVE_ENC_FEET_PER_PULSE);
+  leftEnc.Start();
+  rightEnc.Start();
 }
 
 bool DriveTrain::engageHigh() {
@@ -140,13 +142,13 @@ void DriveTrain::update() {
   /* dist PID */
   float progress = leftEnc.GetDistance(); // what about turning?
 
-  distanceInput.PIDWrite(targetDistance - progress); // progree
+  distanceInput.PIDWrite(targetDist - progress); // progree
   if (distanceInput.PIDGet() <= .01) {
-    targetSpeed = 0;
-    return true; // within tolerence
+    targetSpeed = 0; // within tolerence
   }
-  targetSpeed = distanceController.Get();
-
+  else {
+      targetSpeed = distanceController.Get();
+  }
 
   //check encoders
   //and do stuff with them

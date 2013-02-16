@@ -1,41 +1,41 @@
 #include "Accumulator.h" 
 
-Accumulator::Accumulator() : motor((UINT32)PORT_ACC_VIC_1), servo(PORT_ACC_SERVO), frisbeeSwitch(PORT_ACC_SWITCH){
-  this.state = AccumulatorState.EMPTY;
+Accumulator::Accumulator() : motor((UINT32)PORT_ACC_VIC_1), servo(PORT_ACC_SERVO), frisbeeSwitch(PORT_ACC_SWITCH), state(SHOOTER_EMPTY){
+
 }
 
-virtual Accumulator::~Accumulator() {
+Accumulator::~Accumulator() {
     
 }
 
-private bool Accumulator:: start() {
+bool Accumulator:: start() {
     if(motor.Get() == 1) return false;
     motor.Set(1);
     return true;
 }
-private void Accumulator:: shootVacated() {
-  frisbeePresent = false;
+void Accumulator:: shootVacated() {
+    state = SHOOTER_EMPTY;
 }
 
-private bool Accumulator:: kill() {
+bool Accumulator:: kill() {
     if(motor.Get() == 0) return false;
     motor.Set(0);
     return true;
 }
 
-private bool Accumulator:: update(bool accumulate) {
+bool Accumulator:: update() {
   switch(state) {
-  case EMPTY:
+  case SHOOTER_EMPTY:
     if (frisbeeSwitch.IsPressed()){
       state=LOADING;
     }
     break; 
   case LOADING:
     if (!frisbeeSwitch.IsPressed()){
-      state=LOADED;
+      state=SHOOTER_LOADED;
     }
     break; 
-  case LOADED:
+  case SHOOTER_LOADED:
     break; 
   default:
     break;
@@ -43,6 +43,6 @@ private bool Accumulator:: update(bool accumulate) {
     return false;
 }
 
-public setState(AccumulatorState state) {
-  this.state = state;
+void Accumulator::setState(AccumulatorState nstate) {
+  state = nstate;
 }

@@ -19,6 +19,8 @@
 #define PORT_SHOOTER_SOL_2 0
 #define PORT_SHOOTER_SOL_SHOOT 0
 
+#define PORT_ACC_SWITCH 0
+
 /* Accumulator Victor port */
 #define PORT_ACC_VIC_1 0
 
@@ -146,7 +148,7 @@ enum AutonomousMode { DEFAULT, ALTERNATE_1, ALTERNATE_2 };
 
 enum ShooterState { LOADED, PRIMED, SHOOTING, RECOVERING, EMPTY, AIMING };
 
-enum AccumulatorState { EMPTY, LOADED, LOADING };
+enum AccumulatorState { SHOOTER_EMPTY, SHOOTER_LOADED, LOADING };
 
 #endif /* CONSTANTS_H */
 
