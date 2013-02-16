@@ -129,6 +129,14 @@ bool DriveTrain::rotateS(double s) {
   //set target speed
 }
 
+float DriveTrain::getSpeed() {
+    return (leftEnc.GetRate() + rightEnc.GetRate())/2.0;
+}
+
+void DriveTrain::setSpeed(float s) {
+  // make motors turn, -2^15 < s < 2^15
+}
+
 void DriveTrain::update() {
   if(mode == AUTO) {
       if (getSpeed() > GEAR_UPSHIFT_CUTOFF) {
@@ -172,8 +180,4 @@ void DriveTrain::update() {
 
   //ISSUES
       //angle and speed can be absolute, distance cannot (reliably)
-}
-
-float DriveTrain::getSpeed() {
-    return (leftEnc.GetRate() + rightEnc.GetRate())/2.0;
 }

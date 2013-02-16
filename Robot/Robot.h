@@ -55,6 +55,8 @@ class Robot {
   ShifterPosition getShifterPosition();
   bool setShifterPosition(ShifterPosition pos);
 
+  void setSpeed(float s);
+
   void update();
 };
 #endif /* ROBOT_H */

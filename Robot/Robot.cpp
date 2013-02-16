@@ -33,15 +33,20 @@ bool Robot::setShifterMode(ShifterMode mode) {
 }
 
 ShifterPosition Robot::getShifterPosition() {
-    return driveTrain.getShifterPosition();
+  return driveTrain.getShifterPosition();
 }
 
 bool Robot::setShifterPosition(ShifterPosition pos) {
-    return driveTrain.setShifterPosition(pos);
+  return driveTrain.setShifterPosition(pos);
+}
+
+void Robot::setSpeed(float s) {
+  driveTrain.setSpeed(s);
 }
 
 void Robot::update() {
-    driveTrain.update();
-    accumulator.update();
-    shooter.update();
+  driveTrain.update();
+  accumulator.update();
+  shooter.update();
 }
+ 
