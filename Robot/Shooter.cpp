@@ -24,22 +24,22 @@ Shooter::Shooter()
 //Shooter:: Shooter(elevationY) {
 //  setElevation(elevationY); // a constructor that will take an argument that will set the elevation of the shooter
 //}
-public void Shooter::setElevation(float f) {
+void Shooter::setElevation(float f) {
   // sets target elevation
   elevationTarget = f;
 } 
 
-private void Shooter::setSpinSpeed(float sp) {
+void Shooter::setSpinSpeed(float sp) {
   motor1.Set(sp);
   motor2.Set(sp);
   motor3.Set(sp);
 }
 
-public void Shooter::shoot() {
+void Shooter::shoot() {
     shootRequested = true;
 }
 
-public void Shooter::update() {
+void Shooter::update() {
     switch(state) {
     case LOADED:
 	if (shootRequested) {
@@ -91,6 +91,6 @@ public void Shooter::update() {
     }
 }
 
-public ShooterState getState() {
+ShooterState getState() {
   return state;
 }
