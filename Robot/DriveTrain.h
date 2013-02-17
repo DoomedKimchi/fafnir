@@ -13,6 +13,8 @@
 
 class DriveTrain {
 private:
+	DriveState state;
+
   /* Current gear mode */
   ShifterMode mode;
   
@@ -92,11 +94,11 @@ public:
   ShifterPosition getShifterPosition();
   bool setShifterPosition(ShifterPosition p);
 
+  float getSpeed();
+  void setSpeed(float s);
+
   /*! Method that is constantly called by Robot */
   void update();
-
-  float getSpeed();
-
 };
 
 #endif /* DRIVE_TRAIN_H */

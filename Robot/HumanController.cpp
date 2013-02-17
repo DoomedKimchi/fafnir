@@ -20,6 +20,10 @@ void HumanController::update() {
   //low gear: 0 ft/sec – 5.5 ft/sec
   //high gear: 5 ft/sec – max speed (probably 16 ft/sec)
 
+  /* begin drive forward/backward */
+  robot->setSpeed(speedStick.getX());
+  /* end drive forward/backward */
+  
   /* begin Gearshifter changing */
   if(turnStick.GetRawButton(JS_TURN_MODE_TOGGLE)) {
     if(!buttShifterMode) {
