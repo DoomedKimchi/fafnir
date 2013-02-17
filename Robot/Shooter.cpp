@@ -91,6 +91,6 @@ void Shooter::update() {
     }
 }
 
-ShooterState getState() {
+ShooterState Shooter::getState() {
   return state;
 }
