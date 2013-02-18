@@ -105,89 +105,89 @@ bool DriveTrain::driveTo(Complex target) {
   //boids written by me! http://openprocessing.org/sketch/67395
   
   /* void seek(PVector target) {
-    PVector desired = PVector.sub(target,location);
-    desired.normalize();
-    desired.mult(maxspeed);
-    PVector steer = PVector.sub(desired,velocity);
+     PVector desired = PVector.sub(target,location);
+     desired.normalize();
+     desired.mult(maxspeed);
+     PVector steer = PVector.sub(desired,velocity);
 
-    // Limit the magnitude of the steering force.
-    steer.limit(maxforce);
+     // Limit the magnitude of the steering force.
+     steer.limit(maxforce);
 
-    applyForce(steer);
-  }
+     applyForce(steer);
+     }
   */
   
   // HOWEVER, this method most likely won't work because we can't accuratrly keep track of our current position
   // we may just have to turn to the angle and drive forward
   // the craigs reynold thing is for a moving seek target (so its like a feedback controller)
-	state = DRIVE_DISTANCE;
-    return true;
+  state = DRIVE_DISTANCE;
+  return true;
 }
 
 bool DriveTrain::rotateA(double a) {
-    targetAngle = a;
-    gyro.Reset();
-    rotationController.SetSetpoint(a);
-    state = DRIVE_DISTANCE;
-    return true;
+  targetAngle = a;
+  gyro.Reset();
+  rotationController.SetSetpoint(a);
+  state = DRIVE_DISTANCE;
+  return true;
   //set target angle
 }
 
 bool DriveTrain::rotateS(double s) {
-    targetRotSpeed = s;
-    state = DRIVE_SPEED;
-    return true;
-    //this method may never get used in this form
+  targetRotSpeed = s;
+  state = DRIVE_SPEED;
+  return true;
+  //this method may never get used in this form
   //set target speed
 }
 
 float DriveTrain::getSpeed() {
-    return (leftEnc.GetRate() + rightEnc.GetRate())/2.0;
+  return (leftEnc.GetRate() + rightEnc.GetRate())/2.0;
 }
 
 void DriveTrain::setSpeed(float s) {
   // make motors turn, -2^15 < s < 2^15
-	state = DRIVE_SPEED;
+  state = DRIVE_SPEED;
 }
 
 void DriveTrain::update() {
   if(mode == AUTO) {
-      if (getSpeed() > GEAR_UPSHIFT_CUTOFF) {
-	  engageHigh();
-      }
-      else if (getSpeed() < GEAR_DOWNSHIFT_CUTOFF) {
-	  engageLow();
-      }
+    if (getSpeed() > GEAR_UPSHIFT_CUTOFF) {
+      engageHigh();
+    }
+    else if (getSpeed() < GEAR_DOWNSHIFT_CUTOFF) {
+      engageLow();
+    }
   }
   
   switch(state) {
-    case DRIVE_DISTANCE:
-	distanceInput.PIDWrite((leftEnc.Get()+rightEnc.Get())/2);
-	targetRotSpeed = rotOutput.PIDGet();
-	targetSpeed = distanceOutput.PIDGet();
-	if (targetRotSpeed > 0.01) {
-	    leftFrontVic.Set(targetRotSpeed);
-	    leftBackVic.Set(targetRotSpeed);
-	    rightFrontVic.Set(-targetRotSpeed);
-	    rightBackVic.Set(-targetRotSpeed);
-	}
-	else {
-	    leftFrontVic.Set(targetSpeed);
-	    leftBackVic.Set(targetSpeed);
-	    rightFrontVic.Set(targetSpeed);
-	    rightBackVic.Set(targetSpeed);
-	}
-	break;
-    case DRIVE_SPEED:
-	leftFrontVic.Set(targetSpeed+targetRotSpeed);
-	leftBackVic.Set(targetSpeed+targetRotSpeed);
-	rightFrontVic.Set(targetSpeed-targetRotSpeed);
-	rightBackVic.Set(targetSpeed-targetRotSpeed);
-	break;
+  case DRIVE_DISTANCE:
+    distanceInput.PIDWrite((leftEnc.Get()+rightEnc.Get())/2);
+    targetRotSpeed = rotOutput.PIDGet();
+    targetSpeed = distanceOutput.PIDGet();
+    if (targetRotSpeed > 0.01) {
+      leftFrontVic.Set(targetRotSpeed);
+      leftBackVic.Set(targetRotSpeed);
+      rightFrontVic.Set(-targetRotSpeed);
+      rightBackVic.Set(-targetRotSpeed);
+    }
+    else {
+      leftFrontVic.Set(targetSpeed);
+      leftBackVic.Set(targetSpeed);
+      rightFrontVic.Set(targetSpeed);
+      rightBackVic.Set(targetSpeed);
+    }
+    break;
+  case DRIVE_SPEED:
+    leftFrontVic.Set(targetSpeed+targetRotSpeed);
+    leftBackVic.Set(targetSpeed+targetRotSpeed);
+    rightFrontVic.Set(targetSpeed-targetRotSpeed);
+    rightBackVic.Set(targetSpeed-targetRotSpeed);
+    break;
   default:
-	  break;
+    break;
   }
-
+  
   /* dist PID */
   float progress = leftEnc.GetDistance(); // what about turning?
 
@@ -196,24 +196,24 @@ void DriveTrain::update() {
     targetSpeed = 0; // within tolerence
   }
   else {
-      targetSpeed = distanceController.Get();
+    targetSpeed = distanceController.Get();
   }
 
   //check encoders
   //and do stuff with them
   //and stuff
   //Drive Speed/Ang Speed
-      //check dist since last tick
-      //calc current speed
-      //scale on a per wheel basis based on turn speed
-      //PID loop it up
+  //check dist since last tick
+  //calc current speed
+  //scale on a per wheel basis based on turn speed
+  //PID loop it up
   //Drive Dist
-      //check target vs actual distance
-      //PID loop
+  //check target vs actual distance
+  //PID loop
   //Turn
-      //check current angle with gyro vs target angle
-      //PID
+  //check current angle with gyro vs target angle
+  //PID
 
   //ISSUES
-      //angle and speed can be absolute, distance cannot (reliably)
+  //angle and speed can be absolute, distance cannot (reliably)
 }

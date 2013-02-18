@@ -101,7 +101,7 @@
 #define JS_OPERATOR_11 10
 #define JS_OPERATOR_X 0
 #define JS_OPERATOR_Y 1
-#define JS_OPERATOR_Z 2
+#define JS_OPERATOR_GAIN 2
 
 /* Solenoid drive modes */
 #define SOL_DRIVE_HIGH false

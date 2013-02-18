@@ -20,7 +20,7 @@ void HumanController::update() {
   //high gear: 5 ft/sec – max speed (probably 16 ft/sec)
 
   /* begin drive forward/backward */
-  robot->setSpeed(speedStick.GetX());
+  robot->setSpeed(speedStick.getX());
   /* end drive forward/backward */
   
   /* begin Gearshifter changing */
@@ -44,8 +44,13 @@ void HumanController::update() {
   /* end Gearshifter changing */
 
   /* begin operator commands */
-
+  if(operatorStick.GetRawButton(JS_OPERATOR_TRIGGER) && !shooting) {
+    robot->shoot();
+  }
+  shooting = operatorStick.GetRawButton(JS_OPERATOR_TRIGGER);
+  
+  gain = operatorStick.GetRawAxis(JS_OPERATOR_GAIN);
 
   
-
+  /* end operator commands */ 
 }
