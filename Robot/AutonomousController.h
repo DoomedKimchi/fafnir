@@ -12,6 +12,7 @@ class AutonomousController {
  private:
   /*! A pointer to the Robot fafnir */
   Robot *fafnir;
+  AutonomousMode mode;
 
   /*! \brief Tells the robot to fire
    * \return Whether firing was successful */
@@ -22,8 +23,8 @@ class AutonomousController {
   void update();
   /*! \brief Constructs an autonomous controller with a pointer to fafnir
    * \param *fafnir A pointer to the Robot */
-  AutonomousController(Robot *fafnir);
-
+  AutonomousController(Robot *fafnir, AutonomousMode m);
+ 
   /*! \brief Destructor */
   virtual ~AutonomousController();
 };
