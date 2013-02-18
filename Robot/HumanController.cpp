@@ -5,7 +5,6 @@ HumanController::HumanController(Robot *robot)
   ,    turnStick(PORT_JS_TURN)
   ,    operatorStick(PORT_JS_OPERATOR) {
   this->robot = robot;
-
 }
 
 AutonomousMode HumanController::getAutonomousMode() {
@@ -43,4 +42,10 @@ void HumanController::update() {
   }
   buttShifterMode = turnStick.GetRawButton(JS_TURN_MODE_TOGGLE);
   /* end Gearshifter changing */
+
+  /* begin operator commands */
+
+
+  
+
 }
