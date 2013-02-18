@@ -41,7 +41,7 @@ bool Robot::setShifterPosition(ShifterPosition pos) {
 }
 
 void Robot::setSpeed(float s) {
-  driveTrain.setSpeed(s);
+  driveTrain.driveS(s);
 }
 
 void Robot::update() {
