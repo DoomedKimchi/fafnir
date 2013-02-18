@@ -20,12 +20,13 @@ void load_conf(string filename, YAML::Node &config) {
 
 
 int main (int argc, char **argv) {
-  /*if (argc < 2) {
-    cerr << "No argument provided" << endl;
-    return -1;
-  }*/
-
+  // Use webcam as source by default
   VideoCapture capture(0);
+  // Use video file if specified
+  if (argc > 1) {
+	capture.open(argv[1]);
+  }
+
   // check if video successfully opened
   if (!capture.isOpened())
 	  return 1;
