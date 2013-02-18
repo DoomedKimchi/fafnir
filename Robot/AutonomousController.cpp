@@ -1,8 +1,10 @@
 #include "AutonomousController.h"
 #include "Robot.h"
 
-AutonomousController::AutonomousController(Robot *robot) {
+AutonomousController::AutonomousController(Robot *robot, AutonomousMode m) {
   fafnir = robot;
+  mode = m;
+
 }
 
 AutonomousController::~AutonomousController() {
