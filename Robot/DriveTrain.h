@@ -36,12 +36,16 @@ private:
   Gyro gyro;
 
   NumberPID distanceInput;
-  NumberPID outputContainer;
+  NumberPID distanceOutput;
   PIDController distanceController;
 
   NumberPID speedInput;
+  NumberPID speedOutput;
   // use outputcontainer as container
   PIDController speedController;
+  
+  NumberPID rotOutput;
+  PIDController rotationController;
 
   int speed;
   int rotSpeed;
