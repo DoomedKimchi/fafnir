@@ -13,13 +13,17 @@ DriveTrain::DriveTrain()
   ,  rightBackVic(PORT_DRIVE_VIC_4) 
 
   ,  gyro((UINT32)PORT_DRIVE_GYRO)
-  ,  distanceController(3.0f,0.0f,-1.0f,&distanceInput,&outputContainer)
-  ,  distanceInput()
-  ,  outputContainer()
-  ,  speedController(3.0f,0.0f,-1.0f,&speedInput,&outputContainer)
-  ,  speedInput() {
 
-    setShifterMode(AUTO);
+  ,  distanceController(3.0f,0.0f,-1.0f,&distanceInput,&distanceOutput)
+  ,  distanceInput()
+  ,  distanceOutput()
+  ,  speedController(3.0f,0.0f,-1.0f,&speedInput,&outputContainer)
+  ,  speedInput() 
+
+  ,  rotOutput()
+  ,  rotationController(3.0f, 0.0f, -1.0f, &gyro, &rotOutput) {
+
+  setShifterMode(AUTO);
   setShifterPosition(LOW_GEAR);
   leftEnc.SetDistancePerPulse(DRIVE_ENC_FEET_PER_PULSE);
   rightEnc.SetDistancePerPulse(DRIVE_ENC_FEET_PER_PULSE);
@@ -71,7 +75,7 @@ bool DriveTrain::driveD(double d) { // tolerence is currently .01
   leftEnc.Start();
   rightEnc.Reset();
   rightEnc.Start();
-
+  distanceController.SetSetpoint(d);
   state = DRIVE_DISTANCE;
   return false;
 }
@@ -121,6 +125,8 @@ bool DriveTrain::driveTo(Complex target) {
 
 bool DriveTrain::rotateA(double a) {
     targetAngle = a;
+    gyro.Reset();
+    rotationController.SetSetpoint(a);
     state = DRIVE_DISTANCE;
     return true;
   //set target angle
@@ -152,15 +158,32 @@ void DriveTrain::update() {
 	  engageLow();
       }
   }
-
+  
   switch(state) {
-  	case DRIVE_DISTANCE:
-	  //put code related to driving a certain distance here
-	  break;
+    case DRIVE_DISTANCE:
+	distanceInput.PIDWrite((leftEnc.Get()+rightEnc())/2);
+	targetRotSpeed = rotOutput.PIDGet();
+	targetSpeed = distanceOutput.PIDGet();
+	if (targetRotSpeed > 0.01) {
+	    leftFrontVic.Set(targetRotSpeed);
+	    leftBackVic.Set(targetRotSpeed);
+	    rightFrontVic.Set(-targetRotSpeed);
+	    rightBackVic.Set(-targetRotSpeed);
+	}
+	else {
+	    leftFrontVic.Set(targetSpeed);
+	    leftBackVic.Set(targetSpeed);
+	    rightFrontVic.Set(targetSpeed);
+	    rightBackVic.Set(targetSpeed);
+	}
+	break;
     case DRIVE_SPEED:
-	  //put code related to driving a certain speed here
-	  break;
-    default:
+	leftFrontVic.Set(targetSpeed+targetRotSpeed);
+	leftBackVic.Set(targetSpeed+targetRotSpeed);
+	rightFrontVic.Set(targetSpeed-targetRotSpeed);
+	rightBackVic.Set(targetSpeed-targetRotSpeed);
+	break;
+    default
 	  break;
   }
 
@@ -178,11 +201,6 @@ void DriveTrain::update() {
   //check encoders
   //and do stuff with them
   //and stuff
-  leftFrontVic.Set(targetSpeed+targetRotSpeed);
-  leftBackVic.Set(targetSpeed+targetRotSpeed);
-  rightFrontVic.Set(targetSpeed-targetRotSpeed);
-  rightBackVic.Set(targetSpeed-targetRotSpeed);
-
   //Drive Speed/Ang Speed
       //check dist since last tick
       //calc current speed
