@@ -17,8 +17,9 @@ DriveTrain::DriveTrain()
   ,  distanceController(3.0f,0.0f,-1.0f,&distanceInput,&distanceOutput)
   ,  distanceInput()
   ,  distanceOutput()
-  ,  speedController(3.0f,0.0f,-1.0f,&speedInput,&outputContainer)
-  ,  speedInput() 
+  ,  speedController(3.0f,0.0f,-1.0f,&speedInput,&speedOutput)
+  ,  speedInput()
+  ,  speedOutput() 
 
   ,  rotOutput()
   ,  rotationController(3.0f, 0.0f, -1.0f, &gyro, &rotOutput) {
@@ -161,7 +162,7 @@ void DriveTrain::update() {
   
   switch(state) {
     case DRIVE_DISTANCE:
-	distanceInput.PIDWrite((leftEnc.Get()+rightEnc())/2);
+	distanceInput.PIDWrite((leftEnc.Get()+rightEnc.Get())/2);
 	targetRotSpeed = rotOutput.PIDGet();
 	targetSpeed = distanceOutput.PIDGet();
 	if (targetRotSpeed > 0.01) {
@@ -183,7 +184,7 @@ void DriveTrain::update() {
 	rightFrontVic.Set(targetSpeed-targetRotSpeed);
 	rightBackVic.Set(targetSpeed-targetRotSpeed);
 	break;
-    default
+  default:
 	  break;
   }
 

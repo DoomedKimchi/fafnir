@@ -40,6 +40,7 @@ private:
   PIDController distanceController;
 
   NumberPID speedInput;
+  NumberPID speedOutput;
   // use outputcontainer as container
   PIDController speedController;
   
