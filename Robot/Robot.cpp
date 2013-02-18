@@ -40,6 +40,10 @@ bool Robot::setShifterPosition(ShifterPosition pos) {
   return driveTrain.setShifterPosition(pos);
 }
 
+ShooterState Robot::getShooterState() {
+  return shooter.getState();
+}
+
 void Robot::setSpeed(float s) {
   driveTrain.driveS(s);
 }

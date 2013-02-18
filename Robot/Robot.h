@@ -54,6 +54,8 @@ class Robot {
 
   ShifterPosition getShifterPosition();
   bool setShifterPosition(ShifterPosition pos);
+  
+  ShooterState getShooterState();
 
   void setSpeed(float s);
 
