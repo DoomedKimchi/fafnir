@@ -21,20 +21,23 @@ void load_conf(string filename, YAML::Node &config) {
 
 int main (int argc, char **argv) {
   // Use webcam as source by default
-  VideoCapture capture(0);
-  // Use video file if specified
-  if (argc > 1) {
-	capture.open(argv[1]);
+  VideoCapture capture;
+  double rate;
+  if (argc < 2) {
+	  capture.open(0); // Use default webcam if no arguments are provided
+  // Get the frame rate
+  rate = 30; /* I hardcoded the frame rate for now
+  	  	  	  	  	  because my webcam isn't reporting the
+  	  	  	  	  	  frame rate correctly. */
+  }
+  else if (argc >1){
+	capture.open(argv[1]); // Use video file if specified
+	rate = capture.get(CV_CAP_PROP_FPS); // Use frame rate from video file
   }
 
   // check if video successfully opened
   if (!capture.isOpened())
-	  return 1;
-  // Get the frame rate
-  // double rate = capture.get(CV_CAP_PROP_FPS);
-  double rate = 30; /* I hardcoded the frame rate for now
-  	  	  	  	  	  because my webcam isn't reporting the
-  	  	  	  	  	  frame rate correctly. */
+      cerr << "No input stream" << endl;
   bool stop(false);
   int delay = 1000/rate;
 
