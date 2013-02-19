@@ -48,9 +48,23 @@ void Robot::setSpeed(float s) {
   driveTrain.driveS(s);
 }
 
+void Robot::setAccumulatorSpeed(float s){
+}
+
+bool Robot::autoAccumulate(){
+}
+
 void Robot::update() {
   driveTrain.update();
   accumulator.update();
   shooter.update();
 }
+
+void Robot::shootVacated() {
+}
+
+void Robot::setAccumulatorState(AccumulatorState nstate); {
+}
+
+
  

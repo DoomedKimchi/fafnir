@@ -57,8 +57,14 @@ class Robot {
   
   ShooterState getShooterState();
 
-  void setSpeed(float s);
+  void setAccumulatorSpeed(float s);
+
+  bool autoAccumulate();
 
   void update();
+
+  void shootVacated();
+
+  void setAccumulatorState (AccumulatorState nstate);
 };
 #endif /* ROBOT_H */
