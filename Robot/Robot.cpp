@@ -40,8 +40,18 @@ bool Robot::setShifterPosition(ShifterPosition pos) {
   return driveTrain.setShifterPosition(pos);
 }
 
+ShooterState Robot::getShooterState() {
+  return shooter.getState();
+}
+
 void Robot::setSpeed(float s) {
   driveTrain.driveS(s);
+}
+
+void Robot::setAccumulatorSpeed(float s){
+}
+
+bool Robot::autoAccumulate(){
 }
 
 void Robot::update() {
@@ -49,4 +59,12 @@ void Robot::update() {
   accumulator.update();
   shooter.update();
 }
+
+void Robot::shootVacated() {
+}
+
+void Robot::setAccumulatorState(AccumulatorState nstate); {
+}
+
+
  

@@ -43,7 +43,7 @@ class Accumulator {
   /*! \brief The method that is continually called by Robot
    * \param accumulate Whether autoAccumulate() should be called
    * \return Whether update succeeded */
-  bool update();
+  void update();
   void shootVacated();
 
   void setState(AccumulatorState nstate);
