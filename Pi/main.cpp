@@ -4,68 +4,70 @@
 
 /* This function loads the yaml conf file */
 void load_conf(string filename, YAML::Node &config) {
-  ifstream file(filename.c_str());
-  if (file.is_open()) {
-    YAML::Parser parser(file);
-    if (!parser.GetNextDocument(config)) {
-      cerr << "Could not load config" << endl;
-      exit(-1);
-    }
-    file.close();
-  } else {
-    cerr << "Could not open config file" << endl;
-    exit(-1);
-  }
+	ifstream file(filename.c_str());
+	if (file.is_open()) {
+		YAML::Parser parser(file);
+		if (!parser.GetNextDocument(config)) {
+			cerr << "Could not load config" << endl;
+			exit(-1);
+		}
+		file.close();
+	} else {
+		cerr << "Could not open config file" << endl;
+		exit(-1);
+	}
 }
 
+int main(int argc, char **argv) {
+	// Use webcam as source by default
+	VideoCapture capture;
+	double rate;
+	if (argc < 2) {
+		capture.open(0); // Use default webcam if no arguments are provided
+		// Get the frame rate
+		rate = 30; /* I hardcoded the frame rate for now
+		 because my webcam isn't reporting the
+		 frame rate correctly. */
+	} else if (argc > 1) {
+		capture.open(argv[1]); // Use video file if specified
+		rate = capture.get(CV_CAP_PROP_FPS); // Use frame rate from video file
+	}
 
-int main (int argc, char **argv) {
-  // Use webcam as source by default
-  VideoCapture capture;
-  double rate;
-  if (argc < 2) {
-	  capture.open(0); // Use default webcam if no arguments are provided
-  // Get the frame rate
-  rate = 30; /* I hardcoded the frame rate for now
-  	  	  	  	  	  because my webcam isn't reporting the
-  	  	  	  	  	  frame rate correctly. */
-  }
-  else if (argc >1){
-	capture.open(argv[1]); // Use video file if specified
-	rate = capture.get(CV_CAP_PROP_FPS); // Use frame rate from video file
-  }
+	// check if video successfully opened
+	if (!capture.isOpened())
+		cerr << "No input stream" << endl;
+	bool stop(false);
+	int delay = 1000 / rate;
 
-  // check if video successfully opened
-  if (!capture.isOpened())
-      cerr << "No input stream" << endl;
-  bool stop(false);
-  int delay = 1000/rate;
+	Mat image;
+	/*
+	 // read image from cli arguments
+	 image = imread(argv[1], 1);
 
-  Mat image;
-/*
-  // read image from cli arguments
-  image = imread(argv[1], 1);
+	 if (!image.data) {
+	 cerr << "No image data" << endl;
+	 return -1;
+	 }
+	 */
 
-  if (!image.data) {
-    cerr << "No image data" << endl;
-    return -1;
-  }
-*/
+	Mat image_processed;
+	vector<vector<Point> > contours, rectangles, targets;
+	YAML::Node config;
+	Point center;
+	double hangle, vangle, distance;
 
-  Mat image_processed;
-  vector<vector<Point> > contours, rectangles, targets;
-  YAML::Node config;
-  Point center;
-  double hangle, vangle, distance;
+	// load config file
+	load_conf("conf.yaml", config);
 
-  // load config file
-  load_conf("conf.yaml", config);
-
-
-  while (!stop) {
-	  // read next frame if any
-	  if (!capture.read(image))
-		  break;
+	int counter = 0; //counter for the while loop
+	while (!stop) {
+		cout << "\n\ncounter: " << counter << endl;
+		// read next frame if any
+		/*if (!capture.read(image))
+		 break;*/
+		Mat frame;
+		capture >> frame;
+		frame.copyTo(image);
 
 		// process image for edge finding
 		process_image(&config, image, image_processed);
@@ -98,11 +100,14 @@ int main (int argc, char **argv) {
 		imshow("Detected Lines", image);
 
 		//waitKey(0);
-		if(waitKey(delay) >= 0)
+		if (waitKey(delay) >= 0)
 			stop = true;
+		counter++;
+		rectangles.clear();
+		targets.clear();
 	}
 
-  // Close the video file
-  capture.release();
-  return 0;
+	// Close the video file
+	capture.release();
+	return 0;
 }
