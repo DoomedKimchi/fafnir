@@ -189,9 +189,8 @@ void DriveTrain::update() {
   }
   
   /* dist PID */
-  float progress = leftEnc.GetDistance(); // what about turning?
 
-  distanceInput.PIDWrite(targetDist - progress); // progree
+  distanceInput.PIDWrite(leftEnc.GetDistance()); 
   if (distanceInput.PIDGet() <= .01) {
     targetSpeed = 0; // within tolerence
   }
