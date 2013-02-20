@@ -59,10 +59,10 @@ int main(int argc, char **argv) {
 	// load config file
 	load_conf("conf.yaml", config);
 
-	int counter = 0; //counter for the while loop for debugging purposes
+	//int counter = 0; //counter for the while loop for debugging purposes
 
 	while (!stop) {
-		cout << "\n\ncounter: " << counter << endl;
+		//cout << "\n\ncounter: " << counter << endl;
 		// read next frame if any
 		if (!capture.read(image))
 			break;
@@ -105,7 +105,7 @@ int main(int argc, char **argv) {
 		if (waitKey(delay) >= 0)
 			stop = true;
 
-		counter++;
+		//counter++;
 	}
 
 	// Close the video file
