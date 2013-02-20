@@ -59,15 +59,13 @@ int main(int argc, char **argv) {
 	// load config file
 	load_conf("conf.yaml", config);
 
-	int counter = 0; //counter for the while loop
+	int counter = 0; //counter for the while loop for debugging purposes
+
 	while (!stop) {
 		cout << "\n\ncounter: " << counter << endl;
 		// read next frame if any
-		/*if (!capture.read(image))
-		 break;*/
-		Mat frame;
-		capture >> frame;
-		frame.copyTo(image);
+		if (!capture.read(image))
+			break;
 
 		// process image for edge finding
 		process_image(&config, image, image_processed);
@@ -99,12 +97,15 @@ int main(int argc, char **argv) {
 		// show the result
 		imshow("Detected Lines", image);
 
+		contours.clear(); // clear these after each iteration of the while loop or else they will increase exponentially
+		rectangles.clear();
+		targets.clear();
+
 		//waitKey(0);
 		if (waitKey(delay) >= 0)
 			stop = true;
+
 		counter++;
-		rectangles.clear();
-		targets.clear();
 	}
 
 	// Close the video file
