@@ -8,6 +8,7 @@ private:
     HumanController humanController;
     AutonomousController autoController;
     Robot robot;
+    AutonomousMode mode;
 public:
     Fafnir();
     void AutonomousInit();
@@ -25,7 +26,7 @@ public:
 
 Fafnir::Fafnir() 
     :    humanController(&robot) 
-    ,    autoController(&robot) 
+    ,    autoController(&robot, mode)
     ,    robot() {
 
 }
