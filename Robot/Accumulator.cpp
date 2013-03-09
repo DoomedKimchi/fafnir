@@ -23,7 +23,7 @@ bool Accumulator:: kill() {
     return true;
 }
 
-bool Accumulator:: update() {
+void Accumulator:: update() {
   switch(state) {
   case SHOOTER_EMPTY:
     if (frisbeeSwitch.IsPressed()){
@@ -40,7 +40,7 @@ bool Accumulator:: update() {
   default:
     break;
   }
-    return false;
+    //return false;
 }
 
 void Accumulator::setState(AccumulatorState nstate) {
