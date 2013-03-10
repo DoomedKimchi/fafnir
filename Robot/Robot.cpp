@@ -63,7 +63,7 @@ void Robot::update() {
 void Robot::shootVacated() {
 }
 
-void Robot::setAccumulatorState(AccumulatorState nstate); {
+void Robot::setAccumulatorState(AccumulatorState nstate) {
 }
 
 
