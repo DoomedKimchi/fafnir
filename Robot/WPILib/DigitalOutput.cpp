@@ -6,6 +6,7 @@
 
 #include "DigitalOutput.h"
 #include "DigitalModule.h"
+#include "NetworkCommunication/UsageReporting.h"
 #include "Resource.h"
 #include "WPIErrors.h"
 
@@ -35,6 +36,8 @@ void DigitalOutput::InitDigitalOutput(UINT8 moduleNumber, UINT32 channel)
 	m_pwmGenerator = ~0ul;
 	m_module = DigitalModule::GetInstance(moduleNumber);
 	m_module->AllocateDIO(m_channel, false);
+
+	nUsageReporting::report(nUsageReporting::kResourceType_DigitalOutput, channel, moduleNumber - 1);
 }
 
 /**
@@ -276,4 +279,33 @@ void DigitalOutput::SetUpSourceEdge(bool risingEdge, bool fallingEdge)
 	}
 	wpi_setError(localStatus);
 }
+
+void DigitalOutput::ValueChanged(ITable* source, const std::string& key, EntryValue value, bool isNew) {
+	Set(value.b);
+}
+
+void DigitalOutput::UpdateTable() {
+}
+
+void DigitalOutput::StartLiveWindowMode() {
+	m_table->AddTableListener("Value", this, true);
+}
+
+void DigitalOutput::StopLiveWindowMode() {
+	m_table->RemoveTableListener(this);
+}
+
+std::string DigitalOutput::GetSmartDashboardType() {
+	return "Digital Output";
+}
+
+void DigitalOutput::InitTable(ITable *subTable) {
+	m_table = subTable;
+	UpdateTable();
+}
+
+ITable * DigitalOutput::GetTable() {
+	return m_table;
+}
+
 

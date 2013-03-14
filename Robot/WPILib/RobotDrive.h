@@ -47,11 +47,11 @@ public:
 	virtual ~RobotDrive();
 
 	void Drive(float outputMagnitude, float curve);
-	void TankDrive(GenericHID *leftStick, GenericHID *rightStick);
-	void TankDrive(GenericHID &leftStick, GenericHID &rightStick);
-	void TankDrive(GenericHID *leftStick, UINT32 leftAxis, GenericHID *rightStick, UINT32 rightAxis);
-	void TankDrive(GenericHID &leftStick, UINT32 leftAxis, GenericHID &rightStick, UINT32 rightAxis);
-	void TankDrive(float leftValue, float rightValue);
+	void TankDrive(GenericHID *leftStick, GenericHID *rightStick, bool squaredInputs = true);
+	void TankDrive(GenericHID &leftStick, GenericHID &rightStick, bool squaredInputs = true);
+	void TankDrive(GenericHID *leftStick, UINT32 leftAxis, GenericHID *rightStick, UINT32 rightAxis, bool squaredInputs = true);
+	void TankDrive(GenericHID &leftStick, UINT32 leftAxis, GenericHID &rightStick, UINT32 rightAxis, bool squaredInputs = true);
+	void TankDrive(float leftValue, float rightValue, bool squaredInputs = true);
 	void ArcadeDrive(GenericHID *stick, bool squaredInputs = true);
 	void ArcadeDrive(GenericHID &stick, bool squaredInputs = true);
 	void ArcadeDrive(GenericHID *moveStick, UINT32 moveChannel, GenericHID *rotateStick, UINT32 rotateChannel, bool squaredInputs = true);
@@ -92,6 +92,15 @@ protected:
 	MotorSafetyHelper *m_safetyHelper;
 	
 private:
+	INT32 GetNumMotors()
+	{
+		int motors = 0;
+		if (m_frontLeftMotor) motors++;
+		if (m_frontRightMotor) motors++;
+		if (m_rearLeftMotor) motors++;
+		if (m_rearRightMotor) motors++;
+		return motors;
+	}
 	DISALLOW_COPY_AND_ASSIGN(RobotDrive);
 };
 

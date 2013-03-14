@@ -5,7 +5,9 @@
 /*----------------------------------------------------------------------------*/
 
 #include "Solenoid.h"
+#include "NetworkCommunication/UsageReporting.h"
 #include "WPIErrors.h"
+#include "LiveWindow/LiveWindow.h"
 
 /**
  * Common function to implement constructor behavior.
@@ -33,6 +35,9 @@ void Solenoid::InitSolenoid()
 		CloneError(m_allocated);
 		return;
 	}
+
+	LiveWindow::GetInstance()->AddActuator("Solenoid", m_moduleNumber, m_channel, this);
+	nUsageReporting::report(nUsageReporting::kResourceType_Solenoid, m_channel, m_moduleNumber - 1);
 }
 
 /**
@@ -96,3 +101,38 @@ bool Solenoid::Get()
 	UINT8 value = GetAll() & ( 1 << (m_channel - 1));
 	return (value != 0);
 }
+
+
+void Solenoid::ValueChanged(ITable* source, const std::string& key, EntryValue value, bool isNew) {
+	Set(value.b);
+}
+
+void Solenoid::UpdateTable() {
+	if (m_table != NULL) {
+		m_table->PutBoolean("Value", Get());
+	}
+}
+
+void Solenoid::StartLiveWindowMode() {
+	Set(false);
+	m_table->AddTableListener("Value", this, true);
+}
+
+void Solenoid::StopLiveWindowMode() {
+	Set(false);
+	m_table->RemoveTableListener(this);
+}
+
+std::string Solenoid::GetSmartDashboardType() {
+	return "Solenoid";
+}
+
+void Solenoid::InitTable(ITable *subTable) {
+	m_table = subTable;
+	UpdateTable();
+}
+
+ITable * Solenoid::GetTable() {
+	return m_table;
+}
+

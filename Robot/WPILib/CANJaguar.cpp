@@ -9,8 +9,10 @@
 #include "ChipObject/NiFpga.h"
 #include "CAN/JaguarCANDriver.h"
 #include "CAN/can_proto.h"
+#include "NetworkCommunication/UsageReporting.h"
 #include "WPIErrors.h"
 #include <stdio.h>
+#include "LiveWindow/LiveWindow.h"
 
 #define swap16(x) ( (((x)>>8) &0x00FF) \
                   | (((x)<<8) &0xFF00) )
@@ -41,16 +43,16 @@ void CANJaguar::InitCANJaguar()
 	if (StatusIsFatal())
 		return;
 	// 3330 was the first shipping RDK firmware version for the Jaguar
-	if (fwVer >= 3330 || fwVer < 92)
+	if (fwVer >= 3330 || fwVer < 101)
 	{
 		char buf[256];
 		if (fwVer < 3330)
 		{
-			snprintf(buf, 256, "Jag #%d firmware (%d) is too old (must be at least version 92 of the FIRST approved firmware)", m_deviceNumber, fwVer);
+			snprintf(buf, 256, "Jag #%d firmware (%d) is too old (must be at least version 101 of the FIRST approved firmware)", m_deviceNumber, fwVer);
 		}
 		else
 		{
-			snprintf(buf, 256, "Jag #%d firmware (%d) is not FIRST approved (must be at least version 92 of the FIRST approved firmware)", m_deviceNumber, fwVer);
+			snprintf(buf, 256, "Jag #%d firmware (%d) is not FIRST approved (must be at least version 101 of the FIRST approved firmware)", m_deviceNumber, fwVer);
 		}
 		wpi_setWPIErrorWithContext(JaguarVersionError, buf);
 		return;
@@ -66,6 +68,9 @@ void CANJaguar::InitCANJaguar()
 		break;
 	}
 	m_safetyHelper = new MotorSafetyHelper(this);
+
+	nUsageReporting::report(nUsageReporting::kResourceType_CANJaguar, m_deviceNumber, m_controlMode);
+	LiveWindow::GetInstance()->AddActuator("CANJaguar", m_deviceNumber, 0, this);
 }
 
 /**
@@ -769,6 +774,8 @@ void CANJaguar::ChangeControlMode(ControlMode controlMode)
 
 	// Update the local mode
 	m_controlMode = controlMode;
+
+	nUsageReporting::report(nUsageReporting::kResourceType_CANJaguar, m_deviceNumber, m_controlMode);
 }
 
 /**
@@ -1229,4 +1236,36 @@ void CANJaguar::StopMotor()
 {
 	DisableControl();
 }
+
+void CANJaguar::ValueChanged(ITable* source, const std::string& key, EntryValue value, bool isNew) {
+	Set(value.f);
+}
+
+void CANJaguar::UpdateTable() {
+	if (m_table != NULL) {
+		m_table->PutNumber("Value", Get());
+	}
+}
+
+void CANJaguar::StartLiveWindowMode() {
+	m_table->AddTableListener("Value", this, true);
+}
+
+void CANJaguar::StopLiveWindowMode() {
+	m_table->RemoveTableListener(this);
+}
+
+std::string CANJaguar::GetSmartDashboardType() {
+	return "Speed Controller";
+}
+
+void CANJaguar::InitTable(ITable *subTable) {
+	m_table = subTable;
+	UpdateTable();
+}
+
+ITable * CANJaguar::GetTable() {
+	return m_table;
+}
+
 

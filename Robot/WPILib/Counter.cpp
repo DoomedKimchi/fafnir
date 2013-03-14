@@ -7,6 +7,7 @@
 #include "Counter.h"
 #include "AnalogTrigger.h"
 #include "DigitalInput.h"
+#include "NetworkCommunication/UsageReporting.h"
 #include "Resource.h"
 #include "WPIErrors.h"
 
@@ -35,6 +36,8 @@ void Counter::InitCounter(Mode mode)
 	m_allocatedDownSource = false;
 	m_counter->writeTimerConfig_AverageSize(1, &localStatus);
 	wpi_setError(localStatus);
+
+	nUsageReporting::report(nUsageReporting::kResourceType_Counter, index, mode);
 }
 
 /**
@@ -662,3 +665,32 @@ void Counter::SetReverseDirection(bool reverseDirection)
 	}
 	wpi_setError(localStatus);
 }
+
+
+void Counter::UpdateTable() {
+	if (m_table != NULL) {
+		m_table->PutNumber("Value", Get());
+	}
+}
+
+void Counter::StartLiveWindowMode() {
+	
+}
+
+void Counter::StopLiveWindowMode() {
+	
+}
+
+std::string Counter::GetSmartDashboardType() {
+	return "Counter";
+}
+
+void Counter::InitTable(ITable *subTable) {
+	m_table = subTable;
+	UpdateTable();
+}
+
+ITable * Counter::GetTable() {
+	return m_table;
+}
+

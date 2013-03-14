@@ -6,6 +6,7 @@
 
 #include "DriverStationLCD.h"
 #include "NetworkCommunication/FRCComm.h"
+#include "NetworkCommunication/UsageReporting.h"
 #include "Synchronized.h"
 #include "WPIErrors.h"
 #include <strLib.h>
@@ -30,7 +31,9 @@ DriverStationLCD::DriverStationLCD()
 
 	*((UINT16 *)m_textBuffer) = kFullDisplayTextCommand;
 
-	m_textBufferSemaphore = semMCreate(SEM_DELETE_SAFE | SEM_INVERSION_SAFE);
+	m_textBufferSemaphore = semMCreate(SEM_DELETE_SAFE);
+
+	nUsageReporting::report(nUsageReporting::kResourceType_DriverStationLCD, 0);
 
 	AddToSingletonList();
 }
@@ -66,7 +69,7 @@ void DriverStationLCD::UpdateLCD()
 /**
  * Print formatted text to the Driver Station LCD text bufer.
  * 
- * Use UpdateLCD() periodically to actually send the test to the Driver Station.
+ * Use UpdateLCD() periodically to actually send the text to the Driver Station.
  * 
  * @param line The line on the LCD to print to.
  * @param startingColumn The column to start printing to.  This is a 1-based number.
@@ -75,6 +78,13 @@ void DriverStationLCD::UpdateLCD()
 void DriverStationLCD::Printf(Line line, INT32 startingColumn, const char *writeFmt, ...)
 {
 	va_list args;
+	va_start (args, writeFmt);
+	VPrintf(line, startingColumn, writeFmt, args);
+	va_end (args);
+}
+
+void DriverStationLCD::VPrintf(Line line, INT32 startingColumn, const char *writeFmt, va_list args)
+{
 	UINT32 start = startingColumn - 1;
 	INT32 maxLength = kLineLength - start;
 	char lineBuffer[kLineLength + 1];
@@ -91,7 +101,6 @@ void DriverStationLCD::Printf(Line line, INT32 startingColumn, const char *write
 		return;
 	}
 
-	va_start (args, writeFmt);
 	{
 		Synchronized sync(m_textBufferSemaphore);
 		// snprintf appends NULL to its output.  Therefore we can't write directly to the buffer.
@@ -100,15 +109,13 @@ void DriverStationLCD::Printf(Line line, INT32 startingColumn, const char *write
 
 		memcpy(m_textBuffer + start + line * kLineLength + sizeof(UINT16), lineBuffer, std::min(maxLength,length));
 	}
-
-	va_end (args);
 }
 
 /**
  * Print formatted text to the Driver Station LCD text bufer. This function 
  * pads the line with empty spaces. 
  * 
- * Use UpdateLCD() periodically to actually send the test to the Driver Station.
+ * Use UpdateLCD() periodically to actually send the text to the Driver Station.
  * 
  * @param line The line on the LCD to print to.
  * @param writeFmt The printf format string describing how to print.
@@ -116,6 +123,13 @@ void DriverStationLCD::Printf(Line line, INT32 startingColumn, const char *write
 void DriverStationLCD::PrintfLine(Line line, const char *writeFmt, ...)
 {
 	va_list args;
+	va_start (args, writeFmt);
+	VPrintfLine(line, writeFmt, args);
+	va_end (args);
+}
+
+void DriverStationLCD::VPrintfLine(Line line, const char *writeFmt, va_list args)
+{
 	char lineBuffer[kLineLength + 1];
 
 	if (line < kMain_Line6 || line > kUser_Line6)
@@ -124,7 +138,6 @@ void DriverStationLCD::PrintfLine(Line line, const char *writeFmt, ...)
 		return;
 	}
 
-	va_start (args, writeFmt);
 	{
 		Synchronized sync(m_textBufferSemaphore);
 		// snprintf appends NULL to its output.  Therefore we can't write directly to the buffer.
@@ -139,8 +152,6 @@ void DriverStationLCD::PrintfLine(Line line, const char *writeFmt, ...)
 		
 		memcpy(m_textBuffer + line * kLineLength + sizeof(UINT16), lineBuffer, kLineLength);
 	}
-
-	va_end (args);
 }
 
 /**

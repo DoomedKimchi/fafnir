@@ -8,9 +8,12 @@
 
 #include "DriverStation.h"
 #include "NetworkCommunication/FRCComm.h"
+#include "NetworkCommunication/UsageReporting.h"
 #include "Skeleton.h"
 #include "Synchronized.h"
 #include "WPIErrors.h"
+
+#include <string.h>
 
 #define kHeaderBundleID kFRC_NetworkCommunication_DynamicType_Kinect_Header
 #define kSkeletonExtraBundleID kFRC_NetworkCommunication_DynamicType_Kinect_Extra1
@@ -24,6 +27,8 @@ Kinect::Kinect() :
 {
 	AddToSingletonList();
 	m_dataLock = semMCreate(SEM_Q_PRIORITY | SEM_INVERSION_SAFE | SEM_DELETE_SAFE);
+
+	nUsageReporting::report(nUsageReporting::kResourceType_Kinect, 0);
 }
 
 Kinect::~Kinect()

@@ -9,9 +9,11 @@
 #include "Counter.h"
 #include "DigitalInput.h"
 #include "DigitalOutput.h"
+#include "NetworkCommunication/UsageReporting.h"
 #include "Timer.h"
 #include "Utility.h"
 #include "WPIErrors.h"
+#include "LiveWindow/LiveWindow.h"
 
 const double Ultrasonic::kPingTime;	///< Time (sec) for the ping trigger pulse.
 const UINT32 Ultrasonic::kPriority;	///< Priority that the ultrasonic round robin task runs.
@@ -71,6 +73,11 @@ void Ultrasonic::Initialize()
 	m_counter->Start();
 	m_enabled = true; // make it available for round robin scheduling
 	SetAutomaticMode(originalMode);
+
+	static int instances = 0;
+	instances++;
+	nUsageReporting::report(nUsageReporting::kResourceType_Ultrasonic, instances);
+	LiveWindow::GetInstance()->AddSensor("Ultrasonic", m_echoChannel->GetModuleForRouting(), m_echoChannel->GetChannel(), this);
 }
 
 /**
@@ -323,3 +330,31 @@ Ultrasonic::DistanceUnit Ultrasonic::GetDistanceUnits()
 {
 	return m_units;
 }
+
+void Ultrasonic::UpdateTable() {
+	if (m_table != NULL) {
+		m_table->PutNumber("Value", GetRangeInches());
+	}
+}
+
+void Ultrasonic::StartLiveWindowMode() {
+	
+}
+
+void Ultrasonic::StopLiveWindowMode() {
+	
+}
+
+std::string Ultrasonic::GetSmartDashboardType() {
+	return "Ultrasonic";
+}
+
+void Ultrasonic::InitTable(ITable *subTable) {
+	m_table = subTable;
+	UpdateTable();
+}
+
+ITable * Ultrasonic::GetTable() {
+	return m_table;
+}
+

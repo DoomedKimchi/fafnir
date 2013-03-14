@@ -6,8 +6,10 @@
 
 #include "Encoder.h"
 #include "DigitalInput.h"
+#include "NetworkCommunication/UsageReporting.h"
 #include "Resource.h"
 #include "WPIErrors.h"
+#include "LiveWindow/LiveWindow.h"
 
 static Resource *quadEncoders = NULL;
 
@@ -25,11 +27,12 @@ void Encoder::InitEncoder(bool reverseDirection, EncodingType encodingType)
 {
 	m_encodingType = encodingType;
 	tRioStatusCode localStatus = NiFpga_Status_Success;
+	UINT32 index;
 	switch (encodingType)
 	{
 	case k4X:
 		Resource::CreateResourceObject(&quadEncoders, tEncoder::kNumSystems);
-		UINT32 index = quadEncoders->Allocate("4X Encoder");
+		index = quadEncoders->Allocate("4X Encoder");
 		if (index == ~0ul)
 		{
 			CloneError(quadEncoders);
@@ -61,11 +64,15 @@ void Encoder::InitEncoder(bool reverseDirection, EncodingType encodingType)
 	case k1X:
 	case k2X:
 		m_counter = new Counter(m_encodingType, m_aSource, m_bSource, reverseDirection);
+		m_index = m_counter->GetIndex();
 		break;
 	}
 	m_distancePerPulse = 1.0;
 	m_pidSource = kDistance;
 	wpi_setError(localStatus);
+
+	nUsageReporting::report(nUsageReporting::kResourceType_Encoder, m_index, encodingType);
+	LiveWindow::GetInstance()->AddSensor("Encoder", m_aSource->GetModuleForRouting(), m_aSource->GetChannelForRouting(), this);
 }
 
 /**
@@ -507,3 +514,36 @@ double Encoder::PIDGet()
 		return 0.0;
 	}
 }
+
+void Encoder::UpdateTable() {
+	if (m_table != NULL) {
+        m_table->PutNumber("Speed", GetRate());
+        m_table->PutNumber("Distance", GetDistance());
+        m_table->PutNumber("Distance per Tick", m_distancePerPulse);
+	}
+}
+
+void Encoder::StartLiveWindowMode() {
+	
+}
+
+void Encoder::StopLiveWindowMode() {
+	
+}
+
+std::string Encoder::GetSmartDashboardType() {
+	if (m_encodingType == k4X)
+		return "Quadrature Encoder";
+	else
+		return "Encoder";
+}
+
+void Encoder::InitTable(ITable *subTable) {
+	m_table = subTable;
+	UpdateTable();
+}
+
+ITable * Encoder::GetTable() {
+	return m_table;
+}
+

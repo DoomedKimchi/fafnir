@@ -6,6 +6,9 @@
 
 #include "Servo.h"
 
+#include "NetworkCommunication/UsageReporting.h"
+#include "LiveWindow/LiveWindow.h"
+
 const float Servo::kMaxServoAngle;
 const float Servo::kMinServoAngle;
 
@@ -20,6 +23,10 @@ void Servo::InitServo()
 	// TODO: compute the appropriate values based on digital loop timing
 	SetBounds(245, 0, 0, 0, 11);
 	SetPeriodMultiplier(kPeriodMultiplier_4X);
+
+
+	LiveWindow::GetInstance()->AddActuator("Servo", GetModuleNumber(), GetChannel(), this);
+	nUsageReporting::report(nUsageReporting::kResourceType_Servo, GetChannel(), GetModuleNumber() - 1);
 }
 
 /**
@@ -115,3 +122,36 @@ float Servo::GetAngle()
 {
 	return (float)GetPosition() * GetServoAngleRange() + kMinServoAngle;
 }
+
+void Servo::ValueChanged(ITable* source, const std::string& key, EntryValue value, bool isNew) {
+	Set(value.f);
+}
+
+void Servo::UpdateTable() {
+	if (m_table != NULL) {
+		m_table->PutNumber("Value", Get());
+	}
+}
+
+void Servo::StartLiveWindowMode() {
+	m_table->AddTableListener("Value", this, true);
+}
+
+void Servo::StopLiveWindowMode() {
+	m_table->RemoveTableListener(this);
+}
+
+std::string Servo::GetSmartDashboardType() {
+	return "Servo";
+}
+
+void Servo::InitTable(ITable *subTable) {
+	m_table = subTable;
+	UpdateTable();
+}
+
+ITable * Servo::GetTable() {
+	return m_table;
+}
+
+

@@ -6,6 +6,7 @@
 
 #include "Dashboard.h"
 #include "DriverStation.h"
+#include "NetworkCommunication/UsageReporting.h"
 #include "Synchronized.h"
 #include "WPIErrors.h"
 #include <strLib.h>
@@ -178,7 +179,7 @@ void Dashboard::AddString(char* value, INT32 length)
 	if (!ValidateAdd(length + sizeof(length))) return;
 	memcpy(m_packPtr, (char*)&length, sizeof(length));
 	m_packPtr += sizeof(length);
-	memcpy(m_packPtr, (char*)&value, length);
+	memcpy(m_packPtr, value, length);
 	m_packPtr += length;
 	AddedElement(kString);
 }
@@ -300,6 +301,13 @@ INT32 Dashboard::Finalize()
 	{
 		wpi_setWPIError(MismatchedComplexTypeClose);
 		return 0;
+	}
+
+	static bool reported = false;
+	if (!reported)
+	{
+		nUsageReporting::report(nUsageReporting::kResourceType_Dashboard, 0);
+		reported = true;
 	}
 
 	Synchronized sync(m_statusDataSemaphore);

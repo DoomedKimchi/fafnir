@@ -10,6 +10,7 @@
 #include "GenericHID.h"
 #include "Joystick.h"
 #include "Jaguar.h"
+#include "NetworkCommunication/UsageReporting.h"
 #include "Utility.h"
 #include "WPIErrors.h"
 #include <math.h>
@@ -57,7 +58,7 @@ RobotDrive::RobotDrive(UINT32 leftMotorChannel, UINT32 rightMotorChannel)
 	{
 		m_invertedMotors[i] = 1;
 	}
-	Drive(0, 0);
+	SetLeftRightMotorOutputs(0.0, 0.0);
 	m_deleteSpeedControllers = true;
 }
 
@@ -83,7 +84,7 @@ RobotDrive::RobotDrive(UINT32 frontLeftMotor, UINT32 rearLeftMotor,
 	{
 		m_invertedMotors[i] = 1;
 	}
-	Drive(0, 0);
+	SetLeftRightMotorOutputs(0.0, 0.0);
 	m_deleteSpeedControllers = true;
 }
 
@@ -199,6 +200,12 @@ RobotDrive::~RobotDrive()
 void RobotDrive::Drive(float outputMagnitude, float curve)
 {
 	float leftOutput, rightOutput;
+	static bool reported = false;
+	if (!reported)
+	{
+		nUsageReporting::report(nUsageReporting::kResourceType_RobotDrive, GetNumMotors(), nUsageReporting::kRobotDrive_ArcadeRatioCurve);
+		reported = true;
+	}
 
 	if (curve < 0)
 	{
@@ -231,19 +238,19 @@ void RobotDrive::Drive(float outputMagnitude, float curve)
  * @param leftStick The joystick to control the left side of the robot.
  * @param rightStick The joystick to control the right side of the robot.
  */
-void RobotDrive::TankDrive(GenericHID *leftStick, GenericHID *rightStick)
+void RobotDrive::TankDrive(GenericHID *leftStick, GenericHID *rightStick, bool squaredInputs)
 {
 	if (leftStick == NULL || rightStick == NULL)
 	{
 		wpi_setWPIError(NullParameter);
 		return;
 	}
-	TankDrive(leftStick->GetY(), rightStick->GetY());
+	TankDrive(leftStick->GetY(), rightStick->GetY(), squaredInputs);
 }
 
-void RobotDrive::TankDrive(GenericHID &leftStick, GenericHID &rightStick)
+void RobotDrive::TankDrive(GenericHID &leftStick, GenericHID &rightStick, bool squaredInputs)
 {
-	TankDrive(leftStick.GetY(), rightStick.GetY());
+	TankDrive(leftStick.GetY(), rightStick.GetY(), squaredInputs);
 }
 
 /**
@@ -256,20 +263,20 @@ void RobotDrive::TankDrive(GenericHID &leftStick, GenericHID &rightStick)
  * @param rightAxis The axis to select on the right side Joystick object.
  */
 void RobotDrive::TankDrive(GenericHID *leftStick, UINT32 leftAxis,
-		GenericHID *rightStick, UINT32 rightAxis)
+		GenericHID *rightStick, UINT32 rightAxis, bool squaredInputs)
 {
 	if (leftStick == NULL || rightStick == NULL)
 	{
 		wpi_setWPIError(NullParameter);
 		return;
 	}
-	TankDrive(leftStick->GetRawAxis(leftAxis), rightStick->GetRawAxis(rightAxis));
+	TankDrive(leftStick->GetRawAxis(leftAxis), rightStick->GetRawAxis(rightAxis), squaredInputs);
 }
 
 void RobotDrive::TankDrive(GenericHID &leftStick, UINT32 leftAxis,
-		GenericHID &rightStick, UINT32 rightAxis)
+		GenericHID &rightStick, UINT32 rightAxis, bool squaredInputs)
 {
-	TankDrive(leftStick.GetRawAxis(leftAxis), rightStick.GetRawAxis(rightAxis));
+	TankDrive(leftStick.GetRawAxis(leftAxis), rightStick.GetRawAxis(rightAxis), squaredInputs);
 }
 
 
@@ -279,26 +286,36 @@ void RobotDrive::TankDrive(GenericHID &leftStick, UINT32 leftAxis,
  * @param leftValue The value of the left stick.
  * @param rightValue The value of the right stick.
  */
-void RobotDrive::TankDrive(float leftValue, float rightValue)
+void RobotDrive::TankDrive(float leftValue, float rightValue, bool squaredInputs)
 {
+	static bool reported = false;
+	if (!reported)
+	{
+		nUsageReporting::report(nUsageReporting::kResourceType_RobotDrive, GetNumMotors(), nUsageReporting::kRobotDrive_Tank);
+		reported = true;
+	}
+
 	// square the inputs (while preserving the sign) to increase fine control while permitting full power
 	leftValue = Limit(leftValue);
 	rightValue = Limit(rightValue);
-	if (leftValue >= 0.0)
+	if(squaredInputs)
 	{
-		leftValue = (leftValue * leftValue);
-	}
-	else
-	{
-		leftValue = -(leftValue * leftValue);
-	}
-	if (rightValue >= 0.0)
-	{
-		rightValue = (rightValue * rightValue);
-	}
-	else
-	{
-		rightValue = -(rightValue * rightValue);
+		if (leftValue >= 0.0)
+		{
+			leftValue = (leftValue * leftValue);
+		}
+		else
+		{
+			leftValue = -(leftValue * leftValue);
+		}
+		if (rightValue >= 0.0)
+		{
+			rightValue = (rightValue * rightValue);
+		}
+		else
+		{
+			rightValue = -(rightValue * rightValue);
+		}
 	}
 
 	SetLeftRightMotorOutputs(leftValue, rightValue);
@@ -316,7 +333,7 @@ void RobotDrive::TankDrive(float leftValue, float rightValue)
 void RobotDrive::ArcadeDrive(GenericHID *stick, bool squaredInputs)
 {
 	// simply call the full-featured ArcadeDrive with the appropriate values
-	ArcadeDrive(stick->GetY(), stick->GetX(), stick->GetTrigger());
+	ArcadeDrive(stick->GetY(), stick->GetX(), squaredInputs);
 }
 
 /**
@@ -331,7 +348,7 @@ void RobotDrive::ArcadeDrive(GenericHID *stick, bool squaredInputs)
 void RobotDrive::ArcadeDrive(GenericHID &stick, bool squaredInputs)
 {
 	// simply call the full-featured ArcadeDrive with the appropriate values
-	ArcadeDrive(stick.GetY(), stick.GetX(), stick.GetTrigger());
+	ArcadeDrive(stick.GetY(), stick.GetX(), squaredInputs);
 }
 
 /**
@@ -384,6 +401,13 @@ void RobotDrive::ArcadeDrive(GenericHID &moveStick, UINT32 moveAxis,
  */
 void RobotDrive::ArcadeDrive(float moveValue, float rotateValue, bool squaredInputs)
 {
+	static bool reported = false;
+	if (!reported)
+	{
+		nUsageReporting::report(nUsageReporting::kResourceType_RobotDrive, GetNumMotors(), nUsageReporting::kRobotDrive_ArcadeStandard);
+		reported = true;
+	}
+
 	// local variables to hold the computed PWM values for the motors
 	float leftMotorOutput;
 	float rightMotorOutput;
@@ -459,6 +483,13 @@ void RobotDrive::ArcadeDrive(float moveValue, float rotateValue, bool squaredInp
  */
 void RobotDrive::MecanumDrive_Cartesian(float x, float y, float rotation, float gyroAngle)
 {
+	static bool reported = false;
+	if (!reported)
+	{
+		nUsageReporting::report(nUsageReporting::kResourceType_RobotDrive, GetNumMotors(), nUsageReporting::kRobotDrive_MecanumCartesian);
+		reported = true;
+	}
+
 	double xIn = x;
 	double yIn = y;
 	// Negate y for the joystick.
@@ -501,6 +532,13 @@ void RobotDrive::MecanumDrive_Cartesian(float x, float y, float rotation, float 
  */
 void RobotDrive::MecanumDrive_Polar(float magnitude, float direction, float rotation)
 {
+	static bool reported = false;
+	if (!reported)
+	{
+		nUsageReporting::report(nUsageReporting::kResourceType_RobotDrive, GetNumMotors(), nUsageReporting::kRobotDrive_MecanumPolar);
+		reported = true;
+	}
+
 	// Normalized for full power along the Cartesian axes.
 	magnitude = Limit(magnitude) * sqrt(2.0);
 	// The rollers are at 45 degree angles.
