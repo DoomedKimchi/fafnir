@@ -13,5 +13,5 @@ cmake_minimum_required(VERSION 2.8)
  add_executable(Robot ${SOURCE_CODE})
  target_link_libraries(Robot ${WPILib_LIBRARY})
  
- add_make_deploy(Robot 10.00.08.2) # where your team number is xxyy
+ add_make_deploy(Robot 10.0.8.2) # where your team number is xxyy
 
