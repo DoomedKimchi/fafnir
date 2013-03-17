@@ -1,6 +1,6 @@
 #ifndef LIMIT_SWITCH_H
 #define LIMIT_SWITCH_H
-#include "WPILib.h"
+#include <WPILib.h>
 class LimitSwitch : public DigitalInput {
 public:
     LimitSwitch(int CHANNEL);

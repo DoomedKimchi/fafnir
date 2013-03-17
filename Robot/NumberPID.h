@@ -1,7 +1,7 @@
 #ifndef NUMBERPID_H_
 #define NUMBERPID_H_
 
-#include "WPILib.h"
+#include <WPILib.h>
 
 class NumberPID : public PIDSource, public PIDOutput {
 private:

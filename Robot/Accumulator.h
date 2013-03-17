@@ -1,7 +1,7 @@
 #ifndef ACCUMULATOR_H
 #define ACCUMULATOR_H
 
-#include "WPILib.h"
+#include <WPILib.h>
 #include "Constants.h"
 #include "LimitSwitch.h"
 
