@@ -4,10 +4,11 @@
 /* must be accompanied by the FIRST BSD license file in $(WIND_BASE)/WPILib.  */
 /*----------------------------------------------------------------------------*/
 
+
 #ifndef __NETWORK_TABLE_CHANGE_LISTENER_H__
 #define __NETWORK_TABLE_CHANGE_LISTENER_H__
 
-#include "NetworkTables/InterfaceConstants.h"
+#include "../NetworkTables/InterfaceConstants.h"
 
 class NetworkTable;
 

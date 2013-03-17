@@ -1,7 +1,7 @@
 #ifndef HUMAN_CONTROLLER_H
 #define HUMAN_CONTROLLER_H
 
-#include "WPILib/WPILib.h"
+#include "WPILib.h"
 #include "Constants.h"
 #include "Robot.h"
 
@@ -24,7 +24,7 @@ class HumanController {
 
   bool buttShifterMode;
   bool shooting;
-  int gain;
+  float gain;
   
  public:
   AutonomousMode getAutonomousMode();

@@ -7,11 +7,13 @@
 #ifndef __SENDABLE_CHOOSER_H__
 #define __SENDABLE_CHOOSER_H__
 
-#include "SmartDashboard/SmartDashboardData.h"
+#include "../SmartDashboard/SmartDashboardData.h"
+
 #include <map>
 #include <string>
 
 class NetworkTable;
+
 
 /**
  * The {@link SendableChooser} class is a useful tool for presenting a selection of options

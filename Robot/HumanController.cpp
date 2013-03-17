@@ -20,7 +20,7 @@ void HumanController::update() {
   //high gear: 5 ft/sec – max speed (probably 16 ft/sec)
 
   /* begin drive forward/backward */
-  robot->setSpeed(speedStick.getX());
+  robot->setSpeed(speedStick.GetX());
   /* end drive forward/backward */
   
   /* begin Gearshifter changing */
