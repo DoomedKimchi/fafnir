@@ -20,14 +20,14 @@ class Robot {
   /*! The drive train of the robot */
   DriveTrain driveTrain;
   /*! The accumulator of the robot */
-  Accumulator accumulator;
+  //Accumulator accumulator;
   /*! The shooter of the robot */
-  Shooter shooter;
+  //Shooter shooter;
 
   /*! The robot's camera */
   //AxisCamera &camera;
   /*! The robot's compressor */
-  Compressor compressor;
+  //Compressor compressor;
 
   /*! Whether the robot is aimed at its target */
   bool isAimed;

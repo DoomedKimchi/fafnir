@@ -1,13 +1,13 @@
 #include "DriveTrain.h"
 
 DriveTrain::DriveTrain() 
-  :  leftSol(PORT_DRIVE_SOL_1)
-  ,  rightSol(PORT_DRIVE_SOL_2)
+  : // leftSol(PORT_DRIVE_SOL_1)
+  //,  rightSol(PORT_DRIVE_SOL_2)
 
-  ,  leftEnc((UINT32)PORT_DRIVE_ENC_1_A, (UINT32)PORT_DRIVE_ENC_1_B)
-  ,  rightEnc((UINT32)PORT_DRIVE_ENC_2_A, (UINT32)PORT_DRIVE_ENC_2_B)
+  //,  leftEnc((UINT32)PORT_DRIVE_ENC_1_A, (UINT32)PORT_DRIVE_ENC_1_B)
+  //,  rightEnc((UINT32)PORT_DRIVE_ENC_2_A, (UINT32)PORT_DRIVE_ENC_2_B)
 
-  ,  leftFrontVic(PORT_DRIVE_VIC_1)
+  /*,*/  leftFrontVic(PORT_DRIVE_VIC_1)
   ,  leftBackVic(PORT_DRIVE_VIC_2)
   ,  rightFrontVic(PORT_DRIVE_VIC_3)
   ,  rightBackVic(PORT_DRIVE_VIC_4) 
@@ -22,25 +22,27 @@ DriveTrain::DriveTrain()
   ,  speedOutput() 
 
   ,  rotOutput()
-  ,  rotationController(3.0f, 0.0f, -1.0f, &gyro, &rotOutput) {
+  ,  rotationController(3.0f, 0.0f, -1.0f, &gyro, &rotOutput)
+  {
 
   setShifterMode(AUTO);
   setShifterPosition(LOW_GEAR);
-  leftEnc.SetDistancePerPulse(DRIVE_ENC_FEET_PER_PULSE);
-  rightEnc.SetDistancePerPulse(DRIVE_ENC_FEET_PER_PULSE);
-  leftEnc.Start();
-  rightEnc.Start();
+  //leftEnc.SetDistancePerPulse(DRIVE_ENC_FEET_PER_PULSE);
+  //rightEnc.SetDistancePerPulse(DRIVE_ENC_FEET_PER_PULSE);
+  //leftEnc.Start();
+  //rightEnc.Start();
+  rotateA(30);
 }
 
 bool DriveTrain::engageHigh() {
-  leftSol.Set(SOL_DRIVE_HIGH);
-  rightSol.Set(SOL_DRIVE_HIGH);
+  //leftSol.Set(SOL_DRIVE_HIGH);
+  //rightSol.Set(SOL_DRIVE_HIGH);
   return true;
 }
 
 bool DriveTrain::engageLow() {
-  leftSol.Set(SOL_DRIVE_LOW);
-  rightSol.Set(SOL_DRIVE_LOW);
+  //leftSol.Set(SOL_DRIVE_LOW);
+  //rightSol.Set(SOL_DRIVE_LOW);
   return true;
 }
 
@@ -62,9 +64,11 @@ bool DriveTrain::setShifterPosition(ShifterPosition p) {
 }
 
 ShifterPosition DriveTrain::getShifterPosition() {
-  if(!leftSol.Get()) {
-    return HIGH_GEAR;
-  }
+//--------------------------------------------------
+//   if(!leftSol.Get()) {
+//     return HIGH_GEAR;
+//   }
+//-------------------------------------------------- 
   return LOW_GEAR;
 }
 
@@ -72,10 +76,10 @@ ShifterPosition DriveTrain::getShifterPosition() {
 bool DriveTrain::driveD(double d) { // tolerence is currently .01
   //set target distance  
   targetDist = d;
-  leftEnc.Reset();
-  leftEnc.Start();
-  rightEnc.Reset();
-  rightEnc.Start();
+  //leftEnc.Reset();
+  //leftEnc.Start();
+  //rightEnc.Reset();
+  //rightEnc.Start();
   distanceController.SetSetpoint(d);
   state = DRIVE_DISTANCE;
   return false;
@@ -142,7 +146,8 @@ bool DriveTrain::rotateS(double s) {
 }
 
 float DriveTrain::getSpeed() {
-  return (leftEnc.GetRate() + rightEnc.GetRate())/2.0;
+  //return (leftEnc.GetRate() + rightEnc.GetRate())/2.0;
+  return 0.0;
 }
 
 void DriveTrain::setSpeed(float s) {
@@ -160,10 +165,14 @@ void DriveTrain::update() {
     }
   }
   
+	   printf("Gyro angle: %f\n", gyro.GetAngle());
+	   //rotateA(0);
+
   switch(state) {
   case DRIVE_DISTANCE:
-    distanceInput.PIDWrite((leftEnc.Get()+rightEnc.Get())/2);
+    //distanceInput.PIDWrite((leftEnc.Get()+rightEnc.Get())/2);
     targetRotSpeed = rotOutput.PIDGet();
+	printf("targetRotSpeed is: %f\n", targetRotSpeed);
     targetSpeed = distanceOutput.PIDGet();
     if (targetRotSpeed > 0.01) {
       leftFrontVic.Set(targetRotSpeed);
@@ -190,7 +199,7 @@ void DriveTrain::update() {
   
   /* dist PID */
 
-  distanceInput.PIDWrite(leftEnc.GetDistance()); 
+  //distanceInput.PIDWrite(leftEnc.GetDistance()); 
   if (distanceInput.PIDGet() <= .01) {
     targetSpeed = 0; // within tolerence
   }
