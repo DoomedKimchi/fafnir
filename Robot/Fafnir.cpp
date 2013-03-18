@@ -46,10 +46,11 @@ void Fafnir::AutonomousDisabled() {
 
 void Fafnir::TeleopInit() {
     //driveStation(&robot);
+	//robot.setSpeed(0.5);
 }
 
 void Fafnir::TeleopPeriodic() {
-    humanController.update();
+    //humanController.update();
     robot.update();
 }
 

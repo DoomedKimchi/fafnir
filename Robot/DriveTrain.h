@@ -19,12 +19,12 @@ private:
   ShifterMode mode;
   
   /* Solenoids */
-  Solenoid leftSol;
-  Solenoid rightSol;
+  //Solenoid leftSol;
+  //Solenoid rightSol;
 
   /* Encoders */  
-  Encoder leftEnc;
-  Encoder rightEnc;
+  //Encoder leftEnc;
+  //Encoder rightEnc;
   
   /* Speed controllers */
   Victor leftFrontVic;

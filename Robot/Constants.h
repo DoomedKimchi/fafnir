@@ -38,13 +38,13 @@
 #define PORT_DRIVE_ENC_2_B 0
 
 /* Gyro port for drive train */
-#define PORT_DRIVE_GYRO 0
+#define PORT_DRIVE_GYRO 1
 
 /* Drive train Victor ports */
-#define PORT_DRIVE_VIC_1 0
-#define PORT_DRIVE_VIC_2 0
-#define PORT_DRIVE_VIC_3 0
-#define PORT_DRIVE_VIC_4 0
+#define PORT_DRIVE_VIC_1 7
+#define PORT_DRIVE_VIC_2 10
+#define PORT_DRIVE_VIC_3 8
+#define PORT_DRIVE_VIC_4 9
 
 /* Motor ports */
 #define PORT_PWM_1 0
