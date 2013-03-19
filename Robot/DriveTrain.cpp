@@ -167,6 +167,12 @@ void DriveTrain::update() {
   
 	   printf("Gyro angle: %f\n", gyro.GetAngle());
 	   //rotateA(0);
+	   /* hardcoded rotate speeds
+	   leftFrontVic.Set(+0.5);
+	   leftBackVic.Set(+0.5);
+	   rightFrontVic.Set(-0.5);
+	   rightBackVic.Set(-0.5);
+	   */
 
   switch(state) {
   case DRIVE_DISTANCE:
