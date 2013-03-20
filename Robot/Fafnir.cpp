@@ -37,7 +37,7 @@ void Fafnir::AutonomousInit() {
 
 void Fafnir::AutonomousPeriodic() {
     autoController.update();
-    robot.update();
+    //robot.update();
 }
 
 void Fafnir::AutonomousDisabled() {
@@ -50,9 +50,10 @@ void Fafnir::TeleopInit() {
 }
 
 void Fafnir::TeleopPeriodic() {
-    humanController.update();
+	float speed;
+    humanController.update(speed);
     //printf("Teleop Periodic called\n");
-    robot.update();
+    robot.update(speed);
 }
 
 void Fafnir::TeleopDisabled() {

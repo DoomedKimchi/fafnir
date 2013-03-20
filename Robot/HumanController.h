@@ -29,7 +29,7 @@ class HumanController {
   AutonomousMode getAutonomousMode();
   HumanController(Robot *robot);
 
-  void update();
+  void update(float &speed);
 };
 
 #endif /* HUMAN_CONTROLLER_H */

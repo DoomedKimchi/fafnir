@@ -55,9 +55,9 @@ void Robot::setAccumulatorSpeed(float s){
 bool Robot::autoAccumulate(){
 }
 
-void Robot::update() {
+void Robot::update(float speed) {
   printf("setting drive speed to 0.5\n");
-  driveTrain.driveS(0.5);
+  driveTrain.driveS(speed);
   driveTrain.update(); //update has to be after setting the speed
   //accumulator.update();
   //shooter.update();
