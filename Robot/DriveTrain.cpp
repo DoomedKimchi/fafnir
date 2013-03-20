@@ -88,6 +88,7 @@ bool DriveTrain::driveD(double d) { // tolerence is currently .01
 bool DriveTrain::driveS(double s) {
   //set target speed
   targetSpeed = s;
+  //setSpeed(s);
   return true;
   // PID control may not actually be optimal for speed, we'll need to do real testing
   // acceleration NEEDS to be the output (90% sure)
@@ -152,6 +153,12 @@ float DriveTrain::getSpeed() {
 
 void DriveTrain::setSpeed(float s) {
   // make motors turn, -2^15 < s < 2^15
+    targetSpeed = s;  
+    printf("running motors at %f\n", s);
+    leftFrontVic.Set(targetSpeed);
+    leftBackVic.Set(targetSpeed);
+    rightFrontVic.Set(-targetSpeed);
+    rightBackVic.Set(-targetSpeed);
   state = DRIVE_SPEED;
 }
 
@@ -165,14 +172,13 @@ void DriveTrain::update() {
     }
   }
   
-	   printf("Gyro angle: %f\n", gyro.GetAngle());
+  //   printf("Gyro angle: %f\n", gyro.GetAngle());
 	   //rotateA(0);
-
   switch(state) {
   case DRIVE_DISTANCE:
     //distanceInput.PIDWrite((leftEnc.Get()+rightEnc.Get())/2);
     targetRotSpeed = rotOutput.PIDGet();
-	printf("targetRotSpeed is: %f\n", targetRotSpeed);
+    //	printf("targetRotSpeed is: %f\n", targetRotSpeed);
     targetSpeed = distanceOutput.PIDGet();
     if (targetRotSpeed > 0.01) {
       leftFrontVic.Set(targetRotSpeed);
@@ -188,6 +194,7 @@ void DriveTrain::update() {
     }
     break;
   case DRIVE_SPEED:
+      printf("running motors at %f\n", targetSpeed);
     leftFrontVic.Set(targetSpeed+targetRotSpeed);
     leftBackVic.Set(targetSpeed+targetRotSpeed);
     rightFrontVic.Set(targetSpeed-targetRotSpeed);

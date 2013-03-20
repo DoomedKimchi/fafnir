@@ -51,9 +51,9 @@
 #define PORT_PWM_2 0
 
 /* Joystick ports */
-#define PORT_JS_SPEED 0
-#define PORT_JS_TURN 0
-#define PORT_JS_OPERATOR 0
+#define PORT_JS_SPEED 1
+#define PORT_JS_TURN 2
+#define PORT_JS_OPERATOR 3
 
 /* Speed joystick button and axis IDs */
 #define JS_SPEED_TRIGGER 0

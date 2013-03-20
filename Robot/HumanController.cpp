@@ -20,9 +20,11 @@ void HumanController::update() {
   //high gear: 5 ft/sec – max speed (probably 16 ft/sec)
 
   /* begin drive forward/backward */
+    printf("joystick x: %f\t",  speedStick.GetX());
   robot->setSpeed(speedStick.GetX());
   /* end drive forward/backward */
-  
+  // printf("%f\n", speedStick.GetX());
+
   /* begin Gearshifter changing */
   if(turnStick.GetRawButton(JS_TURN_MODE_TOGGLE)) {
     if(!buttShifterMode) {
