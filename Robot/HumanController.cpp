@@ -12,7 +12,7 @@ AutonomousMode HumanController::getAutonomousMode() {
 }
 
 
-void HumanController::update() {
+void HumanController::update(float &speed) {
   //check current state of joysticks
   //calculate what to do based on joysticks and robot state (e.g. drive speed for certain gear)
   //gear ranges should look something like:

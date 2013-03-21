@@ -5,4 +5,5 @@
 # ignoring build outputs
 *.out
 *.o
+*.d
 *.gch
