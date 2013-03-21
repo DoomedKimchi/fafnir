@@ -5,6 +5,7 @@
 #include "Constants.h"
 #include <WPILib.h>
 #include "NumberPID.h"
+#include "LinearVictor.h"
 
 /*! \brief Controls the robot's movement
  *
@@ -27,10 +28,10 @@ private:
   //Encoder rightEnc;
   
   /* Speed controllers */
-  Victor leftFrontVic;
-  Victor leftBackVic;
-  Victor rightFrontVic;
-  Victor rightBackVic;
+  LinearVictor leftFrontVic;
+  LinearVictor leftBackVic;
+  LinearVictor rightFrontVic;
+  LinearVictor rightBackVic;
 
   /*! The robot's gyrometer */
   Gyro gyro;

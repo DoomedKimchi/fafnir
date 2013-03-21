@@ -58,6 +58,7 @@ class Robot {
   ShooterState getShooterState();
 
   void setSpeed(float s);
+  void rotateSpeed(float s);
 
   void setAccumulatorSpeed(float s);
 

@@ -174,45 +174,42 @@ void DriveTrain::update() {
   
   //   printf("Gyro angle: %f\n", gyro.GetAngle());
 	   //rotateA(0);
-<<<<<<< HEAD
-=======
 	   /* hardcoded rotate speeds
 	   leftFrontVic.Set(+0.5);
 	   leftBackVic.Set(+0.5);
 	   rightFrontVic.Set(-0.5);
 	   rightBackVic.Set(-0.5);
 	   */
-
->>>>>>> f016941504020ba8532568325c8d30171c7ec81a
-  switch(state) {
-  case DRIVE_DISTANCE:
+  printf("DriveTrain updating...\n");
+  //  switch(state) {
+  //case DRIVE_DISTANCE:
     //distanceInput.PIDWrite((leftEnc.Get()+rightEnc.Get())/2);
-    targetRotSpeed = rotOutput.PIDGet();
+  //   targetRotSpeed = rotOutput.PIDGet();
     //	printf("targetRotSpeed is: %f\n", targetRotSpeed);
-    targetSpeed = distanceOutput.PIDGet();
-    if (targetRotSpeed > 0.01) {
-      leftFrontVic.Set(targetRotSpeed);
-      leftBackVic.Set(targetRotSpeed);
-      rightFrontVic.Set(-targetRotSpeed);
-      rightBackVic.Set(-targetRotSpeed);
-    }
-    else {
-      leftFrontVic.Set(targetSpeed);
-      leftBackVic.Set(targetSpeed);
-      rightFrontVic.Set(targetSpeed);
-      rightBackVic.Set(targetSpeed);
-    }
-    break;
-  case DRIVE_SPEED:
+  //  targetSpeed = distanceOutput.PIDGet();
+  // if (targetRotSpeed > 0.01) {
+  //   leftFrontVic.Set(targetRotSpeed);
+  //   leftBackVic.Set(targetRotSpeed);
+  //   rightFrontVic.Set(-targetRotSpeed);
+  //  rightBackVic.Set(-targetRotSpeed);
+  // }
+  //else {
+  //  leftFrontVic.Set(targetSpeed);
+  //  leftBackVic.Set(targetSpeed);
+  //  rightFrontVic.Set(targetSpeed);
+  //  rightBackVic.Set(targetSpeed);
+  //}
+  //break;
+  //case DRIVE_SPEED:
       printf("running motors at %f\n", targetSpeed);
     leftFrontVic.Set(targetSpeed+targetRotSpeed);
     leftBackVic.Set(targetSpeed+targetRotSpeed);
-    rightFrontVic.Set(targetSpeed-targetRotSpeed);
-    rightBackVic.Set(targetSpeed-targetRotSpeed);
-    break;
-  default:
-    break;
-  }
+    rightFrontVic.Set(-(targetSpeed-targetRotSpeed));
+    rightBackVic.Set(-(targetSpeed-targetRotSpeed));
+    //break;
+    //default:
+   //break;
+    //}
   
   /* dist PID */
 
