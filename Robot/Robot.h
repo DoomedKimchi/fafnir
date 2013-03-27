@@ -64,7 +64,7 @@ class Robot {
 
   bool autoAccumulate();
 
-  void update(float speed);
+  void update();
 
   void shootVacated();
 
