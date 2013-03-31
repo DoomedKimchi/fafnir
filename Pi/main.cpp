@@ -61,55 +61,55 @@ int main(int argc, char **argv) {
 
   //int counter = 0; //counter for the while loop for debugging purposes
 
-  //while (!stop) {
-  //cout << "\n\ncounter: " << counter << endl;
-  // read next frame if any
-  //if (!capture.read(image))
-  //break;
+  while (!stop) {
+    //cout << "\n\ncounter: " << counter << endl;
+    // read next frame if any
+    if (!capture.read(image))
+      break;
 
-  // process image for edge finding
-  process_image(&config, image, image_processed);
-  // find edges
-  findContours(image_processed, contours, CV_RETR_LIST,
-	       CV_CHAIN_APPROX_SIMPLE);
-  // find rectangles from edges
-  find_rectangles(&config, contours, rectangles);
-  // find targets
-  find_targets(&config, rectangles, targets);
-  // draw rectangles
-  draw_targets(&config, rectangles, targets, image);
+    // process image for edge finding
+    process_image(&config, image, image_processed);
+    // find edges
+    findContours(image_processed, contours, CV_RETR_LIST,
+		 CV_CHAIN_APPROX_SIMPLE);
+    // find rectangles from edges
+    find_rectangles(&config, contours, rectangles);
+    // find targets
+    find_targets(&config, rectangles, targets);
+    // draw rectangles
+    draw_targets(&config, rectangles, targets, image);
 
-  cout << "Found " << contours.size() << " contours" << endl;
-  cout << "Found " << rectangles.size() << " rectangles" << endl;
-  cout << "Found " << targets.size() << " targets" << endl;
+    cout << "Found " << contours.size() << " contours" << endl;
+    cout << "Found " << rectangles.size() << " rectangles" << endl;
+    cout << "Found " << targets.size() << " targets" << endl;
 
-  for (size_t i = 0; i < targets.size(); i++) {
-    // process targets
-    process_target(&config, image.size(), targets[i], center, hangle,
-		   vangle, distance);
-    cout << "Target " << i << ":" << endl;
-    cout << "Center: (" << center.x << ", " << center.y << ")" << endl;
-    cout << "Distance: " << distance << " cm" << endl;
-    cout << "Horizontal angle: " << hangle << " degrees" << endl;
-    cout << "Vertical angle: " << vangle << " degrees" << endl;
+    for (size_t i = 0; i < targets.size(); i++) {
+      // process targets
+      process_target(&config, image.size(), targets[i], center, hangle,
+		     vangle, distance);
+      cout << "Target " << i << ":" << endl;
+      cout << "Center: (" << center.x << ", " << center.y << ")" << endl;
+      cout << "Distance: " << distance << " cm" << endl;
+      cout << "Horizontal angle: " << hangle << " degrees" << endl;
+      cout << "Vertical angle: " << vangle << " degrees" << endl;
+    }
+
+    // show the result
+    imshow("Detected Lines", image);
+
+    // save result to file
+    //imwrite("result.jpg", image);
+
+    contours.clear(); // clear these after each iteration of the while loop or else they will increase exponentially
+    rectangles.clear();
+    targets.clear();
+
+    //waitKey(0);
+    if (waitKey(delay) >= 0)
+      stop = true;
+
+    //counter++;
   }
-
-  // show the result
-  //imshow("Detected Lines", image);
-
-  // save result to file
-  imwrite("result.jpg", image);
-
-  contours.clear(); // clear these after each iteration of the while loop or else they will increase exponentially
-  rectangles.clear();
-  targets.clear();
-
-  //waitKey(0);
-  if (waitKey(delay) >= 0)
-    stop = true;
-
-  //counter++;
-  //}
 
   // Close the video file
   capture.release();
