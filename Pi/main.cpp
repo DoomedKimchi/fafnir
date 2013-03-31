@@ -64,8 +64,8 @@ int main(int argc, char **argv) {
   //while (!stop) {
   //cout << "\n\ncounter: " << counter << endl;
   // read next frame if any
-  if (!capture.read(image))
-    break;
+  //if (!capture.read(image))
+  //break;
 
   // process image for edge finding
   process_image(&config, image, image_processed);
