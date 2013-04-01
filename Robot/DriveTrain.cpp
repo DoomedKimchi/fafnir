@@ -24,7 +24,7 @@ DriveTrain::DriveTrain()
   ,  rotOutput()
   ,  rotationController(3.0f, 0.0f, -1.0f, &gyro, &rotOutput)
   {
-
+      printf("allocated left vics on ports %d,%d\n allocated rite vics on ports %d,%d\n", PORT_DRIVE_VIC_1, PORT_DRIVE_VIC_2, PORT_DRIVE_VIC_3, PORT_DRIVE_VIC_4);
   setShifterMode(AUTO);
   setShifterPosition(LOW_GEAR);
   //leftEnc.SetDistancePerPulse(DRIVE_ENC_FEET_PER_PULSE);
@@ -180,13 +180,13 @@ void DriveTrain::update() {
 	   rightFrontVic.Set(-0.5);
 	   rightBackVic.Set(-0.5);
 	   */
-  printf("DriveTrain updating...\n");
+  //printf("DriveTrain updating...\n");
   //  switch(state) {
   //case DRIVE_DISTANCE:
     //distanceInput.PIDWrite((leftEnc.Get()+rightEnc.Get())/2);
   //   targetRotSpeed = rotOutput.PIDGet();
     //	printf("targetRotSpeed is: %f\n", targetRotSpeed);
-<<<<<<< HEAD
+
   //  targetSpeed = distanceOutput.PIDGet();
   // if (targetRotSpeed > 0.01) {
   //   leftFrontVic.Set(targetRotSpeed);
@@ -202,11 +202,11 @@ void DriveTrain::update() {
   //}
   //break;
   //case DRIVE_SPEED:
-      printf("running motors at %f\n", targetSpeed);
-    leftFrontVic.Set(targetSpeed+targetRotSpeed);
-    leftBackVic.Set(targetSpeed+targetRotSpeed);
-    rightFrontVic.Set(-(targetSpeed-targetRotSpeed));
-    rightBackVic.Set(-(targetSpeed-targetRotSpeed));
+  //printf("running motors at %f\n", targetSpeed);
+      leftFrontVic.Set(-(targetSpeed-targetRotSpeed));
+    leftBackVic.Set(-(targetSpeed-targetRotSpeed));
+    rightFrontVic.Set(targetSpeed+targetRotSpeed);
+    rightBackVic.Set(targetSpeed+targetRotSpeed);
     //break;
     //default:
    //break;

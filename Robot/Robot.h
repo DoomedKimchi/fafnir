@@ -22,13 +22,14 @@ class Robot {
   /*! The accumulator of the robot */
   //Accumulator accumulator;
   /*! The shooter of the robot */
-  //Shooter shooter;
+  Shooter shooter;
 
   /*! The robot's camera */
   //AxisCamera &camera;
   /*! The robot's compressor */
-  //Compressor compressor;
+  Compressor compressor;
 
+  //Relay compressorRelay;
   /*! Whether the robot is aimed at its target */
   bool isAimed;
   
@@ -60,11 +61,15 @@ class Robot {
   void setSpeed(float s);
   void rotateSpeed(float s);
 
+  void startCompressor();
+
+  void elevationSpeed(float);
+
   void setAccumulatorSpeed(float s);
 
   bool autoAccumulate();
 
-  void update(float speed);
+  void update();
 
   void shootVacated();
 

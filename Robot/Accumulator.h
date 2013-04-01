@@ -20,7 +20,12 @@ class Accumulator {
   //beam sensor for frisbee?
   LimitSwitch frisbeeSwitch;
   Servo servo;
-  
+
+  bool accumulating;
+
+  bool shooting;
+
+ public:  
   /*!\brief Start the motor
    * \pre The motor is not running
    * \return Whether the motor has been started */
@@ -31,15 +36,9 @@ class Accumulator {
    * \return Whether the motor has been stopped */
   bool kill();
 
-  /*! \brief Checks if there is a frisbee
-   * \return Whether there is a frisbee to be picked up */
-  bool checkForFrisbee();
-
- public:
-  /*! \brief Automatically checks for and picks up frisbees
-   * \return whether a frisbee was picked up */
+  
   bool autoAccumulate();
-
+  
   /*! \brief The method that is continually called by Robot
    * \param accumulate Whether autoAccumulate() should be called
    * \return Whether update succeeded */

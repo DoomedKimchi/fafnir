@@ -1,13 +1,19 @@
 #include "Robot.h"
 
 Robot::Robot() 
-    /*:*/  /*camera (AxisCamera::GetInstance()) 
-	 ,  *//*compressor(PORT_PRESSURE_CUTOFF, PORT_COMPRESSOR_SPIKE)*/ {
-  //compressor.Start();
+    :   
+/*camera (AxisCamera::GetInstance()) 
+	 ,  */compressor(PORT_PRESSURE_CUTOFF, PORT_COMPRESSOR_SPIKE) {
+    printf("allocated compressor relay port on spike %d\n and cutoff at %d\n", PORT_COMPRESSOR_SPIKE, PORT_PRESSURE_CUTOFF);
 }
 
 void Robot::aim(float yaw, float elevation) {
 
+}
+
+void Robot::startCompressor() {
+    compressor.Start();
+    printf("compressor started\n");
 }
 
 void Robot::aim() {
@@ -15,9 +21,13 @@ void Robot::aim() {
 }
 
 void Robot::shoot() {
-  //shooter.shoot();
+  shooter.shoot();
   //accumulator.shootVacated();
 
+}
+
+void Robot::elevationSpeed(float s) {
+    shooter.elevationSpeed(s);
 }
 
 void Robot::climb() {
@@ -65,7 +75,7 @@ void Robot::update() {
     //driveTrain.driveS(0.5);
   driveTrain.update(); //update has to be after setting the speed
   //accumulator.update();
-  //shooter.update();
+  shooter.update();
 }
 
 void Robot::shootVacated() {

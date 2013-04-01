@@ -17,7 +17,8 @@
 /* Solenoid shooter ports */
 #define PORT_SHOOTER_SOL_1 0
 #define PORT_SHOOTER_SOL_2 0
-#define PORT_SHOOTER_SOL_SHOOT 0
+#define PORT_SHOOTER_SOL_SHOOT 2
+#define PORT_SHOOTER_SOL_REC 1
 
 #define PORT_ACC_SWITCH 0
 
@@ -41,10 +42,10 @@
 #define PORT_DRIVE_GYRO 1
 
 /* Drive train Victor ports */
-#define PORT_DRIVE_VIC_1 7
+#define PORT_DRIVE_VIC_1 5
 #define PORT_DRIVE_VIC_2 10
-#define PORT_DRIVE_VIC_3 8
-#define PORT_DRIVE_VIC_4 9
+#define PORT_DRIVE_VIC_3 2
+#define PORT_DRIVE_VIC_4 1
 
 /* Motor ports */
 #define PORT_PWM_1 0
@@ -112,10 +113,10 @@
 #define SHIFT_CUTOFF_DOWN 4.5
 
 /* Compressor spike port */
-#define PORT_COMPRESSOR_SPIKE 1
+#define PORT_COMPRESSOR_SPIKE 3
 
 /* Pressure cutoff port */
-#define PORT_PRESSURE_CUTOFF 2
+#define PORT_PRESSURE_CUTOFF 3
 
 /* Shooter encoder ports */
 #define PORT_SHOOTER_ENC_1_A 0
@@ -125,15 +126,15 @@
 #define PORT_SHOOTER_ENC_2_B 0
 
 /* Shooter victor ports */
-#define PORT_SHOOTER_VIC_1 0
-#define PORT_SHOOTER_VIC_2 0
-#define PORT_SHOOTER_VIC_3 0
-#define PORT_SHOOTER_VIC_ELEVATION 0
+#define PORT_SHOOTER_VIC_1 4
+#define PORT_SHOOTER_VIC_2 9
+#define PORT_SHOOTER_VIC_ELEVATION 8
 
 /* Shooter timing constants */
-#define SHOOT_PRIMING_WAIT 0.0
-#define SHOOT_SHOOTING_WAIT 0.0
-#define SHOOT_RECOVERING_WAIT 0.0
+#define SHOOT_PRIMING_WAIT 5.0
+#define SHOOT_SHOOTING_WAIT 5.0
+#define SHOOT_RECOVERING_WAIT 5.0
+#define SHOOT_SPINUP_WAIT 5.0
 
 /* Shooter minimum speed to shoot */
 #define SHOOT_SPEED 0.0

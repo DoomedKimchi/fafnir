@@ -4,6 +4,7 @@ HumanController::HumanController(Robot *robot)
   :    speedStick(PORT_JS_SPEED)
   ,    turnStick(PORT_JS_TURN)
   ,    operatorStick(PORT_JS_OPERATOR) {
+    shooting = false;
   this->robot = robot;
 }
 
@@ -12,7 +13,7 @@ AutonomousMode HumanController::getAutonomousMode() {
 }
 
 
-void HumanController::update(float &speed) {
+void HumanController::update() {
   //check current state of joysticks
   //calculate what to do based on joysticks and robot state (e.g. drive speed for certain gear)
   //gear ranges should look something like:
@@ -20,13 +21,13 @@ void HumanController::update(float &speed) {
   //high gear: 5 ft/sec – max speed (probably 16 ft/sec)
 
   /* begin drive forward/backward */
-    printf("joystick y: %f\t",  speedStick.GetY());
-    printf("joystick x: %f\n",  turnStick.GetX());
+    //    printf("joystick y: %f\t",  speedStick.GetY());
+    //printf("joystick x: %f\n",  turnStick.GetX());
   robot->setSpeed(speedStick.GetY());
   robot->rotateSpeed(turnStick.GetX());
   /* end drive forward/backward */
   // printf("%f\n", speedStick.GetX());
-
+  robot->elevationSpeed(operatorStick.GetY());
   /* begin Gearshifter changing */
   if(turnStick.GetRawButton(JS_TURN_MODE_TOGGLE)) {
     if(!buttShifterMode) {
@@ -48,7 +49,8 @@ void HumanController::update(float &speed) {
   /* end Gearshifter changing */
 
   /* begin operator commands */
-  if(operatorStick.GetRawButton(JS_OPERATOR_TRIGGER) && !shooting) {
+  if(operatorStick.GetRawButton(JS_OPERATOR_TRIGGER)) {
+      printf("lets shoot a frisbee!\n");
     robot->shoot();
   }
   shooting = operatorStick.GetRawButton(JS_OPERATOR_TRIGGER);

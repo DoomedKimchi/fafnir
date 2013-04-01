@@ -45,15 +45,17 @@ void Fafnir::AutonomousDisabled() {
 }
 
 void Fafnir::TeleopInit() {
+    robot.startCompressor();
     //driveStation(&robot);
+    robot.shoot();
 	//robot.setSpeed(0.5);
 }
 
 void Fafnir::TeleopPeriodic() {
 	float speed;
-    humanController.update(speed);
+    humanController.update();
     //printf("Teleop Periodic called\n");
-    robot.update(speed);
+    robot.update();
 }
 
 void Fafnir::TeleopDisabled() {
