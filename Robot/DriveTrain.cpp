@@ -186,7 +186,6 @@ void DriveTrain::update() {
     //distanceInput.PIDWrite((leftEnc.Get()+rightEnc.Get())/2);
   //   targetRotSpeed = rotOutput.PIDGet();
     //	printf("targetRotSpeed is: %f\n", targetRotSpeed);
-
   //  targetSpeed = distanceOutput.PIDGet();
   // if (targetRotSpeed > 0.01) {
   //   leftFrontVic.Set(targetRotSpeed);
