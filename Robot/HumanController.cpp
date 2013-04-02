@@ -48,14 +48,15 @@ void HumanController::update() {
   buttShifterMode = turnStick.GetRawButton(JS_TURN_MODE_TOGGLE);
   /* end Gearshifter changing */
 
+  printf("Trigger state: %d\n", operatorStick.GetTrigger());
   /* begin operator commands */
-  if(operatorStick.GetRawButton(JS_OPERATOR_TRIGGER)) {
-      printf("lets shoot a frisbee!\n");
+  if(operatorStick.GetTrigger()) {
+    printf("Trigger depressed; let's shoot a frisbee!\n");
     robot->shoot();
   }
-  shooting = operatorStick.GetRawButton(JS_OPERATOR_TRIGGER);
+  shooting = operatorStick.GetTrigger();
   
-  gain = operatorStick.GetRawAxis(JS_OPERATOR_GAIN);
+  gain = operatorStick.GetTrigger();
 
   
   /* end operator commands */ 

@@ -2,8 +2,16 @@
 \#*
 *~
 
+# ignoring vim files
+*.swp
+
 # ignoring build outputs
 *.out
 *.o
 *.d
 *.gch
+
+# Eclipse files
+.project
+.cproject
+.metadata/

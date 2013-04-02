@@ -1,0 +1,13 @@
+# Build outputs
+PPC603gnu/
+Program/
+
+# UCPP config
+.ucpp
+.wrmakefile
+
+# Eclipse files
+.cproject
+.project
+.metadata/
+.settings/

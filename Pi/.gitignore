@@ -1,0 +1,10 @@
+# Video file
+VID_20130217_220558.mp4
+
+# Build outputs
+main
+
+# Eclipse files
+.cproject
+.metadata/
+.project

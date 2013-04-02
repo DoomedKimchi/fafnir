@@ -1,12 +1,14 @@
-#include "WPILib.h"
+#include <WPILib.h>
 #include "Robot.h"
 #include "AutonomousController.h"
 #include "HumanController.h"
+#include "JoystickTest.h"
 
 class Fafnir : public IterativeRobot {
 private:
     HumanController humanController;
     AutonomousController autoController;
+    JoystickTest joystickTest;
     Robot robot;
     AutonomousMode mode;
 public:
@@ -26,6 +28,7 @@ public:
 
 Fafnir::Fafnir() 
     :    humanController(&robot) 
+	,	 joystickTest(&robot)
     ,    autoController(&robot, mode)
     ,    robot() {
 
@@ -47,12 +50,13 @@ void Fafnir::AutonomousDisabled() {
 void Fafnir::TeleopInit() {
     robot.startCompressor();
     //driveStation(&robot);
-    robot.shoot();
+    //robot.shoot(); //Commented because we don't want the robot to shoot before the trigger is pressed
 	//robot.setSpeed(0.5);
 }
 
 void Fafnir::TeleopPeriodic() {
 	float speed;
+	//joystickTest.update(); //uncomment this line to test joysticks
     humanController.update();
     //printf("Teleop Periodic called\n");
     robot.update();

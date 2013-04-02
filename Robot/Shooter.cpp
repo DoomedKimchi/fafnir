@@ -13,6 +13,7 @@ Shooter::Shooter()
 	 //,    elevationController(3.0f, 0.0f, -1.0f, &elevationError, &outputFiller) { // 3,0,-1 are pid constants
 {
     state = LOADED;
+    shootRequested = 0;
     //setElevation(30.0); // constructor that will set the elevation as 30 (default)
 
     //elevationEncoder.SetDistancePerPulse(SHOOTER_DEG_PER_PULSE);
@@ -42,13 +43,32 @@ void Shooter::setSpinSpeed(float sp) {
 
 void Shooter::shoot() {
     shootRequested = 1;
+    printf("A shot has been requested by the operator\n");
     //    state = SHOOTING;
 }
 
 void Shooter::update() {
     //setSpinSpeed(1.0);
     motorElevation.Set(elevSpeed);
-    switch(state) {
+
+    setSpinSpeed(0.0);
+    	if (shootRequested) {
+    	    //setSpinSpeed(1.0); // is 100 a reasonable value?
+    	    // push frisbee into shooter
+    		printf("Shots requested: %d\n", shootRequested);
+    	    //printf("shoot requested... spinning up\n");
+    	    //sol1.Set(true);
+    	    //sol2.Set(true);
+    	    //shootTimer.Start();
+    	    shootRequested = 0;
+    	    shootTimer.Start();
+    	    solShoot.Set(false);
+    	    solRecover.Set(true);
+    	    setSpinSpeed(0.5);
+    	    state = PRIMED;
+    	}
+
+    /*switch(state) {
     case LOADED:
 	setSpinSpeed(0.0);
 	if (shootRequested) {
@@ -70,8 +90,8 @@ void Shooter::update() {
 	break;
     case AIMING:
 	//	elevationError.PIDWrite(elevationEncoder.GetDistance() - elevationTarget);
-	/* note that just because we updated the error doesn't mean the output
-	   changed b/c the PID loop updates in its own loop */
+	// note that just because we updated the error doesn't mean the output
+	// changed b/c the PID loop updates in its own loop 
 	//motorPower = elevationController.Get();
 	//motorElevation.Set(motorPower); //not sure what the write set pwoer method is
 	break;
@@ -111,7 +131,7 @@ void Shooter::update() {
 	break;
     default:
 	break;	
-    }
+    }*/
 }
 
 ShooterState Shooter::getState() {

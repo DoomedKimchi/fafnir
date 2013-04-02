@@ -89,7 +89,7 @@
 #define JS_TURN_Z 2
 
 /* Operator joystick button and axis IDs */
-#define JS_OPERATOR_TRIGGER 0
+#define JS_OPERATOR_TRIGGER 0 //This is now obsolete because we are using GetTrigger instead of GetRawButton
 #define JS_OPERATOR_2 1
 #define JS_OPERATOR_3 2
 #define JS_OPERATOR_4 3
@@ -126,8 +126,15 @@
 #define PORT_SHOOTER_ENC_2_B 0
 
 /* Shooter victor ports */
-#define PORT_SHOOTER_VIC_1 4
-#define PORT_SHOOTER_VIC_2 9
+/* There are only 4 speed controllers
+ * on the testing robot, so I re-used
+ * the left-side victors from the
+ * Drive Train.
+ */
+//#define PORT_SHOOTER_VIC_1 4
+#define PORT_SHOOTER_VIC_1 5
+//#define PORT_SHOOTER_VIC_2 9
+#define PORT_SHOOTER_VIC_2 10
 #define PORT_SHOOTER_VIC_ELEVATION 8
 
 /* Shooter timing constants */
