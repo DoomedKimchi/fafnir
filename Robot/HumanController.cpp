@@ -27,7 +27,7 @@ void HumanController::update() {
   robot->rotateSpeed(turnStick.GetX());
   /* end drive forward/backward */
   // printf("%f\n", speedStick.GetX());
-  robot->elevationSpeed(operatorStick.GetY());
+  //robot->elevationSpeed(operatorStick.GetY());
   /* begin Gearshifter changing */
   if(turnStick.GetRawButton(JS_TURN_MODE_TOGGLE)) {
     if(!buttShifterMode) {
@@ -63,7 +63,7 @@ void HumanController::update() {
   
   /* end operator commands */ 
 
-  // Dumper
+  // Dumper: currently set to use the Y axis on the operator stick (aka stick #3)
   //printf("opstick y: %f\n", operatorStick.GetY());
   robot->dump(operatorStick.GetY());
 }

@@ -80,7 +80,7 @@ bool DriveTrain::driveD(double d) { // tolerence is currently .01
   //leftEnc.Start();
   //rightEnc.Reset();
   //rightEnc.Start();
-  distanceController.SetSetpoint(d);
+  //distanceController.SetSetpoint(d);
   state = DRIVE_DISTANCE;
   return false;
 }
