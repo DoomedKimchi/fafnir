@@ -149,7 +149,8 @@
 #define SHOOT_SPEED 0.0
 
 // Dumper victor port
-// I'm using all 4 victors temporarily because I don't know the port numbers corresponding to each victor
+// I'm using all 4 victors temporarily because I don't know the port numbers corresponding to each victor on the practice bot
+// Set unused vics to 0 later
 #define PORT_DUMPER_VIC_1 1
 #define PORT_DUMPER_VIC_2 2
 #define PORT_DUMPER_VIC_3 5

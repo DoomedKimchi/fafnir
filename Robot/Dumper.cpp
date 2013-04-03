@@ -24,12 +24,29 @@ void Dumper::dump(float s) {
 	 */
 }
 
+void Dumper::autoDump(float s, double t) {
+	printf("Automatically dumping\n");
+	// Note that the variables "s" and "t" have to be calibrated to the correct values.
+	s = 0.2; // temporarily hard-coded, remove when defined elsewhere
+	t = 2;  // temporarily hard-coded, remove when defined elsewhere
+
+	dump(s); // start dump
+  Wait(t); // pause execution of method (the motors keep turning)
+  dump(0); // stop dump
+  Wait(1); // wait for a second
+  dump(-s); // return dumper to original position
+  Wait(t);
+  dump(0);
+
+	printf("Dump complete\n");
+}
+
 void Dumper::rotateS() {
 
 }
 
 void Dumper::update() {
-	// Hardcoded values for testing
+	// Hardcoded values for testing, remove/comment out once they work
 	motor1.Set(0.5);
 	motor2.Set(0.5);
 	motor3.Set(0.5);
