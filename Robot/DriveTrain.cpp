@@ -201,11 +201,15 @@ void DriveTrain::update() {
   //}
   //break;
   //case DRIVE_SPEED:
-  //printf("running motors at %f\n", targetSpeed);
-      leftFrontVic.Set(-(targetSpeed-targetRotSpeed));
+  if(1) {
+    printf("targetSpeed: %f\n", targetSpeed);
+    printf("targetRotSpeed: %f\n", targetRotSpeed);
+    leftFrontVic.Set(-(targetSpeed-targetRotSpeed));
     leftBackVic.Set(-(targetSpeed-targetRotSpeed));
     rightFrontVic.Set(targetSpeed+targetRotSpeed);
     rightBackVic.Set(targetSpeed+targetRotSpeed);
+  }
+
     //break;
     //default:
    //break;

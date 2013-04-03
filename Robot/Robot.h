@@ -7,6 +7,7 @@
 #include "DriverStation.h"
 #include "Shooter.h"
 #include "DriveTrain.h"
+#include "Dumper.h"
 
 /*! \brief controls all the robot's functions
  *
@@ -23,6 +24,9 @@ class Robot {
   //Accumulator accumulator;
   /*! The shooter of the robot */
   Shooter shooter;
+
+  /*! The dumper of the robot */
+  Dumper dumper;
 
   /*! The robot's camera */
   //AxisCamera &camera;
@@ -41,6 +45,9 @@ class Robot {
   void accumulate();
   /*! \brief Fires a frisbee in the current direction of the robot */
   void shoot();
+
+  void dump(float s);
+
   /*! \brief Aims at a certain point
    * \param yaw The yaw to aim at
    * \param pitch The pitch to aim at */

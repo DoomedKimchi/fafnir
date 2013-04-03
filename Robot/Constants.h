@@ -17,8 +17,10 @@
 /* Solenoid shooter ports */
 #define PORT_SHOOTER_SOL_1 0
 #define PORT_SHOOTER_SOL_2 0
-#define PORT_SHOOTER_SOL_SHOOT 2
-#define PORT_SHOOTER_SOL_REC 1
+//#define PORT_SHOOTER_SOL_SHOOT 2
+#define PORT_SHOOTER_SOL_SHOOT 0
+//#define PORT_SHOOTER_SOL_REC 1
+#define PORT_SHOOTER_SOL_REC 0
 
 #define PORT_ACC_SWITCH 0
 
@@ -145,6 +147,13 @@
 
 /* Shooter minimum speed to shoot */
 #define SHOOT_SPEED 0.0
+
+// Dumper victor port
+// I'm using all 4 victors temporarily because I don't know the port numbers corresponding to each victor
+#define PORT_DUMPER_VIC_1 1
+#define PORT_DUMPER_VIC_2 2
+#define PORT_DUMPER_VIC_3 5
+#define PORT_DUMPER_VIC_4 10
 
 /* Types of gear modes for the drive train */
 enum ShifterMode { MANUAL, AUTO };

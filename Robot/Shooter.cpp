@@ -37,6 +37,7 @@ void Shooter::setElevation(float f) {
 } 
 
 void Shooter::setSpinSpeed(float sp) {
+  printf("SpinSpeed set to: %f", sp);
   motor1.Set(sp);
   motor2.Set(sp);
 }
@@ -44,6 +45,9 @@ void Shooter::setSpinSpeed(float sp) {
 void Shooter::shoot() {
     shootRequested = 1;
     printf("A shot has been requested by the operator\n");
+    //float sp = 0.2;
+    //motor1.Set(sp);
+    //motor2.Set(sp);
     //    state = SHOOTING;
 }
 
@@ -64,7 +68,7 @@ void Shooter::update() {
     	    shootTimer.Start();
     	    solShoot.Set(false);
     	    solRecover.Set(true);
-    	    setSpinSpeed(0.5);
+    	    setSpinSpeed(0.2);
     	    state = PRIMED;
     	}
 

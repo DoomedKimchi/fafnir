@@ -23,7 +23,10 @@ void Robot::aim() {
 void Robot::shoot() {
   shooter.shoot();
   //accumulator.shootVacated();
+}
 
+void Robot::dump(float s) {
+	dumper.dump(s);
 }
 
 void Robot::elevationSpeed(float s) {
@@ -71,11 +74,12 @@ bool Robot::autoAccumulate(){
 }
 
 void Robot::update() {
-    //printf("setting drive speed to 0.5\n");
-    //driveTrain.driveS(0.5);
-  driveTrain.update(); //update has to be after setting the speed
+  //printf("setting drive speed to 0.5\n");
+  //driveTrain.driveS(0.5);
+  //driveTrain.update(); //update has to be after setting the speed
   //accumulator.update();
-  shooter.update();
+  //shooter.update();
+  dumper.update();
 }
 
 void Robot::shootVacated() {
