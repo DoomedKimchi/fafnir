@@ -4,6 +4,7 @@
 
 # ignoring vim files
 *.swp
+*.swo
 
 # ignoring build outputs
 *.out
