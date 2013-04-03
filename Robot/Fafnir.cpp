@@ -55,8 +55,7 @@ void Fafnir::TeleopInit() {
 }
 
 void Fafnir::TeleopPeriodic() {
-	float speed;
-	//joystickTest.update(); //uncomment this line to test joysticks
+	//float speed;
     humanController.update();
     //printf("Teleop Periodic called\n");
     robot.update();
@@ -71,7 +70,7 @@ void Fafnir::TestInit() {
 }
 
 void Fafnir::TestPeriodic() {
-    
+	joystickTest.update(); //uncomment this line to test joysticks
 }
 
 void Fafnir::TestDisabled() {
