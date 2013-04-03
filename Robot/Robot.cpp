@@ -29,6 +29,13 @@ void Robot::dump(float s) {
 	dumper.dump(s);
 }
 
+void Robot::autoDump() {
+	float s;
+	double t;
+	// these should probably be passed as constant references to save memory
+	dumper.autoDump(s, t);
+}
+
 void Robot::elevationSpeed(float s) {
     shooter.elevationSpeed(s);
 }

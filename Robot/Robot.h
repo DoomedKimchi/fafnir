@@ -48,6 +48,8 @@ class Robot {
 
   void dump(float s);
 
+  void autoDump();
+
   /*! \brief Aims at a certain point
    * \param yaw The yaw to aim at
    * \param pitch The pitch to aim at */

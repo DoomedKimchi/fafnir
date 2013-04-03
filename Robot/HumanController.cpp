@@ -51,8 +51,10 @@ void HumanController::update() {
   //printf("Trigger state: %d\n", operatorStick.GetTrigger());
   /* begin operator commands */
   if(operatorStick.GetTrigger()) {
-    printf("Trigger depressed; let's shoot a frisbee!\n");
-    robot->shoot();
+    //printf("Trigger depressed; let's shoot a frisbee!\n");
+    printf("Trigger depressed; let's dump a frisbee!\n");
+    //robot->shoot();
+    robot->autoDump();
   }
   shooting = operatorStick.GetTrigger();
   
