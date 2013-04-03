@@ -12,18 +12,18 @@ AutonomousController::~AutonomousController() {
 }
 
 bool AutonomousController::fire() {
-  fafnir->aim();
-  fafnir->shoot();
+  robot->aim();
+  robot->shoot();
 
   return true;
 }
 
 void AutonomousController::runDefault() {
-  robot.aim();
+  robot->aim();
 
-  fafnir->shoot();
-  fafnir->shoot();
-  fafnir->shoot();
+  robot->shoot();
+  robot->shoot();
+  robot->shoot();
 }
 
 void AutonomousController::update() {
