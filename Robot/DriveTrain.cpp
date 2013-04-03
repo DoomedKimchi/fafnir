@@ -202,8 +202,8 @@ void DriveTrain::update() {
   //break;
   //case DRIVE_SPEED:
   if(1) {
-    printf("targetSpeed: %f\n", targetSpeed);
-    printf("targetRotSpeed: %f\n", targetRotSpeed);
+    //printf("targetSpeed: %f\n", targetSpeed);
+    //printf("targetRotSpeed: %f\n", targetRotSpeed);
     leftFrontVic.Set(-(targetSpeed-targetRotSpeed));
     leftBackVic.Set(-(targetSpeed-targetRotSpeed));
     rightFrontVic.Set(targetSpeed+targetRotSpeed);

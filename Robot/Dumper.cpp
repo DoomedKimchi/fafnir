@@ -27,28 +27,25 @@ void Dumper::dump(float s) {
 	 */
 }
 
-void Dumper::autoDump(float s, double t) {
+void Dumper::autoDump() {
 	printf("\nAutomatically dumping\n");
 	// Note that the variables "s" and "t" have to be calibrated to the correct values.
-	s = DUMP_SPEED;
-	t = DUMP_TIME;
 
 	//printf("stopping motor\n");
   //dump(0); // stop motor first
 	//printf("waiting for 1 seconds\n");
   //Wait(1); // wait for a second
 	printf("start dump\n");
-	dump(s); // start dump
-	printf("waiting for %f seconds\n", t);
-  Wait(t); // pause execution of method (the motors keep turning)
+	dump(DUMP_SPEED); // start dump
+	//printf("waiting for %f seconds\n", DUMP_TIME);
+  Wait(DUMP_TIME); // pause execution of method (the motors keep turning)
 	dump(0);
 	Wait(DUMP_PAUSE_TIME);
-	s = UNDUMP_SPEED;
-	t = UNDUMP_TIME;
+
 	printf("move dumper back\n");
-  dump(-s); // return dumper to original position
-	printf("waiting for %f seconds\n", t);
-  Wait(t);
+  dump(-UNDUMP_SPEED); // return dumper to original position
+	//printf("waiting for %f seconds\n", UNDUMP_TIME);
+  Wait(UNDUMP_TIME);
 	printf("stopping motor\n");
   dump(0);
 

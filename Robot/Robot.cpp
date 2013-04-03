@@ -30,10 +30,7 @@ void Robot::dump(float s) {
 }
 
 void Robot::autoDump() {
-	float s;
-	double t;
-	// these should probably be passed as constant references to save memory
-	dumper.autoDump(s, t);
+	dumper.autoDump();
 }
 
 void Robot::elevationSpeed(float s) {

@@ -16,7 +16,7 @@ class Dumper {
 	public:
 		Dumper();
 		void dump(float s);
-		void autoDump(float s, double t);
+		void autoDump();
 		void rotateS();
 		void update();
 };
