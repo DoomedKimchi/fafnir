@@ -1,9 +1,9 @@
 #ifndef DRIVE_TRAIN_H
 #define DRIVE_TRAIN_H
 
+#include <WPILib.h>
 #include <complex>
 #include "Constants.h"
-#include <WPILib.h>
 #include "NumberPID.h"
 #include "LinearVictor.h"
 

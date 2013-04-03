@@ -163,7 +163,7 @@ void DriveTrain::setSpeed(float s) {
 }
 
 void DriveTrain::update() {
-  if(mode == AUTO) {
+  if (mode == AUTO) {
     if (getSpeed() > GEAR_UPSHIFT_CUTOFF) {
       engageHigh();
     }

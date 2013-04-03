@@ -32,7 +32,7 @@
 /* Accumulator Servo Port */
 #define PORT_ACC_SERVO 0
 
-/* Encoder drive pots */
+/* Encoder drive ports */
 #define PORT_DRIVE_ENC_1_A 0
 #define PORT_DRIVE_ENC_1_B 0
 #define PORT_DRIVE_ENC_2_A 0

@@ -21,8 +21,8 @@ void HumanController::update() {
   //high gear: 5 ft/sec – max speed (probably 16 ft/sec)
 
   /* begin drive forward/backward */
-    //    printf("joystick y: %f\t",  speedStick.GetY());
-    //printf("joystick x: %f\n",  turnStick.GetX());
+  //printf("joystick y: %f\t",  speedStick.GetY());
+  //printf("joystick x: %f\n",  turnStick.GetX());
   robot->setSpeed(speedStick.GetY());
   robot->rotateSpeed(turnStick.GetX());
   /* end drive forward/backward */
