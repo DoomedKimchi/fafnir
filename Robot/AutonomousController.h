@@ -19,6 +19,8 @@ class AutonomousController {
   void driveLeft();
   void rotateRight();
   void rotateLeft();
+  
+  Timer timer;
 
 
   /*! \brief Tells the robot to fire
