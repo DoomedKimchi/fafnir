@@ -13,7 +13,9 @@ AutonomousController::~AutonomousController() {
 }
 
 void AutonomousController::driveStraight() {
-  robot->setSpeed(0.5);
+  printf("Driving straight\n");
+  robot->setSpeed(-0.7);
+  robot->rotateSpeed(0.0);
   Wait(1);
 }
 
@@ -58,6 +60,7 @@ void AutonomousController::driveBlindly() {
 }
 
 void AutonomousController::update() {
+	targetAligned = 1;
   if(targetAligned)
     driveStraight();
   //Wait(1);

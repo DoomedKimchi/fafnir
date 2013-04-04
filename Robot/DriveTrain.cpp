@@ -204,6 +204,7 @@ void DriveTrain::update() {
   if(1) {
     //printf("targetSpeed: %f\n", targetSpeed);
     //printf("targetRotSpeed: %f\n", targetRotSpeed);
+	//printf("Setting victors to %f\n", (targetSpeed-targetRotSpeed));
     leftFrontVic.Set(-(targetSpeed-targetRotSpeed));
     leftBackVic.Set(-(targetSpeed-targetRotSpeed));
     rightFrontVic.Set(targetSpeed+targetRotSpeed);
