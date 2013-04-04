@@ -26,8 +26,12 @@ class AutonomousController {
   bool fire();
   void dump();
 
+  bool targetAligned;
+  bool targetReached;
+
  public:
   void runDefault();
+  void driveBlindly();
   void update();
   /*! \brief Constructs an autonomous controller with a pointer to fafnir
    * \param *fafnir A pointer to the Robot */

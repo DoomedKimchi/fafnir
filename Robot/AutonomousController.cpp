@@ -4,7 +4,8 @@
 AutonomousController::AutonomousController(Robot *robot, AutonomousMode m) {
   this->robot = robot;
   mode = m;
-
+  targetAligned = 0;
+  targetReached = 0;
 }
 
 AutonomousController::~AutonomousController() {
@@ -12,23 +13,28 @@ AutonomousController::~AutonomousController() {
 }
 
 void AutonomousController::driveStraight() {
-
+  robot->setSpeed(0.5);
+  Wait(1);
 }
 
 void AutonomousController::driveRight() {
-
+  robot->rotateSpeed(0.2);
+  Wait(1);
 }
 
 void AutonomousController::driveLeft() {
-
+  robot->rotateSpeed(-0.2);
+  Wait(1);
 }
 
 void AutonomousController::rotateRight() {
-
+  robot->rotateSpeed(0.5);
+  Wait(1);
 }
 
 void AutonomousController::rotateLeft() {
-
+  robot->rotateSpeed(-0.5);
+  Wait(1);
 }
 
 bool AutonomousController::fire() {
@@ -43,13 +49,18 @@ void AutonomousController::dump() {
 }
 
 void AutonomousController::runDefault() {
-  robot->aim();
 
-  robot->shoot();
-  robot->shoot();
-  robot->shoot();
+}
+
+void AutonomousController::driveBlindly() {
+	driveStraight();
+	dump();
 }
 
 void AutonomousController::update() {
-
+  if(targetAligned)
+    driveStraight();
+  //Wait(1);
+  if (targetReached)
+    dump();
 }
