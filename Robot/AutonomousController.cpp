@@ -68,7 +68,7 @@ void AutonomousController::update() {
   //Wait(1);
   if (targetReached)
     dump(); */
-  printf("%ul", timer.Get());
+  printf("%lu", timer.Get());
   if (timer.Get() < 1000000) {
      robot->setSpeed(-0.8);
   }
