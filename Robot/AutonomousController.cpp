@@ -60,10 +60,11 @@ void AutonomousController::driveBlindly() {
 }
 
 void AutonomousController::update() {
-	targetAligned = 1;
+/*	targetAligned = 1;
   if(targetAligned)
     driveStraight();
   //Wait(1);
   if (targetReached)
-    dump();
+    dump(); */
+  robot->rotateSpeed(0.5);
 }
