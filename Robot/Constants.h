@@ -46,15 +46,15 @@
 /* Drive train Victor ports */
 // I temporarily disabled these so I can test the dumper.
 // We cannot initialize multiple Victors on the same PWM port.
-//#define PORT_DRIVE_VIC_1 5
-//#define PORT_DRIVE_VIC_2 10
-//#define PORT_DRIVE_VIC_3 2
-//#define PORT_DRIVE_VIC_4 1
+#define PORT_DRIVE_VIC_1 5
+#define PORT_DRIVE_VIC_2 10
+#define PORT_DRIVE_VIC_3 2
+#define PORT_DRIVE_VIC_4 1
 
-#define PORT_DRIVE_VIC_1 0
-#define PORT_DRIVE_VIC_2 0
-#define PORT_DRIVE_VIC_3 0
-#define PORT_DRIVE_VIC_4 0
+//#define PORT_DRIVE_VIC_1 0
+//#define PORT_DRIVE_VIC_2 0
+//#define PORT_DRIVE_VIC_3 0
+//#define PORT_DRIVE_VIC_4 0
 
 /* Motor ports */
 #define PORT_PWM_1 0
@@ -158,10 +158,15 @@
 // Dumper victor port
 // I'm using all 4 victors temporarily because I don't know the port numbers corresponding to each victor on the practice bot
 // Set unused vics to 0 later
-#define PORT_DUMPER_VIC_1 7
-#define PORT_DUMPER_VIC_2 8
-#define PORT_DUMPER_VIC_3 9
-#define PORT_DUMPER_VIC_4 10
+//#define PORT_DUMPER_VIC_1 7
+//#define PORT_DUMPER_VIC_2 8
+//#define PORT_DUMPER_VIC_3 9
+//#define PORT_DUMPER_VIC_4 10
+
+#define PORT_DUMPER_VIC_1 0
+#define PORT_DUMPER_VIC_2 0
+#define PORT_DUMPER_VIC_3 0
+#define PORT_DUMPER_VIC_4 0
 
 #define DUMP_SPEED 0.4
 #define DUMP_TIME 1
