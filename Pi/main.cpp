@@ -1,6 +1,7 @@
 #include "vision_includes.hpp"
 #include "image_processing.hpp"
 #include "target_processing.hpp"
+#include "client.hpp"
 
 /* This function loads the yaml conf file */
 void load_conf(string filename, YAML::Node &config) {
@@ -19,6 +20,9 @@ void load_conf(string filename, YAML::Node &config) {
 }
 
 int main(int argc, char **argv) {
+
+  char *server_ip = "10.0.8.2";
+  connect(server_ip);
   // Use webcam as source by default
   VideoCapture capture;
   double rate;
@@ -40,6 +44,7 @@ int main(int argc, char **argv) {
   int delay = 1000 / rate;
 
   Mat image;
+
   /*
   // read image from cli arguments
   image = imread(argv[1], 1);
@@ -79,6 +84,10 @@ int main(int argc, char **argv) {
     // draw rectangles
     draw_targets(&config, rectangles, targets, image);
 
+    cout << "Image width:" << image.cols << endl;
+    cout << "Image height:" << image.rows << endl;
+    cout << "Image center x:" << (image.cols/2) << endl;
+
     cout << "Found " << contours.size() << " contours" << endl;
     cout << "Found " << rectangles.size() << " rectangles" << endl;
     cout << "Found " << targets.size() << " targets" << endl;
@@ -92,6 +101,13 @@ int main(int argc, char **argv) {
       cout << "Distance: " << distance << " cm" << endl;
       cout << "Horizontal angle: " << hangle << " degrees" << endl;
       cout << "Vertical angle: " << vangle << " degrees" << endl;
+
+      if (center.x >= ((image.cols)/2 + 5))
+    	  cout << "Target is on the right" << endl;
+      else if (center.x <= ((image.cols)/2 -5))
+    	  cout << "Target is on the left" << endl;
+      else // +-5 pixel threshold for being aligned
+    	  cout << "Target is aligned" << endl;
     }
 
     // show the result
