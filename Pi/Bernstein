@@ -1,0 +1,1 @@
+Bernstein, your editing of the Makefile broke it, so don't touch it anymore unless you actually try it and it works. Better yet, don't touch it. We'll make some unified Makefile at some point, so changing this one is pointless.
