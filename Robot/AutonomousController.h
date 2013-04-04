@@ -14,6 +14,13 @@ class AutonomousController {
   Robot *robot;;
   AutonomousMode mode;
 
+  void driveStraight();
+  void driveRight();
+  void driveLeft();
+  void rotateRight();
+  void rotateLeft();
+
+
   /*! \brief Tells the robot to fire
    * \return Whether firing was successful */
   bool fire();
