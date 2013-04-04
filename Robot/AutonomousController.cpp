@@ -6,6 +6,8 @@ AutonomousController::AutonomousController(Robot *robot, AutonomousMode m) {
   mode = m;
   targetAligned = 0;
   targetReached = 0;
+
+  timer.Start();
 }
 
 AutonomousController::~AutonomousController() {
@@ -66,5 +68,10 @@ void AutonomousController::update() {
   //Wait(1);
   if (targetReached)
     dump(); */
-  robot->rotateSpeed(0.5);
+  if (timer.Get() < 1000000) {
+     robot->setSpeed(-0.8);
+  }
+  else {
+    robot->rotateSpeed(0.8);
+  }
 }
