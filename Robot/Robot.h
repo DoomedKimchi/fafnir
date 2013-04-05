@@ -40,7 +40,8 @@ class Robot {
   bool isAimed;
   
   char *message; // for the RPi
-  bool messageStatus;
+  //bool messageStatus;
+  int bearing;
 
  public:
   /*! \brief Default constructor */
@@ -64,7 +65,10 @@ class Robot {
   /*! \brief Climbs the pyramid */
   void climb();
   
-  void receiveMessage(char *msg);
+  //void receiveMessage(char *msg);
+
+  /* ! \brief Determines bearing in relation to target */
+  void setBearing(int b);
 
   ShifterMode getShifterMode();
   bool setShifterMode(ShifterMode mode);

@@ -5,7 +5,8 @@ Robot::Robot()
 /*camera (AxisCamera::GetInstance()) 
 	 ,  */compressor(PORT_PRESSURE_CUTOFF, PORT_COMPRESSOR_SPIKE) {
 	message = (char *)malloc(sizeof(char)*BUFFSIZE);
-	messageStatus = 0;
+	//messageStatus = 0;
+	bearing = 0;
     //printf("allocated compressor relay port on spike %d\n and cutoff at %d\n", PORT_COMPRESSOR_SPIKE, PORT_PRESSURE_CUTOFF);
 }
 
@@ -42,10 +43,15 @@ void Robot::elevationSpeed(float s) {
 void Robot::climb() {
 
 }
-
+/*
 void Robot::receiveMessage(char *msg) {
-  //*message = *msg;
+  // *message = *msg;
   messageStatus = 1;
+}
+*/
+
+void Robot::setBearing(int b) {
+	bearing = b;
 }
 
 ShifterMode Robot::getShifterMode() {
@@ -85,13 +91,6 @@ bool Robot::autoAccumulate(){
 }
 
 void Robot::update() {
-  //if(message != NULL) {
-	if(0) {
-    printf("Message from pi:\n");
-    printf("%s\n", message);
-  }
-	if (messageStatus)
-		printf("Message success!");
   //printf("setting drive speed to 0.5\n");
   //driveTrain.driveS(0.5);
   driveTrain.update(); //update has to be after setting the speed

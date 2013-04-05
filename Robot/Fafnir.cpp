@@ -40,12 +40,13 @@ void Fafnir::AutonomousInit() {
     printf("AutoInit\n");
     printf("Starting server\n");
     server_init(&robot);
-    printf("Server is listening\n");
-    server_begin_listening();
+    //printf("Server is listening\n");
+    //server_begin_listening();
 }
 
 void Fafnir::AutonomousPeriodic() {
     //autoController.update();
+	server_update();
     robot.update();
 }
 
@@ -76,8 +77,8 @@ void Fafnir::TeleopDisabled() {
 void Fafnir::TestInit() {
     printf("Starting server\n");
     server_init(&robot);
-    printf("Server is listening\n");
-    server_begin_listening();
+    //printf("Server is listening\n");
+    //server_begin_listening();
 }
 
 void Fafnir::TestPeriodic() {

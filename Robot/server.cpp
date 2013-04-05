@@ -21,7 +21,11 @@ void error(const char *msg)
 
 void * proc(void *arg) {
 	printf("proc started\n");
-    while (1) {
+	while(1) {
+		robot->setVision(5);
+	}
+	/*
+    while (0) {
     	bzero(readbuffer, 2);
     	int n = read(newsockfd, readbuffer, (size_t) 2);
     	//char *message = read(newsockfd, readbuffer, (size_t) 2);
@@ -34,18 +38,20 @@ void * proc(void *arg) {
     	//scanf(readbuffer, msg);
     	scanf("test message", msg);
     	robot->receiveMessage(msg);
+    	robot->setVision(5);
     	//robot->aim((float)readbuffer[0], (float)readbuffer[1]);
 
     	if (_fCloseThreads) // exit when requested
     		break;
-    }
+    }*/
     printf("closing proc\n");
     return NULL;
 }
 
 void * acc(void *arg) {
 	//printf("create newsockfd\n");
-	server_update("acc started");
+	//server_update("acc started");
+	/*
     while (1) {
     	newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &c);
     	if (newsockfd < 0)
@@ -54,6 +60,7 @@ void * acc(void *arg) {
     	if (_fCloseThreads) // exit when requested
     		break;
     }
+    */
     printf("closing acc\n");
     //printf("newsockfd created\n");
     return NULL;
@@ -63,6 +70,9 @@ void server_init(Robot *r) {
     robot = r;
     portno = 8888;
     _fCloseThreads = 0;
+
+    	//robot->setVision(5);
+
 	//printf("before readbuffer\n");
     readbuffer = (char *) malloc(sizeof(char)*2);
 	//printf("readbuffer\n");
@@ -94,13 +104,13 @@ void server_init(Robot *r) {
 	// fails here
     //newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &c);
 	//printf("newsockfd\n");
-
+/*
 	printf("creating acc_thread\n");
 	pthread_create(&acc_thread, &acc_attr, (void *(*)(void *))acc, (void *)robot);
 	printf("acc_thread created, now detaching\n");
 	pthread_detach(acc_thread);
 	printf("acc_thread detached\n");
-
+*/
 }
 
 void server_begin_listening() {
@@ -112,8 +122,17 @@ void server_begin_listening() {
     return;
 }
 
-void server_update(char *message) {
-	printf("Message: %s\n", message);
+void server_update(int vision) {
+	//printf("Message: %s\n", message);
+	//robot->setVision(5);
+   	newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &c);
+   	if (newsockfd < 0)
+   		error("ERROR on accept");
+    bzero(readbuffer, 2);
+    int n = read(newsockfd, readbuffer, (size_t) 2);
+    //char *message = read(newsockfd, readbuffer, (size_t) 2);
+    if (readbuffer[0] < 0) 
+    	error("ERROR reading from socket");
 }
 
 void server_close() {

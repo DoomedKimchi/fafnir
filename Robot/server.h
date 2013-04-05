@@ -21,7 +21,7 @@ void server_init(Robot *r);
 
 void server_begin_listening();
 
-void server_update(char *message);
+void server_update();
 
 void server_close();
 
