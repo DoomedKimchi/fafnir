@@ -124,7 +124,7 @@ int main(int argc, char **argv) {
     }
 
     // show the result
-    imshow("Detected Lines", image);
+    //imshow("Detected Lines", image);
 
     // save result to file
     //imwrite("result.jpg", image);
