@@ -5,40 +5,27 @@ AutonomousController::AutonomousController(Robot *robot, AutonomousMode m) {
   this->robot = robot;
   mode = m;
   targetAligned = 0;
-  targetReached = 0;
-
-  timer.Start();
+  targetReached = 0; 
 }
 
 AutonomousController::~AutonomousController() {
   
 }
 
-void AutonomousController::driveStraight() {
-  printf("Driving straight\n");
-  robot->setSpeed(-0.7);
+
+void AutonomousController::startTimer() {
+  timer.Start();
+}
+
+void AutonomousController::drive(float v) {
+  printf("Driving at %f\n", v);
+  robot->setSpeed(-v);
   robot->rotateSpeed(0.0);
-  Wait(1);
 }
 
-void AutonomousController::driveRight() {
-  robot->rotateSpeed(0.2);
-  Wait(1);
-}
-
-void AutonomousController::driveLeft() {
-  robot->rotateSpeed(-0.2);
-  Wait(1);
-}
-
-void AutonomousController::rotateRight() {
-  robot->rotateSpeed(0.5);
-  Wait(1);
-}
-
-void AutonomousController::rotateLeft() {
-  robot->rotateSpeed(-0.5);
-  Wait(1);
+void AutonomousController::stop() {
+  drive(0);
+  robot->rotateSpeed(0);
 }
 
 bool AutonomousController::fire() {
@@ -48,8 +35,10 @@ bool AutonomousController::fire() {
   return true;
 }
 
-void AutonomousController::dump() {
-	robot->autoDump();
+void AutonomousController::dump(float time) {
+  if(time < DUMP_TIME) robot->dump();
+  else if(time < DUMP_TIME + DUMP_PAUSE_TIME) robot->stopDump();
+  else robot->unDump();
 }
 
 void AutonomousController::runDefault() {
@@ -64,6 +53,12 @@ void AutonomousController::driveBlindly() {
   }
   else {
     robot->rotateSpeed(0.8);
+  }
+  else if(timer.Get() < 1.0 + TOT_DUMP_TIME * 3) {
+    stop();
+    dump((timer.Get() - 1.0) % TOT_DUMP_TIME);
+  } else {
+    robot->stopDump();
   }
 }
 

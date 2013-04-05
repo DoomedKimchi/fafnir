@@ -11,22 +11,18 @@
 class AutonomousController {
  private:
   /*! A pointer to the Robot fafnir */
-  Robot *robot;;
+  Robot *robot;
   AutonomousMode mode;
 
-  void driveStraight();
-  void driveRight();
-  void driveLeft();
-  void rotateRight();
-  void rotateLeft();
-  
-  Timer timer;
+  void drive(float v = 0.7);
+  void stop();
 
+  Timer timer;
 
   /*! \brief Tells the robot to fire
    * \return Whether firing was successful */
   bool fire();
-  void dump();
+  void dump(float time);
 
   bool targetAligned;
   bool targetReached;
@@ -34,7 +30,8 @@ class AutonomousController {
  public:
   void runDefault();
   void driveBlindly();
-  void update(int bearing);
+  void update();
+  void startTimer();
   /*! \brief Constructs an autonomous controller with a pointer to fafnir
    * \param *fafnir A pointer to the Robot */
   AutonomousController(Robot *robot, AutonomousMode m);

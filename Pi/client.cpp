@@ -9,8 +9,8 @@
 #include <errno.h>
 #include <arpa/inet.h>
 
-#define HOSTNAME "10.0.8.2"
-//#define HOSTNAME "localhost"
+//#define HOSTNAME "10.0.8.2"
+#define HOSTNAME "localhost"
 #define PORT 8888
 #define BUFFSIZE 80
 
@@ -86,7 +86,7 @@ bool server_connect () {
 }
 
 bool server_send (int bearing) {
-	readbuffer = (char *) malloc(sizeof(char)*BUFFSIZE); // assign memory for readbuffer
+	readbuffer = (char *) malloc(BUFFSIZE); // assign memory for readbuffer
 	//printf("Please enter the message: ");
     //bzero(buffer,256);
     bzero(readbuffer,sizeof(readbuffer));
@@ -95,7 +95,7 @@ bool server_send (int bearing) {
     //fgets(readbuffer,sizeof(readbuffer),stdin);
     //n = write(sockfd,buffer,strlen(buffer));
 	printf("Readbuffer: %s\n", readbuffer);
-    n = write(sockfd,readbuffer,strlen(readbuffer));
+    n = write(sockfd,readbuffer,BUFFSIZE);
     if (n < 0) 
          error("ERROR writing to socket");
 	/*

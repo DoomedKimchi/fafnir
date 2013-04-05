@@ -44,6 +44,7 @@ void Fafnir::AutonomousInit() {
 
     //printf("Server is listening\n");
     //server_begin_listening();
+    autoController.startTimer();
 }
 
 void Fafnir::AutonomousPeriodic() {
@@ -59,14 +60,20 @@ void Fafnir::AutonomousDisabled() {
 }
 
 void Fafnir::TeleopInit() {
+<<<<<<< HEAD
     //robot.startCompressor();
+=======
+    robot.startCompressor();
+
+    robot.setTeleop(true);
+>>>>>>> b2c9911b93fb407ca37690f504ea9276d415d0f3
     //driveStation(&robot);
     //robot.shoot(); //Commented because we don't want the robot to shoot before the trigger is pressed
 	//robot.setSpeed(0.5);
 }
 
 void Fafnir::TeleopPeriodic() {
-	//float speed;
+    //float speed;
     humanController.update();
     //printf("Teleop Periodic called\n");
     robot.update();

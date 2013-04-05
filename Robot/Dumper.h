@@ -7,18 +7,18 @@
 #include "LinearVictor.h"
 
 class Dumper {
-	private:
-		LinearVictor motor1;
-		LinearVictor motor2;
-		LinearVictor motor3;
-		LinearVictor motor4;
+ private:
+  LinearVictor motor;
+  DumperState state;
 
-	public:
-		Dumper();
-		void dump(float s);
-		void autoDump();
-		void rotateS();
-		void update();
+  float targetSpeed;
+
+ public:
+  Dumper();
+
+  void setState(DumperState newState);
+  void setSpeed(float spd);
+  void update();
 };
 
 #endif /* DUMPER_H */

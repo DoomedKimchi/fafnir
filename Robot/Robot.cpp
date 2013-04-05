@@ -2,12 +2,22 @@
 
 Robot::Robot() 
     :   
-/*camera (AxisCamera::GetInstance()) 
-	 ,  */compressor(PORT_PRESSURE_CUTOFF, PORT_COMPRESSOR_SPIKE) {
+  //camera (AxisCamera::GetInstance()), 
+  compressor(PORT_PRESSURE_CUTOFF, PORT_COMPRESSOR_SPIKE),
+  teleopMode(false) {
+    printf("allocated compressor relay port on spike %d\n and cutoff at %d\n", PORT_COMPRESSOR_SPIKE, PORT_PRESSURE_CUTOFF);
 	message = (char *)malloc(sizeof(char)*BUFFSIZE);
 	//messageStatus = 0;
 	bearing = 0;
-    //printf("allocated compressor relay port on spike %d\n and cutoff at %d\n", PORT_COMPRESSOR_SPIKE, PORT_PRESSURE_CUTOFF);
+}
+
+void Robot::setTeleop(bool teleop) {
+  teleopMode = teleop;
+  if(true) dumper.setState(HUMAN);
+}
+
+bool Robot::isTeleop() {
+  return teleopMode;
 }
 
 void Robot::aim(float yaw, float elevation) {
@@ -28,16 +38,24 @@ void Robot::shoot() {
   //accumulator.shootVacated();
 }
 
-void Robot::dump(float s) {
-	dumper.dump(s);
+void Robot::setDumpSpeed(float spd) {
+  dumper.setSpeed(spd);
 }
 
-void Robot::autoDump() {
-	dumper.autoDump();
+void Robot::dump() {
+  dumper.setState(DUMPING);
+}
+
+void Robot::stopDump() {
+  dumper.setState(STOPPED);
+}
+
+void Robot::unDump() {
+  dumper.setState(RETURNING);
 }
 
 void Robot::elevationSpeed(float s) {
-    shooter.elevationSpeed(s);
+  shooter.elevationSpeed(s);
 }
 
 void Robot::climb() {

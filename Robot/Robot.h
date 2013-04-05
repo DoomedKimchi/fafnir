@@ -40,6 +40,8 @@ class Robot {
   //Relay compressorRelay;
   /*! Whether the robot is aimed at its target */
   bool isAimed;
+
+  bool teleopMode;
   
   char *message; // for the RPi
   //bool messageStatus;
@@ -48,13 +50,21 @@ class Robot {
  public:
   /*! \brief Default constructor */
   Robot();
+
+  void setTeleop(bool teleop);
+  bool isTeleop();
+
   /*! \brief Accumulates frisbees
    * \internal may take care of sensing*/
   void accumulate();
   /*! \brief Fires a frisbee in the current direction of the robot */
   void shoot();
 
-  void dump(float s);
+  void setDumpSpeed(float spd);
+
+  void dump();
+  void stopDump();
+  void unDump();
 
   void autoDump();
 
