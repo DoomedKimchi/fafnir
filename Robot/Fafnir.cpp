@@ -36,6 +36,7 @@ Fafnir::Fafnir()
 
 void Fafnir::AutonomousInit() {
     printf("AutoInit\n");
+    autoController.startTimer();
 }
 
 void Fafnir::AutonomousPeriodic() {

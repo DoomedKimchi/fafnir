@@ -35,6 +35,7 @@ class AutonomousController {
   void runDefault();
   void driveBlindly();
   void update();
+  void startTimer();
   /*! \brief Constructs an autonomous controller with a pointer to fafnir
    * \param *fafnir A pointer to the Robot */
   AutonomousController(Robot *robot, AutonomousMode m);

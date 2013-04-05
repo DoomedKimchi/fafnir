@@ -7,11 +7,15 @@ AutonomousController::AutonomousController(Robot *robot, AutonomousMode m) {
   targetAligned = 0;
   targetReached = 0;
 
-  timer.Start();
+ 
 }
 
 AutonomousController::~AutonomousController() {
   
+}
+
+void AutonomousController::startTimer() {
+    timer.Start();
 }
 
 void AutonomousController::driveStraight() {
@@ -68,11 +72,10 @@ void AutonomousController::update() {
   //Wait(1);
   if (targetReached)
     dump(); */
-  printf("%lu", timer.Get());
-  if (timer.Get() < 1.0) {
-     robot->setSpeed(-0.8);
+/*  if (timer.Get() < 1.0) {
+     robot->setSpeed(-1.0);
   }
   else {
-    robot->rotateSpeed(0.8);
-  }
+      robot->rotateSpeed(1.0);
+      }*/
 }
