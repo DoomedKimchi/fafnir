@@ -57,23 +57,29 @@ bool server_connect () {
 		return 1;
 	}
 	//printf("connected to socket\n");
+	printf("Trying to connect to host...\n");
+	while (1) {
+    	//server = gethostbyname(argv[1]);
+	    server = gethostbyname(hostname);
+   		 if (server == NULL) {
+   	     fprintf(stderr,"ERROR, no such host\n");
+		 printf("Reconnecting...\n");
+   	     //return 1;
+  	 	 }
 
-    //server = gethostbyname(argv[1]);
-    server = gethostbyname(hostname);
-    if (server == NULL) {
-        fprintf(stderr,"ERROR, no such host\n");
-        return 1;
-    }
-
-    bzero((char *) &serv_addr, sizeof(serv_addr));
-    serv_addr.sin_family = AF_INET;
-    bcopy((char *)server->h_addr, 
+   	 	bzero((char *) &serv_addr, sizeof(serv_addr));
+   	 	serv_addr.sin_family = AF_INET;
+   	 	bcopy((char *)server->h_addr, 
          (char *)&serv_addr.sin_addr.s_addr,
          server->h_length);
-    serv_addr.sin_port = htons(portno);
-    if (connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0) {
-        error("ERROR connecting");
-		return 1;
+   	 	serv_addr.sin_port = htons(portno);
+   	 	if (connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0) {
+        	error("ERROR connecting");
+			printf("Reconnecting...\n");
+			//return 1;
+		}
+		else 
+			break;
 	}
     return 0;
 }
