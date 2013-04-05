@@ -10,9 +10,11 @@ void Dumper::setState(DumperState newState) {
   switch (state) {
     case RETURNING:
       printf("Dumper returning\n");
+      targetSpeed = -DUMP_SPEED;
       break;
     case STOPPED:
       printf("Dumper stopping\n");
+      targetSpeed = 0;
       break;
     case DUMPING:
       printf("Dumper dumping\n");
@@ -27,22 +29,9 @@ void Dumper::setSpeed(float spd) {
 }
 
 void Dumper::update() {
-  switch (state) {
-    case RETURNING:
-      motor.Set(-DUMP_SPEED);
-      break;
-    case STOPPED:
-      motor.Set(0);
-      break;
-    case DUMPING:
-      motor.Set(DUMP_SPEED);
-      break;
-    case HUMAN:
-      if(targetSpeed < .1 || targetSpeed > .1)
-	printf("Dumper speed: %f\n", targetSpeed);
-      targetSpeed = 0;
-      break;
-    default:
-      break;
+  if(targetSpeed < .1 || targetSpeed > .1) {
+    printf("Dumper speed: %f\n", targetSpeed);
+  }
+  motor.Set(targetSpeed);
   }
 }

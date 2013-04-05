@@ -8,15 +8,6 @@ Robot::Robot()
     printf("allocated compressor relay port on spike %d\n and cutoff at %d\n", PORT_COMPRESSOR_SPIKE, PORT_PRESSURE_CUTOFF);
 }
 
-void Robot::setTeleop(bool teleop) {
-  teleopMode = teleop;
-  if(true) dumper.setState(HUMAN);
-}
-
-bool Robot::isTeleop() {
-  return teleopMode;
-}
-
 void Robot::aim(float yaw, float elevation) {
 
 }
