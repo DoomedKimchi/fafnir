@@ -11,14 +11,15 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <pthread.h>
-#include "Robot.h"
+//#include "Robot.h"
+#include "AutonomousController.h"
 #include "Constants.h"
 
 void error (const char *msg);
 
 void *proc (void *arg);
 
-void server_init(Robot *r);
+void server_init(AutonomousController *ac);
 
 void server_begin_listening();
 

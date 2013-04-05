@@ -10,19 +10,20 @@ pthread_t proc_thread;
 pthread_t acc_thread;
 pthread_attr_t proc_attr;
 pthread_attr_t acc_attr;
-Robot *robot;
+//Robot *robot;
+AutonomousController *autoController;
 
 void error(const char *msg)
 {
     perror(msg);
     //printf("%s", msg);
-    exit(1);
+    //exit(1);
 }
 
 void * proc(void *arg) {
 	printf("proc started\n");
 	while(1) {
-		robot->setVision(5);
+		//robot->setVision(5);
 	}
 	/*
     while (0) {
@@ -66,8 +67,10 @@ void * acc(void *arg) {
     return NULL;
 }
 
-void server_init(Robot *r) {
-    robot = r;
+void server_init(AutonomousController *ac) {
+	int bearing = NULL;
+    //robot = r;
+	autoController = ac;
     portno = 8888;
     _fCloseThreads = 0;
 
@@ -93,12 +96,35 @@ void server_init(Robot *r) {
     printf("binding socket\n");
     if (bind(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
     	error("ERROR on binding");
+    	autoController->driveBlindly();
 		//printf("failed to bind\n");
 		return;
     }
 	printf("listening\n");
    	listen(sockfd, 5);
     c = sizeof(cli_addr);
+
+    // infinite loop to accept requests
+    while (1) {
+    	printf("Start accepting\n");
+    	newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &c);
+    	if (newsockfd < 0) {
+    		error("ERROR on accept");
+    		autoController->driveBlindly();
+    	}
+    	readbuffer = (char *) malloc(sizeof(char)*BUFFSIZE);
+    	bzero(readbuffer, BUFFSIZE);
+    	printf("Start reading\n");
+    	int n = read(newsockfd, readbuffer, (size_t) BUFFSIZE); // n is number of bytes
+    	if (readbuffer[0] < 0) {
+    		error("ERROR reading from socket");
+    		autoController->driveBlindly();
+    	}
+    	printf("Readbuffer: %s\n", readbuffer);
+    	sscanf(readbuffer, "%d", bearing);
+    	printf("Recieved bearing: %d\n", bearing);
+    	autoController->update(bearing);
+    }
 	//printf("c\n");
 	// fails here
     //newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &c);
@@ -124,20 +150,12 @@ void server_begin_listening() {
 }
 
 void server_update() {
-	int bearing;
+	// don't put this here
+	//int bearing;
 	//printf("Message: %s\n", message);
 	//robot->setVision(5);
-   	newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &c);
-   	if (newsockfd < 0)
-   		error("ERROR on accept");
-    readbuffer = (char *) malloc(sizeof(char)*BUFFSIZE);
-    bzero(readbuffer, BUFFSIZE);
-    int n = read(newsockfd, readbuffer, (size_t) BUFFSIZE); // n is number of bytes
-    if (readbuffer[0] < 0) 
-    	error("ERROR reading from socket");
-    sscanf(readbuffer, "%d", bearing);
 
-    free(readbuffer);
+    //free(readbuffer);
 }
 
 void server_close() {

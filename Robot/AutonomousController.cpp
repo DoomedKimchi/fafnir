@@ -57,17 +57,7 @@ void AutonomousController::runDefault() {
 }
 
 void AutonomousController::driveBlindly() {
-	driveStraight();
-	dump();
-}
-
-void AutonomousController::update() {
-/*	targetAligned = 1;
-  if(targetAligned)
-    driveStraight();
-  //Wait(1);
-  if (targetReached)
-    dump(); */
+  printf("Driving blindly!\n");
   printf("%lu", timer.Get());
   if (timer.Get() < 1.0) {
      robot->setSpeed(-0.8);
@@ -75,4 +65,9 @@ void AutonomousController::update() {
   else {
     robot->rotateSpeed(0.8);
   }
+}
+
+void AutonomousController::update(int bearing) {
+	if (bearing > 5)
+		driveRight();
 }

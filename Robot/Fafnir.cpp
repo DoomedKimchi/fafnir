@@ -39,14 +39,16 @@ Fafnir::Fafnir()
 void Fafnir::AutonomousInit() {
     printf("AutoInit\n");
     printf("Starting server\n");
-    server_init(&robot);
+    server_init(&autoController); // this will pause the main thread
+    //rpi will have exclusive control instead of AutonomousController
+
     //printf("Server is listening\n");
     //server_begin_listening();
 }
 
 void Fafnir::AutonomousPeriodic() {
     //autoController.update();
-	server_update();
+	//server_update();
     robot.update();
 }
 
@@ -75,8 +77,8 @@ void Fafnir::TeleopDisabled() {
 }
 
 void Fafnir::TestInit() {
-    printf("Starting server\n");
-    server_init(&robot);
+    //printf("Starting server\n");
+    //server_init(&robot);
     //printf("Server is listening\n");
     //server_begin_listening();
 }

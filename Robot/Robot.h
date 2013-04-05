@@ -30,6 +30,8 @@ class Robot {
   /*! The dumper of the robot */
   Dumper dumper;
 
+  //AutonomousController autonomousController;
+
   /*! The robot's camera */
   //AxisCamera &camera;
   /*! The robot's compressor */
@@ -68,7 +70,7 @@ class Robot {
   //void receiveMessage(char *msg);
 
   /* ! \brief Determines bearing in relation to target */
-  void setBearing(int b);
+  void updateAutonomous(int bearing);
 
   ShifterMode getShifterMode();
   bool setShifterMode(ShifterMode mode);

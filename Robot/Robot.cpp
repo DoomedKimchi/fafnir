@@ -50,8 +50,8 @@ void Robot::receiveMessage(char *msg) {
 }
 */
 
-void Robot::setBearing(int b) {
-	bearing = b;
+void Robot::updateAutonomous(int bearing) {
+	//if (bearing > 5)
 }
 
 ShifterMode Robot::getShifterMode() {

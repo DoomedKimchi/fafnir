@@ -93,7 +93,7 @@ bool server_send (int bearing) {
     //fgets(buffer,255,stdin);
     //fgets(readbuffer,sizeof(readbuffer),stdin);
     //n = write(sockfd,buffer,strlen(buffer));
-	printf("%s\n", readbuffer);
+	printf("Readbuffer: %s\n", readbuffer);
     n = write(sockfd,readbuffer,strlen(readbuffer));
     if (n < 0) 
          error("ERROR writing to socket");
