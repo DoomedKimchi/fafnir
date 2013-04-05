@@ -4,9 +4,7 @@ Dumper::Dumper() : motor(PORT_DUMPER_VIC), targetSpeed(0) {
 
 }
 
-void Dumper::setState(DumperState newState) {
-  state = newState;
-
+void Dumper::setState(DumperState state) {
   switch (state) {
     case RETURNING:
       printf("Dumper returning\n");
