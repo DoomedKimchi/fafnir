@@ -8,6 +8,8 @@
 #include "Shooter.h"
 #include "DriveTrain.h"
 #include "Dumper.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /*! \brief controls all the robot's functions
  *
@@ -37,6 +39,9 @@ class Robot {
   /*! Whether the robot is aimed at its target */
   bool isAimed;
   
+  char *message; // for the RPi
+  bool messageStatus;
+
  public:
   /*! \brief Default constructor */
   Robot();
@@ -59,6 +64,8 @@ class Robot {
   /*! \brief Climbs the pyramid */
   void climb();
   
+  void receiveMessage(char *msg);
+
   ShifterMode getShifterMode();
   bool setShifterMode(ShifterMode mode);
 

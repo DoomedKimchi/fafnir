@@ -174,6 +174,8 @@
 #define UNDUMP_TIME 1
 #define DUMP_PAUSE_TIME 0.5 //amount of time to pause before undumping
 
+#define BUFFSIZE 256
+
 /* Types of gear modes for the drive train */
 enum ShifterMode { MANUAL, AUTO };
 

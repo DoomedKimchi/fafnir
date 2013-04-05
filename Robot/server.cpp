@@ -30,6 +30,10 @@ void * proc(void *arg) {
     		break;
     	}
     	printf("n: %d\n", n);
+    	char *msg = (char *) malloc(sizeof(readbuffer));
+    	//scanf(readbuffer, msg);
+    	scanf("test message", msg);
+    	robot->receiveMessage(msg);
     	//robot->aim((float)readbuffer[0], (float)readbuffer[1]);
 
     	if (_fCloseThreads) // exit when requested

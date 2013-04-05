@@ -22,7 +22,7 @@ void load_conf(string filename, YAML::Node &config) {
 int main(int argc, char **argv) {
 
   char *hostname = "10.0.8.2";
-  connect(hostname);
+  //connect(hostname);
   // Use webcam as source by default
   VideoCapture capture;
   double rate;

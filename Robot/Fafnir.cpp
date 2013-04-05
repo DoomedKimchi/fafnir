@@ -46,7 +46,7 @@ void Fafnir::AutonomousInit() {
 
 void Fafnir::AutonomousPeriodic() {
     //autoController.update();
-    //robot.update();
+    robot.update();
 }
 
 void Fafnir::AutonomousDisabled() {
