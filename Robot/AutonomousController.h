@@ -14,11 +14,11 @@ class AutonomousController {
   Robot *robot;;
   AutonomousMode mode;
 
-  void driveStraight();
-  void driveRight();
-  void driveLeft();
-  void rotateRight();
-  void rotateLeft();
+  void driveStraight(float t = 1);
+  void driveRight(float t = 1);
+  void driveLeft(float t = 1);
+  void rotateRight(float t = 1);
+  void rotateLeft(float t = 1);
   
   Timer timer;
 
