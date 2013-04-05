@@ -36,15 +36,23 @@ class Robot {
   //Relay compressorRelay;
   /*! Whether the robot is aimed at its target */
   bool isAimed;
+
+  bool teleopMode;
   
  public:
   /*! \brief Default constructor */
   Robot();
+
+  void setTeleop(bool teleop);
+  bool isTeleop();
+
   /*! \brief Accumulates frisbees
    * \internal may take care of sensing*/
   void accumulate();
   /*! \brief Fires a frisbee in the current direction of the robot */
   void shoot();
+
+  void setDumpSpeed(float spd);
 
   void dump();
   void stopDump();

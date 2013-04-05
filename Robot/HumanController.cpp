@@ -48,14 +48,6 @@ void HumanController::update() {
   buttShifterMode = turnStick.GetRawButton(JS_TURN_MODE_TOGGLE);
   /* end Gearshifter changing */
 
-  //printf("Trigger state: %d\n", operatorStick.GetTrigger());
-  /* begin operator commands */
-  if(operatorStick.GetTrigger()) {
-    //printf("Trigger depressed; let's shoot a frisbee!\n");
-    printf("Trigger depressed; let's dump a frisbee!\n");
-    //robot->shoot();
-    robot->autoDump();
-  }
   shooting = operatorStick.GetTrigger();
   
   gain = operatorStick.GetTrigger();
@@ -65,5 +57,5 @@ void HumanController::update() {
 
   // Dumper: currently set to use the Y axis on the operator stick (aka stick #3)
   //printf("opstick y: %f\n", operatorStick.GetY());
-  robot->dump(operatorStick.GetY());
+  robot->setDumpSpeed(operatorStick.GetY());
 }

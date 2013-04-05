@@ -9,12 +9,15 @@
 class Dumper {
  private:
   LinearVictor motor;
+  DumperState state;
+
+  float targetSpeed;
 
  public:
   Dumper();
-  void dump(bool go);
-  void autoDump();
-  void rotateS();
+
+  void setState(DumperState newState);
+  void setSpeed(float spd);
   void update();
 };
 

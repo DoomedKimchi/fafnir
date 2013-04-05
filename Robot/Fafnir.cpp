@@ -50,6 +50,8 @@ void Fafnir::AutonomousDisabled() {
 
 void Fafnir::TeleopInit() {
     robot.startCompressor();
+
+    robot.setTeleop(true);
     //driveStation(&robot);
     //robot.shoot(); //Commented because we don't want the robot to shoot before the trigger is pressed
 	//robot.setSpeed(0.5);

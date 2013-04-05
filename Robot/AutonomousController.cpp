@@ -18,13 +18,13 @@ void AutonomousController::startTimer() {
 }
 
 void AutonomousController::drive(float v) {
-  printf("Driving at %f\n", v, t);
+  printf("Driving at %f\n", v);
   robot->setSpeed(-v);
   robot->rotateSpeed(0.0);
 }
 
 void AutonomousController::stop() {
-  setSpeed(0);
+  drive(0);
   robot->rotateSpeed(0);
 }
 
