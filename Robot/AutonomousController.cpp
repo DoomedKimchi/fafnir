@@ -14,35 +14,36 @@ AutonomousController::~AutonomousController() {
   
 }
 
+
 void AutonomousController::startTimer() {
-    timer.Start();
+
 }
 
-void AutonomousController::driveStraight() {
+void AutonomousController::driveStraight(float t = 1) {
   printf("Driving straight\n");
   robot->setSpeed(-0.7);
   robot->rotateSpeed(0.0);
-  Wait(1);
+  Wait(t);
 }
 
-void AutonomousController::driveRight() {
+void AutonomousController::driveRight(float t = 1) {
   robot->rotateSpeed(0.2);
-  Wait(1);
+  Wait(t);
 }
 
-void AutonomousController::driveLeft() {
+void AutonomousController::driveLeft(float t = 1) {
   robot->rotateSpeed(-0.2);
-  Wait(1);
+  Wait(t);
 }
 
-void AutonomousController::rotateRight() {
+void AutonomousController::rotateRight(float t = 1) {
   robot->rotateSpeed(0.5);
-  Wait(1);
+  Wait(t);
 }
 
-void AutonomousController::rotateLeft() {
+void AutonomousController::rotateLeft(float t = 1) {
   robot->rotateSpeed(-0.5);
-  Wait(1);
+  Wait(t);
 }
 
 bool AutonomousController::fire() {
@@ -53,7 +54,7 @@ bool AutonomousController::fire() {
 }
 
 void AutonomousController::dump() {
-	robot->autoDump();
+  robot->autoDump();
 }
 
 void AutonomousController::runDefault() {
@@ -61,11 +62,12 @@ void AutonomousController::runDefault() {
 }
 
 void AutonomousController::driveBlindly() {
-	driveStraight();
-	dump();
+  driveStraight();
+  dump();
 }
 
 void AutonomousController::update() {
+<<<<<<< HEAD
 /*	targetAligned = 1;
   if(targetAligned)
     driveStraight();
@@ -74,6 +76,17 @@ void AutonomousController::update() {
     dump(); */
 /*  if (timer.Get() < 1.0) {
      robot->setSpeed(-1.0);
+=======
+  /*	targetAligned = 1;
+	if(targetAligned)
+	driveStraight();
+	//Wait(1);
+	if (targetReached)
+	dump(); */
+  printf("%lu", timer.Get());
+  if (timer.Get() < 1.0) {
+    robot->setSpeed(-0.8);
+>>>>>>> 1bbaded16b1e1124e2234feb5e6c5e9486cb49cd
   }
   else {
       robot->rotateSpeed(1.0);
