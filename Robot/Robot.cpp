@@ -92,7 +92,7 @@ void Robot::update() {
   driveTrain.update(); //update has to be after setting the speed
   //accumulator.update();
   //shooter.update();
-  dumper.update();
+  //dumper.update();
 }
 
 void Robot::shootVacated() {
