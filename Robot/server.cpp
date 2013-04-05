@@ -20,23 +20,28 @@ void error(const char *msg)
 }
 
 void * proc(void *arg) {
+	printf("proc started\n");
     while (1) {
     	bzero(readbuffer, 2);
     	int n = read(newsockfd, readbuffer, (size_t) 2);
+    	//char *message = read(newsockfd, readbuffer, (size_t) 2);
     	if (readbuffer[0] < 0) {
     		error("ERROR reading from socket");
     		break;
     	}
-    	robot->aim((float)readbuffer[0], (float)readbuffer[1]);
+    	printf("n: %d\n", n);
+    	//robot->aim((float)readbuffer[0], (float)readbuffer[1]);
 
     	if (_fCloseThreads) // exit when requested
     		break;
     }
+    printf("closing proc\n");
     return NULL;
 }
 
 void * acc(void *arg) {
 	//printf("create newsockfd\n");
+	server_update("acc started");
     while (1) {
     	newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &c);
     	if (newsockfd < 0)
@@ -45,6 +50,7 @@ void * acc(void *arg) {
     	if (_fCloseThreads) // exit when requested
     		break;
     }
+    printf("closing acc\n");
     //printf("newsockfd created\n");
     return NULL;
 }
@@ -71,23 +77,26 @@ void server_init(Robot *r) {
 	//printf("serv_addr.sin_addr.s_addr\n");
     serv_addr.sin_port = htons(portno);
 	//printf("serv_addr.sin_port\n");
+    printf("binding socket\n");
     if (bind(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
     	error("ERROR on binding");
 		//printf("failed to bind\n");
 		return;
     }
-    listen(sockfd, 5);
-	//printf("listen\n");
+	printf("listening\n");
+   	listen(sockfd, 5);
     c = sizeof(cli_addr);
 	//printf("c\n");
 	// fails here
     //newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &c);
 	//printf("newsockfd\n");
+
 	printf("creating acc_thread\n");
 	pthread_create(&acc_thread, &acc_attr, (void *(*)(void *))acc, (void *)robot);
 	printf("acc_thread created, now detaching\n");
 	pthread_detach(acc_thread);
 	printf("acc_thread detached\n");
+
 }
 
 void server_begin_listening() {
@@ -97,6 +106,10 @@ void server_begin_listening() {
     pthread_detach(proc_thread);
     printf("proc_thread detached\n");
     return;
+}
+
+void server_update(char *message) {
+	printf("Message: %s\n", message);
 }
 
 void server_close() {
