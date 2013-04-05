@@ -9,8 +9,8 @@
 #include <errno.h>
 #include <arpa/inet.h>
 
-//#define HOSTNAME "10.0.8.2"
-#define HOSTNAME "localhost"
+#define HOSTNAME "10.0.8.2"
+//#define HOSTNAME "localhost"
 #define PORT 8888
 #define BUFFSIZE 80
 

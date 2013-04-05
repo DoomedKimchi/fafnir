@@ -97,7 +97,7 @@ void server_init(AutonomousController *ac) {
     printf("binding socket\n");
     if (bind(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
     	error("ERROR on binding");
-    	autoController->driveBlindly();
+    	//autoController->driveBlindly();
 		//printf("failed to bind\n");
 		return;
     }
@@ -105,21 +105,22 @@ void server_init(AutonomousController *ac) {
    	listen(sockfd, 5);
     c = sizeof(cli_addr);
 
+   	printf("Start accepting\n");
+   	newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &c);
+   	if (newsockfd < 0) {
+   		error("ERROR on accept");
+   		//autoController->driveBlindly();
+   	}
+
     // infinite loop to accept requests
-    while (0) {
-    	printf("Start accepting\n");
-    	newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &c);
-    	if (newsockfd < 0) {
-    		error("ERROR on accept");
-    		autoController->driveBlindly();
-    	}
+    while (1) {
     	readbuffer = (char *) malloc(sizeof(char)*BUFFSIZE);
     	bzero(readbuffer, BUFFSIZE);
     	printf("Start reading\n");
     	int n = read(newsockfd, readbuffer, (size_t) BUFFSIZE); // n is number of bytes
     	if (readbuffer[0] < 0) {
     		error("ERROR reading from socket");
-    		autoController->driveBlindly();
+    		//autoController->driveBlindly();
     	}
     	printf("Readbuffer: %s\n", readbuffer);
     	sscanf(readbuffer, "%d", bearing);
