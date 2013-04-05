@@ -47,12 +47,9 @@ void AutonomousController::runDefault() {
 
 void AutonomousController::driveBlindly() {
   printf("Driving blindly!\n");
-  /*printf("%lu", timer.Get());
-  if (timer.Get() < 1.0) {
-     robot->setSpeed(-0.8);
-  }
-  else {
-    robot->rotateSpeed(0.8);
+  /*if(timer.Get() < 1.0) {
+    setSpeed();
+>>>>>>> 5cd53ba6ea3a3d3d2cc19be7218fe331c2cc2ad3
   }
   else if(timer.Get() < 1.0 + TOT_DUMP_TIME * 3) {
     stop();

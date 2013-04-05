@@ -44,7 +44,7 @@ void Fafnir::AutonomousInit() {
 
     //printf("Server is listening\n");
     //server_begin_listening();
-    autoController.startTimer();
+    //autoController.startTimer();
 }
 
 void Fafnir::AutonomousPeriodic() {
