@@ -12,6 +12,7 @@
 #include <netinet/in.h>
 #include <pthread.h>
 #include "Robot.h"
+#include "Constants.h"
 
 void error (const char *msg);
 

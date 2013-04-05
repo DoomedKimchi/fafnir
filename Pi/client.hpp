@@ -1,11 +1,11 @@
 #ifndef __server_hpp__
 #define __server_hpp__
 
-void connect (char *ipaddr);
+bool server_connect ();
 
-void send (int status);
+bool server_send (int bearing);
 
-void disconnect ();
+void server_disconnect ();
 
 #endif
 

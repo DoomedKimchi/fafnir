@@ -20,16 +20,18 @@ void load_conf(string filename, YAML::Node &config) {
 }
 
 int main(int argc, char **argv) {
+  if(server_connect()) {// connect to the server (robot)
+	  cerr << "Couldn't connect to server" << endl;
+	server_disconnect();
+  }
 
-  char *hostname = "10.0.8.2";
-  //connect(hostname);
   // Use webcam as source by default
   VideoCapture capture;
   double rate;
   if (argc < 2) {
-    //capture.open(0); // Use default webcam if no arguments are provided
+    capture.open(0); // Use default webcam if no arguments are provided
     // On Linux: /dev/video0
-    capture.open(1);
+    //capture.open(1); // Use /dev/video1
     // Get the frame rate
     rate = 30; /* I hardcoded the frame rate for now
 		  because my webcam isn't reporting the
@@ -86,23 +88,31 @@ int main(int argc, char **argv) {
     // draw rectangles
     draw_targets(&config, rectangles, targets, image);
 
-    cout << "Image width:" << image.cols << endl;
-    cout << "Image height:" << image.rows << endl;
-    cout << "Image center x:" << (image.cols/2) << endl;
+    //cout << "Image width:" << image.cols << endl;
+    //cout << "Image height:" << image.rows << endl;
+    //cout << "Image center x:" << (image.cols/2) << endl;
 
     cout << "Found " << contours.size() << " contours" << endl;
     cout << "Found " << rectangles.size() << " rectangles" << endl;
     cout << "Found " << targets.size() << " targets" << endl;
 
     for (size_t i = 0; i < targets.size(); i++) {
+		int img_center;
+		int bearing;
       // process targets
       process_target(&config, image.size(), targets[i], center, hangle,
 		     vangle, distance);
+	  /*
       cout << "Target " << i << ":" << endl;
       cout << "Center: (" << center.x << ", " << center.y << ")" << endl;
       cout << "Distance: " << distance << " cm" << endl;
       cout << "Horizontal angle: " << hangle << " degrees" << endl;
       cout << "Vertical angle: " << vangle << " degrees" << endl;
+	  */
+
+	  img_center = (image.cols/2); // not oriented towards saving memory
+	  bearing = center.x - img_center; // number of pixels off center of image
+	  cout << "Bearing: " << bearing << endl;
 
       if (center.x >= ((image.cols)/2 + 5))
     	  cout << "Target is on the right" << endl;
@@ -110,6 +120,7 @@ int main(int argc, char **argv) {
     	  cout << "Target is on the left" << endl;
       else // +-5 pixel threshold for being aligned
     	  cout << "Target is aligned" << endl;
+	  server_send(bearing);
     }
 
     // show the result

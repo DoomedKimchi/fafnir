@@ -74,7 +74,6 @@ void server_init(Robot *r) {
     	//robot->setVision(5);
 
 	//printf("before readbuffer\n");
-    readbuffer = (char *) malloc(sizeof(char)*2);
 	//printf("readbuffer\n");
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
 	//printf("sockfd\n");
@@ -114,25 +113,31 @@ void server_init(Robot *r) {
 }
 
 void server_begin_listening() {
+	/*
 	printf("creating proc_thread\n");
     pthread_create(&proc_thread, &proc_attr, (void *(*)(void *))proc, (void *)robot);
     printf("proc_thread created, now detaching\n");
     pthread_detach(proc_thread);
     printf("proc_thread detached\n");
     return;
+    */
 }
 
-void server_update(int vision) {
+void server_update() {
+	int bearing;
 	//printf("Message: %s\n", message);
 	//robot->setVision(5);
    	newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &c);
    	if (newsockfd < 0)
    		error("ERROR on accept");
-    bzero(readbuffer, 2);
-    int n = read(newsockfd, readbuffer, (size_t) 2);
-    //char *message = read(newsockfd, readbuffer, (size_t) 2);
+    readbuffer = (char *) malloc(sizeof(char)*BUFFSIZE);
+    bzero(readbuffer, BUFFSIZE);
+    int n = read(newsockfd, readbuffer, (size_t) BUFFSIZE); // n is number of bytes
     if (readbuffer[0] < 0) 
     	error("ERROR reading from socket");
+    sscanf(readbuffer, "%d", bearing);
+
+    free(readbuffer);
 }
 
 void server_close() {
