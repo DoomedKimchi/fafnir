@@ -5,5 +5,7 @@ void connect (char *ipaddr);
 
 void send (int status);
 
+void disconnect ();
+
 #endif
 

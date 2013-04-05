@@ -21,13 +21,15 @@ void load_conf(string filename, YAML::Node &config) {
 
 int main(int argc, char **argv) {
 
-  char *server_ip = "10.0.8.2";
-  connect(server_ip);
+  char *hostname = "10.0.8.2";
+  connect(hostname);
   // Use webcam as source by default
   VideoCapture capture;
   double rate;
   if (argc < 2) {
-    capture.open(0); // Use default webcam if no arguments are provided
+    //capture.open(0); // Use default webcam if no arguments are provided
+    // On Linux: /dev/video0
+    capture.open(1);
     // Get the frame rate
     rate = 30; /* I hardcoded the frame rate for now
 		  because my webcam isn't reporting the
