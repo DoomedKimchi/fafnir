@@ -28,8 +28,6 @@ class AutonomousController {
   bool targetReached;
 
  public:
-  void runDefault();
-  void driveBlindly();
   void update();
   void startTimer();
   /*! \brief Constructs an autonomous controller with a pointer to fafnir
