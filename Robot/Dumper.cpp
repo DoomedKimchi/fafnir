@@ -31,5 +31,4 @@ void Dumper::update() {
     printf("Dumper speed: %f\n", targetSpeed);
   }
   motor.Set(targetSpeed);
-  }
 }
