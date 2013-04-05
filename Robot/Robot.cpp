@@ -11,15 +11,6 @@ Robot::Robot()
 	bearing = 0;
 }
 
-void Robot::setTeleop(bool teleop) {
-  teleopMode = teleop;
-  if(true) dumper.setState(HUMAN);
-}
-
-bool Robot::isTeleop() {
-  return teleopMode;
-}
-
 void Robot::aim(float yaw, float elevation) {
 
 }
@@ -114,7 +105,7 @@ void Robot::update() {
   driveTrain.update(); //update has to be after setting the speed
   //accumulator.update();
   //shooter.update();
-  dumper.update();
+  //dumper.update();
 }
 
 void Robot::shootVacated() {

@@ -51,9 +51,6 @@ class Robot {
   /*! \brief Default constructor */
   Robot();
 
-  void setTeleop(bool teleop);
-  bool isTeleop();
-
   /*! \brief Accumulates frisbees
    * \internal may take care of sensing*/
   void accumulate();
