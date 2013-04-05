@@ -29,7 +29,7 @@ void Robot::shoot() {
   //accumulator.shootVacated();
 }
 
-void Robot::setDumpSpeed(float spd) {
+/*void Robot::setDumpSpeed(float spd) {
   dumper.setSpeed(spd);
 }
 
@@ -43,7 +43,7 @@ void Robot::stopDump() {
 
 void Robot::unDump() {
   dumper.setState(RETURNING);
-}
+  }*/
 
 void Robot::elevationSpeed(float s) {
   shooter.elevationSpeed(s);
