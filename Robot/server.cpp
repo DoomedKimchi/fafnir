@@ -105,14 +105,15 @@ void server_init(AutonomousController *ac) {
    	listen(sockfd, 5);
     c = sizeof(cli_addr);
 
-    // infinite loop to accept requests
-    while (0) {
     	printf("Start accepting\n");
     	newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &c);
     	if (newsockfd < 0) {
     		error("ERROR on accept");
     		autoController->driveBlindly();
     	}
+
+    // infinite loop to accept requests
+    while (1) {
     	readbuffer = (char *) malloc(sizeof(char)*BUFFSIZE);
     	bzero(readbuffer, BUFFSIZE);
     	printf("Start reading\n");
@@ -122,9 +123,9 @@ void server_init(AutonomousController *ac) {
     		autoController->driveBlindly();
     	}
     	printf("Readbuffer: %s\n", readbuffer);
-    	sscanf(readbuffer, "%d", bearing);
-    	printf("Recieved bearing: %d\n", bearing);
-    	autoController->update(bearing);
+    	//sscanf(readbuffer, "%d", bearing);
+    	//printf("Recieved bearing: %d\n", bearing);
+    	//autoController->update(bearing);
     }
 	//printf("c\n");
 	// fails here

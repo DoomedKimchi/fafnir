@@ -54,7 +54,9 @@ class Robot {
   /*! \brief Fires a frisbee in the current direction of the robot */
   void shoot();
 
-  void dump(float s);
+  void dump();
+  void stopDump();
+  void unDump();
 
   void autoDump();
 

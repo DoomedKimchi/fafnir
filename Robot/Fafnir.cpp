@@ -44,6 +44,8 @@ void Fafnir::AutonomousInit() {
 
     //printf("Server is listening\n");
     //server_begin_listening();
+	
+    //autoController.startTimer();
 }
 
 void Fafnir::AutonomousPeriodic() {
@@ -66,7 +68,7 @@ void Fafnir::TeleopInit() {
 }
 
 void Fafnir::TeleopPeriodic() {
-	//float speed;
+    //float speed;
     humanController.update();
     //printf("Teleop Periodic called\n");
     robot.update();

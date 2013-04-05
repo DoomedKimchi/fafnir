@@ -111,13 +111,13 @@ bzero((char *) &serv_addr, sizeof(serv_addr));
    	listen(sockfd, 5);
     c = sizeof(cli_addr);
 
+    	printf("Start accepting\n");
     	newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, (socklen_t*)&c);
     	if (newsockfd < 0) {
     		error("ERROR on accept");
     		//autoController->driveBlindly();
     	}
 	while (1) {
-    	printf("Start accepting\n");
     	readbuffer = (char *) malloc(sizeof(char)*BUFFSIZE);
     	bzero(readbuffer, BUFFSIZE);
     	printf("Start reading\n");
