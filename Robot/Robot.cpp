@@ -26,12 +26,15 @@ void Robot::shoot() {
 }
 
 void Robot::dump(float s) {
-	dumper.dump(s);
+  dumper.dump(DUMPING);
 }
 
-void Robot::autoDump() {
-	dumper.autoDump();
+void Robot::stopDump() {
+  dumper.dump(STOPPED);
 }
+
+void Robot::unDump() {
+  dumper.dump(RETURNING);
 
 void Robot::elevationSpeed(float s) {
     shooter.elevationSpeed(s);

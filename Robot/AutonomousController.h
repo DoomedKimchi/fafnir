@@ -11,17 +11,13 @@
 class AutonomousController {
  private:
   /*! A pointer to the Robot fafnir */
-  Robot *robot;;
+  Robot *robot;
   AutonomousMode mode;
 
-  void driveStraight(float t = 1);
-  void driveRight(float t = 1);
-  void driveLeft(float t = 1);
-  void rotateRight(float t = 1);
-  void rotateLeft(float t = 1);
-  
-  Timer timer;
+  void drive(float v = 0.7);
+  void stop();
 
+  Timer timer;
 
   /*! \brief Tells the robot to fire
    * \return Whether firing was successful */

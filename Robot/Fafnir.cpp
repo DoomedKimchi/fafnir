@@ -56,7 +56,7 @@ void Fafnir::TeleopInit() {
 }
 
 void Fafnir::TeleopPeriodic() {
-	//float speed;
+    //float speed;
     humanController.update();
     //printf("Teleop Periodic called\n");
     robot.update();

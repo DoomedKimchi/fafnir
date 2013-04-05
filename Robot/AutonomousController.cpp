@@ -5,9 +5,7 @@ AutonomousController::AutonomousController(Robot *robot, AutonomousMode m) {
   this->robot = robot;
   mode = m;
   targetAligned = 0;
-  targetReached = 0;
-
- 
+  targetReached = 0; 
 }
 
 AutonomousController::~AutonomousController() {
@@ -16,34 +14,18 @@ AutonomousController::~AutonomousController() {
 
 
 void AutonomousController::startTimer() {
-
+  timer.Start();
 }
 
-void AutonomousController::driveStraight(float t = 1) {
-  printf("Driving straight\n");
-  robot->setSpeed(-0.7);
+void AutonomousController::drive(float v) {
+  printf("Driving at %f\n", v, t);
+  robot->setSpeed(-v);
   robot->rotateSpeed(0.0);
-  Wait(t);
 }
 
-void AutonomousController::driveRight(float t = 1) {
-  robot->rotateSpeed(0.2);
-  Wait(t);
-}
-
-void AutonomousController::driveLeft(float t = 1) {
-  robot->rotateSpeed(-0.2);
-  Wait(t);
-}
-
-void AutonomousController::rotateRight(float t = 1) {
-  robot->rotateSpeed(0.5);
-  Wait(t);
-}
-
-void AutonomousController::rotateLeft(float t = 1) {
-  robot->rotateSpeed(-0.5);
-  Wait(t);
+void AutonomousController::stop() {
+  setSpeed(0);
+  robot->rotateSpeed(0);
 }
 
 bool AutonomousController::fire() {
@@ -53,42 +35,24 @@ bool AutonomousController::fire() {
   return true;
 }
 
-void AutonomousController::dump() {
-  robot->autoDump();
+void AutonomousController::dump(float time) {
+  if(time < DUMP_TIME) robot->dump();
+  else if(time < DUMP_TIME + DUMP_PAUSE_TIME) robot->stopDump();
+  else robot->unDump();
 }
 
 void AutonomousController::runDefault() {
 
 }
 
-void AutonomousController::driveBlindly() {
-  driveStraight();
-  dump();
-}
-
 void AutonomousController::update() {
-<<<<<<< HEAD
-/*	targetAligned = 1;
-  if(targetAligned)
-    driveStraight();
-  //Wait(1);
-  if (targetReached)
-    dump(); */
-/*  if (timer.Get() < 1.0) {
-     robot->setSpeed(-1.0);
-=======
-  /*	targetAligned = 1;
-	if(targetAligned)
-	driveStraight();
-	//Wait(1);
-	if (targetReached)
-	dump(); */
-  printf("%lu", timer.Get());
-  if (timer.Get() < 1.0) {
-    robot->setSpeed(-0.8);
->>>>>>> 1bbaded16b1e1124e2234feb5e6c5e9486cb49cd
+  /*if(timer.Get() < 1.0) {
+    setSpeed();
   }
-  else {
-      robot->rotateSpeed(1.0);
-      }*/
+  else if(timer.Get() < 1.0 + TOT_DUMP_TIME * 3) {
+    stop();
+    dump((timer.Get() - 1.0) % TOT_DUMP_TIME);
+  } else {
+    robot->stopDump();
+    }*/
 }
