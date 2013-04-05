@@ -57,5 +57,5 @@ void HumanController::update() {
 
   // Dumper: currently set to use the Y axis on the operator stick (aka stick #3)
   //printf("opstick y: %f\n", operatorStick.GetY());
-  robot->setDumpSpeed(operatorStick.GetY());
+  //robot->setDumpSpeed(operatorStick.GetY());
 }
