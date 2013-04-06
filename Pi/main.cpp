@@ -33,6 +33,7 @@ int main(int argc, char **argv) {
 	int camera = 0;
 	char* hostname;
 	char* filename;
+	int bearingState;
 
   for (i = 1/*skip argv[0]*/; i < argc; i++) {
 	  /*
@@ -182,6 +183,13 @@ int main(int argc, char **argv) {
     cout << "Found " << rectangles.size() << " rectangles" << endl;
     cout << "Found " << targets.size() << " targets" << endl;
 
+		if (targets.size() == 0) {
+			printf("Target not found\n");
+			bearingState = 0;
+			printf("bearing state is: %d\n", bearingState);
+	  	if (host) server_send(bearingState);
+		}
+
     for (size_t i = 0; i < targets.size(); i++) {
 		int img_center;
 		int bearing;
@@ -206,7 +214,14 @@ int main(int argc, char **argv) {
     	  cout << "Target is on the left" << endl;
       else // +-5 pixel threshold for being aligned
     	  cout << "Target is aligned" << endl;
-	  if (host) server_send(bearing);
+		if (bearing >= 5)
+				bearingState = 2;
+		if (bearing <= -5)
+				bearingState = 1;
+		else if ( (bearing < 5) && (bearing > -5) )
+				bearingState = 3;
+		printf("bearing state: %d\n", bearingState);
+	  if (host) server_send(bearingState);
     }
 
     // show the result
