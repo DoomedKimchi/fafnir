@@ -174,6 +174,9 @@
 
 #define BUFFSIZE 80
 
+#define AUTO_SPEED 0.7
+#define AUTO_TURN_SPEED 0.2
+
 /* Types of gear modes for the drive train */
 enum ShifterMode { MANUAL, AUTO };
 

@@ -214,12 +214,12 @@ int main(int argc, char **argv) {
     	  cout << "Target is on the left" << endl;
       else // +-5 pixel threshold for being aligned
     	  cout << "Target is aligned" << endl;
-		if (bearing >= 5)
+		if (bearing >= 5) // target is on right
 				bearingState = 2;
-		if (bearing <= -5)
+		if (bearing <= -5) // target on left
 				bearingState = 1;
 		else if ( (bearing < 5) && (bearing > -5) )
-				bearingState = 3;
+				bearingState = 3; // target aligned
 		printf("bearing state: %d\n", bearingState);
 	  if (host) server_send(bearingState);
     }
