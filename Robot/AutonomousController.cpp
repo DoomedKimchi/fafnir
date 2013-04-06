@@ -19,6 +19,7 @@ void AutonomousController::startTimer() {
 
 void AutonomousController::drive(float speed, float turnSpeed) {
   printf("Driving at %f\n", speed);
+  printf("Turning at %f\n", turnSpeed);
   robot->setSpeed(-speed);
   robot->rotateSpeed(turnSpeed);
 }
@@ -61,8 +62,10 @@ void AutonomousController::driveBlindly() {
 }
 
 void AutonomousController::update(int bearing) {
-	if (bearing == 3) // target is aligned so drive straight
+	if (bearing == 3) { // target is aligned so drive straight
+		printf("Driving straight\n");
 		drive(AUTO_SPEED, 0.0);
+	}
 	else if (bearing == 1) // target on left so turn left
 		drive(AUTO_SPEED, -AUTO_TURN_SPEED);
 	else if (bearing == 2) // target on right so turn right

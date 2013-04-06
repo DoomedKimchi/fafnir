@@ -111,6 +111,7 @@ void server_init(AutonomousController *ac, Robot *robot) {
    		error("ERROR on accept");
    		//autoController->driveBlindly();
    	}
+    	readbuffer = (char *) malloc(BUFFSIZE);
 
     // infinite loop to accept requests
     while (1) {
@@ -118,7 +119,6 @@ void server_init(AutonomousController *ac, Robot *robot) {
     		printf("killing sever\n");
     		break;
     	}
-    	readbuffer = (char *) malloc(BUFFSIZE);
     	bzero(readbuffer, BUFFSIZE);
     	printf("reading\n");
     	//int n = read(newsockfd, readbuffer, (size_t) BUFFSIZE); // n is number of bytes
@@ -127,13 +127,17 @@ void server_init(AutonomousController *ac, Robot *robot) {
     		error("ERROR reading from socket");
     		//autoController->driveBlindly();
     	}
-    		printf("Readbuffer: %s\n", readbuffer);
+    	if ( (readbuffer == NULL) || (*readbuffer == '\0') ) {
+    		printf("Readbuffer is empty or null");
+    		break;
+    	}
+   		printf("Readbuffer: %s\n", readbuffer);
     	sscanf(readbuffer, "%d", &bearing);
     		printf("Recieved bearing: %d\n", bearing);
     	autoController->update(bearing);
     	robot->update();
-    	free(readbuffer);
     }
+    	free(readbuffer);
 	//printf("c\n");
 	// fails here
     //newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &c);
