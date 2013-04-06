@@ -28,7 +28,7 @@ class Robot {
   Shooter shooter;
 
   /*! The dumper of the robot */
-  //Dumper dumper;
+  Dumper dumper;
 
   //AutonomousController autonomousController;
 
@@ -57,11 +57,11 @@ class Robot {
   /*! \brief Fires a frisbee in the current direction of the robot */
   void shoot();
 
-  /*void setDumpSpeed(float spd);
+  void setDumpSpeed(float spd);
 
   void dump();
   void stopDump();
-  void unDump();*/
+  void unDump();
 
   /*! \brief Aims at a certain point
    * \param yaw The yaw to aim at
