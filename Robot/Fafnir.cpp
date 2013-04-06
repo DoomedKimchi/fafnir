@@ -35,13 +35,13 @@ Fafnir::Fafnir()
 }
 
 void Fafnir::AutonomousInit() {
-    printf("AutoInit\n");
-    autoController.startTimer();
+    //printf("AutoInit\n");
+    //autoController.startTimer();
 }
 
 void Fafnir::AutonomousPeriodic() {
-    autoController.update();
-    robot.update();
+    //autoController.update();
+    //robot.update();
 }
 
 void Fafnir::AutonomousDisabled() {
