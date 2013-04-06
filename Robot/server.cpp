@@ -39,7 +39,7 @@ void * proc(void *arg) {
     		autoController->driveBlindly();
     	}
     	printf("Readbuffer: %s\n", readbuffer);
-    	sscanf(readbuffer, "%d", bearing);
+    	sscanf(readbuffer, "%d", &bearing);
     	printf("Recieved bearing: %d\n", bearing);
     	autoController->update(bearing);
 
