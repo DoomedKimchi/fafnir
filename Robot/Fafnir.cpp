@@ -12,6 +12,7 @@ private:
     JoystickTest joystickTest;
     Robot robot;
     AutonomousMode mode;
+    bool killServer;
 public:
     Fafnir();
     void AutonomousInit();
@@ -22,10 +23,15 @@ public:
     void TeleopPeriodic();
     void TestPeriodic();
 
-    // These 3 methods are not recognized by WPILib
-    void AutonomousDisabled(); // the disable functions are not being called
+    /* These 3 methods are not defined in
+     * the WPILib IterativeRobot class,
+     * so they are never run
+     */
+    void AutonomousDisabled();
     void TeleopDisabled();
     void TestDisabled();
+
+    void DisabledInit();
 };
 
 Fafnir::Fafnir() 
@@ -91,6 +97,10 @@ void Fafnir::TestPeriodic() {
 
 void Fafnir::TestDisabled() {
     
+}
+
+void Fafnir::DisabledInit() {
+
 }
 
 START_ROBOT_CLASS(Fafnir);

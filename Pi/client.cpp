@@ -9,7 +9,7 @@
 #include <errno.h>
 #include <arpa/inet.h>
 
-#define HOSTNAME "10.0.8.2"
+//#define HOSTNAME "10.0.8.2"
 //#define HOSTNAME "localhost"
 #define PORT 8888
 #define BUFFSIZE 80
@@ -29,8 +29,8 @@ void error(const char *msg)
 	//exit(0); // exit program on failure to connect
 }
 
-bool server_connect () {
-	char *hostname = (char *)HOSTNAME;
+bool server_connect (char* hostname) {
+	//char *hostname = (char *)HOSTNAME;
 	printf("Connecting to: %s\n", hostname);
 	
     /*if (argc < 3) {
@@ -61,6 +61,10 @@ bool server_connect () {
 	printf("Trying to connect to host...\n");
 	while (1) {
     	//server = gethostbyname(argv[1]);
+		if (hostname == "NULL") {
+			printf("Not connecting to a server\n");
+			break;
+		}
 	    server = gethostbyname(hostname);
    		 if (server == NULL) {
    	     fprintf(stderr,"ERROR, no such host\n");
