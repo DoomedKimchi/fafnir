@@ -116,16 +116,16 @@ void server_init(AutonomousController *ac) {
     while (1) {
     	readbuffer = (char *) malloc(BUFFSIZE);
     	bzero(readbuffer, BUFFSIZE);
-    	printf("Start reading\n");
+    	printf("reading\n");
     	//int n = read(newsockfd, readbuffer, (size_t) BUFFSIZE); // n is number of bytes
     	int n = read(newsockfd, readbuffer, BUFFSIZE); // n is number of bytes
     	if (readbuffer[0] < 0) {
     		error("ERROR reading from socket");
     		//autoController->driveBlindly();
     	}
-    	printf("Readbuffer: %s\n", readbuffer);
+    		printf("Readbuffer: %s\n", readbuffer);
     	sscanf(readbuffer, "%d", bearing);
-    	printf("Recieved bearing: %d\n", bearing);
+    		printf("Recieved bearing: %d\n", bearing);
     	autoController->update(bearing);
     	free(readbuffer);
     }
