@@ -12,7 +12,6 @@ private:
     JoystickTest joystickTest;
     Robot robot;
     AutonomousMode mode;
-    int killServer;
 public:
     Fafnir();
     void AutonomousInit();
@@ -43,10 +42,9 @@ Fafnir::Fafnir()
 }
 
 void Fafnir::AutonomousInit() {
-	killServer = 0;
     printf("AutoInit\n");
     printf("Starting server\n");
-    server_init(&autoController); // this will pause the main thread
+    server_init(&autoController, &robot); // this will pause the main thread
     //rpi will have exclusive control instead of AutonomousController
 
     //printf("Server is listening\n");
@@ -101,7 +99,8 @@ void Fafnir::TestDisabled() {
 }
 
 void Fafnir::DisabledInit() {
-	killServer = 1;
+	printf("Sending kill signal to server\n");
+	server_close();
 }
 
 START_ROBOT_CLASS(Fafnir);

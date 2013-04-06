@@ -68,7 +68,7 @@ void * acc(void *arg) {
     return NULL;
 }
 
-void server_init(AutonomousController *ac) {
+void server_init(AutonomousController *ac, Robot *robot) {
     //robot = r;
 	autoController = ac;
     portno = 8888;
@@ -114,6 +114,10 @@ void server_init(AutonomousController *ac) {
 
     // infinite loop to accept requests
     while (1) {
+    	if(_fCloseThreads) {
+    		printf("killing sever\n");
+    		break;
+    	}
     	readbuffer = (char *) malloc(BUFFSIZE);
     	bzero(readbuffer, BUFFSIZE);
     	printf("reading\n");
@@ -124,9 +128,10 @@ void server_init(AutonomousController *ac) {
     		//autoController->driveBlindly();
     	}
     		printf("Readbuffer: %s\n", readbuffer);
-    	sscanf(readbuffer, "%d", bearing);
+    	sscanf(readbuffer, "%d", &bearing);
     		printf("Recieved bearing: %d\n", bearing);
     	autoController->update(bearing);
+    	robot->update();
     	free(readbuffer);
     }
 	//printf("c\n");
@@ -140,6 +145,9 @@ void server_init(AutonomousController *ac) {
 	pthread_detach(acc_thread);
 	printf("acc_thread detached\n");
 */
+   	close(newsockfd);
+   	close(sockfd);
+	printf("server closed\n");
 }
 
 void server_begin_listening() {
@@ -158,13 +166,12 @@ void server_update() {
 	//int bearing;
 	//printf("Message: %s\n", message);
 	//robot->setVision(5);
-
-    //free(readbuffer);
 }
 
 void server_close() {
 	_fCloseThreads = 1; // request all pthreads to close
-	close(newsockfd);
-	close(sockfd);
-	printf("server closed\n");
+	// make sure these exist first
+	//close(newsockfd);
+	//close(sockfd);
+	//printf("server closed\n");
 }

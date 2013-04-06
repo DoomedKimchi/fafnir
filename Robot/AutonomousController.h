@@ -14,7 +14,7 @@ class AutonomousController {
   Robot *robot;
   AutonomousMode mode;
 
-  void drive(float v = 0.7);
+  void drive(float speed, float turnSpeed);
   void stop();
 
   Timer timer;

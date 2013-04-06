@@ -17,14 +17,14 @@ void AutonomousController::startTimer() {
   timer.Start();
 }
 
-void AutonomousController::drive(float v) {
-  printf("Driving at %f\n", v);
-  robot->setSpeed(-v);
-  robot->rotateSpeed(0.0);
+void AutonomousController::drive(float speed, float turnSpeed) {
+  printf("Driving at %f\n", speed);
+  robot->setSpeed(-speed);
+  robot->rotateSpeed(turnSpeed);
 }
 
 void AutonomousController::stop() {
-  drive(0);
+  //drive(0);
   robot->rotateSpeed(0);
 }
 
@@ -61,4 +61,13 @@ void AutonomousController::driveBlindly() {
 }
 
 void AutonomousController::update(int bearing) {
+	if (bearing == 3) // target is aligned so drive straight
+		drive(AUTO_SPEED, 0.0);
+	else if (bearing == 1) // target on left so turn left
+		drive(AUTO_SPEED, -AUTO_TURN_SPEED);
+	else if (bearing == 2) // target on right so turn right
+		drive(AUTO_SPEED, AUTO_TURN_SPEED);
+	else if (bearing == 0) { 
+		drive(0, AUTO_TURN_SPEED); // no target found so turn instead 
+	}
 }
