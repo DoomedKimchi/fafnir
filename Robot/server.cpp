@@ -10,7 +10,7 @@ pthread_t proc_thread;
 pthread_t acc_thread;
 pthread_attr_t proc_attr;
 pthread_attr_t acc_attr;
-//Robot *robot;
+Robot *robot;
 AutonomousController *autoController;
 int bearing;
 

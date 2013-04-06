@@ -12,7 +12,7 @@ private:
     JoystickTest joystickTest;
     Robot robot;
     AutonomousMode mode;
-    bool killServer;
+    int killServer;
 public:
     Fafnir();
     void AutonomousInit();
@@ -43,6 +43,7 @@ Fafnir::Fafnir()
 }
 
 void Fafnir::AutonomousInit() {
+	killServer = 0;
     printf("AutoInit\n");
     printf("Starting server\n");
     server_init(&autoController); // this will pause the main thread
@@ -100,7 +101,7 @@ void Fafnir::TestDisabled() {
 }
 
 void Fafnir::DisabledInit() {
-
+	killServer = 1;
 }
 
 START_ROBOT_CLASS(Fafnir);
