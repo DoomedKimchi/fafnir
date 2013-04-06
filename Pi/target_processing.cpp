@@ -77,7 +77,7 @@ bool check_inside(vector<Point> &recto, vector<Point> &recti) {
 
 /* end utility functions */
 
-void find_targets(YAML::Node *config,
+void find_targets(
 		  vector<vector<Point> > &rectangles,
 		  vector<vector<Point> > &targets) {
   vector<set<size_t> > checked;
@@ -107,15 +107,17 @@ void find_targets(YAML::Node *config,
   }
 }
 
-void process_target(YAML::Node *config, Size image_size,
+void process_target(Size image_size,
 		    vector<Point> &target,
 		    Point &center, double &hangle,
 		    double &vangle, double &distance) {
   // NOTE: assuming that target vertices are
   // ordered by ordered_vertices
+		/*
   const double PixelToCM = config->FindValue("PixelToCM")->to<double>();
   const double TargetWidth = config->FindValue("TargetWidth")->to<double>();
   const double DistanceAtFull = config->FindValue("DistanceAtFull")->to<double>();
+	*/
   int width = target[1].x - target[0].x;
   double cm_per_pixel = TargetWidth / ((double)width);
   distance = DistanceAtFull / pow((double)width/(double)image_size.width,PixelToCM);
@@ -140,12 +142,13 @@ void process_target(YAML::Node *config, Size image_size,
   vangle = atan2((dy*cm_per_pixel),distance)*180 / PI;
 }
 
-void draw_targets(YAML::Node *config,
+void draw_targets(
 		  vector<vector<Point> > &rectangles,
 		  vector<vector<Point> > &targets,
 		  Mat &image) {
   const Point *points;
   int num_points;
+			/*
   const Scalar RectangleColor =
     Scalar(config->FindValue("RectangleColor")->FindValue(0)->to<int>(),
 	   config->FindValue("RectangleColor")->FindValue(1)->to<int>(),
@@ -155,6 +158,9 @@ void draw_targets(YAML::Node *config,
 	   config->FindValue("TargetColor")->FindValue(1)->to<int>(),
 	   config->FindValue("TargetColor")->FindValue(2)->to<int>());
   const int RectangleThickness = config->FindValue("RectangleThickness")->to<int>();
+	*/
+	const Scalar RectangleColor = Scalar(RectangleColorR,RectangleColorG,RectangleColorB);
+	const Scalar TargetColor = Scalar(TargetColorR,TargetColorG,TargetColorB);
 
   for (size_t i=0; i < rectangles.size(); i++) {
     if (count(targets.begin(), targets.end(), rectangles[i]) > 0) continue;

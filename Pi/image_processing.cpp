@@ -15,18 +15,18 @@ double angle(Point pt1, Point pt2, Point pt0) {
 
 /* End utility functions */
 
-void process_image(YAML::Node *config, Mat &image_in, Mat &image_out) {
+void process_image(Mat &image_in, Mat &image_out) {
   // image_1 and image_2 are used as
   // intermediaries for the image
   // processing
   Mat image_1, image_2, element;
   vector<Mat> image_split;
-  const int dilateElementSize = config->FindValue("dilateElementSize")->to<int>();
-  const int HSVThresholdMin = config->FindValue("HSVThresholdMin")->to<int>();
-  const int HSVThresholdMax = config->FindValue("HSVThresholdMax")->to<int>();
-  const int CannyThreshold1 = config->FindValue("CannyThreshold1")->to<int>();
-  const int CannyThreshold2 = config->FindValue("CannyThreshold2")->to<int>();
-  const int CannyAperatureSize = config->FindValue("CannyAperatureSize")->to<int>();
+  //const int dilateElementSize = config->FindValue("dilateElementSize")->to<int>();
+  //const int HSVThresholdMin = config->FindValue("HSVThresholdMin")->to<int>();
+  //const int HSVThresholdMax = config->FindValue("HSVThresholdMax")->to<int>();
+  //const int CannyThreshold1 = config->FindValue("CannyThreshold1")->to<int>();
+  //const int CannyThreshold2 = config->FindValue("CannyThreshold2")->to<int>();
+  //const int CannyAperatureSize = config->FindValue("CannyAperatureSize")->to<int>();
   element = getStructuringElement(MORPH_RECT,
 				  Size(dilateElementSize*2 + 1,
 				       dilateElementSize*2 + 1),
@@ -48,15 +48,17 @@ void process_image(YAML::Node *config, Mat &image_in, Mat &image_out) {
   element.release();
 }
 
-void find_rectangles (YAML::Node *config,
+void find_rectangles (
 		      vector<vector<Point> > &contours,
 		      vector<vector<Point> > &rectangles) {
   vector<Point> approx;
   double maxCosine, cosine;
 
+	/*
   const int MinRectangleArea = config->FindValue("MinRectangleArea")->to<int>();
   const double PolyEpsilonFactor = config->FindValue("PolyEpsilonFactor")->to<double>();
   const double MaxRectangleCosine = config->FindValue("MaxRectangleCosine")->to<double>();
+	*/
 
   for (size_t i=0; i < contours.size(); i++) {
     approxPolyDP(Mat(contours[i]), approx,

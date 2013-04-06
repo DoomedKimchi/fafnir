@@ -4,11 +4,11 @@
 
 /* This function processes the input image to ready it
    for edge finding */
-void process_image(YAML::Node *config, Mat &image_in, Mat &image_out);
+void process_image(Mat &image_in, Mat &image_out);
 
 /* This function takes the object contours and
    figures out which ones are probably rectangles */
-void find_rectangles (YAML::Node *config,
+void find_rectangles (
 		      vector<vector<Point> > &contours,
 		      vector<vector<Point> > &rectangles);
 

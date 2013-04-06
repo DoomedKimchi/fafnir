@@ -153,7 +153,7 @@ int main(int argc, char **argv) {
   double hangle, vangle, distance;
 
   // load config file
-  load_conf("conf.yaml", config);
+  //load_conf("conf.yaml", config);
 
   //int counter = 0; //counter for the while loop for debugging purposes
 
@@ -164,16 +164,16 @@ int main(int argc, char **argv) {
       break;
 
     // process image for edge finding
-    process_image(&config, image, image_processed);
+    process_image(image, image_processed);
     // find edges
     findContours(image_processed, contours, CV_RETR_LIST,
 		 CV_CHAIN_APPROX_SIMPLE);
     // find rectangles from edges
-    find_rectangles(&config, contours, rectangles);
+    find_rectangles(contours, rectangles);
     // find targets
-    find_targets(&config, rectangles, targets);
+    find_targets(rectangles, targets);
     // draw rectangles
-    draw_targets(&config, rectangles, targets, image);
+    draw_targets(rectangles, targets, image);
 
     //cout << "Image width:" << image.cols << endl;
     //cout << "Image height:" << image.rows << endl;
@@ -194,7 +194,7 @@ int main(int argc, char **argv) {
 		int img_center;
 		int bearing;
       // process targets
-      process_target(&config, image.size(), targets[i], center, hangle,
+      process_target(image.size(), targets[i], center, hangle,
 		     vangle, distance);
 	  /*
       cout << "Target " << i << ":" << endl;
