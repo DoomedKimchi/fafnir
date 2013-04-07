@@ -28,9 +28,11 @@ int main(int argc, char **argv) {
   int gui = 0; // Value for "-g" optional argument to show gui
   int write = 0;
 	int host = 0;
+	int port = 0;
 	int cam = 0;
 	int file = 0;
 	int camera = 0;
+	int portno;
 	char* hostname;
 	char* filename;
 	int bearingState;
@@ -60,6 +62,18 @@ int main(int argc, char **argv) {
 				printf("Usage: -h <host IP>\n");
 				return -1;
 			}
+		}
+		else if ( (strcmp(argv[i], "-p") == 0) ||
+						(strcmp(argv[i], "--port") == 0) ) {
+				port = 1;
+				if (i + 1 <= argc -1) {
+						i++;
+						sscanf(argv[i], "%d", &portno);
+				}
+				else {
+						printf("Usage: -p <port number>\n");
+						return -1;
+				}
 		}
 		else if ( (strcmp(argv[i], "-c") == 0) || 
 						(strcmp(argv[i], "--cam") == 0) ) {
@@ -95,11 +109,24 @@ int main(int argc, char **argv) {
 		// need more usage instructions
 		return(-1);
 	}
+	if (port == 1 && host == 0) {
+			printf("Please specify a hostname\n");
+			return -1;
+	}
+	else if (port == 0 && host == 1) {
+			printf("Please specify a port number\n");
+			return -1;
+	}
+	else if (file == 0 && cam == 0) {
+			printf("Please specify either a camera or media file\n");
+			return -1;
+	}
 
 	// print what we got from the arguments
 	cout << "GUI: " << gui << endl;
 	cout << "Write to file: " << write << endl;
 	if (host) cout << "Hostname: " << hostname << endl;
+	if (port) cout << "Port Number: " << portno << endl;
 	if (cam) cout << "Camera: " << cam << endl;
 	if (file) cout << "Filename: " << filename << endl;
 	
@@ -108,7 +135,7 @@ int main(int argc, char **argv) {
 		printf("Not connecting to a server\n");
 	}
 	else {
- 		if(server_connect(hostname)) {
+ 		if(server_connect(hostname, portno)) {
 	  	cerr << "Couldn't connect to server" << endl;
 			server_disconnect();
   	}

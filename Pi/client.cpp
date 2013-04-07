@@ -15,7 +15,6 @@
 #define BUFFSIZE 80
 
 	int sockfd; 
-	int portno; // port number
 	int n;
     struct sockaddr_in serv_addr;
     struct hostent *server;
@@ -29,7 +28,7 @@ void error(const char *msg)
 	//exit(0); // exit program on failure to connect
 }
 
-bool server_connect (char* hostname) {
+bool server_connect (char* hostname, int portno) {
 	//char *hostname = (char *)HOSTNAME;
 	printf("Connecting to: %s\n", hostname);
 	
@@ -39,7 +38,7 @@ bool server_connect (char* hostname) {
     }*/
 
     //portno = atoi(argv[2]);
-	portno = PORT; // set port number according to #define
+	//portno = PORT; // set port number according to #define
 
 	/*
     printf("Please enter the message: ");
