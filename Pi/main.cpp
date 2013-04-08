@@ -22,7 +22,7 @@ void load_conf(string filename, YAML::Node &config) {
 int main(int argc, char **argv) {
   // Use webcam as source by default
   VideoCapture capture;
-  double rate;
+  double rate; // framerate of source
 
 	int i;
   int gui = 0; // Value for "-g" optional argument to show gui
@@ -31,10 +31,12 @@ int main(int argc, char **argv) {
 	int port = 0;
 	int cam = 0;
 	int file = 0;
-	int camera = 0;
+
+	int camera;
 	int portno;
 	char* hostname;
 	char* filename;
+
 	int bearingState;
 
   for (i = 1/*skip argv[0]*/; i < argc; i++) {
@@ -136,8 +138,8 @@ int main(int argc, char **argv) {
 	}
 	else {
  		if(server_connect(hostname, portno)) {
-	  	cerr << "Couldn't connect to server" << endl;
 			server_disconnect();
+	  	cerr << "Couldn't connect to server" << endl;
   	}
 	}
 
