@@ -35,15 +35,11 @@ bool AutonomousController::fire() {
   return true;
 }
 
-void AutonomousController::dump(float time) {
+/*void AutonomousController::dump(float time) {
   if(time < DUMP_TIME) robot->dump();
   else if(time < DUMP_TIME + DUMP_PAUSE_TIME) robot->stopDump();
   else robot->unDump();
-}
-
-void AutonomousController::runDefault() {
-
-}
+  }*/
 
 void AutonomousController::driveBlindly() {
   printf("Driving blindly!\n");
