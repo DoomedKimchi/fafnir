@@ -8,6 +8,9 @@ EXECUTABLE=main
 
 all: $(SOURCES) $(EXECUTABLE)
 
+client:
+	g++ -o client test-client.cpp
+
 clean:
 	$(shell rm -rf bin)
 

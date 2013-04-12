@@ -186,7 +186,8 @@ int main(int argc, char **argv) {
 
   //int counter = 0; //counter for the while loop for debugging purposes
 
-  while (!stop) {
+  //while (!stop) {
+  while(0) {
     //cout << "\n\ncounter: " << counter << endl;
     // read next frame if any
     if (!capture.read(image))

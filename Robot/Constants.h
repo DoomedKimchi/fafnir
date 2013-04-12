@@ -172,6 +172,8 @@
 #define DUMP_PAUSE_TIME 0.5 //amount of time to pause before undumping
 #define TOT_DUMP_TIME 2.5
 
+#define HOSTNAME 10.0.8.6
+#define PORT 8888
 #define BUFFSIZE 80
 
 #define AUTO_SPEED 0.7
