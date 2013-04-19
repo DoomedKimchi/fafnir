@@ -2,6 +2,7 @@ Dependencies:
 =============
 gcc <br>
 make <br>
+pkg-config <br>
 opencv 2.4.3 <br>
 yaml=cpp 0.3 (0.5 does not work) <br>
 
