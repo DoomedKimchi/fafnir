@@ -38,7 +38,7 @@ class Robot {
   bool isAimed;
 
   bool teleopMode;
-  
+
  public:
   /*! \brief Default constructor */
   Robot();
@@ -63,13 +63,13 @@ class Robot {
   void aim();
   /*! \brief Climbs the pyramid */
   void climb();
-  
+
   ShifterMode getShifterMode();
   bool setShifterMode(ShifterMode mode);
 
   ShifterPosition getShifterPosition();
   bool setShifterPosition(ShifterPosition pos);
-  
+
   ShooterState getShooterState();
 
   void setSpeed(float s);

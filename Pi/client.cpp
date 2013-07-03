@@ -21,11 +21,11 @@ int connect (char *ipaddr) {
     {
         printf("\n Error : Could not create socket \n");
         return 1;
-    }	
-	memset(&serv_addr, '0', sizeof(serv_addr)); 
+    }
+	memset(&serv_addr, '0', sizeof(serv_addr));
 
     serv_addr.sin_family = AF_INET;
-    serv_addr.sin_port = htons(5000); 
+    serv_addr.sin_port = htons(5000);
 
     if(inet_pton(AF_INET, ipaddr, &serv_addr.sin_addr)<=0)
     {
@@ -37,7 +37,7 @@ int connect (char *ipaddr) {
     {
        printf("\n Error : Connect Failed \n");
        return 1;
-    } 
+    }
 
     while ( (n = read(sockfd, recvBuff, sizeof(recvBuff)-1)) > 0)
     {
@@ -46,12 +46,12 @@ int connect (char *ipaddr) {
         {
             printf("\n Error : Fputs error\n");
         }
-    } 
+    }
 
     if(n < 0)
     {
         printf("\n Read error \n");
-    } 
+    }
 
     return 0;
 }

@@ -26,8 +26,8 @@ public:
     void TestDisabled();
 };
 
-Fafnir::Fafnir() 
-    :    humanController(&robot) 
+Fafnir::Fafnir()
+    :    humanController(&robot)
 	,	 joystickTest(&robot)
     ,    autoController(&robot, mode)
     ,    robot() {
@@ -68,7 +68,7 @@ void Fafnir::TeleopDisabled() {
 }
 
 void Fafnir::TestInit() {
-	
+
 }
 
 void Fafnir::TestPeriodic() {
@@ -76,7 +76,7 @@ void Fafnir::TestPeriodic() {
 }
 
 void Fafnir::TestDisabled() {
-    
+
 }
 
 START_ROBOT_CLASS(Fafnir);

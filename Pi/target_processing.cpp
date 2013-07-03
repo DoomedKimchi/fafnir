@@ -150,7 +150,7 @@ void draw_targets(YAML::Node *config,
     Scalar(config->FindValue("RectangleColor")->FindValue(0)->to<int>(),
 	   config->FindValue("RectangleColor")->FindValue(1)->to<int>(),
 	   config->FindValue("RectangleColor")->FindValue(2)->to<int>());
-  const Scalar TargetColor = 
+  const Scalar TargetColor =
     Scalar(config->FindValue("TargetColor")->FindValue(0)->to<int>(),
 	   config->FindValue("TargetColor")->FindValue(1)->to<int>(),
 	   config->FindValue("TargetColor")->FindValue(2)->to<int>());
