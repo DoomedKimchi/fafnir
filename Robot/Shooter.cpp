@@ -66,9 +66,9 @@ void Shooter::update() {
     	    //shootTimer.Start();
     	    shootRequested = 0;
     	    shootTimer.Start();
-    	    solShoot.Set(false);
-    	    solRecover.Set(true);
-    	    setSpinSpeed(0.2);
+    	    //solShoot.Set(false);
+    	    //solRecover.Set(true);
+    	    setSpinSpeed(SHOOT_SPEED);
     	    state = PRIMED;
     	}
 
