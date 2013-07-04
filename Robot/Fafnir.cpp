@@ -7,36 +7,68 @@
 class Fafnir : public IterativeRobot {
 private:
     HumanController humanController;
-    AutonomousController autoController;
     JoystickTest joystickTest;
-    Robot robot;
     AutonomousMode mode;
+    AutonomousController autoController;
+    Robot robot;
 public:
     Fafnir();
+
+    /* Only these methods are supported by the IterativeRobot class in WPILib
+       See: http://www.virtualroadside.com/WPILib/class_iterative_robot.html/
+       as well as the WPILib source.
+    */
+    void RobotInit();
+    // Disabled is simply another mode like Teleop and Autonomous, and has an Init and a Periodic function
+    void DisabledInit();
     void AutonomousInit();
     void TeleopInit();
     void TestInit();
 
+    void DisabledPeriodic();
     void AutonomousPeriodic();
     void TeleopPeriodic();
     void TestPeriodic();
-
-    void AutonomousDisabled();
-    void TeleopDisabled();
-    void TestDisabled();
 };
 
 Fafnir::Fafnir()
     :    humanController(&robot)
-	,	 joystickTest(&robot)
+    ,    joystickTest(&robot)
+    ,    mode(DEFAULT)
     ,    autoController(&robot, mode)
-    ,    robot() {
+    ,    robot()
+{
+}
 
+void RobotInit() {
+    printf("Robot initializing\n");
+    // Check motors/sensors
+    // Ping the RPi
+}
+
+void DisabledInit() {
+    printf("Entering disabled mode\n");
+    // Spin down all motors
+    // Halt network communications
+    // Deconstruct robot classes?
 }
 
 void Fafnir::AutonomousInit() {
-    printf("AutoInit\n");
+    printf("Starting Autonomous mode\n");
     autoController.startTimer();
+}
+
+void Fafnir::TeleopInit() {
+    printf("Starting Teleop mode\n");
+    //robot.startCompressor();
+}
+
+void Fafnir::TestInit() {
+    printf("Starting Test mode\n");
+}
+
+void DisabledPeriodic() {
+    // Flash the fancy lights and stuff
 }
 
 void Fafnir::AutonomousPeriodic() {
@@ -44,40 +76,13 @@ void Fafnir::AutonomousPeriodic() {
     robot.update();
 }
 
-void Fafnir::AutonomousDisabled() {
-    //delete autonomousController;
-}
-
-void Fafnir::TeleopInit() {
-    robot.startCompressor();
-
-    //driveStation(&robot);
-    //robot.shoot(); //Commented because we don't want the robot to shoot before the trigger is pressed
-	//robot.setSpeed(0.5);
-}
-
 void Fafnir::TeleopPeriodic() {
-    //float speed;
     humanController.update();
-    //printf("Teleop Periodic called\n");
     robot.update();
 }
 
-void Fafnir::TeleopDisabled() {
-    //delete driveStation();
-}
-
-void Fafnir::TestInit() {
-
-}
-
 void Fafnir::TestPeriodic() {
-	joystickTest.update(); //uncomment this line to test joysticks
-}
-
-void Fafnir::TestDisabled() {
-
+    joystickTest.update(); //uncomment this line to test joysticks
 }
 
 START_ROBOT_CLASS(Fafnir);
-
