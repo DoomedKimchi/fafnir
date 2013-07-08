@@ -17,14 +17,14 @@ class LinearVictor
   LinearVictor(int portNum);
   /*! \brief Destructor */
   virtual ~LinearVictor();
-  
+
   /*! \brief sets the speed of the victor
    *
    * Sets the speed of the victor motor by after calculating the correct speed from the linear speed given
    * \param speed The speed to set the victor, scaled to a value from -1 to 1. This value will scale linearly with output.
    * \return The speed at which the victor is set */
   void Set(double speed);
-	
+
  private:
   /*! \brief Calculates a value for the victor
    * Calculates a value for the victor that will cause the output of the victor to scale linearly with the desired speed

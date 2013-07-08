@@ -1,6 +1,6 @@
 #include "Shooter.h"
 
-Shooter::Shooter() 
+Shooter::Shooter()
     :    //elevationEncoder((UINT32)PORT_SHOOTER_ENC_1_A, (UINT32)PORT_SHOOTER_ENC_1_B)
     //,    speedEncoder((UINT32)PORT_SHOOTER_ENC_2_A, (UINT32)PORT_SHOOTER_ENC_2_B)
     /*,*/    motor1(PORT_SHOOTER_VIC_1)
@@ -18,7 +18,7 @@ Shooter::Shooter()
 
     //elevationEncoder.SetDistancePerPulse(SHOOTER_DEG_PER_PULSE);
     //speedEncoder.SetDistancePerPulse(SHOOTER_ENC_FEET_PER_PULSE);
-    
+
     //motorPower = 0;
     //elevationError.PIDWrite(0.0);
 
@@ -34,7 +34,7 @@ void Shooter::elevationSpeed(float speed) {
 void Shooter::setElevation(float f) {
   // sets target elevation
   elevationTarget = f;
-} 
+}
 
 void Shooter::setSpinSpeed(float sp) {
   printf("SpinSpeed set to: %f", sp);
@@ -66,9 +66,9 @@ void Shooter::update() {
     	    //shootTimer.Start();
     	    shootRequested = 0;
     	    shootTimer.Start();
-    	    solShoot.Set(false);
-    	    solRecover.Set(true);
-    	    setSpinSpeed(0.2);
+    	    //solShoot.Set(false);
+    	    //solRecover.Set(true);
+    	    setSpinSpeed(SHOOT_SPEED);
     	    state = PRIMED;
     	}
 
@@ -76,8 +76,8 @@ void Shooter::update() {
     case LOADED:
 	setSpinSpeed(0.0);
 	if (shootRequested) {
-	    //setSpinSpeed(1.0); // is 100 a reasonable value?                                                                                                                         
-	    // push frisbee into shooter                                                                                                                                       
+	    //setSpinSpeed(1.0); // is 100 a reasonable value?
+	    // push frisbee into shooter
 	    printf("shoot requested... spinning up\n");
 	    //sol1.Set(true);
 	    //sol2.Set(true);
@@ -90,12 +90,12 @@ void Shooter::update() {
 	    setSpinSpeed(-0.5);
 	    state = PRIMED;
 	}
-	
+
 	break;
     case AIMING:
 	//	elevationError.PIDWrite(elevationEncoder.GetDistance() - elevationTarget);
 	// note that just because we updated the error doesn't mean the output
-	// changed b/c the PID loop updates in its own loop 
+	// changed b/c the PID loop updates in its own loop
 	//motorPower = elevationController.Get();
 	//motorElevation.Set(motorPower); //not sure what the write set pwoer method is
 	break;
@@ -134,7 +134,7 @@ void Shooter::update() {
     case EMPTY:
 	break;
     default:
-	break;	
+	break;
     }*/
 }
 

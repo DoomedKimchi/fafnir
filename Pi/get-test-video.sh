@@ -1,4 +1,4 @@
-!#/bin/bash
+#!/bin/bash
 
 # Obviously, you will need wget to run this script.
 # First, make the script executable.

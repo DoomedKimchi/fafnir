@@ -14,20 +14,18 @@ AutonomousMode HumanController::getAutonomousMode() {
 
 
 void HumanController::update() {
-  //check current state of joysticks
-  //calculate what to do based on joysticks and robot state (e.g. drive speed for certain gear)
-  //gear ranges should look something like:
-  //low gear: 0 ft/sec – 5.5 ft/sec
-  //high gear: 5 ft/sec – max speed (probably 16 ft/sec)
+  /* check current state of joysticks
+	 calculate what to do based on joysticks and robot state (e.g. drive speed for certain gear)
+	 gear ranges should look something like:
+	 low gear: 0 ft/sec – 5.5 ft/sec
+	 high gear: 5 ft/sec – max speed (probably 16 ft/sec)
+	*/
 
   /* begin drive forward/backward */
-  //printf("joystick y: %f\t",  speedStick.GetY());
-  //printf("joystick x: %f\n",  turnStick.GetX());
   robot->setSpeed(speedStick.GetY());
   robot->rotateSpeed(turnStick.GetX());
   /* end drive forward/backward */
-  // printf("%f\n", speedStick.GetX());
-  //robot->elevationSpeed(operatorStick.GetY());
+
   /* begin Gearshifter changing */
   if(turnStick.GetRawButton(JS_TURN_MODE_TOGGLE)) {
     if(!buttShifterMode) {
@@ -48,14 +46,17 @@ void HumanController::update() {
   buttShifterMode = turnStick.GetRawButton(JS_TURN_MODE_TOGGLE);
   /* end Gearshifter changing */
 
+  /* begin operator commands */
   shooting = operatorStick.GetTrigger();
-  
-  gain = operatorStick.GetTrigger();
+  if(shooting) // the shooting boolean should probably just be removed
+	  robot->shoot();
 
-  
-  /* end operator commands */ 
+  //robot->elevationSpeed(operatorStick.GetY());
 
-  // Dumper: currently set to use the Y axis on the operator stick (aka stick #3)
-  //printf("opstick y: %f\n", operatorStick.GetY());
+  //gain = operatorStick.GetTrigger(); // why is this the same as shooting?
+
+  /* Dumper: currently set to use the Y axis on the operator stick (aka stick #3)*/
   //robot->setDumpSpeed(operatorStick.GetY());
+
+  /* end operator commands */
 }

@@ -1,11 +1,11 @@
-#include "Accumulator.h" 
+#include "Accumulator.h"
 
 Accumulator::Accumulator() : motor((UINT32)PORT_ACC_VIC_1), servo(PORT_ACC_SERVO), frisbeeSwitch(PORT_ACC_SWITCH), state(SHOOTER_EMPTY){
 
 }
 
 Accumulator::~Accumulator() {
-    
+
 }
 
 bool Accumulator:: start() {
@@ -29,14 +29,14 @@ void Accumulator:: update() {
     if (frisbeeSwitch.IsPressed()){
       state=LOADING;
     }
-    break; 
+    break;
   case LOADING:
     if (!frisbeeSwitch.IsPressed()){
       state=SHOOTER_LOADED;
     }
-    break; 
+    break;
   case SHOOTER_LOADED:
-    break; 
+    break;
   default:
     break;
   }

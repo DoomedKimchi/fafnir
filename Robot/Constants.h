@@ -153,7 +153,7 @@
 #define SHOOT_SPINUP_WAIT 5.0
 
 /* Shooter minimum speed to shoot */
-#define SHOOT_SPEED 0.0
+#define SHOOT_SPEED 0.2
 
 // Dumper victor port
 // I'm using all 4 victors temporarily because I don't know the port numbers corresponding to each victor on the practice bot

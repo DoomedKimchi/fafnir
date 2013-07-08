@@ -4,9 +4,9 @@ LinearVictor::LinearVictor(int portNum){
 	victor = new Victor(portNum);
 }
 
-double LinearVictor::CalculateLinearValue(double desiredSpeed) {	
-		
-		double goal_speed = desiredSpeed; 
+double LinearVictor::CalculateLinearValue(double desiredSpeed) {
+
+		double goal_speed = desiredSpeed;
 		const double deadband_value = 0.082;
 		if (goal_speed > deadband_value)
 			goal_speed -= deadband_value;
@@ -50,14 +50,14 @@ double LinearVictor::CalculateLinearValue(double desiredSpeed) {
 			answer += deadband_value;
 		else if (answer < -0.001)
 			answer -= deadband_value;
-		/*int i = 0; 
+		/*int i = 0;
 		if(i%100 == 0)
 		{
 			printf("Now in Linearization Code \n");
 		}
 		i++;*/
-		
-		return answer;	
+
+		return answer;
 }
 
 void LinearVictor::Set(double speed) {

@@ -1,6 +1,6 @@
 #include "DriveTrain.h"
 
-DriveTrain::DriveTrain() 
+DriveTrain::DriveTrain()
   : // leftSol(PORT_DRIVE_SOL_1)
   //,  rightSol(PORT_DRIVE_SOL_2)
 
@@ -10,7 +10,7 @@ DriveTrain::DriveTrain()
   /*,*/  leftFrontVic(PORT_DRIVE_VIC_1)
   ,  leftBackVic(PORT_DRIVE_VIC_2)
   ,  rightFrontVic(PORT_DRIVE_VIC_3)
-  ,  rightBackVic(PORT_DRIVE_VIC_4) 
+  ,  rightBackVic(PORT_DRIVE_VIC_4)
 
   ,  gyro((UINT32)PORT_DRIVE_GYRO)
 
@@ -19,7 +19,7 @@ DriveTrain::DriveTrain()
   ,  distanceOutput()
   ,  speedController(3.0f,0.0f,-1.0f,&speedInput,&speedOutput)
   ,  speedInput()
-  ,  speedOutput() 
+  ,  speedOutput()
 
   ,  rotOutput()
   ,  rotationController(3.0f, 0.0f, -1.0f, &gyro, &rotOutput)
@@ -68,13 +68,13 @@ ShifterPosition DriveTrain::getShifterPosition() {
 //   if(!leftSol.Get()) {
 //     return HIGH_GEAR;
 //   }
-//-------------------------------------------------- 
+//--------------------------------------------------
   return LOW_GEAR;
 }
 
 //driveDist and driveTo mostly for auto
 bool DriveTrain::driveD(double d) { // tolerence is currently .01
-  //set target distance  
+  //set target distance
   targetDist = d;
   //leftEnc.Reset();
   //leftEnc.Start();
@@ -100,15 +100,15 @@ bool DriveTrain::driveS(double s) {
 
 bool DriveTrain::driveTo(Complex target) {
   //calculate polar coordinates (r, theta) then set values
-  
+
   // Nathan's notes:
   // Steering_value = component_perpendicular_to_forward ( vector_to_target ).normalize.multiply(steering speed)
   // steering speed is important, should probably PID that
   // if you don't normalize and mult the value, then its basically a P controller
-  
+
   //Craig W. Reynolds steering algorithm (expanded to seek behavior) take a look at a simple boids program to further understand
   //boids written by me! http://openprocessing.org/sketch/67395
-  
+
   /* void seek(PVector target) {
      PVector desired = PVector.sub(target,location);
      desired.normalize();
@@ -121,7 +121,7 @@ bool DriveTrain::driveTo(Complex target) {
      applyForce(steer);
      }
   */
-  
+
   // HOWEVER, this method most likely won't work because we can't accuratrly keep track of our current position
   // we may just have to turn to the angle and drive forward
   // the craigs reynold thing is for a moving seek target (so its like a feedback controller)
@@ -153,7 +153,7 @@ float DriveTrain::getSpeed() {
 
 void DriveTrain::setSpeed(float s) {
   // make motors turn, -2^15 < s < 2^15
-    targetSpeed = s;  
+    targetSpeed = s;
     printf("running motors at %f\n", s);
     leftFrontVic.Set(targetSpeed);
     leftBackVic.Set(targetSpeed);
@@ -171,7 +171,7 @@ void DriveTrain::update() {
       engageLow();
     }
   }
-  
+
   //   printf("Gyro angle: %f\n", gyro.GetAngle());
 	   //rotateA(0);
 	   /* hardcoded rotate speeds
@@ -215,10 +215,10 @@ void DriveTrain::update() {
     //default:
    //break;
     //}
-  
+
   /* dist PID */
 
-  //distanceInput.PIDWrite(leftEnc.GetDistance()); 
+  //distanceInput.PIDWrite(leftEnc.GetDistance());
   if (distanceInput.PIDGet() <= .01) {
     targetSpeed = 0; // within tolerence
   }

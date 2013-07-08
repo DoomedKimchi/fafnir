@@ -5,11 +5,11 @@ AutonomousController::AutonomousController(Robot *robot, AutonomousMode m) {
   this->robot = robot;
   mode = m;
   targetAligned = 0;
-  targetReached = 0; 
+  targetReached = 0;
 }
 
 AutonomousController::~AutonomousController() {
-  
+
 }
 
 

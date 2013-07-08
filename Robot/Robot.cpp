@@ -1,8 +1,8 @@
 #include "Robot.h"
 
-Robot::Robot() 
-    :   
-  //camera (AxisCamera::GetInstance()), 
+Robot::Robot()
+    :
+  //camera (AxisCamera::GetInstance()),
   compressor(PORT_PRESSURE_CUTOFF, PORT_COMPRESSOR_SPIKE),
   teleopMode(false) {
     printf("allocated compressor relay port on spike %d\n and cutoff at %d\n", PORT_COMPRESSOR_SPIKE, PORT_PRESSURE_CUTOFF);
@@ -115,4 +115,4 @@ void Robot::setAccumulatorState(AccumulatorState nstate) {
 }
 
 
- 
+

@@ -25,7 +25,7 @@ class Accumulator {
 
   bool shooting;
 
- public:  
+ public:
   /*!\brief Start the motor
    * \pre The motor is not running
    * \return Whether the motor has been started */
@@ -36,9 +36,9 @@ class Accumulator {
    * \return Whether the motor has been stopped */
   bool kill();
 
-  
+
   bool autoAccumulate();
-  
+
   /*! \brief The method that is continually called by Robot
    * \param accumulate Whether autoAccumulate() should be called
    * \return Whether update succeeded */

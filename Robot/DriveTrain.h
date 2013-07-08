@@ -18,15 +18,15 @@ private:
 
   /* Current gear mode */
   ShifterMode mode;
-  
+
   /* Solenoids */
   //Solenoid leftSol;
   //Solenoid rightSol;
 
-  /* Encoders */  
+  /* Encoders */
   //Encoder leftEnc;
   //Encoder rightEnc;
-  
+
   /* Speed controllers */
   LinearVictor leftFrontVic;
   LinearVictor leftBackVic;
@@ -44,7 +44,7 @@ private:
   NumberPID speedOutput;
   // use outputcontainer as container
   PIDController speedController;
-  
+
   NumberPID rotOutput;
   PIDController rotationController;
 
@@ -77,7 +77,7 @@ public:
    * \param target The target to drive to, relative to the robot's current location
    * \return Whether setting target was successful */
   bool driveTo(Complex target);
-  
+
   /*! Rotate an angle
    * \remark This will override the target rotational speed; if target rotational speed is set, this will unset it
    * \param angle The angle to turn
@@ -88,7 +88,7 @@ public:
    * \param rotSpd The speed at which to rotate
    * \return Whether setting target was successful */
   bool rotateS(double rotSpd);
-  
+
   /*! Get the current shifter mode
    * \return the current mode of the shifter */
   ShifterMode getShifterMode();

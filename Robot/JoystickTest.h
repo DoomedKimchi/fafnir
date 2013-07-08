@@ -7,7 +7,7 @@
 
 /*! \brief Test the joysticks for debugging purposes
  *
- * 
+ *
  * The robot uses Halo drive; one joystick controls the speed of the robot, another its turning, and a final joystick performs functions such as aiming and firing.
  */
 
