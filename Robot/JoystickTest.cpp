@@ -1,17 +1,17 @@
 #include "JoystickTest.h"
 
-JoystickTest::JoystickTest(Robot *robot)
-  :    speedStick(PORT_JS_SPEED)
-  ,    turnStick(PORT_JS_TURN)
-  ,    operatorStick(PORT_JS_OPERATOR) {
-    shooting = false;
-  this->robot = robot;
+JoystickTest::JoystickTest(Robot *robot) :
+	speedStick(PORT_JS_SPEED),
+	turnStick(PORT_JS_TURN),
+	operatorStick(PORT_JS_OPERATOR) {
+	shooting = false;
+	this->robot = robot;
 }
 
 void JoystickTest::update() {
-  //printf("Joystick 1 (speedStick):\n");
+	//printf("Joystick 1 (speedStick):\n");
 	if ((speedStick.GetX() >= 0.2) || (speedStick.GetX() <= -0.2))
-    printf("1X: %f\n", speedStick.GetX());
+		printf("1X: %f\n", speedStick.GetX());
 	if ((speedStick.GetY() >= 0.2) || (speedStick.GetY() <= -0.2))
 		printf("1Y: %f\n", speedStick.GetY());
 	if (speedStick.GetTrigger() != 0.0)

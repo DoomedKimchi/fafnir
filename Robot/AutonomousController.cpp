@@ -2,10 +2,10 @@
 #include "Robot.h"
 
 AutonomousController::AutonomousController(Robot *robot, AutonomousMode m) {
-  this->robot = robot;
-  mode = m;
-  targetAligned = 0;
-  targetReached = 0;
+	this->robot = robot;
+	mode = m;
+	targetAligned = 0;
+	targetReached = 0;
 }
 
 AutonomousController::~AutonomousController() {
@@ -14,25 +14,25 @@ AutonomousController::~AutonomousController() {
 
 
 void AutonomousController::startTimer() {
-  timer.Start();
+	timer.Start();
 }
 
 void AutonomousController::drive(float v) {
-  printf("Driving at %f\n", v);
-  robot->setSpeed(-v);
-  robot->rotateSpeed(0.0);
+	printf("Driving at %f\n", v);
+	robot->setSpeed(-v);
+	robot->rotateSpeed(0.0);
 }
 
 void AutonomousController::stop() {
-  drive(0);
-  robot->rotateSpeed(0);
+	drive(0);
+	robot->rotateSpeed(0);
 }
 
 bool AutonomousController::fire() {
-  robot->aim();
-  robot->shoot();
+	robot->aim();
+	robot->shoot();
 
-  return true;
+	return true;
 }
 
 /*void AutonomousController::dump(float time) {
@@ -42,13 +42,13 @@ bool AutonomousController::fire() {
   }*/
 
 void AutonomousController::update() {
-  /*if(timer.Get() < 1.0) {
-    setSpeed();
-  }
-  else if(timer.Get() < 1.0 + TOT_DUMP_TIME * 3) {
-    stop();
-    dump((timer.Get() - 1.0) % TOT_DUMP_TIME);
-  } else {
-    robot->stopDump();
-    }*/
+	/*if(timer.Get() < 1.0) {
+	  setSpeed();
+	  }
+	  else if(timer.Get() < 1.0 + TOT_DUMP_TIME * 3) {
+	  stop();
+	  dump((timer.Get() - 1.0) % TOT_DUMP_TIME);
+	  } else {
+	  robot->stopDump();
+	  }*/
 }

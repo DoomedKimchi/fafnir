@@ -9,40 +9,40 @@ Accumulator::~Accumulator() {
 }
 
 bool Accumulator:: start() {
-    if(motor.Get() == 1) return false;
-    motor.Set(1);
-    return true;
+	if(motor.Get() == 1) return false;
+	motor.Set(1);
+	return true;
 }
 void Accumulator:: shootVacated() {
-    state = SHOOTER_EMPTY;
+	state = SHOOTER_EMPTY;
 }
 
 bool Accumulator:: kill() {
-    if(motor.Get() == 0) return false;
-    motor.Set(0);
-    return true;
+	if(motor.Get() == 0) return false;
+	motor.Set(0);
+	return true;
 }
 
 void Accumulator:: update() {
-  switch(state) {
-  case SHOOTER_EMPTY:
-    if (frisbeeSwitch.IsPressed()){
-      state=LOADING;
-    }
-    break;
-  case LOADING:
-    if (!frisbeeSwitch.IsPressed()){
-      state=SHOOTER_LOADED;
-    }
-    break;
-  case SHOOTER_LOADED:
-    break;
-  default:
-    break;
-  }
-    //return false;
+	switch(state) {
+	case SHOOTER_EMPTY:
+		if (frisbeeSwitch.IsPressed()){
+			state=LOADING;
+		}
+		break;
+	case LOADING:
+		if (!frisbeeSwitch.IsPressed()){
+			state=SHOOTER_LOADED;
+		}
+		break;
+	case SHOOTER_LOADED:
+		break;
+	default:
+		break;
+	}
+	//return false;
 }
 
 void Accumulator::setState(AccumulatorState nstate) {
-  state = nstate;
+	state = nstate;
 }
