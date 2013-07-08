@@ -15,6 +15,7 @@ using namespace std;
    For adding whitespace in the middle of a line, spaces are ok.
    */
 /* Also, please remove trailing whitespace before committing. */
+/* Finally, DON'T USE DOS LINE ENDINGS! */
 
 class TestClass {
 	private:
