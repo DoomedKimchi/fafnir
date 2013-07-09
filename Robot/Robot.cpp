@@ -26,22 +26,6 @@ void Robot::shoot() {
 	//accumulator.shootVacated();
 }
 
-/*void Robot::setDumpSpeed(float spd) {
-  dumper.setSpeed(spd);
-  }
-
-  void Robot::dump() {
-  dumper.setState(DUMPING);
-  }
-
-  void Robot::stopDump() {
-  dumper.setState(STOPPED);
-  }
-
-  void Robot::unDump() {
-  dumper.setState(RETURNING);
-  }*/
-
 void Robot::elevationSpeed(float s) {
 	shooter.elevationSpeed(s);
 }
@@ -92,7 +76,6 @@ void Robot::update() {
 	driveTrain.update(); //update has to be after setting the speed
 	//accumulator.update();
 	//shooter.update();
-	//dumper.update();
 }
 
 void Robot::shootVacated() {

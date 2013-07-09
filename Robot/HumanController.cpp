@@ -56,8 +56,5 @@ void HumanController::update() {
 
 	//gain = operatorStick.GetTrigger(); // why is this the same as shooting?
 
-	/* Dumper: currently set to use the Y axis on the operator stick (aka stick #3)*/
-	//robot->setDumpSpeed(operatorStick.GetY());
-
 	/* end operator commands */
 }

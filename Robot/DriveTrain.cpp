@@ -22,7 +22,7 @@ DriveTrain::DriveTrain() :
 	speedOutput(),
 
 	rotOutput(),
-	rotationController(3.0f, 0.0f, -1.0f, &gyro, &rotOutput),
+	rotationController(3.0f, 0.0f, -1.0f, &gyro, &rotOutput)
 {
 	printf("allocated left vics on ports %d,%d\n allocated rite vics on ports %d,%d\n", PORT_DRIVE_VIC_1, PORT_DRIVE_VIC_2, PORT_DRIVE_VIC_3, PORT_DRIVE_VIC_4);
 	setShifterMode(AUTO);

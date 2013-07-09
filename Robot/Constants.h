@@ -155,23 +155,6 @@
 /* Shooter minimum speed to shoot */
 #define SHOOT_SPEED 0.2
 
-// Dumper victor port
-// I'm using all 4 victors temporarily because I don't know the port numbers corresponding to each victor on the practice bot
-// Set unused vics to 0 later
-//#define PORT_DUMPER_VIC_1 7
-//#define PORT_DUMPER_VIC_2 8
-//#define PORT_DUMPER_VIC_3 9
-//#define PORT_DUMPER_VIC_4 10
-
-#define PORT_DUMPER_VIC 0
-
-#define DUMP_SPEED 0.4
-#define DUMP_TIME 1
-#define UNDUMP_SPEED 0.1
-#define UNDUMP_TIME 1
-#define DUMP_PAUSE_TIME 0.5 //amount of time to pause before undumping
-#define TOT_DUMP_TIME 2.5
-
 /* Types of gear modes for the drive train */
 enum ShifterMode { MANUAL, AUTO };
 
@@ -183,8 +166,6 @@ enum AutonomousMode { DEFAULT, ALTERNATE_1, ALTERNATE_2 };
 enum ShooterState { LOADED, PRIMED, SHOOTING, RECOVERING, EMPTY, AIMING };
 
 enum AccumulatorState { SHOOTER_EMPTY, SHOOTER_LOADED, LOADING };
-
-enum DumperState { DUMPING, STOPPED, RETURNING };
 
 enum DriveState { DRIVE_DISTANCE, DRIVE_SPEED };
 

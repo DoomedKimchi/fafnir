@@ -22,7 +22,6 @@ class AutonomousController {
 		/*! \brief Tells the robot to fire
 		 * \return Whether firing was successful */
 		bool fire();
-		void dump(float time);
 
 		bool targetAligned;
 		bool targetReached;

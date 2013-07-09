@@ -35,20 +35,5 @@ bool AutonomousController::fire() {
 	return true;
 }
 
-/*void AutonomousController::dump(float time) {
-  if(time < DUMP_TIME) robot->dump();
-  else if(time < DUMP_TIME + DUMP_PAUSE_TIME) robot->stopDump();
-  else robot->unDump();
-  }*/
-
 void AutonomousController::update() {
-	/*if(timer.Get() < 1.0) {
-	  setSpeed();
-	  }
-	  else if(timer.Get() < 1.0 + TOT_DUMP_TIME * 3) {
-	  stop();
-	  dump((timer.Get() - 1.0) % TOT_DUMP_TIME);
-	  } else {
-	  robot->stopDump();
-	  }*/
 }
