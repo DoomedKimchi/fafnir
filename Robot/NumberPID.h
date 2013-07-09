@@ -4,11 +4,11 @@
 #include <WPILib.h>
 
 class NumberPID : public PIDSource, public PIDOutput {
-private:
-	double value;
-public:
-	NumberPID();
-	double PIDGet();
-	void PIDWrite(float input);
+	private:
+		double value;
+	public:
+		NumberPID();
+		double PIDGet();
+		void PIDWrite(float input);
 };
 #endif /*NUMBERPID_H_*/

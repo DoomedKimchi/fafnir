@@ -19,87 +19,87 @@
  * It also does the aiming for the robot */
 
 class Robot {
- private:
-  /*! The drive train of the robot */
-  DriveTrain driveTrain;
-  /*! The accumulator of the robot */
-  //Accumulator accumulator;
-  /*! The shooter of the robot */
-  Shooter shooter;
+	private:
+		/*! The drive train of the robot */
+		DriveTrain driveTrain;
+		/*! The accumulator of the robot */
+		//Accumulator accumulator;
+		/*! The shooter of the robot */
+		Shooter shooter;
 
-  /*! The dumper of the robot */
-  Dumper dumper;
+		/*! The dumper of the robot */
+		Dumper dumper;
 
-  //AutonomousController autonomousController;
+		//AutonomousController autonomousController;
 
-  /*! The robot's camera */
-  //AxisCamera &camera;
-  /*! The robot's compressor */
-  Compressor compressor;
+		/*! The robot's camera */
+		//AxisCamera &camera;
+		/*! The robot's compressor */
+		Compressor compressor;
 
-  //Relay compressorRelay;
-  /*! Whether the robot is aimed at its target */
-  bool isAimed;
+		//Relay compressorRelay;
+		/*! Whether the robot is aimed at its target */
+		bool isAimed;
 
-  bool teleopMode;
-  
-  char *message; // for the RPi
-  //bool messageStatus;
-  int bearing;
+		bool teleopMode;
 
- public:
-  /*! \brief Default constructor */
-  Robot();
+		char *message; // for the RPi
+		//bool messageStatus;
+		int bearing;
 
-  /*! \brief Accumulates frisbees
-   * \internal may take care of sensing*/
-  void accumulate();
-  /*! \brief Fires a frisbee in the current direction of the robot */
-  void shoot();
+	public:
+		/*! \brief Default constructor */
+		Robot();
 
-  void setDumpSpeed(float spd);
+		/*! \brief Accumulates frisbees
+		 * \internal may take care of sensing*/
+		void accumulate();
+		/*! \brief Fires a frisbee in the current direction of the robot */
+		void shoot();
 
-  void dump();
-  void stopDump();
-  void unDump();
+		void setDumpSpeed(float spd);
 
-  /*! \brief Aims at a certain point
-   * \param yaw The yaw to aim at
-   * \param pitch The pitch to aim at */
-  void aim(float yaw, float pitch);
-  /*! \brief Aims at a target using the camera */
-  void aim();
-  /*! \brief Climbs the pyramid */
-  void climb();
-  
-  //void receiveMessage(char *msg);
+		void dump();
+		void stopDump();
+		void unDump();
 
-  /* ! \brief Determines bearing in relation to target */
-  void updateAutonomous(int bearing);
+		/*! \brief Aims at a certain point
+		 * \param yaw The yaw to aim at
+		 * \param pitch The pitch to aim at */
+		void aim(float yaw, float pitch);
+		/*! \brief Aims at a target using the camera */
+		void aim();
+		/*! \brief Climbs the pyramid */
+		void climb();
 
-  ShifterMode getShifterMode();
-  bool setShifterMode(ShifterMode mode);
+		//void receiveMessage(char *msg);
 
-  ShifterPosition getShifterPosition();
-  bool setShifterPosition(ShifterPosition pos);
+		/* ! \brief Determines bearing in relation to target */
+		void updateAutonomous(int bearing);
 
-  ShooterState getShooterState();
+		ShifterMode getShifterMode();
+		bool setShifterMode(ShifterMode mode);
 
-  void setSpeed(float s);
-  void rotateSpeed(float s);
+		ShifterPosition getShifterPosition();
+		bool setShifterPosition(ShifterPosition pos);
 
-  void startCompressor();
+		ShooterState getShooterState();
 
-  void elevationSpeed(float);
+		void setSpeed(float s);
+		void rotateSpeed(float s);
 
-  void setAccumulatorSpeed(float s);
+		void startCompressor();
 
-  bool autoAccumulate();
+		void elevationSpeed(float);
 
-  void update();
+		void setAccumulatorSpeed(float s);
 
-  void shootVacated();
+		bool autoAccumulate();
 
-  void setAccumulatorState (AccumulatorState nstate);
+		void update();
+
+		void shootVacated();
+
+		void setAccumulatorState (AccumulatorState nstate);
 };
 #endif /* ROBOT_H */

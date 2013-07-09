@@ -12,22 +12,22 @@
  */
 
 class JoystickTest {
- private:
-  /* joysticks */
-  Joystick speedStick;
-  Joystick turnStick;
-  Joystick operatorStick;
+	private:
+		/* joysticks */
+		Joystick speedStick;
+		Joystick turnStick;
+		Joystick operatorStick;
 
-  Robot *robot;
+		Robot *robot;
 
-  bool buttShifterMode;
-  bool shooting;
-  float gain;
+		bool buttShifterMode;
+		bool shooting;
+		float gain;
 
- public:
-  JoystickTest(Robot *robot);
+	public:
+		JoystickTest(Robot *robot);
 
-  void update();
+		void update();
 };
 
 #endif /* JOYSTICK_TEST */
