@@ -1,0 +1,16 @@
+git bisect start
+# good: [ef4479cbe9a5a5cff0adfd31480fbab194daf377] Disable everything in AutonomousMode for stable branch.
+git bisect good ef4479cbe9a5a5cff0adfd31480fbab194daf377
+# bad: [3686a3977b533bdc4866d2b8cffbde8e715feb70] Remove Dumper code
+git bisect bad 3686a3977b533bdc4866d2b8cffbde8e715feb70
+# good: [c5bf768a86bb38f1e6be1929527af6e6413e4dd7] fixes and some cleanup
+git bisect good c5bf768a86bb38f1e6be1929527af6e6413e4dd7
+# good: [01e3b72a969cbf458ec7c8dd75aec364c0895300] Removed trailing whitespace
+git bisect good 01e3b72a969cbf458ec7c8dd75aec364c0895300
+# bad: [9e673460910b1ddf7be612538fa8af9162f2f956] add a .dir_locals.el
+git bisect bad 9e673460910b1ddf7be612538fa8af9162f2f956
+# bad: [f06c0f44e49f52c6af2cb5829b2ee0c407f0773a] Updated Styleguide, please read
+git bisect bad f06c0f44e49f52c6af2cb5829b2ee0c407f0773a
+# bad: [79402cdd8e7d28734a4759de6f029340f8f4cdcc] Re-organized Fafnir class
+git bisect bad 79402cdd8e7d28734a4759de6f029340f8f4cdcc
+# first bad commit: [79402cdd8e7d28734a4759de6f029340f8f4cdcc] Re-organized Fafnir class
