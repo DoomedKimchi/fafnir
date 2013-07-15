@@ -40,13 +40,13 @@ Fafnir::Fafnir() :
 {
 }
 
-void RobotInit() {
+void Fafnir::RobotInit() {
 	printf("Robot initializing\n");
 	// Check motors/sensors
 	// Ping the RPi
 }
 
-void DisabledInit() {
+void Fafnir::DisabledInit() {
 	printf("Entering disabled mode\n");
 	// Spin down all motors
 	// Halt network communications
@@ -67,7 +67,7 @@ void Fafnir::TestInit() {
 	printf("Starting Test mode\n");
 }
 
-void DisabledPeriodic() {
+void Fafnir::DisabledPeriodic() {
 	// Flash the fancy lights and stuff
 }
 
