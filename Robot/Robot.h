@@ -45,6 +45,9 @@ class Robot {
 		/*! \brief Fires a frisbee in the current direction of the robot */
 		void shoot();
 
+		/*! \brief Set shooter speed using operator stick */
+		void setShooterSpeed(float s);
+
 		/*! \brief Aims at a certain point
 		 * \param yaw The yaw to aim at
 		 * \param pitch The pitch to aim at */

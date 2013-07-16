@@ -27,6 +27,10 @@ void HumanController::update() {
 	robot->rotateSpeed(turnStick.GetX());
 	/* end drive forward/backward */
 
+	/* begin manual shooter control */
+	robot->setShooterSpeed(speedStick.GetY());
+	/* end manual shooter control */
+
 	/* begin Gearshifter changing */
 	if(turnStick.GetRawButton(JS_TURN_MODE_TOGGLE)) {
 		if(!buttShifterMode) {

@@ -26,6 +26,10 @@ void Robot::shoot() {
 	//accumulator.shootVacated();
 }
 
+void Robot::setShooterSpeed(float s) {
+	shooter.manualShoot(s);
+}
+
 void Robot::elevationSpeed(float s) {
 	shooter.elevationSpeed(s);
 }
@@ -75,7 +79,7 @@ void Robot::update() {
 	//driveTrain.driveS(0.5);
 	driveTrain.update(); //update has to be after setting the speed
 	//accumulator.update();
-	//shooter.update();
+	shooter.update();
 }
 
 void Robot::shootVacated() {
