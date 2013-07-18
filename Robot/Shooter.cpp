@@ -37,7 +37,7 @@ void Shooter::setElevation(float f) {
 }
 
 void Shooter::setSpinSpeed(float sp) {
-	printf("SpinSpeed set to: %f", sp);
+	//printf("SpinSpeed set to: %f\n", sp);
 	motor1.Set(sp);
 	motor2.Set(sp);
 }

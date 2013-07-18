@@ -82,7 +82,7 @@ void Fafnir::TeleopPeriodic() {
 }
 
 void Fafnir::TestPeriodic() {
-	joystickTest.update(); //uncomment this line to test joysticks
+	//joystickTest.update(); //uncomment this line to test joysticks
 }
 
 START_ROBOT_CLASS(Fafnir);
