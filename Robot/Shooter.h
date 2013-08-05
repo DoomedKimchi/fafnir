@@ -14,6 +14,8 @@ class Shooter {
 		LinearVictor motor1; //this is the first motor that spins the wheel to propel the frisbee
 		LinearVictor motor2; // this is the second motor that spins the wheel to propel the frisbee
 
+		Servo servo;
+
 		Victor motorElevation; //this is the third motor that will elevate the shooting mechanism of the robot.
 
 		//   PIDController elevationController;

@@ -1,3 +1,7 @@
+/* Port 5 is currently connected to the shooter instead of Drive Train,
+ * but we want manual shooter control anyway for now since we don't know
+ * a safe limit for the shooter. 8/4/13
+ */
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
@@ -44,8 +48,6 @@
 #define PORT_DRIVE_GYRO 1
 
 /* Drive train Victor ports */
-// I temporarily disabled these so I can test the dumper.
-// We cannot initialize multiple Victors on the same PWM port.
 #define PORT_DRIVE_VIC_1 5
 #define PORT_DRIVE_VIC_2 10
 #define PORT_DRIVE_VIC_3 2
@@ -135,22 +137,21 @@
 #define PORT_SHOOTER_ENC_2_B 0
 
 /* Shooter victor ports */
-/* There are only 4 speed controllers
- * on the testing robot, so I re-used
- * the left-side victors from the
- * Drive Train.
+/* Shooter CIMs currently connected to a splitter connected to PWM port 5
  */
-//#define PORT_SHOOTER_VIC_1 4
 #define PORT_SHOOTER_VIC_1 0
-//#define PORT_SHOOTER_VIC_2 9
 #define PORT_SHOOTER_VIC_2 0
 #define PORT_SHOOTER_VIC_ELEVATION 0
 
+#define PORT_SHOOTER_SERVO 4
+#define SERVO_START_ANGLE 170
+#define SERVO_END_ANGLE 70
+
 /* Shooter timing constants */
 #define SHOOT_PRIMING_WAIT 5.0
-#define SHOOT_SHOOTING_WAIT 5.0
-#define SHOOT_RECOVERING_WAIT 5.0
-#define SHOOT_SPINUP_WAIT 5.0
+#define SHOOT_SHOOTING_WAIT 3.0
+#define SHOOT_RECOVERING_WAIT 2.0
+#define SHOOT_SPINUP_WAIT 2.0
 
 /* Shooter minimum speed to shoot */
 #define SHOOT_SPEED 0.2
