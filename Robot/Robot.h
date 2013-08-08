@@ -7,7 +7,6 @@
 #include "DriverStation.h"
 #include "Shooter.h"
 #include "DriveTrain.h"
-#include "Dumper.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -27,11 +26,6 @@ class Robot {
 		/*! The shooter of the robot */
 		Shooter shooter;
 
-		/*! The dumper of the robot */
-		Dumper dumper;
-
-		//AutonomousController autonomousController;
-
 		/*! The robot's camera */
 		//AxisCamera &camera;
 		/*! The robot's compressor */
@@ -43,10 +37,6 @@ class Robot {
 
 		bool teleopMode;
 
-		char *message; // for the RPi
-		//bool messageStatus;
-		int bearing;
-
 	public:
 		/*! \brief Default constructor */
 		Robot();
@@ -57,11 +47,8 @@ class Robot {
 		/*! \brief Fires a frisbee in the current direction of the robot */
 		void shoot();
 
-		void setDumpSpeed(float spd);
-
-		void dump();
-		void stopDump();
-		void unDump();
+		/*! \brief Set shooter speed using operator stick */
+		void setShooterSpeed(float s);
 
 		/*! \brief Aims at a certain point
 		 * \param yaw The yaw to aim at
@@ -71,11 +58,6 @@ class Robot {
 		void aim();
 		/*! \brief Climbs the pyramid */
 		void climb();
-
-		//void receiveMessage(char *msg);
-
-		/* ! \brief Determines bearing in relation to target */
-		void updateAutonomous(int bearing);
 
 		ShifterMode getShifterMode();
 		bool setShifterMode(ShifterMode mode);

@@ -36,22 +36,5 @@ bool AutonomousController::fire() {
 	return true;
 }
 
-/*void AutonomousController::dump(float time) {
-  if(time < DUMP_TIME) robot->dump();
-  else if(time < DUMP_TIME + DUMP_PAUSE_TIME) robot->stopDump();
-  else robot->unDump();
-  }*/
-
-void AutonomousController::update(int bearing) {
-	if (bearing == 3) { // target is aligned so drive straight
-		printf("Driving straight\n");
-		drive(AUTO_SPEED, 0.0);
-	}
-	else if (bearing == 1) // target on left so turn left
-		drive(AUTO_SPEED, -AUTO_TURN_SPEED);
-	else if (bearing == 2) // target on right so turn right
-		drive(AUTO_SPEED, AUTO_TURN_SPEED);
-	else if (bearing == 0) {
-		drive(0, AUTO_TURN_SPEED); // no target found so turn instead
-	}
+void AutonomousController::update() {
 }

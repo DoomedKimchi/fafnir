@@ -26,6 +26,7 @@ class Shooter {
 
 		void setSpinSpeed(float sp);
 
+		float targetSpeed;
 		float elevSpeed;
 
 		ShooterState state;
@@ -43,6 +44,7 @@ class Shooter {
 		float elevationTarget; // goal elevation, ie 60 degrees
 		float motorPower; // how much to set the victor (PWM)
 		void shoot();
+		void manualShoot(float sp);
 		void update();
 		ShooterState getState();
 };

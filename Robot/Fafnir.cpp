@@ -41,13 +41,13 @@ Fafnir::Fafnir() :
 {
 }
 
-void RobotInit() {
+void Fafnir::RobotInit() {
 	printf("Robot initializing\n");
 	// Check motors/sensors
 	// Ping the RPi
 }
 
-void DisabledInit() {
+void Fafnir::DisabledInit() {
 	printf("Entering disabled mode\n");
 	// Spin down all motors
 	// Halt network communications
@@ -74,7 +74,7 @@ void Fafnir::TestInit() {
 	printf("Starting Test mode\n");
 }
 
-void DisabledPeriodic() {
+void Fafnir::DisabledPeriodic() {
 	// Flash the fancy lights and stuff
 }
 
@@ -89,12 +89,7 @@ void Fafnir::TeleopPeriodic() {
 }
 
 void Fafnir::TestPeriodic() {
-	joystickTest.update(); //uncomment this line to test joysticks
-}
-
-void Fafnir::DisabledInit() {
-	printf("Sending kill signal to server\n");
-	server_close();
+	//joystickTest.update(); //uncomment this line to test joysticks
 }
 
 START_ROBOT_CLASS(Fafnir);

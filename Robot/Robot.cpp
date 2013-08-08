@@ -6,9 +6,6 @@ Robot::Robot() :
 	teleopMode(false)
 {
     printf("allocated compressor relay port on spike %d\n and cutoff at %d\n", PORT_COMPRESSOR_SPIKE, PORT_PRESSURE_CUTOFF);
-	message = (char *)malloc(sizeof(char)*BUFFSIZE);
-	//messageStatus = 0;
-	bearing = 0;
 }
 
 void Robot::aim(float yaw, float elevation) {
@@ -29,20 +26,8 @@ void Robot::shoot() {
 	//accumulator.shootVacated();
 }
 
-void Robot::setDumpSpeed(float spd) {
-	dumper.setSpeed(spd);
-}
-
-void Robot::dump() {
-	dumper.setState(DUMPING);
-}
-
-void Robot::stopDump() {
-	dumper.setState(STOPPED);
-}
-
-void Robot::unDump() {
-	dumper.setState(RETURNING);
+void Robot::setShooterSpeed(float s) {
+	shooter.manualShoot(s);
 }
 
 void Robot::elevationSpeed(float s) {
@@ -51,16 +36,6 @@ void Robot::elevationSpeed(float s) {
 
 void Robot::climb() {
 
-}
-/*
-void Robot::receiveMessage(char *msg) {
-	// *message = *msg;
-	messageStatus = 1;
-}
-*/
-
-void Robot::updateAutonomous(int bearing) {
-	//if (bearing > 5)
 }
 
 ShifterMode Robot::getShifterMode() {
@@ -104,8 +79,7 @@ void Robot::update() {
 	//driveTrain.driveS(0.5);
 	driveTrain.update(); //update has to be after setting the speed
 	//accumulator.update();
-	//shooter.update();
-	//dumper.update();
+	shooter.update();
 }
 
 void Robot::shootVacated() {

@@ -22,18 +22,18 @@ class AutonomousController {
 		/*! \brief Tells the robot to fire
 		 * \return Whether firing was successful */
 		bool fire();
-		void dump(float time);
 
 		bool targetAligned;
 		bool targetReached;
 
-	public: void runDefault();
-			void driveBlindly();
-			void update(int bearing);
-			void startTimer();
-			/*! \brief Constructs an autonomous controller with a pointer to fafnir
-			 * \param *fafnir A pointer to the Robot */
-			AutonomousController(Robot *robot, AutonomousMode m);
+	public:
+		void runDefault();
+		void driveBlindly();
+		void update();
+		void startTimer();
+		/*! \brief Constructs an autonomous controller with a pointer to fafnir
+		 * \param *fafnir A pointer to the Robot */
+		AutonomousController(Robot *robot, AutonomousMode m);
 
 		/*! \brief Destructor */
 		virtual ~AutonomousController();

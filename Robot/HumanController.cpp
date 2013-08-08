@@ -27,6 +27,10 @@ void HumanController::update() {
 	robot->rotateSpeed(turnStick.GetX());
 	/* end drive forward/backward */
 
+	/* begin manual shooter control */
+	robot->setShooterSpeed(speedStick.GetY());
+	/* end manual shooter control */
+
 	/* begin Gearshifter changing */
 	if(turnStick.GetRawButton(JS_TURN_MODE_TOGGLE)) {
 		if(!buttShifterMode) {
@@ -55,9 +59,6 @@ void HumanController::update() {
 	//robot->elevationSpeed(operatorStick.GetY());
 
 	//gain = operatorStick.GetTrigger(); // why is this the same as shooting?
-
-	/* Dumper: currently set to use the Y axis on the operator stick (aka stick #3)*/
-	//robot->setDumpSpeed(operatorStick.GetY());
 
 	/* end operator commands */
 }

@@ -37,7 +37,7 @@ void Shooter::setElevation(float f) {
 }
 
 void Shooter::setSpinSpeed(float sp) {
-	printf("SpinSpeed set to: %f", sp);
+	//printf("SpinSpeed set to: %f\n", sp);
 	motor1.Set(sp);
 	motor2.Set(sp);
 }
@@ -51,10 +51,15 @@ void Shooter::shoot() {
 	//    state = SHOOTING;
 }
 
+void Shooter::manualShoot(float sp) {
+	targetSpeed = sp;
+}
+
 void Shooter::update() {
 	//setSpinSpeed(1.0);
 	motorElevation.Set(elevSpeed);
 
+	/*
 	setSpinSpeed(0.0);
 	if (shootRequested) {
 		//setSpinSpeed(1.0); // is 100 a reasonable value?
@@ -71,6 +76,10 @@ void Shooter::update() {
 		setSpinSpeed(SHOOT_SPEED);
 		state = PRIMED;
 	}
+	*/
+
+	/* Manual shooter control */
+	setSpinSpeed(targetSpeed);
 
 	/*switch(state) {
 	  case LOADED:
