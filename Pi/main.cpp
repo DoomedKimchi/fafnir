@@ -1,7 +1,6 @@
 #include "vision_includes.hpp"
 #include "image_processing.hpp"
 #include "target_processing.hpp"
-#include "client.hpp"
 
 /* This function loads the yaml conf file */
 void load_conf(string filename, YAML::Node &config) {
@@ -136,12 +135,6 @@ int main(int argc, char **argv) {
 	if (host == 0) {
 		printf("Not connecting to a server\n");
 	}
-	else {
-		if(server_connect(hostname, portno)) {
-			server_disconnect();
-			cerr << "Couldn't connect to server" << endl;
-		}
-	}
 
 	if (cam) {
 		capture.open(camera);
@@ -217,7 +210,6 @@ int main(int argc, char **argv) {
 			printf("Target not found\n");
 			bearingState = 0;
 			printf("bearing state is: %d\n", bearingState);
-			if (host) server_send(bearingState);
 		}
 
 		for (size_t i = 0; i < targets.size(); i++) {
@@ -251,7 +243,6 @@ int main(int argc, char **argv) {
 			else if ( (bearing < 5) && (bearing > -5) )
 				bearingState = 3; // target aligned
 			printf("bearing state: %d\n", bearingState);
-			if (host) server_send(bearingState);
 		}
 
 		// show the result
