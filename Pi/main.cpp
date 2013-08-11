@@ -5,28 +5,28 @@
 
 /* This function loads the yaml conf file */
 void load_conf(string filename, YAML::Node &config) {
-  ifstream file(filename.c_str());
-  if (file.is_open()) {
-    YAML::Parser parser(file);
-    if (!parser.GetNextDocument(config)) {
-      cerr << "Could not load config" << endl;
-      exit(-1);
-    }
-    file.close();
-  } else {
-    cerr << "Could not open config file" << endl;
-    exit(-1);
-  }
+	ifstream file(filename.c_str());
+	if (file.is_open()) {
+		YAML::Parser parser(file);
+		if (!parser.GetNextDocument(config)) {
+			cerr << "Could not load config" << endl;
+			exit(-1);
+		}
+		file.close();
+	} else {
+		cerr << "Could not open config file" << endl;
+		exit(-1);
+	}
 }
 
 int main(int argc, char **argv) {
-  // Use webcam as source by default
-  VideoCapture capture;
-  double rate; // framerate of source
+	// Use webcam as source by default
+	VideoCapture capture;
+	double rate; // framerate of source
 
 	int i;
-  int gui = 0; // Value for "-g" optional argument to show gui
-  int write = 0;
+	int gui = 0; // Value for "-g" optional argument to show gui
+	int write = 0;
 	int host = 0;
 	int port = 0;
 	int cam = 0;
@@ -39,22 +39,22 @@ int main(int argc, char **argv) {
 
 	int bearingState;
 
-  for (i = 1/*skip argv[0]*/; i < argc; i++) {
-	  /*
-	   * Use the 'strcmp function to compare the argv values
-	   * to a string of your choice (here, it's the optional
-	   * argument "-q"). When strcmp returns 0, it means that the 
-	   * two strings are identical.
-	   */
-	  // Process optional arguments
-	  if ( (strcmp(argv[i], "-g") == 0) || 
-						(strcmp(argv[i], "--gui") == 0) ) 
-		  gui = 1; // This is used as a bool
+	for (i = 1/*skip argv[0]*/; i < argc; i++) {
+		/*
+		 * Use the 'strcmp function to compare the argv values
+		 * to a string of your choice (here, it's the optional
+		 * argument "-q"). When strcmp returns 0, it means that the
+		 * two strings are identical.
+		 */
+		// Process optional arguments
+		if ( (strcmp(argv[i], "-g") == 0) ||
+				(strcmp(argv[i], "--gui") == 0) )
+			gui = 1; // This is used as a bool
 		else if ( (strcmp(argv[i], "-w") == 0) ||
-					 	(strcmp(argv[i], "--write") == 0) )
+				(strcmp(argv[i], "--write") == 0) )
 			write = 1;
-		else if ( (strcmp(argv[i], "-h") == 0) || 
-						(strcmp(argv[i], "--host") == 0) ) {
+		else if ( (strcmp(argv[i], "-h") == 0) ||
+				(strcmp(argv[i], "--host") == 0) ) {
 			host = 1;
 			if (i + 1 <= argc -1) {
 				i++;
@@ -66,62 +66,62 @@ int main(int argc, char **argv) {
 			}
 		}
 		else if ( (strcmp(argv[i], "-p") == 0) ||
-						(strcmp(argv[i], "--port") == 0) ) {
-				port = 1;
-				if (i + 1 <= argc -1) {
-						i++;
-						sscanf(argv[i], "%d", &portno);
-				}
-				else {
-						printf("Usage: -p <port number>\n");
-						return -1;
-				}
+				(strcmp(argv[i], "--port") == 0) ) {
+			port = 1;
+			if (i + 1 <= argc -1) {
+				i++;
+				sscanf(argv[i], "%d", &portno);
+			}
+			else {
+				printf("Usage: -p <port number>\n");
+				return -1;
+			}
 		}
-		else if ( (strcmp(argv[i], "-c") == 0) || 
-						(strcmp(argv[i], "--cam") == 0) ) {
-				cout << "Using camera: ";
-				cam = 1; // used as bool
-				if (i + 1 <= argc-1) {
-						i++;
-						camera = atoi(argv[i]); // convert string to int
-						cout << camera << endl;
-				}
-				else
-						printf("Usage: -c <camera number>\n");
+		else if ( (strcmp(argv[i], "-c") == 0) ||
+				(strcmp(argv[i], "--cam") == 0) ) {
+			cout << "Using camera: ";
+			cam = 1; // used as bool
+			if (i + 1 <= argc-1) {
+				i++;
+				camera = atoi(argv[i]); // convert string to int
+				cout << camera << endl;
+			}
+			else
+				printf("Usage: -c <camera number>\n");
 		}
 		else if ( (strcmp(argv[i], "-f") == 0) ||
-						(strcmp(argv[i], "--cam") == 0) ) {
-				// video or image file
-				cout << "Using video/image file: ";
-				file = 1; // used as bool
-				if (i + 1 <= argc-1) {
-						i++;
-						filename = argv[i];
-						cout << filename << endl;
-				}
+				(strcmp(argv[i], "--cam") == 0) ) {
+			// video or image file
+			cout << "Using video/image file: ";
+			file = 1; // used as bool
+			if (i + 1 <= argc-1) {
+				i++;
+				filename = argv[i];
+				cout << filename << endl;
+			}
 		}
-	  else {
-		  // Process non-optional arguments here
-	  }
-  }
+		else {
+			// Process non-optional arguments here
+		}
+	}
 
 	if (argc < 2) {
 		//usage instructions
-	  printf ("Usage: %s <options>\n", argv[0] );
+		printf ("Usage: %s <options>\n", argv[0] );
 		// need more usage instructions
 		return(-1);
 	}
 	if (port == 1 && host == 0) {
-			printf("Please specify a hostname\n");
-			return -1;
+		printf("Please specify a hostname\n");
+		return -1;
 	}
 	else if (port == 0 && host == 1) {
-			printf("Please specify a port number\n");
-			return -1;
+		printf("Please specify a port number\n");
+		return -1;
 	}
 	else if (file == 0 && cam == 0) {
-			printf("Please specify either a camera or media file\n");
-			return -1;
+		printf("Please specify either a camera or media file\n");
+		return -1;
 	}
 
 	// print what we got from the arguments
@@ -131,149 +131,149 @@ int main(int argc, char **argv) {
 	if (port) cout << "Port Number: " << portno << endl;
 	if (cam) cout << "Camera: " << cam << endl;
 	if (file) cout << "Filename: " << filename << endl;
-	
-	// connect to the server (robot) 
+
+	// connect to the server (robot)
 	if (host == 0) {
 		printf("Not connecting to a server\n");
 	}
 	else {
- 		if(server_connect(hostname, portno)) {
+		if(server_connect(hostname, portno)) {
 			server_disconnect();
-	  	cerr << "Couldn't connect to server" << endl;
-  	}
+			cerr << "Couldn't connect to server" << endl;
+		}
 	}
 
-  if (cam) {
-    capture.open(camera);
-    // On Linux: /dev/video0
-    //capture.open(1); // Use /dev/video1
-    // Get the frame rate
-    rate = 30; /* I hardcoded the frame rate for now
-		  because my webcam isn't reporting the
-		  frame rate correctly. */
-  }
+	if (cam) {
+		capture.open(camera);
+		// On Linux: /dev/video0
+		//capture.open(1); // Use /dev/video1
+		// Get the frame rate
+		rate = 30; /* I hardcoded the frame rate for now
+					  because my webcam isn't reporting the
+					  frame rate correctly. */
+	}
 	else if (file) {
-    capture.open(filename); // Use video file if specified
-    rate = capture.get(CV_CAP_PROP_FPS); // Use frame rate from video file
-  }
+		capture.open(filename); // Use video file if specified
+		rate = capture.get(CV_CAP_PROP_FPS); // Use frame rate from video file
+	}
 
-  // check if video successfully opened
-  if (!capture.isOpened())
-    cerr << "No input stream" << endl;
-  bool stop(false);
-  int delay = 1000 / rate;
+	// check if video successfully opened
+	if (!capture.isOpened())
+		cerr << "No input stream" << endl;
+	bool stop(false);
+	int delay = 1000 / rate;
 
-  Mat image;
+	Mat image;
 
-  /*
-  // read image from cli arguments
-  image = imread(argv[1], 1);
+	/*
+	// read image from cli arguments
+	image = imread(argv[1], 1);
 
-  if (!image.data) {
-  cerr << "No image data" << endl;
-  return -1;
-  }
-  */
+	if (!image.data) {
+	cerr << "No image data" << endl;
+	return -1;
+	}
+	*/
 
-  Mat image_processed;
-  vector<vector<Point> > contours, rectangles, targets;
-  YAML::Node config;
-  Point center;
-  double hangle, vangle, distance;
+	Mat image_processed;
+	vector<vector<Point> > contours, rectangles, targets;
+	YAML::Node config;
+	Point center;
+	double hangle, vangle, distance;
 
-  // load config file
-  load_conf("conf.yaml", config);
+	// load config file
+	load_conf("conf.yaml", config);
 
-  //int counter = 0; //counter for the while loop for debugging purposes
+	//int counter = 0; //counter for the while loop for debugging purposes
 
-  //while (!stop) {
-  while(0) {
-    //cout << "\n\ncounter: " << counter << endl;
-    // read next frame if any
-    if (!capture.read(image))
-      break;
+	//while (!stop) {
+	while(0) {
+		//cout << "\n\ncounter: " << counter << endl;
+		// read next frame if any
+		if (!capture.read(image))
+			break;
 
-    // process image for edge finding
-    process_image(&config, image, image_processed);
-    // find edges
-    findContours(image_processed, contours, CV_RETR_LIST,
-		 CV_CHAIN_APPROX_SIMPLE);
-    // find rectangles from edges
-    find_rectangles(&config, contours, rectangles);
-    // find targets
-    find_targets(&config, rectangles, targets);
-    // draw rectangles
-    draw_targets(&config, rectangles, targets, image);
+		// process image for edge finding
+		process_image(&config, image, image_processed);
+		// find edges
+		findContours(image_processed, contours, CV_RETR_LIST,
+				CV_CHAIN_APPROX_SIMPLE);
+		// find rectangles from edges
+		find_rectangles(&config, contours, rectangles);
+		// find targets
+		find_targets(&config, rectangles, targets);
+		// draw rectangles
+		draw_targets(&config, rectangles, targets, image);
 
-    //cout << "Image width:" << image.cols << endl;
-    //cout << "Image height:" << image.rows << endl;
-    //cout << "Image center x:" << (image.cols/2) << endl;
+		//cout << "Image width:" << image.cols << endl;
+		//cout << "Image height:" << image.rows << endl;
+		//cout << "Image center x:" << (image.cols/2) << endl;
 
-    cout << "Found " << contours.size() << " contours" << endl;
-    cout << "Found " << rectangles.size() << " rectangles" << endl;
-    cout << "Found " << targets.size() << " targets" << endl;
+		cout << "Found " << contours.size() << " contours" << endl;
+		cout << "Found " << rectangles.size() << " rectangles" << endl;
+		cout << "Found " << targets.size() << " targets" << endl;
 
 		if (targets.size() == 0) {
 			printf("Target not found\n");
 			bearingState = 0;
 			printf("bearing state is: %d\n", bearingState);
-	  	if (host) server_send(bearingState);
+			if (host) server_send(bearingState);
 		}
 
-    for (size_t i = 0; i < targets.size(); i++) {
-		int img_center;
-		int bearing;
-      // process targets
-      process_target(&config, image.size(), targets[i], center, hangle,
-		     vangle, distance);
-	  /*
-      cout << "Target " << i << ":" << endl;
-      cout << "Center: (" << center.x << ", " << center.y << ")" << endl;
-      cout << "Distance: " << distance << " cm" << endl;
-      cout << "Horizontal angle: " << hangle << " degrees" << endl;
-      cout << "Vertical angle: " << vangle << " degrees" << endl;
-	  */
+		for (size_t i = 0; i < targets.size(); i++) {
+			int img_center;
+			int bearing;
+			// process targets
+			process_target(&config, image.size(), targets[i], center, hangle,
+					vangle, distance);
+			/*
+			   cout << "Target " << i << ":" << endl;
+			   cout << "Center: (" << center.x << ", " << center.y << ")" << endl;
+			   cout << "Distance: " << distance << " cm" << endl;
+			   cout << "Horizontal angle: " << hangle << " degrees" << endl;
+			   cout << "Vertical angle: " << vangle << " degrees" << endl;
+			   */
 
-	  img_center = (image.cols/2); // not oriented towards saving memory
-	  bearing = center.x - img_center; // number of pixels off center of image
-	  cout << "Bearing: " << bearing << endl;
+			img_center = (image.cols/2); // not oriented towards saving memory
+			bearing = center.x - img_center; // number of pixels off center of image
+			cout << "Bearing: " << bearing << endl;
 
-      if (center.x >= ((image.cols)/2 + 5))
-    	  cout << "Target is on the right" << endl;
-      else if (center.x <= ((image.cols)/2 -5))
-    	  cout << "Target is on the left" << endl;
-      else // +-5 pixel threshold for being aligned
-    	  cout << "Target is aligned" << endl;
-		if (bearing >= 5) // target is on right
+			if (center.x >= ((image.cols)/2 + 5))
+				cout << "Target is on the right" << endl;
+			else if (center.x <= ((image.cols)/2 -5))
+				cout << "Target is on the left" << endl;
+			else // +-5 pixel threshold for being aligned
+				cout << "Target is aligned" << endl;
+			if (bearing >= 5) // target is on right
 				bearingState = 2;
-		if (bearing <= -5) // target on left
+			if (bearing <= -5) // target on left
 				bearingState = 1;
-		else if ( (bearing < 5) && (bearing > -5) )
+			else if ( (bearing < 5) && (bearing > -5) )
 				bearingState = 3; // target aligned
-		printf("bearing state: %d\n", bearingState);
-	  if (host) server_send(bearingState);
-    }
+			printf("bearing state: %d\n", bearingState);
+			if (host) server_send(bearingState);
+		}
 
-    // show the result
-	if (gui)
-    	imshow("Detected Lines", image);
+		// show the result
+		if (gui)
+			imshow("Detected Lines", image);
 
-    // save result to file
-	if (write)
-    	imwrite("result.jpg", image);
+		// save result to file
+		if (write)
+			imwrite("result.jpg", image);
 
-    contours.clear(); // clear these after each iteration of the while loop or else they will increase exponentially
-    rectangles.clear();
-    targets.clear();
+		contours.clear(); // clear these after each iteration of the while loop or else they will increase exponentially
+		rectangles.clear();
+		targets.clear();
 
-    //waitKey(0);
-    if (waitKey(delay) >= 0)
-      stop = true;
+		//waitKey(0);
+		if (waitKey(delay) >= 0)
+			stop = true;
 
-    //counter++;
-  }
+		//counter++;
+	}
 
-  // Close the video file
-  capture.release();
-  return 0;
+	// Close the video file
+	capture.release();
+	return 0;
 }

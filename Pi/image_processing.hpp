@@ -9,7 +9,7 @@ void process_image(YAML::Node *config, Mat &image_in, Mat &image_out);
 /* This function takes the object contours and
    figures out which ones are probably rectangles */
 void find_rectangles (YAML::Node *config,
-		      vector<vector<Point> > &contours,
-		      vector<vector<Point> > &rectangles);
+		vector<vector<Point> > &contours,
+		vector<vector<Point> > &rectangles);
 
 #endif

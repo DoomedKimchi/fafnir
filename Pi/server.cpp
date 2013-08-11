@@ -28,25 +28,25 @@ void server_init(int portno) {
 	serv_addr.sin_port = htons(portno);
 	printf("Binding socket\n");
 	if (bind(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
-    	printf("ERROR on binding\n");
-    	//autoController->driveBlindly();
+		printf("ERROR on binding\n");
+		//autoController->driveBlindly();
 		//printf("failed to bind\n");
 		exit(1);
-    }
+	}
 	printf("Listening\n");
 	listen(sockfd, 5);
 	c = sizeof(cli_addr);
 
-	}
+}
 
 void server_accept() {
-   	printf("Start accepting\n");
-   	newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &c);
-   	if (newsockfd < 0) {
-   		error("ERROR on accept");
-   		//autoController->driveBlindly();
-   	}
-    readbuffer = (char *) malloc(BUFFSIZE);
+	printf("Start accepting\n");
+	newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &c);
+	if (newsockfd < 0) {
+		error("ERROR on accept");
+		//autoController->driveBlindly();
+	}
+	readbuffer = (char *) malloc(BUFFSIZE);
 
 	if ((childpid = fork()) == 0) {
 		while (1) {
@@ -54,13 +54,13 @@ void server_accept() {
 			printf("reading\n");
 			int n = read(newsockfd, readbuffer, BUFFSIZE);
 			if (readbuffer[0] < 0) {
-    			error("ERROR reading from socket");
-    		}
-    		if ( (readbuffer == NULL) || (*readbuffer == '\0') ) {
-    			printf("Readbuffer is empty or null");
-    			break;
-    		}
-		printf("Readbuffer: %s\n", readbuffer);
+				error("ERROR reading from socket");
+			}
+			if ( (readbuffer == NULL) || (*readbuffer == '\0') ) {
+				printf("Readbuffer is empty or null");
+				break;
+			}
+			printf("Readbuffer: %s\n", readbuffer);
 		}
 	}
 

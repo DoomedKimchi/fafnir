@@ -12,7 +12,7 @@ client:
 	g++ -o client test-client.cpp
 
 clean:
-	$(shell rm -rf bin)
+	rm main *.o
 
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(OBJECTS) -o $@ $(LDFLAGS)
