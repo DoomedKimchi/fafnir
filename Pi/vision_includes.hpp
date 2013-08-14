@@ -2,6 +2,8 @@
 #define __vision_includes_hpp__
 #include <math.h>
 #include <assert.h>
+#include <sysexits.h>
+#include <ctime>
 
 #include <iostream>
 #include <fstream>
@@ -15,5 +17,9 @@
 
 using namespace cv;
 using namespace std;
+
+/* Bash color codes, non-portable */
+#define RESET  "\033[0m"
+#define RED	   "\033[31m" /* Red */
 
 #endif
