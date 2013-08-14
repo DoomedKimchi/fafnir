@@ -75,6 +75,17 @@ bool check_inside(vector<Point> &recto, vector<Point> &recti) {
 	return false;
 }
 
+/* Compares distances of two points from a center/reference point.
+   If a is closer, return true.
+   If b is closer, return false. */
+bool compare_dist_from_center(Point center, Point a, Point b) {
+	double dist_a = abs(center.x - a.x) + abs(center.y - a.y);
+	double dist_b = abs(center.x - b.x) + abs(center.y - b.y);
+	if (dist_a < dist_b)
+		return true;
+	return false;
+}
+
 /* end utility functions */
 
 void find_targets(YAML::Node *config,
@@ -103,6 +114,30 @@ void find_targets(YAML::Node *config,
 				targets.push_back(rect2);
 			else if (check_inside(rect2, rect1))
 				targets.push_back(rect1);
+		}
+	}
+}
+
+void select_target(YAML::Node *config,
+		vector<vector<Point> > &targets,
+		vector<Point> &center_target,
+		Mat &image) {
+	Point center_target_center;
+	center_target_center.x = 0;
+	center_target_center.y = 0;
+
+	Point image_center;
+	image_center.x = image.cols/2;
+	image_center.y = image.rows/2;
+
+	for (size_t i = 0; i < targets.size(); i++) {
+		vector<Point> target = targets[i];
+		Point center;
+		double hangle, vangle, distance;
+		process_target(config, image.size(), target, center, hangle, vangle, distance);
+
+		if (compare_dist_from_center(center, center, center_target_center)) {
+			center_target = target;
 		}
 	}
 }

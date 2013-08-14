@@ -9,6 +9,13 @@ void find_targets(YAML::Node *config,
 		vector<vector<Point> > &targets);
 
 
+/* This function selects the target nearest to
+   the center of the image. */
+void select_target(YAML::Node *config,
+		vector<vector<Point> > &targets,
+		vector<Point> &center_target,
+		Mat &image);
+
 /* This function draws rectangles to an image */
 void draw_targets(YAML::Node *config,
 		vector<vector<Point> > &rectangles,

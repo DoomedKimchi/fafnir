@@ -184,23 +184,15 @@ int main(int argc, char **argv) {
 			printf("Target not found\n");
 		}
 
-		size_t center_target = 0;
-		Point center_target_center;
-		center_target_center.x = 0;
-		center_target_center.y = 0;
+		vector<Point> center_target;
 
-		for (size_t i = 0; i < targets.size(); i++) {
+		if (targets.size() > 0) {
+			/* Select target nearest to the center */
+			select_target(&config, targets, center_target, image);
+			/* Process center target */
+			process_target(&config, image.size(), center_target, center, hangle, vangle, distance);
+
 			int bearing;
-			/* Process targets */
-			process_target(&config, image.size(), targets[i], center, hangle,
-					vangle, distance);
-			/*
-			   cout << "Target " << i << ":" << endl;
-			   cout << "Center: (" << center.x << ", " << center.y << ")" << endl;
-			   cout << "Distance: " << distance << " cm" << endl;
-			   cout << "Horizontal angle: " << hangle << " degrees" << endl;
-			   cout << "Vertical angle: " << vangle << " degrees" << endl;
-			   */
 
 			bearing = center.x - image.cols/2; // number of pixels off center of image
 			cout << "Bearing: " << bearing << endl;
