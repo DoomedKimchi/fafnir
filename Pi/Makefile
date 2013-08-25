@@ -2,14 +2,11 @@ CC=g++
 LIBS=opencv yaml-cpp
 FLAGS=-c -Wall -O2 --std=c++11 $(shell pkg-config $(LIBS) --cflags)
 LDFLAGS=$(shell pkg-config $(LIBS) --libs)
-SOURCES=main.cpp image_processing.cpp target_processing.cpp
+SOURCES=main.cpp image_processing.cpp target_processing.cpp server.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=main
 
 all: $(SOURCES) $(EXECUTABLE)
-
-client:
-	g++ -o client test-client.cpp
 
 clean:
 	rm main *.o

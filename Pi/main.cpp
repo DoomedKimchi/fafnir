@@ -1,6 +1,7 @@
 #include "vision_includes.hpp"
 #include "image_processing.hpp"
 #include "target_processing.hpp"
+#include "server.hpp"
 
 /* This function loads the yaml conf file */
 void load_conf(string filename, YAML::Node &config) {
@@ -21,14 +22,12 @@ void load_conf(string filename, YAML::Node &config) {
 int main(int argc, char **argv) {
 	bool gui = false; // Value for "-g" optional argument to show gui
 	bool write = false;
-	bool host = false;
 	bool port = false;
 	bool cam = false;
 	bool file = false;
 
 	int camera;
 	int portno;
-	char* hostname;
 	char* filename;
 
 	for (int i = 1/*skip argv[0]*/; i < argc; i++) {
@@ -42,17 +41,6 @@ int main(int argc, char **argv) {
 		else if ( (strcmp(argv[i], "-w") == 0) ||
 				(strcmp(argv[i], "--write") == 0) )
 			write = true;
-		else if ( (strcmp(argv[i], "-h") == 0) ||
-				(strcmp(argv[i], "--host") == 0) ) {
-			host = true;
-			if (i + 1 <= argc - 1) {
-				hostname = argv[i++];
-			}
-			else {
-				cout << RED << "USAGE: -h <host IP>" << RESET << endl;
-				return EX_USAGE;
-			}
-		}
 		else if ( (strcmp(argv[i], "-p") == 0) ||
 				(strcmp(argv[i], "--port") == 0) ) {
 			port = true;
@@ -98,11 +86,7 @@ int main(int argc, char **argv) {
 		// need more usage instructions
 		return EX_USAGE;
 	}
-	if (port && !host) {
-		cout << RED << "Please specify a hostname" << RESET << endl;
-		return EX_USAGE;
-	}
-	else if (!port && host) {
+	else if (!port) {
 		cout << RED << "Please specify a port number" << RESET << endl;
 		return EX_USAGE;
 	}
@@ -114,11 +98,11 @@ int main(int argc, char **argv) {
 	/* Print what we got from the arguments */
 	cout << "GUI: " << gui << endl;
 	cout << "Write to file: " << write << endl;
-	if (host) cout << "Hostname: " << hostname << endl;
 	if (port) cout << "Port Number: " << portno << endl;
 	if (cam) cout << "Camera: " << camera << endl;
 	if (file) cout << "Filename: " << filename << endl;
 
+	server_init(portno);
 
 	VideoCapture capture;
 	double rate; /* Framerate */
