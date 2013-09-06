@@ -3,7 +3,6 @@
 #include "AutonomousController.h"
 #include "HumanController.h"
 #include "JoystickTest.h"
-#include "server.h"
 
 class Fafnir : public IterativeRobot {
 	private:
@@ -56,12 +55,7 @@ void Fafnir::DisabledInit() {
 
 void Fafnir::AutonomousInit() {
 	printf("Starting Autonomous mode\n");
-	printf("Starting server\n");
-	server_init(&autoController, &robot); // this will pause the main thread
-	//rpi will have exclusive control instead of AutonomousController
 
-	//printf("Server is listening\n");
-	//server_begin_listening();
 	//autoController.startTimer();
 }
 
