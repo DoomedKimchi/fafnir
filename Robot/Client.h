@@ -16,13 +16,12 @@
  * http://www.vxdev.com/docs/vx55man/vxworks/netguide/c-sockets.html
  */
 
-#define BUFFSIZE 80
+#define BUFFSIZE 80 // this needs to go in Constants.h
 
 class Client {
 	private:
 		/* structure for requests from clients to server */
 		struct request {
-			int reply;                         /* TRUE = request reply from server */
 			int msgLen;                        /* length of message text */
 			char message[BUFFSIZE];    /* message buffer */
 		};

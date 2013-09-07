@@ -3,9 +3,11 @@
 #include "AutonomousController.h"
 #include "HumanController.h"
 #include "JoystickTest.h"
+#include "Client.h"
 
 class Fafnir : public IterativeRobot {
 	private:
+		Client client;
 		HumanController humanController;
 		JoystickTest joystickTest;
 		AutonomousMode mode;
@@ -32,6 +34,7 @@ class Fafnir : public IterativeRobot {
 };
 
 Fafnir::Fafnir() :
+	client(),
 	humanController(&robot),
 	joystickTest(&robot),
 	mode(DEFAULT),
@@ -50,11 +53,13 @@ void Fafnir::DisabledInit() {
 	printf("Entering disabled mode\n");
 	// Spin down all motors
 	// Halt network communications
+	client.server_disconnect();
 	// Deconstruct robot classes?
 }
 
 void Fafnir::AutonomousInit() {
 	printf("Starting Autonomous mode\n");
+	client.server_connect();
 
 	//autoController.startTimer();
 }
@@ -74,7 +79,7 @@ void Fafnir::DisabledPeriodic() {
 
 void Fafnir::AutonomousPeriodic() {
 	//autoController.update();
-	robot.update();
+	//robot.update();
 }
 
 void Fafnir::TeleopPeriodic() {

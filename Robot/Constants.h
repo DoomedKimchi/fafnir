@@ -156,6 +156,7 @@
 #define SHOOT_SPEED 0.2
 
 /* Port number of the RPi's server */
+#define SERVER_ADDR "10.0.8.6"
 #define SERVER_PORT 8888
 
 /* Types of gear modes for the drive train */
