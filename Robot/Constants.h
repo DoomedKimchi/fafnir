@@ -155,6 +155,9 @@
 /* Shooter minimum speed to shoot */
 #define SHOOT_SPEED 0.2
 
+/* Port number of the RPi's server */
+#define SERVER_PORT 8888
+
 /* Types of gear modes for the drive train */
 enum ShifterMode { MANUAL, AUTO };
 
