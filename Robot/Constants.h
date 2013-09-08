@@ -48,8 +48,8 @@
 // We cannot initialize multiple Victors on the same PWM port.
 #define PORT_DRIVE_VIC_1 5
 #define PORT_DRIVE_VIC_2 10
-#define PORT_DRIVE_VIC_3 2
-#define PORT_DRIVE_VIC_4 1
+#define PORT_DRIVE_VIC_3 2 // this is actually vic 9 on the robot
+#define PORT_DRIVE_VIC_4 1 // this is actually vic 10 on the robot
 
 //#define PORT_DRIVE_VIC_1 0
 //#define PORT_DRIVE_VIC_2 0

@@ -8,9 +8,12 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <signal.h>
+
+#include "vision_includes.hpp"
 
 int server_init(int portno);
-int server_accept();
+int server_send(char *writebuffer);
 int server_close();
 
 #endif

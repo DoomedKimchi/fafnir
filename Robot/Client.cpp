@@ -3,6 +3,7 @@
 Client::Client() :
 	portno(SERVER_PORT)
 {
+	readbuffer = (char *) malloc(BUFFSIZE);
 }
 
 int Client::server_connect() {
@@ -22,8 +23,7 @@ int Client::server_connect() {
 	serv_addr.sin_len = (u_char) sock_addr_size;
 	serv_addr.sin_port = htons(portno);
 
-	/* Get the host name */
-	printf("Resolving host\n");
+	// Resolve host
 	if ( (serv_addr.sin_addr.s_addr = inet_addr(hostname)) == ERROR &&
 			(serv_addr.sin_addr.s_addr = hostGetByName(hostname)) == ERROR ) {
 		printf("ERROR, no such host\n");
@@ -45,15 +45,25 @@ int Client::server_connect() {
 
 int Client::server_get() {
 	/* Send a request to the server */
-	if (write(sockfd, (char *) &myRequest, sizeof(myRequest)) == ERROR) {
+	/*
+	if (write(sockfd, writebuffer, sizeof(writebuffer)) == ERROR) {
 		printf("ERROR writing\n");
 		close(sockfd);
 		return 1;
 	}
+	*/
+
+	if (read(sockfd, readbuffer, sizeof(readbuffer)) < 0) {
+		printf("ERROR reading\n");
+		close(sockfd);
+		return 1;
+	}
+	printf("Got a message: %s\n", readbuffer);
 
 	return 0;
 }
 
 void Client::server_disconnect() {
+	printf("Closing connection\n");
 	close(sockfd);
 }

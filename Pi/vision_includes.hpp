@@ -23,4 +23,7 @@ using namespace std;
 #define RESET  "\033[0m"
 #define RED	   "\033[31m" /* Red */
 
+#define BUFFSIZE 80
+#define PORT 8888
+
 #endif

@@ -78,6 +78,7 @@ void Fafnir::DisabledPeriodic() {
 }
 
 void Fafnir::AutonomousPeriodic() {
+	client.server_get();
 	//autoController.update();
 	//robot.update();
 }

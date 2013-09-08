@@ -102,7 +102,11 @@ int main(int argc, char **argv) {
 	if (cam) cout << "Camera: " << camera << endl;
 	if (file) cout << "Filename: " << filename << endl;
 
-	server_init(portno);
+	if(server_init(portno)) {
+		printf("Failed to start server\n");
+		return 1;
+	}
+	char writebuffer[BUFFSIZE];
 
 	VideoCapture capture;
 	double rate; /* Framerate */
@@ -140,6 +144,7 @@ int main(int argc, char **argv) {
 
 	for (int frame_count = 0; !stop; frame_count++) {
 		//cout << "\n\nFrame: " << frame_count << endl; /* Uncomment to display frame count */
+
 		/* Read next frame, if any */
 		if (!capture.read(image))
 			break;
@@ -187,6 +192,9 @@ int main(int argc, char **argv) {
 				cout << "Target is on the left" << endl;
 			else // +-5 pixel threshold for being aligned
 				cout << "Target is aligned" << endl;
+
+			sprintf(writebuffer, "%d", bearing);
+			server_send(writebuffer);
 		}
 
 		/* Show the result */
@@ -214,5 +222,6 @@ int main(int argc, char **argv) {
 
 	/* Close the video file */
 	capture.release();
+	server_close();
 	return 0;
 }

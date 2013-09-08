@@ -20,13 +20,6 @@
 
 class Client {
 	private:
-		/* structure for requests from clients to server */
-		struct request {
-			int msgLen;                        /* length of message text */
-			char message[BUFFSIZE];    /* message buffer */
-		};
-
-		struct request myRequest;
 		struct sockaddr_in serv_addr; // server's socket address
 
 		int sock_addr_size;

@@ -16,3 +16,6 @@ $(EXECUTABLE): $(OBJECTS)
 
 .cpp.o:
 	$(CC) $(FLAGS) $< -o $@
+
+client:
+	$(CC) test-client.cpp -o test-client
