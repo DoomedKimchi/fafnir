@@ -27,7 +27,7 @@ class Client {
 		unsigned int portno;
 		struct hostent *server;
 
-		char *readbuffer;
+		char readbuffer[BUFFSIZE];
 		char *hostname;
 
 

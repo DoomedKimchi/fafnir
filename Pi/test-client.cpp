@@ -20,8 +20,8 @@ struct hostent *server;
 
 int portno;
 char *hostname;
-char *readbuffer;
-char *writebuffer;
+char readbuffer[BUFFSIZE];
+char writebuffer[BUFFSIZE];
 
 int server_connect() {
 	hostname = (char *) HOSTNAME;
@@ -85,7 +85,7 @@ int server_get() {
 
 int server_send () {
 	bzero(writebuffer, sizeof(writebuffer));
-	writebuffer = (char *) "hi";
+	sprintf(writebuffer, "%s", "hi");
 	printf("Readbuffer: %s\n", writebuffer);
 	n = write(sockfd, writebuffer, BUFFSIZE);
 	if (n < 0) {
@@ -103,9 +103,6 @@ void server_disconnect () {
 }
 
 int main (int argc, char **argv) {
-	readbuffer = (char *) malloc(BUFFSIZE); // assign memory for readbuffer
-	writebuffer = (char *) malloc(BUFFSIZE); // assign memory for writebuffer
-
 	server_connect();
 	server_get();
 

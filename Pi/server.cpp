@@ -30,7 +30,6 @@ int server_init(int portno) {
 	}
 
 	/* Bind the socket */
-	printf("Binding socket\n");
 	if (bind(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
 		printf("ERROR on binding\n");
 		server_close();

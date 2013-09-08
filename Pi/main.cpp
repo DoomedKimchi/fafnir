@@ -196,6 +196,10 @@ int main(int argc, char **argv) {
 			sprintf(writebuffer, "%d", bearing);
 			server_send(writebuffer);
 		}
+		else { // no targets found
+			sprintf(writebuffer, "%s", "NOPE");
+			server_send(writebuffer);
+		}
 
 		/* Show the result */
 		if (gui)

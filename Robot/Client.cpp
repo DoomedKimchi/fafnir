@@ -3,7 +3,6 @@
 Client::Client() :
 	portno(SERVER_PORT)
 {
-	readbuffer = (char *) malloc(BUFFSIZE);
 }
 
 int Client::server_connect() {
